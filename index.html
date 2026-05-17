@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paul Bader — Product & Brand Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg:         #f6f6f4;
+      --white:      #ffffff;
+      --black:      #1a1a1a;
+      --cod-gray:   #121212;
+      --mine-shaft: #2b2b2b;
+      --emperor:    #545454;
+      --gray:       #828282;
+      --alto:       #dedede;
+      --gallery:    #f0f0f0;
+      --blue:       #1569f2;
+      --ease:        cubic-bezier(0.22, 1, 0.36, 1);
+      --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--black);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    #progress-bar {
+      position: fixed; top: 0; left: 0; z-index: 300;
+      height: 2px; width: 0%;
+      background: rgba(0,0,0,0.2);
+      transition: width 0.12s linear;
+      pointer-events: none;
+      border-radius: 0 2px 2px 0;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 20px; left: 50%;
+      transform: translateX(-50%);
+      z-index: 100;
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 7px 12px 7px 9px;
+      background: rgba(255,255,255,0.38);
+      backdrop-filter: saturate(120%) blur(8px);
+      -webkit-backdrop-filter: saturate(120%) blur(8px);
+      border: 1px solid rgba(0,0,0,0.1);
+      border-radius: 100px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+      white-space: nowrap;
+      animation: navDrop 0.9s var(--ease) 0.1s both;
+      transition: box-shadow 0.7s var(--ease), background 0.7s var(--ease), backdrop-filter 0.7s var(--ease);
+    }
+    @keyframes navDrop {
+      from { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+      to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+    }
+    nav.scrolled {
+      background: rgba(255,255,255,0.46);
+      backdrop-filter: saturate(120%) blur(8px);
+      -webkit-backdrop-filter: saturate(120%) blur(8px);
+      box-shadow: 0 4px 18px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .nav-photo { width: 28px; height: 28px; border-radius: 50%; overflow: hidden; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+    .nav-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .nav-photo-placeholder { width: 100%; height: 100%; background: linear-gradient(135deg, #c4c4ca, #9c9ca4); display: flex; align-items: center; justify-content: center; }
+    .nav-name { font-size: 13.5px; font-weight: 600; color: var(--black); text-decoration: none; padding: 0 5px 0 3px; letter-spacing: -0.015em; }
+    .nav-divider {
+      width: 1px; height: 14px; background: rgba(0,0,0,0.09); margin: 0 2px;
+      max-width: 10px; overflow: hidden;
+      transition: max-width 0.6s var(--ease), opacity 0.45s var(--ease), margin 0.6s var(--ease);
+      transition-delay: 0.12s;
+    }
+    .nav-links {
+      display: flex; gap: 1px; list-style: none;
+      max-width: 200px; overflow: hidden;
+      transition: max-width 0.6s var(--ease), opacity 0.45s var(--ease);
+      transition-delay: 0.12s;
+    }
+    .nav-links a {
+      font-size: 13.5px; font-weight: 500; color: var(--black);
+      text-decoration: none; padding: 5px 11px; border-radius: 100px;
+      transition: color 0.25s var(--ease);
+    }
+    .nav-links a:hover { color: #666; }
+    .nav-dots {
+      display: inline-flex; align-items: center; gap: 4px;
+      width: 0; opacity: 0; overflow: hidden; flex-shrink: 0;
+      padding: 5px 0 3px;
+      transition: width 0.6s var(--ease), opacity 0.4s var(--ease);
+      transition-delay: 0s;
+    }
+    .nav-dots span {
+      width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0;
+      background: var(--emperor);
+      animation: dot-bob 1.3s ease-in-out infinite;
+    }
+    .nav-dots span:nth-child(2) { animation-delay: 0.18s; }
+    .nav-dots span:nth-child(3) { animation-delay: 0.36s; }
+    @keyframes dot-bob {
+      0%, 60%, 100% { transform: translateY(0); opacity: 0.35; }
+      30% { transform: translateY(-4px); opacity: 1; }
+    }
+    nav.compact .nav-divider { max-width: 0; opacity: 0; margin: 0; transition-delay: 0s; }
+    nav.compact .nav-links { max-width: 0; opacity: 0; transition-delay: 0s; }
+    nav.compact .nav-dots { width: 32px; opacity: 1; transition-delay: 0.26s; }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      display: grid; grid-template-columns: 390px 1fr;
+      align-items: start;
+      gap: 80px;
+      max-width: 1160px; margin: 0 auto;
+      padding: 160px 48px 120px;
+    }
+    .hero-left     { animation: heroIn 0.9s var(--ease) 0.1s  both; }
+    .hero-intro    { animation: heroIn 0.9s var(--ease) 0.26s both; }
+    .work-history  { animation: heroIn 0.9s var(--ease) 0.42s both; }
+    @keyframes heroIn {
+      from { opacity: 0; transform: translateY(10px); filter: blur(6px); }
+      to   { opacity: 1; transform: translateY(0);    filter: blur(0);   }
+    }
+
+    .hero-photo-wrap { position: relative; width: 100%; }
+    .hero-photo {
+      width: 100%; aspect-ratio: 371 / 410;
+      border-radius: 16px; overflow: hidden;
+      background: #d0d0cc;
+      box-shadow:
+        0.89px 0.42px 0.984px -0.469px rgba(0,0,0,0.04),
+        2.11px 0.995px 2.333px -0.938px rgba(0,0,0,0.04),
+        6.398px 3.018px 7.075px -1.875px rgba(0,0,0,0.03),
+        16.914px 7.978px 18.701px -2.813px rgba(0,0,0,0.03),
+        53px 25px 58.6px -3.75px rgba(0,0,0,0.01);
+    }
+    .hero-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .photo-placeholder {
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+      background: linear-gradient(160deg, #d8d8d4 0%, #c6c6c2 100%); color: #999;
+    }
+    .photo-placeholder svg { opacity: 0.38; }
+    .photo-placeholder span { font-size: 10px; font-weight: 600; opacity: 0.45; letter-spacing: 0.07em; text-transform: uppercase; }
+
+    .photo-socials {
+      position: absolute; bottom: 12px; right: 12px;
+      display: flex; gap: 6px;
+    }
+    .photo-socials a {
+      width: 30px; height: 30px; border-radius: 50%;
+      background: rgba(0,0,0,0.28);
+      border: 1px solid rgba(255,255,255,0.18);
+      backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.7); text-decoration: none;
+      transition: background 0.32s var(--ease), color 0.32s var(--ease), border-color 0.32s var(--ease), transform 0.4s var(--ease-spring);
+    }
+    .photo-socials a:hover { background: rgba(0,0,0,0.5); color: white; transform: translateY(-2px); border-color: rgba(255,255,255,0.35); }
+
+    .hero-byline { margin-top: 16px; }
+    .hero-byline h2 { font-size: 21px; font-weight: 500; letter-spacing: -0.02em; color: var(--black); }
+    .hero-byline p { font-size: 13px; font-weight: 400; color: var(--emperor); margin-top: 2px; }
+
+    .hero-intro {
+      font-size: 32px; font-weight: 600; line-height: 35.2px;
+      letter-spacing: -0.96px; color: var(--gray);
+    }
+    .hero-intro b { color: var(--cod-gray); font-weight: 600; }
+
+    /* ─── WORK HISTORY ─── */
+    .work-history { margin-top: 48px; }
+    .work-history-label { font-size: 18px; font-weight: 400; color: var(--black); margin-bottom: 8px; }
+
+    .work-stack {
+      position: relative; height: 94px;
+      cursor: pointer; overflow: visible;
+      transition: height 0.75s var(--ease);
+    }
+
+    .work-card {
+      position: absolute; top: 0; left: 0; right: 0;
+      background: var(--white);
+      border: 1px solid var(--alto);
+      border-radius: 16px; padding: 18px;
+      display: flex; justify-content: space-between; align-items: center;
+      box-shadow: 0px 0.6px 0.6px -0.94px rgba(0,0,0,0.08), 0px 1.8px 1.8px -1.88px rgba(0,0,0,0.07), 0px 4.8px 4.8px -2.81px rgba(0,0,0,0.06), 0px 15px 15px -3.75px rgba(0,0,0,0.02);
+      transition: transform 0.72s var(--ease), opacity 0.6s var(--ease), left 0.72s var(--ease), right 0.72s var(--ease), box-shadow 0.4s var(--ease);
+    }
+    .work-card-1 { z-index: 4; transform: translateY(0px); }
+    .work-card-2 { z-index: 3; opacity: 0.88; transform: translateY(6px); left: 2.5%; right: 2.5%; }
+    .work-card-3 { z-index: 2; opacity: 0.72; transform: translateY(12px); left: 5%; right: 5%; }
+    .work-card-4 { z-index: 1; opacity: 0; transform: translateY(12px); left: 5%; right: 5%; }
+
+    .work-stack:not(.expanded):hover .work-card-2 { transform: translateY(10px); }
+    .work-stack:not(.expanded):hover .work-card-3 { transform: translateY(20px); }
+    .work-stack:not(.expanded):hover .work-card-4 { transform: translateY(20px); }
+    .work-stack.expanded .work-card:hover { box-shadow: 0px 2px 8px rgba(0,0,0,0.07), 0px 10px 28px rgba(0,0,0,0.07); }
+
+    .work-co { font-size: 16px; font-weight: 400; color: var(--emperor); letter-spacing: -0.32px; }
+    .work-role { font-size: 12px; font-weight: 500; color: var(--emperor); margin-top: 2px; }
+    .work-date { font-size: 12px; font-weight: 500; color: var(--emperor); white-space: nowrap; }
+
+    .toggle-btn {
+      display: inline-flex; align-items: center; gap: 4px;
+      margin-top: 20px; padding: 0 12px; height: 30px;
+      background: var(--white); border: 1px solid var(--gallery); border-radius: 24px;
+      color: var(--black); font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 500;
+      cursor: pointer; box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+      transition: background 0.32s var(--ease), transform 0.45s var(--ease-spring);
+    }
+    .toggle-btn:hover { background: var(--gallery); }
+    .toggle-btn:active { transform: scale(0.97); transition-duration: 0.12s; }
+    .chevron {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 18px; height: 18px; border-radius: 50%;
+      background: var(--black); flex-shrink: 0;
+      transition: transform 0.55s var(--ease-spring);
+    }
+    .chevron svg { stroke: white; }
+    .toggle-btn.open .chevron { transform: rotate(180deg); }
+
+    /* ─── CARDS ─── */
+    .work-section { padding-bottom: 120px; }
+
+    .cards { max-width: 1160px; margin: 0 auto; padding: 0 48px; display: flex; flex-direction: column; gap: 40px; }
+
+    .card {
+      position: relative;
+      border-radius: 40px; overflow: hidden;
+      display: grid; grid-template-columns: 1fr 1fr;
+      min-height: 552px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.04);
+    }
+    .card.reveal {
+      transition: opacity 1.1s var(--ease), transform 1.1s var(--ease), box-shadow 1.1s var(--ease);
+    }
+    .card.reveal.in:hover {
+      transform: translateY(-2px);
+    }
+
+    .card-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background-size: cover; background-position: center;
+      transition: transform 1.6s var(--ease);
+    }
+    .card:hover .card-bg { transform: scale(1.024); }
+
+    .card-scrim { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+
+    .card-body {
+      position: relative; z-index: 2;
+      padding: 52px 44px 52px 52px;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+
+    .card-visual {
+      position: relative; z-index: 2;
+      display: flex; align-items: center; justify-content: center;
+      padding: 40px 48px 40px 0;
+      overflow: visible;
+    }
+    .card-visual img {
+      max-width: 100%; max-height: 380px;
+      object-fit: contain; display: block;
+      filter: drop-shadow(0 20px 40px rgba(0,0,0,0.28));
+      transition: transform 1.1s var(--ease), filter 1.1s var(--ease);
+    }
+    .card:hover .card-visual img {
+      transform: translateY(-6px) scale(1.02);
+      filter: drop-shadow(0 32px 56px rgba(0,0,0,0.34));
+    }
+    .img-hint { font-size: 11px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; }
+
+    .card-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; }
+    .card-icon { width: 23px; height: 23px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 700; }
+    .card-co { font-size: 14px; font-weight: 500; }
+    .card-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+    .card-yr { font-size: 14px; font-weight: 500; }
+    .card-title { font-size: 50px; font-weight: 600; letter-spacing: -1.5px; line-height: 60px; margin-bottom: 16px; }
+    .card-desc { font-size: 18px; font-weight: 400; line-height: 25.2px; }
+    .card-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
+    .card-tag {
+      height: 30px; padding: 0 12px; border-radius: 100px;
+      font-size: 13px; font-weight: 400; flex-shrink: 0;
+      display: flex; align-items: center; cursor: default;
+      transition: opacity 0.3s var(--ease);
+    }
+    .card-tag:hover { opacity: 0.65; }
+    .card-cta { margin-top: 40px; }
+
+    .btn-view {
+      display: inline-flex; align-items: center; gap: 0;
+      padding: 13px 20px; border-radius: 13px;
+      background: var(--blue); color: white;
+      font-size: 18px; font-weight: 400;
+      text-decoration: none; border: none; cursor: pointer; overflow: hidden;
+      transition: background 0.35s var(--ease), transform 0.5s var(--ease-spring), box-shadow 0.5s var(--ease), padding-right 0.45s var(--ease);
+    }
+    .btn-view:hover { background: #1260e0; box-shadow: 0 4px 18px rgba(21,105,242,0.22); padding-right: 26px; }
+    .btn-view:active { transform: scale(0.975); transition-duration: 0.12s; }
+    .btn-view .arrow { display: inline-block; margin-left: 0; opacity: 0; transform: translateX(-6px); transition: opacity 0.35s var(--ease), transform 0.45s var(--ease), margin-left 0.45s var(--ease); }
+    .btn-view:hover .arrow { opacity: 1; transform: translateX(0); margin-left: 8px; }
+
+    .btn-soon {
+      display: inline-flex; align-items: center;
+      padding: 13px 20px; border-radius: 13px;
+      background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.42);
+      border: 1px solid rgba(255,255,255,0.1);
+      font-size: 18px; font-weight: 400; cursor: default;
+    }
+
+    /* ── Card themes ── */
+    .card-light .card-scrim { background: linear-gradient(90deg, rgba(255,255,255,0.72) 0%, rgba(255,255,255,0.36) 50%, transparent 100%); }
+    .card-light .card-co, .card-light .card-yr { color: var(--mine-shaft); }
+    .card-light .card-dot { background: rgba(0,0,0,0.22); }
+    .card-light .card-title { color: var(--cod-gray); }
+    .card-light .card-desc { color: var(--mine-shaft); }
+    .card-light .card-tag { background: rgba(0,0,0,0.06); color: rgba(0,0,0,0.75); }
+
+    .card-dark .card-scrim  { background: linear-gradient(90deg, rgba(14,14,26,0.82) 0%, rgba(14,14,26,0.5) 45%, rgba(14,14,26,0.1) 100%); }
+    .card-ink  .card-scrim  { background: linear-gradient(90deg, rgba(8,8,12,0.80) 0%, rgba(8,8,12,0.45) 45%, transparent 100%); }
+    .card-violet .card-scrim { background: linear-gradient(90deg, rgba(12,8,22,0.82) 0%, rgba(12,8,22,0.48) 45%, transparent 100%); }
+
+    .card-dark .card-co, .card-dark .card-yr,
+    .card-ink  .card-co, .card-ink  .card-yr,
+    .card-violet .card-co, .card-violet .card-yr { color: rgba(255,255,255,0.88); }
+    .card-dark .card-dot, .card-ink .card-dot, .card-violet .card-dot { background: rgba(255,255,255,0.32); }
+    .card-dark .card-title, .card-ink .card-title, .card-violet .card-title { color: white; }
+    .card-dark .card-desc  { color: rgba(255,255,255,0.65); }
+    .card-ink  .card-desc  { color: rgba(255,255,255,0.60); }
+    .card-violet .card-desc { color: rgba(255,255,255,0.62); }
+    .card-dark .card-tag, .card-ink .card-tag, .card-violet .card-tag { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.82); }
+
+    /* ─── FOOTER ─── */
+    footer { background: #0a0a0a; color: white; padding: 88px 48px 0; overflow: hidden; }
+    .footer-inner { max-width: 1160px; margin: 0 auto; }
+    .footer-cta { font-size: clamp(36px, 4.2vw, 60px); font-weight: 600; letter-spacing: -0.04em; line-height: 1.15; margin-bottom: 48px; }
+    .footer-cta > span:not(.footer-word) { color: #272730; }
+    .footer-word {
+      display: inline-block; color: white;
+    }
+    .footer-row { display: flex; justify-content: space-between; align-items: flex-end; padding: 30px 0; border-top: 1px solid rgba(255,255,255,0.07); }
+    .footer-label { font-size: 10px; font-weight: 500; letter-spacing: 0.09em; text-transform: uppercase; color: rgba(255,255,255,0.26); margin-bottom: 7px; }
+    .footer-email {
+      font-size: 17px; font-weight: 400; letter-spacing: -0.02em;
+      color: white; text-decoration: none;
+      transition: color 0.25s var(--ease);
+    }
+    .footer-email:hover { color: rgba(255,255,255,0.5); }
+    .footer-socials { display: flex; gap: 8px; }
+    .footer-socials a {
+      width: 38px; height: 38px; border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.09);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.6); text-decoration: none;
+      transition: background 0.32s var(--ease), color 0.32s var(--ease), border-color 0.32s var(--ease), transform 0.4s var(--ease-spring);
+    }
+    .footer-socials a:hover { background: rgba(255,255,255,0.07); color: white; transform: translateY(-2px); border-color: rgba(255,255,255,0.18); }
+    .footer-meta { display: flex; justify-content: space-between; padding: 18px 0; border-top: 1px solid rgba(255,255,255,0.05); }
+    .footer-meta span { font-size: 11.5px; color: rgba(255,255,255,0.2); font-weight: 500; }
+    .footer-wordmark {
+      font-size: clamp(50px, 10vw, 156px); font-weight: 700; letter-spacing: -0.04em;
+      line-height: 0.9; color: white; white-space: nowrap;
+      padding: 32px 0 0; will-change: transform;
+      text-align: center;
+    }
+
+    /* ─── SCROLL REVEAL ─── */
+    .reveal { opacity: 0; transform: translateY(36px) scale(0.98); filter: blur(5px); transition: opacity 1.0s var(--ease), transform 1.0s var(--ease), filter 1.0s var(--ease); }
+    .reveal.in { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+    .reveal-d1.in { transition-delay: 0.1s; }
+    .reveal-d2.in { transition-delay: 0.2s; }
+
+    /* ─── TABLET ─── */
+    @media (max-width: 900px) and (min-width: 600px) {
+      .hero { grid-template-columns: 1fr 1.2fr; gap: 36px; padding: 120px 32px 60px; min-height: auto; }
+      .hero-photo { aspect-ratio: 3/4; }
+      .hero-intro { font-size: clamp(19px, 2.6vw, 25px); line-height: 1.35; letter-spacing: -0.5px; }
+      .work-history { margin-top: 32px; }
+      .work-history-label { font-size: 16px; }
+      .work-stack { height: 74px; }
+      .cards { padding: 0 32px; gap: 28px; }
+      .card { border-radius: 28px; min-height: 384px; }
+      .card-body { padding: 36px; }
+      .card-title { font-size: 36px; line-height: 43px; letter-spacing: -1px; }
+      .card-desc { font-size: 15px; line-height: 22px; }
+      .btn-view, .btn-soon { font-size: 16px; padding: 11px 18px; }
+      footer { padding: 64px 32px 0; }
+      .footer-cta { font-size: clamp(24px, 4vw, 38px); }
+    }
+
+    /* ─── MOBILE ─── */
+    @media (max-width: 599px) {
+      nav { top: 14px; padding: 6px 10px 6px 8px; }
+      .nav-name { font-size: 12.5px; padding: 0 4px 0 2px; }
+      .nav-links a { font-size: 12.5px; padding: 4px 9px; }
+
+      .hero { grid-template-columns: 1fr; min-height: auto; padding: 76px 20px 48px; gap: 0; align-items: flex-start; }
+      .hero-photo { aspect-ratio: 16/9; border-radius: 14px; }
+      .hero-byline { margin-top: 14px; }
+      .hero-byline h2 { font-size: 17px; }
+      .hero-byline p { font-size: 12px; }
+      .hero-right { margin-top: 36px; }
+      .hero-intro { font-size: 22px; line-height: 29px; letter-spacing: -0.55px; }
+      .work-history { margin-top: 32px; }
+      .work-history-label { font-size: 15px; margin-bottom: 10px; }
+      .work-stack { height: 64px; }
+      .work-card { padding: 14px 16px; }
+      .work-co { font-size: 14px; }
+      .work-role, .work-date { font-size: 11px; }
+      .toggle-btn { margin-top: 14px; }
+
+      .cards { padding: 0; gap: 0; }
+      .work-section { padding-bottom: 0; }
+      .card { grid-template-columns: 1fr; grid-template-rows: auto 1fr; border-radius: 0; min-height: 100vh; min-height: 100svh; }
+      .card-bg { border-radius: 0; }
+      .card-body { padding: 40px 28px 28px; order: 1; min-height: unset; align-items: center; text-align: center; }
+      .card-meta { justify-content: center; }
+      .card-visual { order: 2; padding: 16px 16px 0; }
+      .card-title { font-size: 30px; line-height: 36px; letter-spacing: -0.9px; margin-bottom: 10px; }
+      .card-desc { font-size: 14px; line-height: 20px; max-width: 24ch; margin-left: auto; margin-right: auto; }
+      html { scroll-snap-type: y mandatory; }
+      .hero { scroll-snap-align: start; }
+      .card { scroll-snap-align: start; }
+      .card-tags { gap: 6px; margin-top: 12px; flex-wrap: wrap; justify-content: center; }
+      .card-tag { height: 26px; font-size: 11.5px; padding: 0 10px; }
+      .card-cta { margin-top: 22px; display: flex; justify-content: center; }
+      .btn-view, .btn-soon { font-size: 15px; padding: 10px 18px; border-radius: 10px; }
+      .card-light .card-scrim { background: linear-gradient(180deg, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.55) 100%); }
+      .card-dark  .card-scrim { background: linear-gradient(180deg, rgba(14,14,26,0.9) 0%, rgba(14,14,26,0.55) 100%); }
+      .card-ink   .card-scrim { background: linear-gradient(180deg, rgba(8,8,12,0.88) 0%, rgba(8,8,12,0.5) 100%); }
+      .card-violet .card-scrim { background: linear-gradient(180deg, rgba(12,8,22,0.9) 0%, rgba(12,8,22,0.52) 100%); }
+
+      footer { padding: 52px 20px 0; }
+      .footer-cta { font-size: clamp(22px, 7.5vw, 36px); margin-bottom: 32px; }
+      .footer-row { flex-direction: column; align-items: flex-start; gap: 24px; padding: 24px 0; }
+      .footer-email { font-size: 15px; }
+      .footer-meta { flex-direction: column; gap: 4px; padding: 14px 0; }
+      .footer-meta span { font-size: 11px; }
+      .footer-wordmark { padding: 20px 0 0; font-size: 9vw; font-weight: 700; }
+      .footer-row > div:last-child .footer-label { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+    <div class="hero-left">
+      <div class="hero-photo-wrap">
+        <div class="hero-photo">
+          <!-- TO ADD YOUR PHOTO: replace the placeholder div with <img src="images/paul.jpg" alt="Paul Bader"> -->
+          <div class="photo-placeholder">
+            <svg width="52" height="52" viewBox="0 0 72 72" fill="none">
+              <circle cx="36" cy="28" r="14" fill="#9e9e9a"/>
+              <ellipse cx="36" cy="64" rx="24" ry="16" fill="#9e9e9a"/>
+            </svg>
+            <span>Add photo here</span>
+          </div>
+        </div>
+        <div class="photo-socials">
+          <a href="https://linkedin.com/in/itspaulbader" target="_blank" aria-label="LinkedIn">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a href="https://dribbble.com/itspaulbader" target="_blank" aria-label="Dribbble">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 24C5.385 24 0 18.615 0 12S5.385 0 12 0s12 5.385 12 12-5.385 12-12 12zm10.12-10.358c-.35-.11-3.17-.953-6.384-.438 1.34 3.684 1.887 6.684 1.992 7.308 2.3-1.555 3.936-4.02 4.395-6.87zm-6.115 7.808c-.153-.9-.75-4.032-2.19-7.77l-.066.02c-5.79 2.015-7.86 6.025-8.04 6.4 1.73 1.358 3.92 2.166 6.29 2.166 1.42 0 2.77-.29 4-.816zm-11.62-2.073c.232-.4 3.045-5.055 8.332-6.765.135-.045.27-.084.405-.12-.26-.585-.54-1.167-.832-1.74C7.17 11.775 2.206 11.71 1.756 11.7l-.004.312c0 2.633.998 5.037 2.634 6.855zm-2.42-8.955c.46.008 4.683.026 9.477-1.248-1.698-3.018-3.53-5.558-3.8-5.928-2.868 1.35-5.01 3.99-5.676 7.176zM9.6 2.052c.282.38 2.145 2.914 3.822 6 3.645-1.365 5.19-3.44 5.373-3.702-1.81-1.61-4.19-2.586-6.795-2.586-.812 0-1.6.107-2.4.285zm10.335 3.483c-.218.29-1.935 2.493-5.724 4.04.24.49.47.985.68 1.486.08.18.15.36.22.53 3.41-.43 6.8.26 7.14.33-.02-2.42-.88-4.64-2.316-6.386z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="hero-byline">
+        <h2>Paul Bader</h2>
+        <p>Product & Brand Designer</p>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <p class="hero-intro">
+        Hi! I am a curious <b>product designer</b> with <b>6+ years</b> of experience in UX/UI and a passion for user psychology. I have a strong foundation in <b>branding</b>, <b>product design</b>, and <b>design systems</b>.
+      </p>
+
+      <div class="work-history">
+        <p class="work-history-label">My work history</p>
+        <div class="work-stack" id="workStack">
+          <div class="work-card work-card-4">
+            <div><div class="work-co">Grundfos</div><div class="work-role">Junior Designer</div></div>
+            <span class="work-date">2018 - 2022</span>
+          </div>
+          <div class="work-card work-card-3">
+            <div><div class="work-co">Custimy</div><div class="work-role">Product Designer</div></div>
+            <span class="work-date">2022 - 2023</span>
+          </div>
+          <div class="work-card work-card-2">
+            <div><div class="work-co">Make Influence</div><div class="work-role">Product Designer</div></div>
+            <span class="work-date">2023 - 2024</span>
+          </div>
+          <div class="work-card work-card-1">
+            <div><div class="work-co">Neeo Lab</div><div class="work-role">Product & Brand Designer</div></div>
+            <span class="work-date">2024 - Present</span>
+          </div>
+        </div>
+
+        <button class="toggle-btn" id="toggleBtn">
+          <span id="toggleLabel">Show all</span>
+          <span class="chevron">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="work-section" id="work">
+    <div class="cards">
+
+      <div class="card card-light reveal" style="--d:0s">
+        <div class="card-bg" style="background: radial-gradient(ellipse 80% 90% at 70% 50%, #c7d2fe 0%, #bfdbfe 40%, #dbeafe 70%, #eff6ff 100%);"></div>
+        <div class="card-scrim"></div>
+        <div class="card-body">
+          <div>
+            <div class="card-meta">
+              <div class="card-icon" style="background:#dbeafe;color:#1d4ed8;">ML</div>
+              <span class="card-co">Meta Learn</span>
+              <span class="card-dot"></span>
+              <span class="card-yr">2024</span>
+            </div>
+            <h3 class="card-title">Mental fitness,<br>made intuitive</h3>
+            <p class="card-desc">Meta Learn is a mobile app for stress relief, focus, and emotional resilience.</p>
+            <div class="card-tags">
+              <span class="card-tag">Research</span>
+              <span class="card-tag">UX/UI Design</span>
+              <span class="card-tag">Branding</span>
+            </div>
+          </div>
+          <div class="card-cta"><a href="meta-learn.html" class="btn-view">View Case <span class="arrow">→</span></a></div>
+        </div>
+        <div class="card-visual">
+          <!-- <img src="images/meta-learn-mockup.png" alt="Meta Learn app"> -->
+          <div class="img-hint" style="color:rgba(100,140,200,0.45);">Add product screenshot →</div>
+        </div>
+      </div>
+
+      <div class="card card-dark reveal" style="--d:0.1s">
+        <div class="card-bg" style="background: linear-gradient(135deg, #0d0c1e 0%, #1a1040 40%, #2d1060 70%, #1a0d30 100%);"></div>
+        <div class="card-scrim"></div>
+        <div class="card-body">
+          <div>
+            <div class="card-meta">
+              <div class="card-icon" style="background:rgba(255,255,255,0.12);color:white;">C</div>
+              <span class="card-co">Custimy</span>
+              <span class="card-dot"></span>
+              <span class="card-yr">2023</span>
+            </div>
+            <h3 class="card-title">Quicker & better<br>onboarding</h3>
+            <p class="card-desc">Creating a seamless entry point so users could start strong without friction.</p>
+            <div class="card-tags">
+              <span class="card-tag">SaaS</span>
+              <span class="card-tag">Product Design</span>
+              <span class="card-tag">User Flow</span>
+            </div>
+          </div>
+          <div class="card-cta"><a href="#" class="btn-view">View Case <span class="arrow">→</span></a></div>
+        </div>
+        <div class="card-visual">
+          <!-- <img src="images/custimy-mockup.png" alt="Custimy onboarding"> -->
+          <div class="img-hint" style="color:rgba(255,255,255,0.18);">Add product screenshot →</div>
+        </div>
+      </div>
+
+      <div class="card card-ink reveal" style="--d:0.2s">
+        <div class="card-bg" style="background: linear-gradient(160deg, #0a0e1a 0%, #12213a 35%, #1e3a5c 65%, #0d1825 100%);"></div>
+        <div class="card-scrim"></div>
+        <div class="card-body">
+          <div>
+            <div class="card-meta">
+              <div class="card-icon" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.85);">G</div>
+              <span class="card-co">Grundfos</span>
+              <span class="card-dot"></span>
+              <span class="card-yr">2020</span>
+            </div>
+            <h3 class="card-title">From print to<br>PowerApp</h3>
+            <p class="card-desc">UX-driven internal tool used by 200+, replacing 80% of printed material.</p>
+            <div class="card-tags">
+              <span class="card-tag">PowerApps</span>
+              <span class="card-tag">Mobile Design</span>
+              <span class="card-tag">UX/UI Design</span>
+            </div>
+          </div>
+          <div class="card-cta"><a href="#" class="btn-view">View Case <span class="arrow">→</span></a></div>
+        </div>
+        <div class="card-visual">
+          <!-- <img src="images/grundfos-mockup.png" alt="Grundfos PowerApp"> -->
+          <div class="img-hint" style="color:rgba(255,255,255,0.15);">Add product screenshot →</div>
+        </div>
+      </div>
+
+      <div class="card card-violet reveal" style="--d:0.3s">
+        <div class="card-bg" style="background: linear-gradient(135deg, #1a0f2e 0%, #2d1854 40%, #1e1040 70%, #120b20 100%);"></div>
+        <div class="card-scrim"></div>
+        <div class="card-body">
+          <div>
+            <div class="card-meta">
+              <div class="card-icon" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.85);">B</div>
+              <span class="card-co">Bershka</span>
+              <span class="card-dot"></span>
+              <span class="card-yr">2025</span>
+            </div>
+            <h3 class="card-title">A smoother<br>self-checkout</h3>
+            <p class="card-desc">Redesigning the in-store experience to reduce friction and speed up payment.</p>
+            <div class="card-tags">
+              <span class="card-tag">Product Design</span>
+              <span class="card-tag">Onboarding</span>
+              <span class="card-tag">User Flow</span>
+            </div>
+          </div>
+          <div class="card-cta"><span class="btn-soon">Coming Soon</span></div>
+        </div>
+        <div class="card-visual">
+          <!-- <img src="images/bershka-mockup.png" alt="Bershka self-checkout"> -->
+          <div class="img-hint" style="color:rgba(255,255,255,0.14);">Add product screenshot →</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <script src="components.js"></script>
+  <script>
+    // Work history fan-out
+    const workStack = document.getElementById('workStack');
+    const workCards = Array.from(workStack.querySelectorAll('.work-card'));
+    const toggleBtn = document.getElementById('toggleBtn');
+    const toggleLabel = document.getElementById('toggleLabel');
+    let isOpen = false;
+
+    const STAGGER = 72, GAP = 12;
+
+    function expandStack() {
+      // DOM order: workCards[0]=card-4(oldest), workCards[3]=card-1(newest/Neeo Lab)
+      // Show newest (card-1) at top (y=0), oldest (card-4) at bottom
+      const cardH = workCards[0].offsetHeight;
+      const total = workCards.length * cardH + (workCards.length - 1) * GAP;
+      workStack.style.height = total + 'px';
+      workStack.classList.add('expanded');
+      workCards.forEach((card, i) => {
+        const ri = workCards.length - 1 - i; // card-1(i=3)→ri=0(top), card-4(i=0)→ri=3(bottom)
+        card.style.transitionDelay = `${i * STAGGER}ms`;
+        card.style.transform = `translateY(${ri * (cardH + GAP)}px)`;
+        card.style.left = '0';
+        card.style.right = '0';
+        card.style.opacity = '1';
+      });
+    }
+
+    function collapseStack() {
+      workStack.classList.remove('expanded');
+      // bottom card (card-4, i=0) collapses first, top card (card-1, i=3) last
+      workCards.forEach((card, i) => {
+        card.style.transitionDelay = `${i * STAGGER}ms`;
+      });
+      // Reset to CSS stacked defaults (DOM order: [card-4, card-3, card-2, card-1])
+      workCards[0].style.transform = 'translateY(12px)'; workCards[0].style.left = '5%';   workCards[0].style.right = '5%';   workCards[0].style.opacity = '0';
+      workCards[1].style.transform = 'translateY(12px)'; workCards[1].style.left = '5%';   workCards[1].style.right = '5%';   workCards[1].style.opacity = '0.72';
+      workCards[2].style.transform = 'translateY(6px)';  workCards[2].style.left = '2.5%'; workCards[2].style.right = '2.5%'; workCards[2].style.opacity = '0.88';
+      workCards[3].style.transform = 'translateY(0px)';  workCards[3].style.left = '0';    workCards[3].style.right = '0';    workCards[3].style.opacity = '1';
+      setTimeout(() => { workStack.style.height = ''; }, 220);
+    }
+
+    function toggleHistory() {
+      isOpen = !isOpen;
+      toggleBtn.classList.toggle('open', isOpen);
+      toggleLabel.textContent = isOpen ? 'Show less' : 'Show all';
+      if (isOpen) expandStack(); else collapseStack();
+    }
+    toggleBtn.addEventListener('click', toggleHistory);
+    workStack.addEventListener('click', e => { if (!isOpen) toggleHistory(); });
+
+    // Mobile: disable snap after last case card so footer scrolls freely
+    const allCards = document.querySelectorAll('.card');
+    const lastCaseCard = allCards[allCards.length - 1];
+    window.addEventListener('scroll', () => {
+      if (window.innerWidth > 599) return;
+      const lastBottom = lastCaseCard.getBoundingClientRect().bottom + window.scrollY;
+      const pastCards = window.scrollY + window.innerHeight >= lastBottom - 10;
+      document.documentElement.style.scrollSnapType = pastCards ? 'none' : '';
+    }, { passive: true });
+
+  </script>
+</body>
+</html>

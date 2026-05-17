@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meta Learn — Paul Bader</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="case-study.css">
+  <style>
+    :root { --cs-accent: #1d4ed8; }
+    /* Phone placeholders: indigo tints */
+    .ph-a { background: linear-gradient(160deg, #e0e7ff 0%, #c7d2fe 100%); color: rgba(30,58,138,0.25); }
+    .ph-b { background: linear-gradient(160deg, #dbeafe 0%, #bfdbfe 100%); color: rgba(30,58,138,0.25); }
+    .ph-c { background: linear-gradient(160deg, #ede9fe 0%, #c4b5fd 100%); color: rgba(79,44,182,0.25); }
+    .ph-d { background: linear-gradient(160deg, #e0e7ff 0%, #a5b4fc 100%); color: rgba(30,58,138,0.25); }
+  </style>
+</head>
+<body>
+
+  <!-- ─── HERO (fullscreen) ─── -->
+  <section class="cs-hero cs-hero-fullscreen">
+    <!-- Background: swap placeholder div for <img src="images/meta-learn-hero.jpg" alt="Meta Learn app"> -->
+    <div class="cs-hero-bg">
+      <div class="cs-hero-bg-placeholder"></div>
+    </div>
+    <!-- Gradient overlay -->
+    <div class="cs-hero-overlay"></div>
+    <!-- Title pinned bottom-left -->
+    <div class="cs-hero-bottom">
+      <p class="cs-hero-project">Meta Learn</p>
+      <h1 class="cs-hero-title">Mental Fitness,<br>Made Intuitive.</h1>
+    </div>
+  </section>
+
+  <div class="cs-container">
+
+    <!-- ─── INTRO + FLAT META ─── -->
+    <div class="cs-intro-section reveal">
+      <p class="cs-intro-text">
+        <strong>I led the full UX/UI redesign of Meta Learn, a mental fitness app helping users manage stress and improve focus.</strong><span class="cs-intro-muted"> The redesign increased retention by 71% and helped the product scale from prototype to market-ready app.</span>
+      </p>
+      <div class="cs-meta-flat">
+        <div>
+          <p class="cs-meta-label">Role</p>
+          <p class="cs-meta-value">UX/UI Design, Visual Design, Design System</p>
+        </div>
+        <div>
+          <p class="cs-meta-label">Timeline</p>
+          <p class="cs-meta-value">3 months</p>
+        </div>
+        <div>
+          <p class="cs-meta-label">Team</p>
+          <p class="cs-meta-value">1 Developer, 1 Founder, 1 Design Intern</p>
+        </div>
+        <div>
+          <p class="cs-meta-label">Tools</p>
+          <p class="cs-meta-value">Figma, Maze, Miro, Prototyping</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── PROBLEM ─── -->
+    <div class="cs-section reveal">
+      <p class="cs-label">Where we started.</p>
+      <h2 class="cs-heading">Great content.<br>Poor delivery.</h2>
+      <p class="cs-body" style="max-width:64ch">A comprehensive UX audit revealed critical friction points holding users back from fully engaging with the app.</p>
+
+      <!-- 3 before-state phone screenshots -->
+      <div class="cs-phone-strip" style="margin-top:56px">
+        <div class="cs-phone-cell">
+          <div class="cs-phone-placeholder ph-a">Before: Home</div>
+        </div>
+        <div class="cs-phone-cell">
+          <div class="cs-phone-placeholder ph-b">Before: Onboarding</div>
+        </div>
+        <div class="cs-phone-cell">
+          <div class="cs-phone-placeholder ph-c">Before: Exercise</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── RESEARCH / PAIN POINTS ─── -->
+    <div class="cs-section reveal">
+      <div class="cs-narrow">
+        <h2 class="cs-heading">Mapping the pain points.</h2>
+        <p class="cs-body">A data-backed deep dive into user pain points, usability gaps, and industry benchmarks to shape a targeted redesign.</p>
+      </div>
+
+      <div class="cs-research-grid reveal reveal-d1" style="margin-top:48px">
+        <div class="cs-research-item">
+          <p class="cs-research-name">Usage Analytics</p>
+          <p class="cs-research-desc">Usability score improved from poor to excellent after redesign.</p>
+        </div>
+        <div class="cs-research-item">
+          <p class="cs-research-name">User Interviews</p>
+          <p class="cs-research-desc">Professionals wanted quick wins, but the app buried them.</p>
+        </div>
+        <div class="cs-research-item">
+          <p class="cs-research-name">User Surveys</p>
+          <p class="cs-research-desc">Users struggled to understand progress and motivation.</p>
+        </div>
+        <div class="cs-research-item">
+          <p class="cs-research-name">SUS Testing + Benchmarking</p>
+          <p class="cs-research-desc">Usability score improved from poor to excellent after redesign.</p>
+        </div>
+        <div class="cs-research-item">
+          <p class="cs-research-name">Desk Research</p>
+          <p class="cs-research-desc">Cognitive training engagement thrives on habit cues and rewards.</p>
+        </div>
+        <div class="cs-research-item">
+          <p class="cs-research-name">Heuristic Evaluation</p>
+          <p class="cs-research-desc">Critical UX flaws blocked users from discovering key features.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── REDESIGN GOALS ─── -->
+    <div class="cs-section reveal">
+      <div class="cs-narrow">
+        <h2 class="cs-heading">Defining the redesign goals.</h2>
+      </div>
+
+      <div class="cs-pillars reveal reveal-d1" style="margin-top:48px">
+        <div class="cs-pillar">
+          <p class="cs-pillar-num">01</p>
+          <h3 class="cs-pillar-title">Structure &amp; Scalability</h3>
+          <p class="cs-pillar-body">No dead ends. Familiar navigation. Clarified hierarchy. Free vs Paid.</p>
+        </div>
+        <div class="cs-pillar">
+          <p class="cs-pillar-num">02</p>
+          <h3 class="cs-pillar-title">Flow &amp; Onboarding</h3>
+          <p class="cs-pillar-body">Reduce drop-off. Emphasise progress. Light gamification.</p>
+        </div>
+        <div class="cs-pillar">
+          <p class="cs-pillar-num">03</p>
+          <h3 class="cs-pillar-title">Visual System</h3>
+          <p class="cs-pillar-body">Grouped with intention. Color contrast. Accessible typography.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── WIREFRAMES ─── -->
+    <div class="cs-section reveal">
+      <div class="cs-narrow">
+        <h2 class="cs-heading">Bringing the vision to life.</h2>
+        <p class="cs-body" style="margin-top:20px">We stripped it back to low-fidelity wireframes, rethought the information architecture, and shaped a clean, app-ready layout. Tests along the way kept us aligned with what users actually needed.</p>
+      </div>
+
+      <div class="cs-phone-strip" style="margin-top:56px">
+        <div class="cs-phone-cell">
+          <div class="cs-phone-placeholder ph-b" style="opacity:0.6">Wireframe: Home</div>
+        </div>
+        <div class="cs-phone-cell">
+          <div class="cs-phone-placeholder ph-b" style="opacity:0.6">Wireframe: Onboarding</div>
+        </div>
+        <div class="cs-phone-cell">
+          <div class="cs-phone-placeholder ph-b" style="opacity:0.6">Wireframe: Exercise</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs-divider reveal"></div>
+
+    <!-- ─── SOLUTION 01: HOME SCREEN ─── -->
+    <div class="cs-two-col wide reveal">
+      <div>
+        <p class="cs-label">Solution 01</p>
+        <h2 class="cs-heading">A new home screen.</h2>
+        <p class="cs-body">Everything you need at a glance.</p>
+        <ul class="cs-feature-list">
+          <li class="cs-feature-item">
+            <p class="cs-feature-label">Greeting, quote &amp; streak</p>
+            <p class="cs-feature-desc">A quick boost of motivation with your daily progress in view.</p>
+          </li>
+          <li class="cs-feature-item">
+            <p class="cs-feature-label">Emotional slider</p>
+            <p class="cs-feature-desc">Pick how you feel and get exercises that match your current mood.</p>
+          </li>
+          <li class="cs-feature-item">
+            <p class="cs-feature-label">Tailored content</p>
+            <p class="cs-feature-desc">Curated exercises based on time of day and what you've done before.</p>
+          </li>
+        </ul>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:center">
+        <!-- Replace with: <img src="images/meta-learn-home.png" alt="New home screen"> -->
+        <div class="cs-phone-placeholder ph-a" style="max-width:280px;width:100%">Add home screen →</div>
+      </div>
+    </div>
+
+    <!-- ─── SOLUTION 02: ONBOARDING ─── -->
+    <div class="cs-two-col wide-l reveal">
+      <div style="display:flex;align-items:center;justify-content:center">
+        <!-- Replace with: <img src="images/meta-learn-onboarding.png" alt="Onboarding flow"> -->
+        <div class="cs-phone-placeholder ph-b" style="max-width:280px;width:100%">Add onboarding →</div>
+      </div>
+      <div>
+        <p class="cs-label">Solution 02</p>
+        <h2 class="cs-heading">A streamlined onboarding goes a long way.</h2>
+        <ul class="cs-feature-list">
+          <li class="cs-feature-item">
+            <p class="cs-feature-label">Non-Intrusive</p>
+            <p class="cs-feature-desc">Onboarding is built into the home screen. Do it anytime.</p>
+          </li>
+          <li class="cs-feature-item">
+            <p class="cs-feature-label">Motivating</p>
+            <p class="cs-feature-desc">Complete tasks in any order while exploring the app.</p>
+          </li>
+          <li class="cs-feature-item">
+            <p class="cs-feature-label">Rewarding</p>
+            <p class="cs-feature-desc">Finish to unlock 7 days of Premium access.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ─── SOLUTION 03: EXERCISE DISCOVERY ─── -->
+    <div class="cs-two-col wide reveal">
+      <div>
+        <p class="cs-label">Solution 03</p>
+        <h2 class="cs-heading">Guided exercise discovery.</h2>
+        <p class="cs-body">Reach your goal with endless content.</p>
+        <ul class="cs-feature-list">
+          <li class="cs-feature-item">
+            <p class="cs-feature-label">Programs</p>
+            <p class="cs-feature-desc">Structured sessions to build long-term habits.</p>
+          </li>
+          <li class="cs-feature-item">
+            <p class="cs-feature-label">Curated Collections</p>
+            <p class="cs-feature-desc">Explore themed content across formats you prefer.</p>
+          </li>
+          <li class="cs-feature-item">
+            <p class="cs-feature-label">Find What Works for You</p>
+            <p class="cs-feature-desc">Use tabs, search, or favourites to quickly access what you need.</p>
+          </li>
+        </ul>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:center">
+        <!-- Replace with: <img src="images/meta-learn-discover.png" alt="Exercise discovery"> -->
+        <div class="cs-phone-placeholder ph-c" style="max-width:280px;width:100%">Add discovery →</div>
+      </div>
+    </div>
+
+    <!-- ─── SOLUTION 04: TRAINING FLOW ─── -->
+    <div class="cs-two-col wide-l reveal">
+      <div style="display:flex;align-items:center;justify-content:center">
+        <!-- Replace with: <img src="images/meta-learn-training.png" alt="Training flow"> -->
+        <div class="cs-phone-placeholder ph-d" style="max-width:280px;width:100%">Add training →</div>
+      </div>
+      <div>
+        <p class="cs-label">Solution 04</p>
+        <h2 class="cs-heading">Training mental fitness.</h2>
+        <ul class="cs-feature-list">
+          <li class="cs-feature-item">
+            <p class="cs-feature-label">Pre-Exercise</p>
+            <p class="cs-feature-desc">Clear goal-setting and session preview before you begin.</p>
+          </li>
+          <li class="cs-feature-item">
+            <p class="cs-feature-label">During Exercise</p>
+            <p class="cs-feature-desc">Guided, distraction-free flow with real-time progress cues.</p>
+          </li>
+          <li class="cs-feature-item">
+            <p class="cs-feature-label">After Exercise</p>
+            <p class="cs-feature-desc">Completion screen, streak update, and next session suggestion.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cs-divider reveal"></div>
+
+    <!-- ─── IMPACT ─── -->
+    <div class="cs-section reveal">
+      <div class="cs-narrow" style="margin-bottom:56px">
+        <h2 class="cs-heading">Impact of clarity.</h2>
+        <p class="cs-body" style="margin-top:16px">A 3-month closed beta proved the redesign made the app faster, easier, and more addictive to use.</p>
+      </div>
+
+      <div class="cs-stat-row">
+        <div class="cs-stat">
+          <p class="cs-stat-abs">56%</p>
+          <p class="cs-stat-delta">+15%</p>
+          <p class="cs-stat-label">30-day retention rate</p>
+        </div>
+        <div class="cs-stat">
+          <p class="cs-stat-abs">9.4 days</p>
+          <p class="cs-stat-delta">+31%</p>
+          <p class="cs-stat-label">Average streak length</p>
+        </div>
+        <div class="cs-stat">
+          <p class="cs-stat-abs">5m 3s</p>
+          <p class="cs-stat-delta">+28%</p>
+          <p class="cs-stat-label">Average session length</p>
+        </div>
+        <div class="cs-stat">
+          <p class="cs-stat-abs">96%</p>
+          <p class="cs-stat-delta">+18%</p>
+          <p class="cs-stat-label">Completion rate</p>
+        </div>
+        <div class="cs-stat">
+          <p class="cs-stat-abs">12s</p>
+          <p class="cs-stat-delta neg">−33%</p>
+          <p class="cs-stat-label">Time to first action</p>
+        </div>
+        <div class="cs-stat">
+          <p class="cs-stat-abs">84 SUS</p>
+          <p class="cs-stat-delta">+26 pts</p>
+          <p class="cs-stat-label">Usability score</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── SCALABILITY ─── -->
+    <div class="cs-section reveal">
+      <div class="cs-narrow">
+        <h2 class="cs-heading">Designing for scalability.</h2>
+      </div>
+
+      <div class="cs-scalability-grid">
+        <div class="cs-scalability-item">
+          <p class="cs-scalability-label">Seamless collab</p>
+          <p class="cs-scalability-desc">Figma libraries, Trello boards, and open comms kept design and devs aligned.</p>
+          <!-- Replace with: <img src="images/meta-learn-collab.png" alt="Collaboration tools"> -->
+          <div class="cs-scalability-img">Add collab screenshot →</div>
+        </div>
+        <div class="cs-scalability-item">
+          <p class="cs-scalability-label">Systematic design</p>
+          <p class="cs-scalability-desc">A scalable design system ensured consistency across features and easy expansion.</p>
+          <!-- Replace with: <img src="images/meta-learn-system.png" alt="Design system"> -->
+          <div class="cs-scalability-img">Add design system screenshot →</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /cs-container -->
+
+  <!-- ─── REFLECTION (dark) ─── -->
+  <div class="cs-section-dark reveal">
+    <div class="cs-container">
+      <div class="cs-narrow">
+        <p class="cs-label">Reflection &amp; next steps.</p>
+        <p class="cs-body" style="font-size:19px;line-height:1.75;margin-top:16px">The app is now clear, structured, and intuitive. What was once confusing is now a focused experience, supported by hierarchy, consistent interactions, and a scalable design system. The result is a foundation that balances simplicity with depth and leaves space for future growth.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-container">
+
+    <!-- ─── NEXT PROJECTS ─── -->
+    <div class="cs-next reveal">
+      <p class="cs-next-label">Check out my other projects.</p>
+      <div class="cs-next-links">
+        <a href="custimy.html" class="cs-next-card">
+          <span class="cs-next-dir">Next →</span>
+          <span class="cs-next-title">Custimy</span>
+          <span class="cs-next-sub">Quicker &amp; Better Onboarding · 2023</span>
+        </a>
+        <a href="grundfos.html" class="cs-next-card">
+          <span class="cs-next-dir">Also →</span>
+          <span class="cs-next-title">Grundfos</span>
+          <span class="cs-next-sub">From Print to PowerApp · 2020</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="components.js"></script>
+</body>
+</html>
