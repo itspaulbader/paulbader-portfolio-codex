@@ -27,7 +27,7 @@
       --content-left: clamp(32px, 8.5vw, 160px);
     }
 
-    html { scroll-behavior: smooth; scroll-snap-type: y proximity; }
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Inter', -apple-system, sans-serif;
@@ -260,7 +260,6 @@
       border-radius: 20px; overflow: hidden;
       display: grid; grid-template-columns: 1fr 1fr;
       min-height: 552px;
-      scroll-snap-align: center;
     }
     .card.reveal {
       transition: opacity 1.1s var(--ease), transform 1.1s var(--ease), box-shadow 1.1s var(--ease);
@@ -547,7 +546,7 @@
     @media (max-width: 599px) {
       .story-header { padding: 0 20px 24px; }
       .story-track { grid-auto-columns: calc(100vw - 88px); padding: 4px 20px 24px; }
-      .sc-visual { height: 320px; }
+      .sc-visual { height: 400px; }
       .sc-exp .sc-num { font-size: 80px; }
     }
 
@@ -596,7 +595,7 @@
       .work-role, .work-date { font-size: 11px; }
       .toggle-btn { margin-top: 14px; }
 
-      html { scroll-snap-type: y proximity; }
+      html { scroll-snap-type: y mandatory; }
       .story-section { scroll-snap-align: start; }
       .cards { padding: 0 20px; gap: 12px; }
       .work-section { padding-bottom: 8px; }
@@ -951,15 +950,63 @@
       nextBtn.disabled = atEnd;
     }, { passive: true });
 
-    // Mobile: disable snap after last case card so footer scrolls freely
-    const allCards = document.querySelectorAll('.card');
+    // Mobile: mandatory snap; disable after last card so footer scrolls freely
+    const allCards = Array.from(document.querySelectorAll('.card'));
     const lastCaseCard = allCards[allCards.length - 1];
     window.addEventListener('scroll', () => {
       if (window.innerWidth > 599) return;
-      const lastBottom = lastCaseCard.getBoundingClientRect().bottom + window.scrollY;
+      const lastBottom = lastCaseCard.getBoundingClientRect().top + window.scrollY + lastCaseCard.offsetHeight;
       const pastCards = window.scrollY + window.innerHeight >= lastBottom - 10;
-      document.documentElement.style.scrollSnapType = pastCards ? 'none' : '';
+      document.documentElement.style.scrollSnapType = pastCards ? 'none' : 'y mandatory';
     }, { passive: true });
+
+    // Desktop: wheel-based snap — any scroll delta moves one card at a time
+    (function() {
+      if (window.innerWidth <= 599) return;
+      let locked = false;
+
+      function cardCenter(c) {
+        return c.getBoundingClientRect().top + window.scrollY + c.offsetHeight / 2;
+      }
+
+      function nearestCardIndex() {
+        const vc = window.scrollY + window.innerHeight / 2;
+        let best = 0, bestD = Infinity;
+        allCards.forEach((c, i) => {
+          const d = Math.abs(cardCenter(c) - vc);
+          if (d < bestD) { bestD = d; best = i; }
+        });
+        return best;
+      }
+
+      function inCardsZone() {
+        if (!allCards.length) return false;
+        const first = allCards[0];
+        const last  = allCards[allCards.length - 1];
+        const ft = first.getBoundingClientRect().top + window.scrollY;
+        const lb = last.getBoundingClientRect().top  + window.scrollY + last.offsetHeight;
+        const vc = window.scrollY + window.innerHeight / 2;
+        return vc >= ft - window.innerHeight * 0.4 && vc <= lb + window.innerHeight * 0.4;
+      }
+
+      function snapTo(idx) {
+        if (idx < 0 || idx >= allCards.length) return false;
+        const c = allCards[idx];
+        const target = cardCenter(c) - window.innerHeight / 2;
+        window.scrollTo({ top: Math.max(0, target), behavior: 'smooth' });
+        locked = true;
+        setTimeout(() => { locked = false; }, 750);
+        return true;
+      }
+
+      window.addEventListener('wheel', (e) => {
+        if (!inCardsZone()) return;
+        if (locked) { e.preventDefault(); return; }
+        const dir = e.deltaY >= 0 ? 1 : -1;
+        const snapped = snapTo(nearestCardIndex() + dir);
+        if (snapped) e.preventDefault();
+      }, { passive: false });
+    })();
 
   </script>
 </body>
