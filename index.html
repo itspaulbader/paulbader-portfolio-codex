@@ -37,17 +37,32 @@
       overflow-x: hidden;
     }
 
-    #progress-bar {
-      position: fixed; top: 0; left: 0; z-index: 300;
-      height: 2px; width: 0%;
-      background: rgba(0,0,0,0.2);
-      transition: width 0.12s linear;
-      pointer-events: none;
-      border-radius: 0 2px 2px 0;
-    }
+    #progress-bar { display: none; }
 
-    /* ─── NAV ─── */
+    /* ─── TOPBAR (new nav) ─── */
+    .topbar {
+      width: 100%;
+      padding: 18px var(--content-left);
+      display: flex; align-items: center; justify-content: space-between;
+      background: white;
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+      position: relative; z-index: 10;
+      box-sizing: border-box;
+    }
+    .topbar-name {
+      font-size: 14px; font-weight: 600; color: var(--black);
+      text-decoration: none; letter-spacing: -0.01em;
+    }
+    .topbar-links { display: flex; gap: 28px; list-style: none; }
+    .topbar-links a {
+      font-size: 14px; font-weight: 500; color: var(--black);
+      text-decoration: none;
+    }
+    .topbar-links a:hover { color: var(--blue); }
+
+    /* ─── NAV (original — hidden; to restore change display:none to display:inline-flex below) ─── */
     nav {
+      display: none !important;
       position: fixed; top: 20px; left: 50%;
       transform: translateX(-50%);
       z-index: 100;
@@ -299,23 +314,20 @@
       height: 30px; padding: 0 12px; border-radius: 100px;
       font-size: 13px; font-weight: 400; flex-shrink: 0;
       display: flex; align-items: center; cursor: default;
-      transition: opacity 0.3s var(--ease);
+      pointer-events: none;
     }
-    .card-tag:hover { opacity: 0.65; }
     .card-cta { margin-top: 40px; }
 
     .btn-view {
-      display: inline-flex; align-items: center; gap: 0;
-      padding: 13px 20px; border-radius: 13px;
+      display: inline-flex; align-items: center;
+      padding: 11px 22px; border-radius: 100px;
       background: var(--blue); color: white;
-      font-size: 18px; font-weight: 400;
-      text-decoration: none; border: none; cursor: pointer; overflow: hidden;
-      transition: background 0.35s var(--ease), transform 0.5s var(--ease-spring), box-shadow 0.5s var(--ease), padding-right 0.45s var(--ease);
+      font-size: 15px; font-weight: 500;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: background 0.2s var(--ease);
     }
-    .btn-view:hover { background: #1260e0; box-shadow: 0 4px 18px rgba(21,105,242,0.22); padding-right: 26px; }
-    .btn-view:active { transform: scale(0.975); transition-duration: 0.12s; }
-    .btn-view .arrow { display: inline-block; margin-left: 0; opacity: 0; transform: translateX(-6px); transition: opacity 0.35s var(--ease), transform 0.45s var(--ease), margin-left 0.45s var(--ease); }
-    .btn-view:hover .arrow { opacity: 1; transform: translateX(0); margin-left: 8px; }
+    .btn-view:hover { background: #1260e0; }
+    .btn-view:active { background: #0f52c8; }
 
     .btn-soon {
       display: inline-flex; align-items: center;
@@ -382,10 +394,44 @@
     }
 
     /* ─── STORY HERO (new concept) ─── */
-    .story-section { padding: 120px 0 88px; }
+    .story-section { padding: 80px 0 0; }
 
     .story-header {
       padding: 0 var(--content-left) 32px;
+      display: flex; align-items: flex-end; justify-content: space-between;
+    }
+    .story-contact {
+      font-size: 15px; font-weight: 500; color: var(--blue);
+      text-decoration: none; padding-bottom: 6px;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s var(--ease);
+      white-space: nowrap;
+    }
+    .story-contact:hover { border-bottom-color: var(--blue); }
+
+    /* Carousel arrow controls */
+    .story-controls {
+      display: flex; gap: 10px;
+      padding: 20px var(--content-left) 72px;
+      justify-content: flex-end;
+    }
+    .sc-arrow {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: rgba(0,0,0,0.07); border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.18s var(--ease);
+      flex-shrink: 0;
+    }
+    .sc-arrow:hover { background: rgba(0,0,0,0.13); }
+    .sc-arrow:active { background: rgba(0,0,0,0.18); }
+    .sc-arrow svg { width: 10px; height: 10px; stroke: #555; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* Latest work heading */
+    .section-heading {
+      padding: 0 var(--content-left) 32px;
+      font-size: clamp(28px, 3.2vw, 44px);
+      font-weight: 700; letter-spacing: -0.04em; line-height: 1.15;
+      color: var(--black);
     }
     .story-title {
       font-size: clamp(28px, 3.2vw, 44px);
@@ -562,7 +608,9 @@
       .card-tags { gap: 6px; margin-top: 12px; flex-wrap: wrap; justify-content: center; }
       .card-tag { height: 26px; font-size: 11.5px; padding: 0 10px; }
       .card-cta { margin-top: 22px; display: flex; justify-content: center; }
-      .btn-view, .btn-soon { font-size: 15px; padding: 10px 18px; border-radius: 10px; }
+      .btn-view, .btn-soon { font-size: 14px; padding: 10px 18px; border-radius: 100px; }
+      .story-controls { padding: 16px var(--content-left) 48px; }
+      .story-contact { display: none; }
       .card-light .card-scrim { background: linear-gradient(180deg, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.55) 100%); }
       .card-dark  .card-scrim { background: linear-gradient(180deg, rgba(14,14,26,0.9) 0%, rgba(14,14,26,0.55) 100%); }
       .card-ink   .card-scrim { background: linear-gradient(180deg, rgba(8,8,12,0.88) 0%, rgba(8,8,12,0.5) 100%); }
@@ -581,12 +629,22 @@
 </head>
 <body>
 
-  <!-- ═══ STORY HERO — new concept (leave both for now) ═══ -->
+  <!-- NEW TOPBAR — to restore original nav, remove display:none from <nav> below and hide/remove this -->
+  <header class="topbar">
+    <a href="/" class="topbar-name">it's Paul Bader</a>
+    <ul class="topbar-links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="mailto:hello@itspaulbader.xyz">Contact</a></li>
+    </ul>
+  </header>
+
+  <!-- ═══ STORY HERO ═══ -->
   <section class="story-section">
     <div class="story-header">
       <h1 class="story-title">Buna! Hej! Hi!<br>It's Paul Bader.</h1>
+      <a href="mailto:hello@itspaulbader.xyz" class="story-contact">Get in touch</a>
     </div>
-    <div class="story-scroll">
+    <div class="story-scroll" id="storyScroll">
       <div class="story-track">
 
         <div class="story-card sc-profile">
@@ -631,6 +689,14 @@
         </div>
 
       </div>
+    </div>
+    <div class="story-controls">
+      <button class="sc-arrow" id="scrollPrev" aria-label="Previous">
+        <svg viewBox="0 0 10 10"><polyline points="6.5,1.5 3,5 6.5,8.5"/></svg>
+      </button>
+      <button class="sc-arrow" id="scrollNext" aria-label="Next">
+        <svg viewBox="0 0 10 10"><polyline points="3.5,1.5 7,5 3.5,8.5"/></svg>
+      </button>
     </div>
   </section>
   <!-- ═══ END STORY HERO ═══ -->
@@ -697,6 +763,8 @@
     </div>
   </section>
 
+  <h2 class="section-heading">Latest work</h2>
+
   <section class="work-section" id="work">
     <div class="cards">
 
@@ -719,7 +787,7 @@
               <span class="card-tag">Branding</span>
             </div>
           </div>
-          <div class="card-cta"><a href="meta-learn.html" class="btn-view">View Case <span class="arrow">→</span></a></div>
+          <div class="card-cta"><a href="meta-learn.html" class="btn-view">View Case</a></div>
         </div>
         <div class="card-visual">
           <!-- <img src="images/meta-learn-mockup.png" alt="Meta Learn app"> -->
@@ -746,7 +814,7 @@
               <span class="card-tag">User Flow</span>
             </div>
           </div>
-          <div class="card-cta"><a href="#" class="btn-view">View Case <span class="arrow">→</span></a></div>
+          <div class="card-cta"><a href="#" class="btn-view">View Case</a></div>
         </div>
         <div class="card-visual">
           <!-- <img src="images/custimy-mockup.png" alt="Custimy onboarding"> -->
@@ -773,7 +841,7 @@
               <span class="card-tag">UX/UI Design</span>
             </div>
           </div>
-          <div class="card-cta"><a href="#" class="btn-view">View Case <span class="arrow">→</span></a></div>
+          <div class="card-cta"><a href="#" class="btn-view">View Case</a></div>
         </div>
         <div class="card-visual">
           <!-- <img src="images/grundfos-mockup.png" alt="Grundfos PowerApp"> -->
@@ -861,6 +929,16 @@
     }
     toggleBtn.addEventListener('click', toggleHistory);
     workStack.addEventListener('click', e => { if (!isOpen) toggleHistory(); });
+
+    // Carousel arrows
+    const storyScroll = document.getElementById('storyScroll');
+    const cardWidth = () => document.querySelector('.story-card')?.offsetWidth + 14 || 374;
+    document.getElementById('scrollPrev')?.addEventListener('click', () => {
+      storyScroll.scrollBy({ left: -cardWidth(), behavior: 'smooth' });
+    });
+    document.getElementById('scrollNext')?.addEventListener('click', () => {
+      storyScroll.scrollBy({ left: cardWidth(), behavior: 'smooth' });
+    });
 
     // Mobile: disable snap after last case card so footer scrolls freely
     const allCards = document.querySelectorAll('.card');
