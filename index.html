@@ -399,7 +399,7 @@
       overflow-y: hidden;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
-      scroll-snap-type: x mandatory;
+      scroll-snap-type: x proximity;
       scroll-padding-left: var(--content-left);
       cursor: grab;
     }
@@ -424,7 +424,7 @@
       scroll-snap-align: start;
       scroll-snap-stop: normal;
       flex-shrink: 0;
-      width: 320px;
+      width: 360px;
       display: flex; flex-direction: column; gap: 14px;
     }
 
@@ -494,7 +494,7 @@
     }
 
     @media (max-width: 900px) and (min-width: 600px) {
-      .story-track { grid-auto-columns: 260px; padding: 4px 32px 28px; }
+      .story-card { width: 300px; }
       .sc-visual { height: 340px; }
     }
     @media (max-width: 599px) {
