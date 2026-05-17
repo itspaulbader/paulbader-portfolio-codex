@@ -410,7 +410,14 @@
       display: flex;
       flex-wrap: nowrap;
       gap: 14px;
-      padding: 4px var(--content-left) 36px;
+      padding: 4px 0 36px;
+      padding-left: var(--content-left);
+    }
+    .story-track::after {
+      content: '';
+      display: block;
+      flex-shrink: 0;
+      width: var(--content-left);
     }
 
     .story-card {
