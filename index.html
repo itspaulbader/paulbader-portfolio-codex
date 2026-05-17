@@ -27,7 +27,7 @@
       --content-left: clamp(32px, 8.5vw, 160px);
     }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; scroll-snap-type: y proximity; }
 
     body {
       font-family: 'Inter', -apple-system, sans-serif;
@@ -260,6 +260,7 @@
       border-radius: 20px; overflow: hidden;
       display: grid; grid-template-columns: 1fr 1fr;
       min-height: 552px;
+      scroll-snap-align: start;
     }
     .card.reveal {
       transition: opacity 1.1s var(--ease), transform 1.1s var(--ease), box-shadow 1.1s var(--ease);
@@ -330,10 +331,9 @@
 
     .btn-soon {
       display: inline-flex; align-items: center;
-      padding: 13px 20px; border-radius: 13px;
-      background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.42);
-      border: 1px solid rgba(255,255,255,0.1);
-      font-size: 18px; font-weight: 400; cursor: default;
+      padding: 11px 22px; border-radius: 100px;
+      background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.45);
+      font-size: 15px; font-weight: 500; cursor: default;
     }
 
     /* ── Card themes ── */
@@ -446,7 +446,7 @@
       overflow-y: hidden;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
-      scroll-snap-type: x proximity;
+      scroll-snap-type: x mandatory;
       scroll-padding-left: var(--content-left);
       cursor: grab;
     }
@@ -596,16 +596,18 @@
       .work-role, .work-date { font-size: 11px; }
       .toggle-btn { margin-top: 14px; }
 
-      .cards { padding: 0; gap: 0; }
-      .work-section { padding-bottom: 0; }
-      .card { grid-template-columns: 1fr; grid-template-rows: auto 1fr; border-radius: 0; min-height: 100vh; min-height: 100svh; }
+      html { scroll-snap-type: y proximity; }
+      .story-section { scroll-snap-align: start; }
+      .cards { padding: 0 8px; gap: 8px; }
+      .work-section { padding-bottom: 8px; }
+      .card { grid-template-columns: 1fr; grid-template-rows: auto 1fr; border-radius: 20px; min-height: calc(100svh - 16px); scroll-snap-align: start; }
       .card-bg { border-radius: 0; }
       .card-body { padding: 40px 28px 28px; order: 1; min-height: unset; align-items: center; text-align: center; }
       .card-meta { justify-content: center; }
       .card-visual { order: 2; padding: 16px 16px 0; }
       .card-title { font-size: 30px; line-height: 36px; letter-spacing: -0.9px; margin-bottom: 10px; }
       .card-desc { font-size: 14px; line-height: 20px; max-width: 24ch; margin-left: auto; margin-right: auto; }
-      .card { scroll-snap-align: none; }
+      /* scroll-snap-align handled by base .card + mobile override above */
       .card-tags { gap: 6px; margin-top: 12px; flex-wrap: wrap; justify-content: center; }
       .card-tag { height: 26px; font-size: 11.5px; padding: 0 10px; }
       .card-cta { margin-top: 22px; display: flex; justify-content: center; }
