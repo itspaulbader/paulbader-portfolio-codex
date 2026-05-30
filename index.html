@@ -595,18 +595,15 @@
       .work-role, .work-date { font-size: 11px; }
       .toggle-btn { margin-top: 14px; }
 
-      html { scroll-snap-type: y mandatory; }
-      .story-section { scroll-snap-align: start; }
       .cards { padding: 0 20px; gap: 12px; }
       .work-section { padding-bottom: 8px; }
-      .card { grid-template-columns: 1fr; grid-template-rows: auto 1fr; border-radius: 20px; min-height: calc(100svh - 52px); scroll-snap-align: center; }
+      .card { grid-template-columns: 1fr; grid-template-rows: auto 1fr; border-radius: 20px; min-height: calc(100svh - 52px); }
       .card-bg { border-radius: 0; }
       .card-body { padding: 40px 28px 28px; order: 1; min-height: unset; align-items: center; text-align: center; }
       .card-meta { justify-content: center; }
       .card-visual { order: 2; padding: 16px 16px 0; }
       .card-title { font-size: 30px; line-height: 36px; letter-spacing: -0.9px; margin-bottom: 10px; }
       .card-desc { font-size: 14px; line-height: 20px; max-width: 24ch; margin-left: auto; margin-right: auto; }
-      /* scroll-snap-align handled by base .card + mobile override above */
       .card-tags { gap: 6px; margin-top: 12px; flex-wrap: wrap; justify-content: center; }
       .card-tag { height: 26px; font-size: 11.5px; padding: 0 10px; }
       .card-cta { margin-top: 22px; display: flex; justify-content: center; }
@@ -950,63 +947,6 @@
       nextBtn.disabled = atEnd;
     }, { passive: true });
 
-    // Mobile: mandatory snap; disable after last card so footer scrolls freely
-    const allCards = Array.from(document.querySelectorAll('.card'));
-    const lastCaseCard = allCards[allCards.length - 1];
-    window.addEventListener('scroll', () => {
-      if (window.innerWidth > 599) return;
-      const lastBottom = lastCaseCard.getBoundingClientRect().top + window.scrollY + lastCaseCard.offsetHeight;
-      const pastCards = window.scrollY + window.innerHeight >= lastBottom - 10;
-      document.documentElement.style.scrollSnapType = pastCards ? 'none' : 'y mandatory';
-    }, { passive: true });
-
-    // Desktop: wheel-based snap — any scroll delta moves one card at a time
-    (function() {
-      if (window.innerWidth <= 599) return;
-      let locked = false;
-
-      function cardCenter(c) {
-        return c.getBoundingClientRect().top + window.scrollY + c.offsetHeight / 2;
-      }
-
-      function nearestCardIndex() {
-        const vc = window.scrollY + window.innerHeight / 2;
-        let best = 0, bestD = Infinity;
-        allCards.forEach((c, i) => {
-          const d = Math.abs(cardCenter(c) - vc);
-          if (d < bestD) { bestD = d; best = i; }
-        });
-        return best;
-      }
-
-      function inCardsZone() {
-        if (!allCards.length) return false;
-        const first = allCards[0];
-        const last  = allCards[allCards.length - 1];
-        const ft = first.getBoundingClientRect().top + window.scrollY;
-        const lb = last.getBoundingClientRect().top  + window.scrollY + last.offsetHeight;
-        const vc = window.scrollY + window.innerHeight / 2;
-        return vc >= ft - window.innerHeight * 0.4 && vc <= lb + window.innerHeight * 0.4;
-      }
-
-      function snapTo(idx) {
-        if (idx < 0 || idx >= allCards.length) return false;
-        const c = allCards[idx];
-        const target = cardCenter(c) - window.innerHeight / 2;
-        window.scrollTo({ top: Math.max(0, target), behavior: 'smooth' });
-        locked = true;
-        setTimeout(() => { locked = false; }, 750);
-        return true;
-      }
-
-      window.addEventListener('wheel', (e) => {
-        if (!inCardsZone()) return;
-        if (locked) { e.preventDefault(); return; }
-        const dir = e.deltaY >= 0 ? 1 : -1;
-        const snapped = snapTo(nearestCardIndex() + dir);
-        if (snapped) e.preventDefault();
-      }, { passive: false });
-    })();
 
   </script>
 </body>
