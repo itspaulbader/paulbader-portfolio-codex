@@ -6,7 +6,7 @@
   <title>Paul Bader — Product & Brand Designer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -32,10 +32,12 @@
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Inter', -apple-system, sans-serif;
+      font-family: "SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont, 'Inter', "Helvetica Neue", sans-serif;
       background: var(--bg);
       color: var(--black);
       -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      letter-spacing: -0.01em;
       overflow-x: hidden;
     }
 
@@ -51,15 +53,16 @@
       box-sizing: border-box;
     }
     .topbar-name {
-      font-size: 13px; font-weight: 600; color: var(--black);
-      text-decoration: none; letter-spacing: -0.01em;
+      font-size: 12px; font-weight: 400; color: #1d1d1f;
+      text-decoration: none; letter-spacing: 0;
     }
     .topbar-links { display: flex; gap: 24px; list-style: none; }
     .topbar-links a {
-      font-size: 13px; font-weight: 300; color: #6e6e73;
-      text-decoration: none;
+      font-size: 12px; font-weight: 400; color: #1d1d1f;
+      text-decoration: none; opacity: 0.9;
+      transition: opacity 0.2s;
     }
-    .topbar-links a:hover { color: #1d1d1f; }
+    .topbar-links a:hover { opacity: 0.55; }
 
     /* ─── NAV (original — hidden; to restore change display:none to display:inline-flex below) ─── */
     nav {
@@ -253,21 +256,46 @@
     .toggle-btn.open .chevron { transform: rotate(180deg); }
 
     /* ─── CARDS ─── */
-    .work-section { padding-bottom: 120px; }
+    .work-section { padding: 0; background: #fff; }
 
-    .cards { max-width: 1260px; margin: 0 auto; padding: 0 var(--gutter); display: flex; flex-direction: column; gap: 40px; }
+    .cards { display: flex; flex-direction: column; gap: 0; }
 
     .card {
       position: relative;
-      border-radius: 20px; overflow: hidden;
+      overflow: hidden;
+      display: flex; flex-direction: column;
+      min-height: 100svh;
+      border-radius: 0;
+    }
+
+    /* ── Featured card: two-column full-width ── */
+    .card-featured {
       display: grid; grid-template-columns: 1fr 1fr;
-      min-height: 552px;
     }
-    .card.reveal {
-      transition: opacity 1.1s var(--ease), transform 1.1s var(--ease), box-shadow 1.1s var(--ease);
+    .card-featured .card-body {
+      flex-direction: column; align-items: flex-start; justify-content: center;
+      text-align: left; gap: 28px;
+      padding: 52px var(--gutter);
+      margin: 0;
     }
-    .card.reveal.in:hover {
-      transform: translateY(-2px);
+    .card-featured .card-body > div:first-child { min-width: 0; }
+    .card-featured .card-desc { max-width: 38ch; }
+
+    /* Right column: visual area */
+    .card-featured .card-visual {
+      position: relative; z-index: 2;
+      display: flex; align-items: center; justify-content: flex-end;
+      padding: 40px var(--gutter) 40px 0;
+    }
+    .card-featured .card-visual img {
+      max-width: 100%; max-height: 480px; object-fit: contain; display: block;
+      filter: drop-shadow(0 24px 48px rgba(0,0,0,0.28));
+    }
+
+    /* Scrim: left-to-right for text legibility */
+    .card-light.card-featured .card-scrim { background: linear-gradient(90deg, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.44) 50%, rgba(255,255,255,0) 100%); }
+    .card-dark.card-featured  .card-scrim, .card-ink.card-featured .card-scrim, .card-violet.card-featured .card-scrim {
+      background: linear-gradient(90deg, rgba(14,14,26,0.86) 0%, rgba(14,14,26,0.44) 50%, rgba(14,14,26,0) 100%);
     }
 
     .card-bg {
@@ -275,49 +303,35 @@
       background-size: cover; background-position: center;
       transition: transform 1.6s var(--ease);
     }
-    .card:hover .card-bg { transform: scale(1.024); }
+    .card:hover .card-bg { transform: scale(1.02); }
 
     .card-scrim { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
 
     .card-body {
-      position: relative; z-index: 2;
-      padding: 52px 44px 52px 52px;
-      display: flex; flex-direction: column; justify-content: space-between;
+      position: relative; z-index: 3;
+      padding: 36px var(--gutter);
+      margin: auto 0;
+      display: flex; flex-direction: column; align-items: flex-start; gap: 28px;
     }
+    .card-body > div:first-child { min-width: 0; }
+    .card-cta { flex-shrink: 0; }
 
-    .card-visual {
-      position: relative; z-index: 2;
-      display: flex; align-items: center; justify-content: center;
-      padding: 40px 48px 40px 0;
-      overflow: visible;
-    }
-    .card-visual img {
-      max-width: 100%; max-height: 380px;
-      object-fit: contain; display: block;
-      filter: drop-shadow(0 20px 40px rgba(0,0,0,0.28));
-      transition: transform 1.1s var(--ease), filter 1.1s var(--ease);
-    }
-    .card:hover .card-visual img {
-      transform: translateY(-6px) scale(1.02);
-      filter: drop-shadow(0 32px 56px rgba(0,0,0,0.34));
-    }
-    .img-hint { font-size: 11px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; }
 
-    .card-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; }
-    .card-icon { width: 23px; height: 23px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 700; }
-    .card-co { font-size: 14px; font-weight: 500; }
-    .card-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
-    .card-yr { font-size: 14px; font-weight: 500; }
-    .card-title { font-size: 50px; font-weight: 500; letter-spacing: -1.5px; line-height: 60px; margin-bottom: 16px; }
-    .card-desc { font-size: 18px; font-weight: 400; line-height: 25.2px; }
-    .card-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
+    .card-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+    .card-icon { width: 26px; height: 26px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; }
+    .card-co { font-size: 12px; font-weight: 600; letter-spacing: 0; }
+    .card-dot { display: inline-block; width: 4px; height: 4px; border-radius: 50%; flex-shrink: 0; opacity: 0.4; }
+    .card-yr { font-size: 12px; font-weight: 600; letter-spacing: 0.06em; opacity: 0.55; }
+    .card-title { font-size: clamp(40px, 5.6vw, 72px); font-weight: 600; letter-spacing: -0.015em; line-height: 1.06; margin-bottom: 14px; }
+    .card-desc { font-size: clamp(17px, 1.5vw, 21px); font-weight: 500; line-height: 1.52; letter-spacing: 0.004em; max-width: 38ch; }
+    .card-tags { display: none; }
     .card-tag {
-      height: 30px; padding: 0 12px; border-radius: 100px;
-      font-size: 13px; font-weight: 400; flex-shrink: 0;
+      height: 24px; padding: 0 10px; border-radius: 100px;
+      font-size: 11px; font-weight: 500; flex-shrink: 0;
       display: flex; align-items: center; cursor: default;
-      pointer-events: none;
+      pointer-events: none; opacity: 0.55;
     }
-    .card-cta { margin-top: 40px; }
+    .card-cta { flex-shrink: 0; }
 
     .btn-view {
       display: inline-flex; align-items: center;
@@ -338,16 +352,16 @@
     }
 
     /* ── Card themes ── */
-    .card-light .card-scrim { background: linear-gradient(90deg, rgba(255,255,255,0.72) 0%, rgba(255,255,255,0.36) 50%, transparent 100%); }
+    .card-light .card-scrim { background: linear-gradient(to top, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.6) 45%, rgba(255,255,255,0) 80%); }
     .card-light .card-co, .card-light .card-yr { color: var(--mine-shaft); }
     .card-light .card-dot { background: rgba(0,0,0,0.22); }
     .card-light .card-title { color: var(--cod-gray); }
     .card-light .card-desc { color: var(--mine-shaft); }
     .card-light .card-tag { background: rgba(0,0,0,0.06); color: rgba(0,0,0,0.75); }
 
-    .card-dark .card-scrim  { background: linear-gradient(90deg, rgba(14,14,26,0.82) 0%, rgba(14,14,26,0.5) 45%, rgba(14,14,26,0.1) 100%); }
-    .card-ink  .card-scrim  { background: linear-gradient(90deg, rgba(8,8,12,0.80) 0%, rgba(8,8,12,0.45) 45%, transparent 100%); }
-    .card-violet .card-scrim { background: linear-gradient(90deg, rgba(12,8,22,0.82) 0%, rgba(12,8,22,0.48) 45%, transparent 100%); }
+    .card-dark .card-scrim  { background: linear-gradient(to top, rgba(14,14,26,0.92) 0%, rgba(14,14,26,0.6) 45%, rgba(14,14,26,0.1) 80%); }
+    .card-ink  .card-scrim  { background: linear-gradient(to top, rgba(8,8,12,0.90) 0%, rgba(8,8,12,0.55) 45%, rgba(8,8,12,0) 80%); }
+    .card-violet .card-scrim { background: linear-gradient(to top, rgba(12,8,22,0.92) 0%, rgba(12,8,22,0.58) 45%, rgba(12,8,22,0) 80%); }
 
     .card-dark .card-co, .card-dark .card-yr,
     .card-ink  .card-co, .card-ink  .card-yr,
@@ -359,38 +373,132 @@
     .card-violet .card-desc { color: rgba(255,255,255,0.62); }
     .card-dark .card-tag, .card-ink .card-tag, .card-violet .card-tag { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.82); }
 
-    /* ─── FOOTER ─── */
-    footer { background: #0a0a0a; color: white; padding: 88px var(--content-left) 0; overflow: hidden; }
-    .footer-inner { max-width: 1260px; margin: 0 auto; }
-    .footer-cta { font-size: clamp(36px, 4.2vw, 60px); font-weight: 600; letter-spacing: -0.04em; line-height: 1.15; margin-bottom: 48px; }
-    .footer-cta > span:not(.footer-word) { color: #272730; }
-    .footer-word {
-      display: inline-block; color: white;
+    /* ─── CASE NAV DOTS ─── */
+    #case-nav {
+      position: fixed;
+      left: clamp(20px, 2.5vw, 40px);
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 200;
+      display: flex; flex-direction: column; gap: 12px;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.4s var(--ease);
+      mix-blend-mode: difference;
     }
-    .footer-row { display: flex; justify-content: space-between; align-items: flex-end; padding: 30px 0; border-top: 1px solid rgba(255,255,255,0.07); }
-    .footer-label { font-size: 10px; font-weight: 500; letter-spacing: 0.09em; text-transform: uppercase; color: rgba(255,255,255,0.26); margin-bottom: 7px; }
+    #case-nav.visible { opacity: 1; pointer-events: auto; }
+    .case-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      border: none; cursor: pointer; padding: 0;
+      transition: background 0.3s var(--ease);
+    }
+    .case-dot.active { background: rgba(255,255,255,0.75); }
+    /* On hover of anything in the nav: active → 1.0, hovered non-active → 0.45 */
+    #case-nav:hover .case-dot.active { background: rgba(255,255,255,1.0); }
+    #case-nav:hover .case-dot:not(.active):hover { background: rgba(255,255,255,0.45); }
+    @media (max-width: 899px) { #case-nav { display: none; } }
+
+    /* ─── FOOTER ─── */
+    footer { background: var(--bg); color: #1d1d1f; padding: clamp(40px, 5vw, 80px) var(--gutter); }
+    .footer-card { max-width: 1260px; margin: 0 auto; background: transparent; border-radius: 0; overflow: visible; }
+    .footer-inner {
+      padding: 88px 0 0;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      grid-template-rows: auto auto;
+      gap: 0 48px;
+      align-items: end;
+    }
+    .footer-cta { grid-column: 1; grid-row: 1; font-size: clamp(36px, 4.2vw, 60px); font-weight: 600; letter-spacing: -0.04em; line-height: 1.15; color: #1d1d1f; margin-bottom: 0; }
+    .footer-cta > span:not(.footer-word) { color: #86868b; }
+    .footer-word { display: inline-block; color: #1d1d1f; }
+    .footer-row { grid-column: 2; grid-row: 1; display: flex; flex-direction: column; align-items: flex-end; text-align: right; gap: 16px; border-top: none; padding: 0; justify-content: flex-end; }
+    .footer-label { font-size: 11px; font-weight: 500; letter-spacing: 0; color: #86868b; margin-bottom: 7px; }
     .footer-email {
       font-size: 17px; font-weight: 400; letter-spacing: -0.02em;
-      color: white; text-decoration: none;
+      color: #1d1d1f; text-decoration: none;
       transition: color 0.25s var(--ease);
     }
-    .footer-email:hover { color: rgba(255,255,255,0.5); }
+    .footer-email:hover { color: #6e6e73; }
     .footer-socials { display: flex; gap: 8px; }
     .footer-socials a {
       width: 38px; height: 38px; border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.09);
+      border: 1px solid rgba(0,0,0,0.1);
       display: flex; align-items: center; justify-content: center;
-      color: rgba(255,255,255,0.6); text-decoration: none;
+      color: #6e6e73; text-decoration: none;
       transition: background 0.32s var(--ease), color 0.32s var(--ease), border-color 0.32s var(--ease), transform 0.4s var(--ease-spring);
     }
-    .footer-socials a:hover { background: rgba(255,255,255,0.07); color: white; transform: translateY(-2px); border-color: rgba(255,255,255,0.18); }
-    .footer-meta { display: flex; justify-content: space-between; padding: 18px 0; border-top: 1px solid rgba(255,255,255,0.05); }
-    .footer-meta span { font-size: 11.5px; color: rgba(255,255,255,0.2); font-weight: 500; }
+    .footer-socials a:hover { background: rgba(0,0,0,0.05); color: #1d1d1f; transform: translateY(-2px); border-color: rgba(0,0,0,0.2); }
+    .footer-meta { grid-column: 1 / -1; grid-row: 2; display: flex; justify-content: space-between; padding: 18px 0; border-top: 1px solid rgba(0,0,0,0.07); margin-top: 48px; }
+    .footer-meta span { font-size: 11.5px; color: #86868b; font-weight: 500; }
     .footer-wordmark {
       font-size: clamp(50px, 10vw, 156px); font-weight: 700; letter-spacing: -0.04em;
-      line-height: 0.9; color: white; white-space: nowrap;
+      line-height: 0.9; color: #1d1d1f; white-space: nowrap;
       padding: 32px 0 0; will-change: transform;
       text-align: center;
+    }
+
+    /* ─── HIGHLIGHTS CAROUSEL ─── */
+    .hl-stage {
+      display: flex; gap: 20px;
+      overflow-x: auto; overflow-y: hidden;
+      overscroll-behavior-x: contain;
+      scroll-snap-type: x mandatory;
+      padding-inline: var(--gutter);
+      scroll-padding-inline: var(--gutter);
+      scrollbar-width: none; -webkit-overflow-scrolling: touch;
+    }
+    .hl-stage::-webkit-scrollbar { display: none; }
+    .hl-stage::after {
+      content: ''; display: block; flex-shrink: 0;
+      /* ensures widest card (560px) can always reach start-snap position */
+      width: max(var(--gutter), calc(100vw - 560px - var(--gutter)));
+    }
+    .hl-card {
+      flex: 0 0 auto;
+      width: min(1260px, calc(100vw - 2 * var(--gutter)));
+      height: 560px;
+      border-radius: 24px; overflow: hidden;
+      scroll-snap-align: center;
+      position: relative;
+      background-color: #e8e8ed; background-size: cover; background-position: center;
+      cursor: pointer;
+    }
+    .hl-card-text {
+      position: absolute; top: 0;
+      padding: 40px 44px;
+      font-size: clamp(21px, 2vw, 28px); font-weight: 600;
+      line-height: 1.26; letter-spacing: -0.01em; color: #1d1d1f;
+    }
+    .hl-card.is-dark .hl-card-text { color: #f5f5f7; }
+    .ht-left  { left: 0; right: auto; text-align: left;   max-width: min(500px, 55%); }
+    .ht-center { left: 50%; transform: translateX(-50%); text-align: center; max-width: min(500px, 55%); }
+    .ht-right  { right: 0; left: auto; text-align: right;  max-width: min(500px, 55%); }
+    .hl-card-inner { display: block; opacity: 0; will-change: opacity, transform; }
+    .hl-controls { display: flex; align-items: center; justify-content: center; gap: 18px; margin: 32px auto 0; padding-bottom: 72px; }
+    .hl-play {
+      flex: 0 0 auto; width: 32px; height: 32px; border-radius: 50%; border: none;
+      background: rgba(0,0,0,0.05); cursor: pointer;
+      display: flex; align-items: center; justify-content: center; transition: background 0.2s;
+    }
+    .hl-play:hover { background: rgba(0,0,0,0.09); }
+    .hl-play svg { width: 15px; height: 15px; fill: #1d1d1f; }
+    .hl-ic-play { display: none; }
+    .hl-controls.paused .hl-ic-pause { display: none; }
+    .hl-controls.paused .hl-ic-play  { display: block; }
+    .hl-dots { display: flex; align-items: center; gap: 8px; }
+    .hl-dot {
+      position: relative; width: 8px; height: 8px; padding: 0; border: none;
+      border-radius: 50%; background: rgba(0,0,0,0.16); cursor: pointer; overflow: hidden;
+      transition: width 0.45s cubic-bezier(0.4,0,0.2,1), border-radius 0.45s;
+    }
+    .hl-dot:hover { background: rgba(0,0,0,0.28); }
+    .hl-dot.active { width: 34px; border-radius: 5px; }
+    .hl-fill { position: absolute; inset: 0; width: 0; background: #1d1d1f; border-radius: inherit; }
+    @keyframes hlFill { from { width: 0; } to { width: 100%; } }
+    @media (max-width: 734px) {
+      .hl-card { height: 420px; border-radius: 18px; }
+      .hl-card-text { padding: 28px 28px; font-size: clamp(18px, 5vw, 22px); }
     }
 
     /* ─── STORY HERO (new concept) ─── */
@@ -428,16 +536,9 @@
     .sc-arrow:disabled { opacity: 0.28; cursor: default; background: rgba(0,0,0,0.07); }
     .sc-arrow svg { width: 10px; height: 10px; stroke: #555; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
 
-    /* Latest work heading */
-    .section-heading {
-      padding: 0 var(--content-left) 32px;
-      font-size: clamp(28px, 3.2vw, 44px);
-      font-weight: 700; letter-spacing: -0.04em; line-height: 1.15;
-      color: var(--black);
-    }
     .story-title {
-      font-size: clamp(28px, 3.2vw, 44px);
-      font-weight: 700; letter-spacing: -0.04em; line-height: 1.15;
+      font-size: clamp(32px, 4vw, 56px);
+      font-weight: 600; letter-spacing: -0.005em; line-height: 1.07;
       color: var(--black);
     }
 
@@ -489,8 +590,8 @@
 
     /* Apple caption: bold title word + regular description, below the card */
     .sc-caption {
-      font-size: 15px; line-height: 1.55; color: #6e6e73;
-      padding: 0 4px;
+      font-size: 17px; line-height: 1.52; color: #6e6e73;
+      letter-spacing: 0.004em; padding: 0 4px;
     }
     .sc-caption strong { color: var(--black); font-weight: 600; }
 
@@ -573,14 +674,18 @@
       .work-history { margin-top: 32px; }
       .work-history-label { font-size: 16px; }
       .work-stack { height: 74px; }
-      .cards { padding: 0 var(--content-left); gap: 28px; }
-      .card { border-radius: 28px; min-height: 384px; }
-      .card-body { padding: 36px; }
-      .card-title { font-size: 36px; line-height: 43px; letter-spacing: -1px; }
-      .card-desc { font-size: 15px; line-height: 22px; }
-      .btn-view, .btn-soon { font-size: 16px; padding: 11px 18px; }
-      footer { padding: 64px var(--content-left) 0; }
-      .footer-cta { font-size: clamp(24px, 4vw, 38px); }
+      .cards { gap: 0; }
+      .card-featured { grid-template-columns: 1fr; }
+      .card-featured .card-visual { display: none; }
+      .card-body { padding: 28px var(--gutter); align-items: center; text-align: center; margin: 0; }
+      .card-meta { justify-content: center; }
+      .card-featured .card-body { justify-content: flex-start; align-items: center; text-align: center; margin: 0; }
+      .btn-view, .btn-soon { font-size: 14px; padding: 10px 18px; }
+      footer { padding: clamp(32px, 4vw, 64px) var(--gutter); }
+      .footer-inner { padding: 64px 0 0; display: block; }
+      .footer-cta { font-size: clamp(24px, 4vw, 38px); margin-bottom: 28px; }
+      .footer-row { flex-direction: column; align-items: flex-start; text-align: left; gap: 20px; border-top: 1px solid rgba(0,0,0,0.1); padding: 24px 0 0; }
+      .footer-meta { margin-top: 0; }
     }
 
     /* ─── MOBILE ─── */
@@ -607,33 +712,24 @@
       .work-role, .work-date { font-size: 11px; }
       .toggle-btn { margin-top: 14px; }
 
-      .cards { padding: 0 var(--gutter); gap: 12px; }
-      .work-section { padding-bottom: 8px; }
-      .card { grid-template-columns: 1fr; grid-template-rows: auto 1fr; border-radius: 20px; min-height: calc(100svh - 52px); }
-      .card-bg { border-radius: 0; }
-      .card-body { padding: 40px 28px 28px; order: 1; min-height: unset; align-items: center; text-align: center; }
+      .cards { gap: 0; }
+      .card-featured { grid-template-columns: 1fr; }
+      .card-featured .card-visual { display: none; }
+      .card-body { padding: 24px var(--gutter); align-items: center; text-align: center; margin: 0; }
       .card-meta { justify-content: center; }
-      .card-visual { order: 2; padding: 16px 16px 0; }
-      .card-title { font-size: 30px; line-height: 36px; letter-spacing: -0.9px; margin-bottom: 10px; }
-      .card-desc { font-size: 14px; line-height: 20px; max-width: 24ch; margin-left: auto; margin-right: auto; }
-      .card-tags { gap: 6px; margin-top: 12px; flex-wrap: wrap; justify-content: center; }
-      .card-tag { height: 26px; font-size: 11.5px; padding: 0 10px; }
-      .card-cta { margin-top: 22px; display: flex; justify-content: center; }
-      .btn-view, .btn-soon { font-size: 14px; padding: 10px 18px; border-radius: 100px; }
+      .card-featured .card-body { justify-content: flex-start; align-items: center; text-align: center; margin: 0; }
+      .btn-view, .btn-soon { font-size: 14px; padding: 10px 18px; }
       .story-controls { padding: 16px var(--content-left) 48px; }
       .story-contact { display: none; }
-      .card-light .card-scrim { background: linear-gradient(180deg, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.55) 100%); }
-      .card-dark  .card-scrim { background: linear-gradient(180deg, rgba(14,14,26,0.9) 0%, rgba(14,14,26,0.55) 100%); }
-      .card-ink   .card-scrim { background: linear-gradient(180deg, rgba(8,8,12,0.88) 0%, rgba(8,8,12,0.5) 100%); }
-      .card-violet .card-scrim { background: linear-gradient(180deg, rgba(12,8,22,0.9) 0%, rgba(12,8,22,0.52) 100%); }
 
-      footer { padding: 52px var(--gutter) 0; }
-      .footer-cta { font-size: clamp(22px, 7.5vw, 36px); margin-bottom: 32px; }
-      .footer-row { flex-direction: column; align-items: flex-start; gap: 24px; padding: 24px 0; }
+      footer { padding: clamp(24px, 4vw, 48px) var(--gutter); }
+      .footer-inner { padding: 40px 0 0; display: block; }
+      .footer-cta { font-size: clamp(22px, 7.5vw, 36px); margin-bottom: 28px; }
+      .footer-row { flex-direction: column; align-items: flex-start; text-align: left; gap: 20px; border-top: 1px solid rgba(0,0,0,0.1); padding: 24px 0 0; }
+      .footer-meta { margin-top: 0; border-top: none; }
       .footer-email { font-size: 15px; }
       .footer-meta { flex-direction: column; gap: 4px; padding: 14px 0; }
       .footer-meta span { font-size: 11px; }
-      .footer-wordmark { padding: 20px 0 0; font-size: 9vw; font-weight: 700; }
       .footer-row > div:last-child .footer-label { text-align: left; }
     }
   </style>
@@ -653,10 +749,8 @@
   <section class="story-section">
     <div class="story-header">
       <h1 class="story-title">Buna! Hej! Hi!<br>It's Paul Bader.</h1>
-      <a href="mailto:hello@itspaulbader.xyz" class="story-contact">Get in touch</a>
     </div>
-    <div class="story-scroll" id="storyScroll">
-      <div class="story-track">
+    <div class="hl-stage" id="hlTrack">
 
         <div class="story-card sc-profile">
           <div class="sc-visual">
@@ -692,22 +786,14 @@
           <p class="sc-caption"><strong>Branding.</strong> Building visual systems that feel intentional and scale across every touchpoint.</p>
         </div>
 
-        <div class="story-card sc-systems wide">
-          <div class="sc-visual">
-            <div class="sc-text">Design systems that let teams move fast.</div>
-          </div>
-          <p class="sc-caption"><strong>Design systems.</strong> Components, tokens, and logic that bring consistency without friction.</p>
-        </div>
 
-      </div>
     </div>
-    <div class="story-controls">
-      <button class="sc-arrow" id="scrollPrev" aria-label="Previous" disabled>
-        <svg viewBox="0 0 10 10"><polyline points="6.5,1.5 3,5 6.5,8.5"/></svg>
+    <div class="hl-controls" id="hlControls">
+      <button class="hl-play" id="hlPlay" aria-label="Pause highlights gallery">
+        <svg class="hl-ic-pause" viewBox="0 0 24 24"><rect x="7" y="6" width="3.4" height="12" rx="1.1"/><rect x="13.6" y="6" width="3.4" height="12" rx="1.1"/></svg>
+        <svg class="hl-ic-play"  viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg>
       </button>
-      <button class="sc-arrow" id="scrollNext" aria-label="Next">
-        <svg viewBox="0 0 10 10"><polyline points="3.5,1.5 7,5 3.5,8.5"/></svg>
-      </button>
+      <div class="hl-dots" id="hlDots" role="tablist"></div>
     </div>
   </section>
   <!-- ═══ END STORY HERO ═══ -->
@@ -774,94 +860,11 @@
     </div>
   </section>
 
-  <h2 class="section-heading">Latest work</h2>
-
   <section class="work-section" id="work">
     <div class="cards">
 
-      <div class="card card-light reveal" style="--d:0s">
-        <div class="card-bg" style="background: radial-gradient(ellipse 80% 90% at 70% 50%, #c7d2fe 0%, #bfdbfe 40%, #dbeafe 70%, #eff6ff 100%);"></div>
-        <div class="card-scrim"></div>
-        <div class="card-body">
-          <div>
-            <div class="card-meta">
-              <div class="card-icon" style="background:#dbeafe;color:#1d4ed8;">ML</div>
-              <span class="card-co">Meta Learn</span>
-              <span class="card-dot"></span>
-              <span class="card-yr">2024</span>
-            </div>
-            <h3 class="card-title">Mental fitness,<br>made intuitive</h3>
-            <p class="card-desc">Meta Learn is a mobile app for stress relief, focus, and emotional resilience.</p>
-            <div class="card-tags">
-              <span class="card-tag">Research</span>
-              <span class="card-tag">UX/UI Design</span>
-              <span class="card-tag">Branding</span>
-            </div>
-          </div>
-          <div class="card-cta"><a href="meta-learn.html" class="btn-view">View Case</a></div>
-        </div>
-        <div class="card-visual">
-          <!-- <img src="images/meta-learn-mockup.png" alt="Meta Learn app"> -->
-          <div class="img-hint" style="color:rgba(100,140,200,0.45);">Add product screenshot →</div>
-        </div>
-      </div>
-
-      <div class="card card-dark reveal" style="--d:0.1s">
-        <div class="card-bg" style="background: linear-gradient(135deg, #0d0c1e 0%, #1a1040 40%, #2d1060 70%, #1a0d30 100%);"></div>
-        <div class="card-scrim"></div>
-        <div class="card-body">
-          <div>
-            <div class="card-meta">
-              <div class="card-icon" style="background:rgba(255,255,255,0.12);color:white;">C</div>
-              <span class="card-co">Custimy</span>
-              <span class="card-dot"></span>
-              <span class="card-yr">2023</span>
-            </div>
-            <h3 class="card-title">Quicker & better<br>onboarding</h3>
-            <p class="card-desc">Creating a seamless entry point so users could start strong without friction.</p>
-            <div class="card-tags">
-              <span class="card-tag">SaaS</span>
-              <span class="card-tag">Product Design</span>
-              <span class="card-tag">User Flow</span>
-            </div>
-          </div>
-          <div class="card-cta"><a href="#" class="btn-view">View Case</a></div>
-        </div>
-        <div class="card-visual">
-          <!-- <img src="images/custimy-mockup.png" alt="Custimy onboarding"> -->
-          <div class="img-hint" style="color:rgba(255,255,255,0.18);">Add product screenshot →</div>
-        </div>
-      </div>
-
-      <div class="card card-ink reveal" style="--d:0.2s">
-        <div class="card-bg" style="background: linear-gradient(160deg, #0a0e1a 0%, #12213a 35%, #1e3a5c 65%, #0d1825 100%);"></div>
-        <div class="card-scrim"></div>
-        <div class="card-body">
-          <div>
-            <div class="card-meta">
-              <div class="card-icon" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.85);">G</div>
-              <span class="card-co">Grundfos</span>
-              <span class="card-dot"></span>
-              <span class="card-yr">2020</span>
-            </div>
-            <h3 class="card-title">From print to<br>PowerApp</h3>
-            <p class="card-desc">UX-driven internal tool used by 200+, replacing 80% of printed material.</p>
-            <div class="card-tags">
-              <span class="card-tag">PowerApps</span>
-              <span class="card-tag">Mobile Design</span>
-              <span class="card-tag">UX/UI Design</span>
-            </div>
-          </div>
-          <div class="card-cta"><a href="#" class="btn-view">View Case</a></div>
-        </div>
-        <div class="card-visual">
-          <!-- <img src="images/grundfos-mockup.png" alt="Grundfos PowerApp"> -->
-          <div class="img-hint" style="color:rgba(255,255,255,0.15);">Add product screenshot →</div>
-        </div>
-      </div>
-
-      <div class="card card-violet reveal" style="--d:0.3s">
-        <div class="card-bg" style="background: linear-gradient(135deg, #1a0f2e 0%, #2d1854 40%, #1e1040 70%, #120b20 100%);"></div>
+      <div class="card card-violet card-featured">
+        <div class="card-bg" style="background: #2d1854;"></div>
         <div class="card-scrim"></div>
         <div class="card-body">
           <div>
@@ -882,8 +885,76 @@
           <div class="card-cta"><span class="btn-soon">Coming Soon</span></div>
         </div>
         <div class="card-visual">
-          <!-- <img src="images/bershka-mockup.png" alt="Bershka self-checkout"> -->
-          <div class="img-hint" style="color:rgba(255,255,255,0.14);">Add product screenshot →</div>
+          <!-- <img src="images/bershka-mockup.png" alt="Bershka"> -->
+        </div>
+      </div>
+
+      <div class="card card-dark">
+        <div class="card-bg" style="background: #1a1040;"></div>
+        <div class="card-scrim"></div>
+        <div class="card-body">
+          <div>
+            <div class="card-meta">
+              <div class="card-icon" style="background:rgba(255,255,255,0.12);color:white;">S</div>
+              <span class="card-co">Sheer</span>
+              <span class="card-dot"></span>
+              <span class="card-yr">2023</span>
+            </div>
+            <h3 class="card-title">Quicker & better<br>onboarding</h3>
+            <p class="card-desc">Creating a seamless entry point so users could start strong without friction.</p>
+            <div class="card-tags">
+              <span class="card-tag">SaaS</span>
+              <span class="card-tag">Product Design</span>
+              <span class="card-tag">User Flow</span>
+            </div>
+          </div>
+          <div class="card-cta"><a href="#" class="btn-view">View Case</a></div>
+        </div>
+      </div>
+
+      <div class="card card-light">
+        <div class="card-bg" style="background: #dbeafe;"></div>
+        <div class="card-scrim"></div>
+        <div class="card-body">
+          <div>
+            <div class="card-meta">
+              <div class="card-icon" style="background:#dbeafe;color:#1d4ed8;">ML</div>
+              <span class="card-co">Meta Learn</span>
+              <span class="card-dot"></span>
+              <span class="card-yr">2024</span>
+            </div>
+            <h3 class="card-title">Mental fitness,<br>made intuitive</h3>
+            <p class="card-desc">Meta Learn is a mobile app for stress relief, focus, and emotional resilience.</p>
+            <div class="card-tags">
+              <span class="card-tag">Research</span>
+              <span class="card-tag">UX/UI Design</span>
+              <span class="card-tag">Branding</span>
+            </div>
+          </div>
+          <div class="card-cta"><a href="meta-learn.html" class="btn-view">View Case</a></div>
+        </div>
+      </div>
+
+      <div class="card card-ink">
+        <div class="card-bg" style="background: #12213a;"></div>
+        <div class="card-scrim"></div>
+        <div class="card-body">
+          <div>
+            <div class="card-meta">
+              <div class="card-icon" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.85);">G</div>
+              <span class="card-co">Grundfos</span>
+              <span class="card-dot"></span>
+              <span class="card-yr">2020</span>
+            </div>
+            <h3 class="card-title">From print to<br>PowerApp</h3>
+            <p class="card-desc">UX-driven internal tool used by 200+, replacing 80% of printed material.</p>
+            <div class="card-tags">
+              <span class="card-tag">PowerApps</span>
+              <span class="card-tag">Mobile Design</span>
+              <span class="card-tag">UX/UI Design</span>
+            </div>
+          </div>
+          <div class="card-cta"><a href="#" class="btn-view">View Case</a></div>
         </div>
       </div>
 
@@ -941,24 +1012,146 @@
     toggleBtn.addEventListener('click', toggleHistory);
     workStack.addEventListener('click', e => { if (!isOpen) toggleHistory(); });
 
-    // Carousel arrows
-    const storyScroll = document.getElementById('storyScroll');
-    const cardWidth = () => document.querySelector('.story-card')?.offsetWidth + 14 || 374;
-    document.getElementById('scrollPrev')?.addEventListener('click', () => {
-      storyScroll.scrollBy({ left: -cardWidth(), behavior: 'smooth' });
-    });
-    document.getElementById('scrollNext')?.addEventListener('click', () => {
-      storyScroll.scrollBy({ left: cardWidth(), behavior: 'smooth' });
-    });
-    const prevBtn = document.getElementById('scrollPrev');
-    const nextBtn = document.getElementById('scrollNext');
-    storyScroll?.addEventListener('scroll', () => {
-      const atStart = storyScroll.scrollLeft < 1;
-      const atEnd = storyScroll.scrollLeft + storyScroll.clientWidth >= storyScroll.scrollWidth - 1;
-      prevBtn.disabled = atStart;
-      nextBtn.disabled = atEnd;
-    }, { passive: true });
+    // ── Highlights carousel (autoscroll + timed dots) ──
+    const hlTrack    = document.getElementById('hlTrack');
+    const hlDots     = document.getElementById('hlDots');
+    const hlControls = document.getElementById('hlControls');
+    const hlPlayBtn  = document.getElementById('hlPlay');
+    if (hlTrack) {
+      const hlCards   = [...hlTrack.querySelectorAll('.story-card')];
+      const HL_DUR    = 5000;
+      const hlReduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let hlIdx = 0, hlPlaying = !hlReduced, hlTimer = null, hlVisible = true;
 
+      hlCards.forEach((_, i) => {
+        const b = document.createElement('button');
+        b.className = 'hl-dot'; b.type = 'button';
+        b.setAttribute('role', 'tab');
+        b.setAttribute('aria-label', 'Show highlight ' + (i + 1));
+        b.innerHTML = '<span class="hl-fill"></span>';
+        b.addEventListener('click', () => hlGo(i));
+        hlDots.appendChild(b);
+      });
+      const hlDotEls = [...hlDots.children];
+
+      function hlCardLeft(i) {
+        // card's left edge minus the stage's inline padding → scroll target
+        const pad = parseFloat(getComputedStyle(hlTrack).paddingInlineStart) || 0;
+        return hlCards[i].offsetLeft - pad;
+      }
+      function hlPaint() {
+        hlDotEls.forEach((d, k) => {
+          const on = k === hlIdx;
+          d.classList.toggle('active', on);
+          d.setAttribute('aria-selected', on ? 'true' : 'false');
+          const fill = d.querySelector('.hl-fill');
+          fill.style.animation = 'none'; fill.style.width = '';
+          if (on && hlPlaying && hlVisible && !hlReduced) {
+            void fill.offsetWidth;
+            fill.style.animation = 'hlFill ' + HL_DUR + 'ms linear forwards';
+          }
+        });
+      }
+      function hlSchedule() {
+        clearTimeout(hlTimer);
+        if (!hlPlaying || !hlVisible || hlReduced) return;
+        hlTimer = setTimeout(() => hlGo(hlIdx + 1), HL_DUR);
+      }
+      function hlGo(i) {
+        hlIdx = (i + hlCards.length) % hlCards.length;
+        hlTrack.scrollTo({ left: hlCardLeft(hlIdx), behavior: 'smooth' });
+        hlPaint(); hlSchedule();
+      }
+      function hlSetPlaying(p) {
+        hlPlaying = p;
+        hlControls.classList.toggle('paused', !p);
+        hlPlayBtn.setAttribute('aria-label', (p ? 'Pause' : 'Play') + ' highlights gallery');
+        if (p) { hlPaint(); hlSchedule(); }
+        else {
+          clearTimeout(hlTimer);
+          hlDotEls.forEach(d => {
+            const f = d.querySelector('.hl-fill');
+            f.style.animation = 'none'; f.style.width = getComputedStyle(f).width;
+          });
+        }
+      }
+      hlPlayBtn.addEventListener('click', () => hlSetPlaying(!hlPlaying));
+
+      let hlDownX = null, hlDragged = false;
+      hlTrack.addEventListener('pointerdown', e => { hlDownX = e.clientX; hlDragged = false; }, { passive: true });
+      hlTrack.addEventListener('pointermove', e => { if (hlDownX != null && Math.abs(e.clientX - hlDownX) > 8) hlDragged = true; }, { passive: true });
+      window.addEventListener('pointerup', () => { hlDownX = null; });
+      hlCards.forEach((card, i) => card.addEventListener('click', () => { if (!hlDragged) hlGo(i); }));
+
+      let hlRAF;
+      hlTrack.addEventListener('scroll', () => {
+        cancelAnimationFrame(hlRAF);
+        hlRAF = requestAnimationFrame(() => {
+          const sl = hlTrack.scrollLeft;
+          let closest = 0, minDist = Infinity;
+          hlCards.forEach((_, i) => {
+            const dist = Math.abs(hlCardLeft(i) - sl);
+            if (dist < minDist) { minDist = dist; closest = i; }
+          });
+          if (closest !== hlIdx) { hlIdx = closest; hlPaint(); hlSchedule(); }
+        });
+      }, { passive: true });
+
+      new IntersectionObserver(es => {
+        es.forEach(e => {
+          hlVisible = e.isIntersecting;
+          if (hlVisible) { hlPaint(); hlSchedule(); } else clearTimeout(hlTimer);
+        });
+      }, { threshold: 0.3 }).observe(hlTrack);
+
+      if (hlReduced) hlControls.classList.add('paused');
+      hlPaint(); hlSchedule();
+    }
+
+    // ── Case section vertical dot nav ──
+    (function () {
+      const workSection = document.querySelector('.work-section');
+      const cards = [...document.querySelectorAll('.work-section .card')];
+      if (!workSection || !cards.length) return;
+
+      const nav = document.createElement('div');
+      nav.id = 'case-nav';
+
+      const dots = cards.map((card, i) => {
+        const btn = document.createElement('button');
+        btn.className = 'case-dot';
+        btn.setAttribute('aria-label', 'Jump to case ' + (i + 1));
+        btn.addEventListener('click', () => card.scrollIntoView({ behavior: 'smooth' }));
+        nav.appendChild(btn);
+        return btn;
+      });
+
+      document.body.appendChild(nav);
+
+      // Show/hide based on precise scroll position
+      function updateNavVisibility() {
+        const vh = window.innerHeight;
+        const first = cards[0].getBoundingClientRect();
+        const last  = cards[cards.length - 1].getBoundingClientRect();
+        // Show once first card's top is above 25% of viewport
+        // Hide once last card's bottom has passed 75% of viewport
+        const show = first.top < vh * 0.25 && last.bottom > vh * 0.75;
+        nav.classList.toggle('visible', show);
+      }
+      window.addEventListener('scroll', updateNavVisibility, { passive: true });
+      updateNavVisibility();
+
+      // Highlight the dot for whichever card is ≥50% visible
+      const cardObs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            const i = cards.indexOf(e.target);
+            if (i >= 0) dots.forEach((d, j) => d.classList.toggle('active', j === i));
+          }
+        });
+      }, { threshold: 0.5 });
+      cards.forEach(c => cardObs.observe(c));
+    })();
 
   </script>
 </body>

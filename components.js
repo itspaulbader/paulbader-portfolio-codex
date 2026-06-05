@@ -23,6 +23,7 @@
   /* ── FOOTER ── */
   document.body.insertAdjacentHTML('beforeend', `
     <footer id="contact">
+      <div class="footer-card">
       <div class="footer-inner">
         <h2 class="footer-cta reveal">
           Let's <span class="footer-word">design</span><br><span>incredible work together.</span>
@@ -49,7 +50,7 @@
           <span>© 2026 It's Paul Bader</span>
         </div>
       </div>
-      <div class="footer-wordmark">IT'S PAUL BADER</div>
+      </div>
     </footer>
   `);
 
