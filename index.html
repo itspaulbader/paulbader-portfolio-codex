@@ -41,108 +41,6 @@
       overflow-x: hidden;
     }
 
-    #progress-bar { display: none; }
-
-    /* ─── TOPBAR (new nav) ─── */
-    .topbar {
-      width: 100%;
-      padding: 11px var(--content-left);
-      display: flex; align-items: center; justify-content: space-between;
-      background: white;
-      position: relative; z-index: 10;
-      box-sizing: border-box;
-    }
-    .topbar-name {
-      font-size: 12px; font-weight: 400; color: #1d1d1f;
-      text-decoration: none; letter-spacing: 0;
-    }
-    .topbar-links { display: flex; gap: 24px; list-style: none; }
-    .topbar-links a {
-      font-size: 12px; font-weight: 400; color: #1d1d1f;
-      text-decoration: none; opacity: 0.9;
-      transition: opacity 0.2s;
-    }
-    .topbar-links a:hover { opacity: 0.55; }
-
-    /* ─── NAV (original — hidden; to restore change display:none to display:inline-flex below) ─── */
-    nav {
-      display: none !important;
-      position: fixed; top: 20px; left: 50%;
-      transform: translateX(-50%);
-      z-index: 100;
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 7px 12px 7px 9px;
-      background: rgba(255,255,255,0.82);
-      backdrop-filter: blur(40px) saturate(180%);
-      -webkit-backdrop-filter: blur(40px) saturate(180%);
-      border: 1px solid rgba(255,255,255,0.6);
-      border-radius: 100px;
-      box-shadow:
-        0 1px 0 rgba(255,255,255,0.98) inset,
-        0 0 0 0.5px rgba(0,0,0,0.06),
-        0 8px 32px rgba(0,0,0,0.08),
-        0 2px 6px rgba(0,0,0,0.04);
-      white-space: nowrap;
-      animation: navDrop 0.9s var(--ease) 0.1s both;
-      transition: box-shadow 0.7s var(--ease), background 0.7s var(--ease), backdrop-filter 0.7s var(--ease);
-    }
-    @keyframes navDrop {
-      from { opacity: 0; transform: translateX(-50%) translateY(-10px); }
-      to   { opacity: 1; transform: translateX(-50%) translateY(0); }
-    }
-    nav.scrolled {
-      background: rgba(255,255,255,0.86);
-      backdrop-filter: blur(44px) saturate(180%);
-      -webkit-backdrop-filter: blur(44px) saturate(180%);
-      box-shadow:
-        0 1px 0 rgba(255,255,255,0.92) inset,
-        0 -1px 0 rgba(0,0,0,0.05) inset,
-        0 12px 40px rgba(0,0,0,0.1),
-        0 2px 8px rgba(0,0,0,0.07);
-    }
-    .nav-photo { width: 28px; height: 28px; border-radius: 50%; overflow: hidden; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
-    .nav-photo img { width: 100%; height: 100%; object-fit: cover; }
-    .nav-photo-placeholder { width: 100%; height: 100%; background: linear-gradient(135deg, #c4c4ca, #9c9ca4); display: flex; align-items: center; justify-content: center; }
-    .nav-name { font-size: 13.5px; font-weight: 600; color: var(--black); text-decoration: none; padding: 0 5px 0 3px; letter-spacing: -0.015em; }
-    .nav-divider {
-      width: 1px; height: 14px; background: rgba(0,0,0,0.09); margin: 0 2px;
-      max-width: 10px; overflow: hidden;
-      transition: max-width 0.6s var(--ease), opacity 0.45s var(--ease), margin 0.6s var(--ease);
-      transition-delay: 0.12s;
-    }
-    .nav-links {
-      display: flex; gap: 1px; list-style: none;
-      max-width: 200px; overflow: hidden;
-      transition: max-width 0.6s var(--ease), opacity 0.45s var(--ease);
-      transition-delay: 0.12s;
-    }
-    .nav-links a {
-      font-size: 13.5px; font-weight: 500; color: var(--black);
-      text-decoration: none; padding: 5px 11px; border-radius: 100px;
-      transition: color 0.25s var(--ease);
-    }
-    .nav-links a:hover { color: #666; }
-    .nav-dots {
-      display: inline-flex; align-items: center; gap: 4px;
-      width: 0; opacity: 0; overflow: hidden; flex-shrink: 0;
-      padding: 5px 0 3px;
-      transition: width 0.6s var(--ease), opacity 0.4s var(--ease);
-      transition-delay: 0s;
-    }
-    .nav-dots span {
-      width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0;
-      background: var(--emperor);
-      animation: dot-bob 1.3s ease-in-out infinite;
-    }
-    .nav-dots span:nth-child(2) { animation-delay: 0.18s; }
-    .nav-dots span:nth-child(3) { animation-delay: 0.36s; }
-    @keyframes dot-bob {
-      0%, 60%, 100% { transform: translateY(0); opacity: 0.35; }
-      30% { transform: translateY(-4px); opacity: 1; }
-    }
-    nav.compact .nav-divider { max-width: 0; opacity: 0; margin: 0; transition-delay: 0s; }
-    nav.compact .nav-links { max-width: 0; opacity: 0; transition-delay: 0s; }
-    nav.compact .nav-dots { width: 32px; opacity: 1; transition-delay: 0.26s; }
 
     /* ─── HERO ─── */
     .hero {
@@ -255,6 +153,38 @@
     .chevron svg { stroke: rgba(0,0,0,0.35); }
     .toggle-btn.open .chevron { transform: rotate(180deg); }
 
+    /* Desktop: image fills right half of card (Meta Learn) */
+    .card-img-below { position: absolute; right: 0; top: 0; bottom: 0; width: 50%; z-index: 2; overflow: hidden; }
+    .card-img-below img, .card-img-below picture { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+    /* Bershka: full-bleed bg on desktop with scrim, card-img-below hidden */
+    .bershka-bg { background-image: url('images/shotcrete.png'); background-size: cover; background-position: center; background-color: var(--bg); }
+    .card-violet.card-featured .card-scrim { display: none; }
+    .card-violet.card-featured .btn-soon { background: var(--blue); color: white; cursor: pointer; }
+    .card-featured .card-img-below { display: none; }
+    /* Mobile/tablet: solid bg, image below text */
+    @media (max-width: 1024px) {
+      .bershka-bg { background-image: url('images/bershka-desk-mobile2.png'); background-size: cover !important; background-position: center center !important; background-color: var(--bg) !important; }
+      .card-violet.card-featured .card-scrim { display: none; }
+      .card-featured .card-img-below { display: block; }
+      .card-violet.card-featured .card-img-below,
+      .card-violet.card-featured .card-visual { display: none; }
+      .card-violet.card-featured { min-height: 100svh; }
+      .card-violet.card-featured .card-body { padding-bottom: 36px !important; }
+      /* wall.png bg — keep white text on tablet/mobile too */
+      .card-featured { min-height: auto; }
+      .card-featured .card-body { padding-bottom: 0 !important; }
+      .card-img-below {
+        position: static;
+        width: 100%; height: auto;
+        margin-top: auto;
+        right: auto; left: auto; top: auto; bottom: auto;
+      }
+      .card-img-below img { height: auto !important; width: 100% !important; object-fit: contain; object-position: center bottom; display: block; }
+      .card-sheer.card-featured { min-height: 100svh; }
+      .card-sheer .card-img-below { position: absolute; inset: 0; width: 100%; height: 100%; margin-top: 0; }
+      .card-sheer .card-img-below img { width: 100% !important; height: 100% !important; object-fit: cover; object-position: center; }
+    }
+
     /* ─── CARDS ─── */
     .work-section { padding: 0; background: #fff; }
 
@@ -272,40 +202,44 @@
     .card-featured {
       display: grid; grid-template-columns: 1fr 1fr;
     }
+    /* Between desktop and tablet the title/desc need more room than a flat 50/50
+       split gives them; the visual is full-bleed (absolute, inset:0) regardless
+       of the grid split, so widening the text column doesn't shrink the image. */
+    @media (max-width: 1440px) and (min-width: 1025px) {
+      .card-featured { grid-template-columns: 1.4fr 1fr; }
+    }
     .card-featured .card-body {
       flex-direction: column; align-items: flex-start; justify-content: center;
       text-align: left; gap: 28px;
-      padding: 52px var(--gutter);
+      /* 8vw floor keeps the whitespace ratio constant once the fixed gutter would collapse (~1500px);
+         capped at 200px so --gutter (which grows with the full page width) doesn't eat the
+         50% column on very large/zoomed-out viewports */
+      padding: 52px min(max(8vw, var(--gutter)), 200px);
       margin: 0;
     }
     .card-featured .card-body > div:first-child { min-width: 0; }
-    .card-featured .card-desc { max-width: 38ch; }
 
     /* Right column: visual area */
     .card-featured .card-visual {
-      position: relative; z-index: 2;
-      display: flex; align-items: center; justify-content: flex-end;
-      padding: 40px var(--gutter) 40px 0;
+      position: absolute; inset: 0; z-index: 1;
+      overflow: hidden;
     }
     .card-featured .card-visual img {
-      max-width: 100%; max-height: 480px; object-fit: contain; display: block;
-      filter: drop-shadow(0 24px 48px rgba(0,0,0,0.28));
+      width: 100%; height: 100%; object-fit: cover; display: block;
     }
 
     /* Scrim: left-to-right for text legibility */
     .card-light.card-featured .card-scrim { background: linear-gradient(90deg, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.44) 50%, rgba(255,255,255,0) 100%); }
-    .card-dark.card-featured  .card-scrim, .card-ink.card-featured .card-scrim, .card-violet.card-featured .card-scrim {
+    .card-dark.card-featured  .card-scrim, .card-ink.card-featured .card-scrim {
       background: linear-gradient(90deg, rgba(14,14,26,0.86) 0%, rgba(14,14,26,0.44) 50%, rgba(14,14,26,0) 100%);
     }
 
     .card-bg {
       position: absolute; inset: 0; z-index: 0;
       background-size: cover; background-position: center;
-      transition: transform 1.6s var(--ease);
     }
-    .card:hover .card-bg { transform: scale(1.02); }
 
-    .card-scrim { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+    .card-scrim { display: none; }
 
     .card-body {
       position: relative; z-index: 3;
@@ -318,12 +252,17 @@
 
 
     .card-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
-    .card-icon { width: 26px; height: 26px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; }
+    .card-icon { width: 26px; height: 26px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; overflow: hidden; }
+    .card-icon img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .card-co { font-size: 12px; font-weight: 600; letter-spacing: 0; }
     .card-dot { display: inline-block; width: 4px; height: 4px; border-radius: 50%; flex-shrink: 0; opacity: 0.4; }
     .card-yr { font-size: 12px; font-weight: 600; letter-spacing: 0.06em; opacity: 0.55; }
     .card-title { font-size: clamp(40px, 5.6vw, 72px); font-weight: 600; letter-spacing: -0.015em; line-height: 1.06; margin-bottom: 14px; }
     .card-desc { font-size: clamp(17px, 1.5vw, 21px); font-weight: 500; line-height: 1.52; letter-spacing: 0.004em; max-width: 38ch; }
+    /* 38ch is the floor for normal screens; 34vw lets the line grow on very large/
+       zoomed-out viewports so the text doesn't strand itself near the left edge,
+       capped at 60ch so lines never get unreadably long */
+    .card-featured .card-desc { max-width: clamp(38ch, 34vw, 60ch); }
     .card-tags { display: none; }
     .card-tag {
       height: 24px; padding: 0 10px; border-radius: 100px;
@@ -398,45 +337,6 @@
     #case-nav:hover .case-dot:not(.active):hover { background: rgba(255,255,255,0.45); }
     @media (max-width: 899px) { #case-nav { display: none; } }
 
-    /* ─── FOOTER ─── */
-    footer { background: var(--bg); color: #1d1d1f; padding: clamp(40px, 5vw, 80px) var(--gutter); }
-    .footer-card { max-width: 1260px; margin: 0 auto; background: transparent; border-radius: 0; overflow: visible; }
-    .footer-inner {
-      padding: 88px 0 0;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      grid-template-rows: auto auto;
-      gap: 0 48px;
-      align-items: end;
-    }
-    .footer-cta { grid-column: 1; grid-row: 1; font-size: clamp(36px, 4.2vw, 60px); font-weight: 600; letter-spacing: -0.04em; line-height: 1.15; color: #1d1d1f; margin-bottom: 0; }
-    .footer-cta > span:not(.footer-word) { color: #86868b; }
-    .footer-word { display: inline-block; color: #1d1d1f; }
-    .footer-row { grid-column: 2; grid-row: 1; display: flex; flex-direction: column; align-items: flex-end; text-align: right; gap: 16px; border-top: none; padding: 0; justify-content: flex-end; }
-    .footer-label { font-size: 11px; font-weight: 500; letter-spacing: 0; color: #86868b; margin-bottom: 7px; }
-    .footer-email {
-      font-size: 17px; font-weight: 400; letter-spacing: -0.02em;
-      color: #1d1d1f; text-decoration: none;
-      transition: color 0.25s var(--ease);
-    }
-    .footer-email:hover { color: #6e6e73; }
-    .footer-socials { display: flex; gap: 8px; }
-    .footer-socials a {
-      width: 38px; height: 38px; border-radius: 50%;
-      border: 1px solid rgba(0,0,0,0.1);
-      display: flex; align-items: center; justify-content: center;
-      color: #6e6e73; text-decoration: none;
-      transition: background 0.32s var(--ease), color 0.32s var(--ease), border-color 0.32s var(--ease), transform 0.4s var(--ease-spring);
-    }
-    .footer-socials a:hover { background: rgba(0,0,0,0.05); color: #1d1d1f; transform: translateY(-2px); border-color: rgba(0,0,0,0.2); }
-    .footer-meta { grid-column: 1 / -1; grid-row: 2; display: flex; justify-content: space-between; padding: 18px 0; border-top: 1px solid rgba(0,0,0,0.07); margin-top: 48px; }
-    .footer-meta span { font-size: 11.5px; color: #86868b; font-weight: 500; }
-    .footer-wordmark {
-      font-size: clamp(50px, 10vw, 156px); font-weight: 700; letter-spacing: -0.04em;
-      line-height: 0.9; color: #1d1d1f; white-space: nowrap;
-      padding: 32px 0 0; will-change: transform;
-      text-align: center;
-    }
 
     /* ─── HIGHLIGHTS CAROUSEL ─── */
     .hl-stage {
@@ -646,7 +546,7 @@
       line-height: 1.22; color: #0e1e38;
     }
 
-    @media (max-width: 900px) and (min-width: 600px) {
+    @media (max-width: 1024px) and (min-width: 600px) {
       .story-card { width: 280px; }
       .story-card.wide { width: 430px; }
       .sc-visual { height: 320px; }
@@ -667,7 +567,7 @@
     .reveal-d2.in { transition-delay: 0.2s; }
 
     /* ─── TABLET ─── */
-    @media (max-width: 900px) and (min-width: 600px) {
+    @media (max-width: 1024px) and (min-width: 600px) {
       .hero { grid-template-columns: 1fr 1.2fr; gap: 36px; padding: 120px var(--content-left) 60px; min-height: auto; }
       .hero-photo { aspect-ratio: 3/4; }
       .hero-intro { font-size: clamp(19px, 2.6vw, 25px); line-height: 1.35; letter-spacing: -0.5px; }
@@ -681,11 +581,6 @@
       .card-meta { justify-content: center; }
       .card-featured .card-body { justify-content: flex-start; align-items: center; text-align: center; margin: 0; }
       .btn-view, .btn-soon { font-size: 14px; padding: 10px 18px; }
-      footer { padding: clamp(32px, 4vw, 64px) var(--gutter); }
-      .footer-inner { padding: 64px 0 0; display: block; }
-      .footer-cta { font-size: clamp(24px, 4vw, 38px); margin-bottom: 28px; }
-      .footer-row { flex-direction: column; align-items: flex-start; text-align: left; gap: 20px; border-top: 1px solid rgba(0,0,0,0.1); padding: 24px 0 0; }
-      .footer-meta { margin-top: 0; }
     }
 
     /* ─── MOBILE ─── */
@@ -694,8 +589,6 @@
     }
     @media (max-width: 599px) {
       nav { top: 14px; padding: 6px 10px 6px 8px; }
-      .nav-name { font-size: 12.5px; padding: 0 4px 0 2px; }
-      .nav-links a { font-size: 12.5px; padding: 4px 9px; }
 
       .hero { grid-template-columns: 1fr; min-height: auto; padding: 76px var(--gutter) 48px; gap: 0; align-items: flex-start; }
       .hero-photo { aspect-ratio: 16/9; border-radius: 14px; }
@@ -722,28 +615,10 @@
       .story-controls { padding: 16px var(--content-left) 48px; }
       .story-contact { display: none; }
 
-      footer { padding: clamp(24px, 4vw, 48px) var(--gutter); }
-      .footer-inner { padding: 40px 0 0; display: block; }
-      .footer-cta { font-size: clamp(22px, 7.5vw, 36px); margin-bottom: 28px; }
-      .footer-row { flex-direction: column; align-items: flex-start; text-align: left; gap: 20px; border-top: 1px solid rgba(0,0,0,0.1); padding: 24px 0 0; }
-      .footer-meta { margin-top: 0; border-top: none; }
-      .footer-email { font-size: 15px; }
-      .footer-meta { flex-direction: column; gap: 4px; padding: 14px 0; }
-      .footer-meta span { font-size: 11px; }
-      .footer-row > div:last-child .footer-label { text-align: left; }
     }
   </style>
 </head>
 <body>
-
-  <!-- NEW TOPBAR — to restore original nav, remove display:none from <nav> below and hide/remove this -->
-  <header class="topbar">
-    <a href="/" class="topbar-name">it's Paul Bader</a>
-    <ul class="topbar-links">
-      <li><a href="#work">Work</a></li>
-      <li><a href="mailto:hello@itspaulbader.xyz">Contact</a></li>
-    </ul>
-  </header>
 
   <!-- ═══ STORY HERO ═══ -->
   <section class="story-section">
@@ -864,12 +739,12 @@
     <div class="cards">
 
       <div class="card card-violet card-featured">
-        <div class="card-bg" style="background: #2d1854;"></div>
+        <div class="card-bg bershka-bg"></div>
         <div class="card-scrim"></div>
         <div class="card-body">
           <div>
             <div class="card-meta">
-              <div class="card-icon" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.85);">B</div>
+              <div class="card-icon"><img src="images/bershka-icon.jpg" alt="Bershka logo"></div>
               <span class="card-co">Bershka</span>
               <span class="card-dot"></span>
               <span class="card-yr">2025</span>
@@ -885,17 +760,20 @@
           <div class="card-cta"><span class="btn-soon">Coming Soon</span></div>
         </div>
         <div class="card-visual">
-          <!-- <img src="images/bershka-mockup.png" alt="Bershka"> -->
+          <img src="images/bershka-desk.png" alt="Bershka self-checkout kiosk">
+        </div>
+        <div class="card-img-below">
+          <img src="images/bershka-desk-mobile.png" alt="Bershka self-checkout" style="object-position: center center;">
         </div>
       </div>
 
-      <div class="card card-dark">
-        <div class="card-bg" style="background: #1a1040;"></div>
+      <div class="card card-dark card-featured card-sheer">
+        <div class="card-bg sheer-bg" style="background-color: #1a1040;"></div>
         <div class="card-scrim"></div>
         <div class="card-body">
           <div>
             <div class="card-meta">
-              <div class="card-icon" style="background:rgba(255,255,255,0.12);color:white;">S</div>
+              <div class="card-icon"><img src="images/sheer-icon.jpeg" alt="Sheer logo"></div>
               <span class="card-co">Sheer</span>
               <span class="card-dot"></span>
               <span class="card-yr">2023</span>
@@ -910,10 +788,16 @@
           </div>
           <div class="card-cta"><a href="#" class="btn-view">View Case</a></div>
         </div>
+        <div class="card-visual">
+          <img src="images/sheer-desktop.png" alt="Sheer" style="object-position: 75% 55%;">
+        </div>
+        <div class="card-img-below">
+          <img src="images/sheer-mobile.png" alt="Sheer" style="object-position: center center;">
+        </div>
       </div>
 
-      <div class="card card-light">
-        <div class="card-bg" style="background: #dbeafe;"></div>
+      <div class="card card-light card-featured">
+        <div class="card-bg ml-bg" style="background-color: #fff;"></div>
         <div class="card-scrim"></div>
         <div class="card-body">
           <div>
@@ -933,15 +817,21 @@
           </div>
           <div class="card-cta"><a href="meta-learn.html" class="btn-view">View Case</a></div>
         </div>
+        <div class="card-visual">
+          <img src="images/meta-learn-hero.png" alt="Meta Learn">
+        </div>
+        <div class="card-img-below">
+          <img src="images/ml-mobile.png" alt="Meta Learn app screens" style="object-position: center center;">
+        </div>
       </div>
 
-      <div class="card card-ink">
-        <div class="card-bg" style="background: #12213a;"></div>
+      <div class="card card-ink card-featured">
+        <div class="card-bg grundfos-bg" style="background-color: #12213a;"></div>
         <div class="card-scrim"></div>
         <div class="card-body">
           <div>
             <div class="card-meta">
-              <div class="card-icon" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.85);">G</div>
+              <div class="card-icon"><img src="images/grundfos-icon.png" alt="Grundfos logo"></div>
               <span class="card-co">Grundfos</span>
               <span class="card-dot"></span>
               <span class="card-yr">2020</span>
@@ -955,6 +845,12 @@
             </div>
           </div>
           <div class="card-cta"><a href="#" class="btn-view">View Case</a></div>
+        </div>
+        <div class="card-visual">
+          <img src="images/grundfos-hero.png" alt="Grundfos PowerApp">
+        </div>
+        <div class="card-img-below">
+          <img src="images/grundfos-mobile.png" alt="Grundfos" style="object-position: center center;">
         </div>
       </div>
 
