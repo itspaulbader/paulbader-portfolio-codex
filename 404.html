@@ -13,7 +13,7 @@
     :root {
       --bg:         #f6f6f4;
       --white:      #ffffff;
-      --black:      #1a1a1a;
+      --black:      rgb(29,29,31);
       --cod-gray:   #121212;
       --mine-shaft: #2b2b2b;
       --emperor:    #545454;
@@ -23,188 +23,52 @@
       --blue:       #1569f2;
       --ease:        cubic-bezier(0.22, 1, 0.36, 1);
       --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --gutter: max(22px, calc((100vw - 1260px) / 2));
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Inter', -apple-system, sans-serif;
+      font-family: "SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont, 'Inter', "Helvetica Neue", sans-serif;
       background: var(--bg);
       color: var(--black);
       -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      letter-spacing: -0.01em;
       overflow-x: hidden;
     }
 
-    /* ─── PROGRESS BAR ─── */
-    #progress-bar {
-      position: fixed; top: 0; left: 0; z-index: 300;
-      height: 2px; width: 0%;
-      background: rgba(0,0,0,0.2);
-      transition: width 0.12s linear;
-      pointer-events: none;
-      border-radius: 0 2px 2px 0;
-    }
-
-    /* ─── NAV ─── */
-    nav {
-      position: fixed; top: 20px; left: 50%;
-      transform: translateX(-50%);
-      z-index: 100;
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 7px 12px 7px 9px;
-      background: rgba(255,255,255,0.38);
-      backdrop-filter: saturate(120%) blur(8px);
-      -webkit-backdrop-filter: saturate(120%) blur(8px);
-      border: 1px solid rgba(0,0,0,0.1);
-      border-radius: 100px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
-      white-space: nowrap;
-      animation: navDrop 0.9s var(--ease) 0.1s both;
-      transition: box-shadow 0.7s var(--ease), background 0.7s var(--ease), backdrop-filter 0.7s var(--ease);
-    }
-    @keyframes navDrop {
-      from { opacity: 0; transform: translateX(-50%) translateY(-10px); }
-      to   { opacity: 1; transform: translateX(-50%) translateY(0); }
-    }
-    nav.scrolled {
-      background: rgba(255,255,255,0.46);
-      backdrop-filter: saturate(120%) blur(8px);
-      -webkit-backdrop-filter: saturate(120%) blur(8px);
-      box-shadow: 0 4px 18px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.05);
-    }
-    .nav-photo { width: 28px; height: 28px; border-radius: 50%; overflow: hidden; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
-    .nav-photo img { width: 100%; height: 100%; object-fit: cover; }
-    .nav-photo-placeholder { width: 100%; height: 100%; background: linear-gradient(135deg, #c4c4ca, #9c9ca4); display: flex; align-items: center; justify-content: center; }
-    .nav-name { font-size: 13.5px; font-weight: 600; color: var(--black); text-decoration: none; padding: 0 5px 0 3px; letter-spacing: -0.015em; }
-    .nav-divider {
-      width: 1px; height: 14px; background: rgba(0,0,0,0.09); margin: 0 2px;
-      max-width: 10px; overflow: hidden;
-      transition: max-width 0.6s var(--ease), opacity 0.45s var(--ease), margin 0.6s var(--ease);
-      transition-delay: 0.12s;
-    }
-    .nav-links {
-      display: flex; gap: 1px; list-style: none;
-      max-width: 200px; overflow: hidden;
-      transition: max-width 0.6s var(--ease), opacity 0.45s var(--ease);
-      transition-delay: 0.12s;
-    }
-    .nav-links a {
-      font-size: 13.5px; font-weight: 500; color: var(--black);
-      text-decoration: none; padding: 5px 11px; border-radius: 100px;
-      transition: color 0.25s var(--ease);
-    }
-    .nav-links a:hover { color: #666; }
-    .nav-dots {
-      display: inline-flex; align-items: center; gap: 4px;
-      width: 0; opacity: 0; overflow: hidden; flex-shrink: 0;
-      padding: 5px 0 3px;
-      transition: width 0.6s var(--ease), opacity 0.4s var(--ease);
-      transition-delay: 0s;
-    }
-    .nav-dots span {
-      width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0;
-      background: var(--emperor);
-      animation: dot-bob 1.3s ease-in-out infinite;
-    }
-    .nav-dots span:nth-child(2) { animation-delay: 0.18s; }
-    .nav-dots span:nth-child(3) { animation-delay: 0.36s; }
-    @keyframes dot-bob {
-      0%, 60%, 100% { transform: translateY(0); opacity: 0.35; }
-      30% { transform: translateY(-4px); opacity: 1; }
-    }
-    nav.compact .nav-divider { max-width: 0; opacity: 0; margin: 0; transition-delay: 0s; }
-    nav.compact .nav-links { max-width: 0; opacity: 0; transition-delay: 0s; }
-    nav.compact .nav-dots { width: 32px; opacity: 1; transition-delay: 0.26s; }
 
     /* ─── 404 CONTENT ─── */
-    @keyframes heroIn {
-      from { opacity: 0; transform: translateY(12px); filter: blur(6px); }
-      to   { opacity: 1; transform: translateY(0);    filter: blur(0);   }
-    }
-
     .notfound {
-      min-height: 100vh;
+      min-height: 70vh;
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
       text-align: center;
+      background: #fff;
       padding: 120px 24px 80px;
     }
 
-    .notfound-code {
-      font-size: clamp(96px, 16vw, 200px);
-      font-weight: 800;
-      letter-spacing: -0.05em;
-      line-height: 0.88;
-      color: var(--black);
-      margin-bottom: 28px;
-      animation: heroIn 0.9s var(--ease) 0.1s both;
-    }
-
     .notfound-title {
-      font-size: clamp(22px, 3vw, 36px);
+      font-size: clamp(28px, 4vw, 44px);
       font-weight: 600;
       letter-spacing: -0.03em;
       color: var(--black);
-      margin-bottom: 10px;
-      animation: heroIn 0.9s var(--ease) 0.24s both;
-    }
-
-    .notfound-sub {
-      font-size: 15px;
-      font-weight: 400;
-      color: var(--gray);
-      margin-bottom: 40px;
-      animation: heroIn 0.9s var(--ease) 0.36s both;
+      max-width: 640px;
+      margin-bottom: 32px;
     }
 
     .btn-home {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 13px 28px; border-radius: 100px;
+      display: inline-flex; align-items: center;
+      padding: 11px 22px; border-radius: 100px;
       background: var(--blue); color: white;
-      font-family: 'Inter', sans-serif;
-      font-size: 16px; font-weight: 500;
+      font-size: 15px; font-weight: 500;
       text-decoration: none; border: none; cursor: pointer;
-      animation: heroIn 0.9s var(--ease) 0.46s both;
-      transition: background 0.35s var(--ease), transform 0.5s var(--ease-spring), box-shadow 0.5s var(--ease);
+      transition: background 0.2s var(--ease);
     }
-    .btn-home:hover {
-      background: #1260e0;
-      box-shadow: 0 4px 20px rgba(21,105,242,0.28);
-      transform: translateY(-2px);
-    }
-    .btn-home:active { transform: scale(0.975); transition-duration: 0.12s; }
+    .btn-home:hover { background: #1260e0; }
+    .btn-home:active { background: #0f52c8; }
 
-    /* ─── FOOTER ─── */
-    footer { background: #0a0a0a; color: white; padding: 88px 48px 0; overflow: hidden; }
-    .footer-inner { max-width: 1160px; margin: 0 auto; }
-    .footer-cta { font-size: clamp(36px, 4.2vw, 60px); font-weight: 600; letter-spacing: -0.04em; line-height: 1.15; margin-bottom: 48px; }
-    .footer-cta > span:not(.footer-word) { color: #272730; }
-    .footer-word { display: inline-block; color: white; }
-    .footer-row { display: flex; justify-content: space-between; align-items: flex-end; padding: 30px 0; border-top: 1px solid rgba(255,255,255,0.07); }
-    .footer-label { font-size: 10px; font-weight: 500; letter-spacing: 0.09em; text-transform: uppercase; color: rgba(255,255,255,0.26); margin-bottom: 7px; }
-    .footer-email {
-      font-size: 17px; font-weight: 400; letter-spacing: -0.02em;
-      color: white; text-decoration: none;
-      transition: color 0.25s var(--ease);
-    }
-    .footer-email:hover { color: rgba(255,255,255,0.5); }
-    .footer-socials { display: flex; gap: 8px; }
-    .footer-socials a {
-      width: 38px; height: 38px; border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.09);
-      display: flex; align-items: center; justify-content: center;
-      color: rgba(255,255,255,0.6); text-decoration: none;
-      transition: background 0.32s var(--ease), color 0.32s var(--ease), border-color 0.32s var(--ease), transform 0.4s var(--ease-spring);
-    }
-    .footer-socials a:hover { background: rgba(255,255,255,0.07); color: white; transform: translateY(-2px); border-color: rgba(255,255,255,0.18); }
-    .footer-meta { display: flex; justify-content: space-between; padding: 18px 0; border-top: 1px solid rgba(255,255,255,0.05); }
-    .footer-meta span { font-size: 11.5px; color: rgba(255,255,255,0.2); font-weight: 500; }
-    .footer-wordmark {
-      font-size: clamp(50px, 10vw, 156px); font-weight: 700; letter-spacing: -0.04em;
-      line-height: 0.9; color: white; white-space: nowrap;
-      padding: 32px 0 0; will-change: transform;
-      text-align: center;
-    }
 
     /* ─── SCROLL REVEAL ─── */
     .reveal { opacity: 0; transform: translateY(36px) scale(0.98); filter: blur(5px); transition: opacity 1.0s var(--ease), transform 1.0s var(--ease), filter 1.0s var(--ease); }
@@ -213,27 +77,14 @@
 
     /* ─── MOBILE ─── */
     @media (max-width: 599px) {
-      nav { top: 14px; padding: 6px 10px 6px 8px; }
-      .nav-name { font-size: 12.5px; padding: 0 4px 0 2px; }
-      .nav-links a { font-size: 12.5px; padding: 4px 9px; }
-      .notfound { padding: 100px 24px 60px; }
-      footer { padding: 52px 20px 0; }
-      .footer-cta { font-size: clamp(22px, 7.5vw, 36px); margin-bottom: 32px; }
-      .footer-row { flex-direction: column; align-items: flex-start; gap: 24px; padding: 24px 0; }
-      .footer-email { font-size: 15px; }
-      .footer-meta { flex-direction: column; gap: 4px; padding: 14px 0; }
-      .footer-meta span { font-size: 11px; }
-      .footer-wordmark { padding: 20px 0 0; font-size: 9vw; font-weight: 700; }
-      .footer-row > div:last-child .footer-label { text-align: left; }
+      .notfound { min-height: 60vh; padding: 100px 24px 60px; }
     }
   </style>
 </head>
 <body>
 
   <section class="notfound">
-    <p class="notfound-code">404</p>
-    <h1 class="notfound-title">Oops! Wrong turn.</h1>
-    <p class="notfound-sub">The page you are looking for could not be found.</p>
+    <h1 class="notfound-title">The page you’re looking<br>for can’t be found.</h1>
     <a href="/" class="btn-home">Back Home</a>
   </section>
 
