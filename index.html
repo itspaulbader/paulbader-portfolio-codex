@@ -317,29 +317,29 @@
     .card-violet .card-desc { color: rgba(255,255,255,0.62); }
     .card-dark .card-tag, .card-ink .card-tag, .card-violet .card-tag { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.82); }
 
-    /* ─── CASE NAV DOTS ─── */
+    /* ─── CASE PROGRESS RAIL ─── */
     #case-nav {
       position: fixed;
       left: clamp(20px, 2.5vw, 40px);
       top: 50%;
       transform: translateY(-50%);
       z-index: 200;
-      display: flex; flex-direction: column; gap: 12px;
+      display: flex; flex-direction: column; align-items: center; gap: 10px;
       opacity: 0; pointer-events: none;
       transition: opacity 0.4s var(--ease);
       mix-blend-mode: difference;
     }
     #case-nav.visible { opacity: 1; pointer-events: auto; }
     .case-dot {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: rgba(255,255,255,0.2);
+      width: 12px; height: 3px; border-radius: 1px;
+      background: rgba(255,255,255,0.28);
       border: none; cursor: pointer; padding: 0;
-      transition: background 0.3s var(--ease);
+      transform: scaleX(1);
+      transition: background 0.3s var(--ease), transform 0.45s var(--ease);
     }
-    .case-dot.active { background: rgba(255,255,255,0.75); }
-    /* On hover of anything in the nav: active → 1.0, hovered non-active → 0.45 */
+    .case-dot.active { background: rgba(255,255,255,0.82); transform: scaleX(1.35); }
     #case-nav:hover .case-dot.active { background: rgba(255,255,255,1.0); }
-    #case-nav:hover .case-dot:not(.active):hover { background: rgba(255,255,255,0.45); }
+    #case-nav:hover .case-dot:not(.active):hover { background: rgba(255,255,255,0.55); transform: scaleX(1.2); }
     @media (max-width: 899px) { #case-nav { display: none; } }
 
 

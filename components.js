@@ -73,6 +73,51 @@
         .footer-meta span { font-size: 11px; }
         .footer-row > div:last-child .footer-label { text-align: left; }
       }
+
+      .section-progress {
+        position: fixed;
+        left: clamp(20px, 2.5vw, 40px);
+        top: 50%;
+        z-index: 80;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 9px;
+        transform: translateY(-50%);
+        mix-blend-mode: difference;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.4s var(--ease);
+        width: auto;
+        padding: 0;
+        background: transparent;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        animation: none;
+        white-space: normal;
+      }
+      .section-progress.is-visible { opacity: 1; pointer-events: auto; }
+      .section-progress-tick {
+        width: 12px;
+        height: 3px;
+        padding: 0;
+        border: 0;
+        border-radius: 1px;
+        background: rgba(255,255,255,0.28);
+        cursor: pointer;
+        transform: scaleX(1);
+        transition: background 0.3s var(--ease), transform 0.45s var(--ease);
+      }
+      .section-progress-tick.is-active {
+        background: rgba(255,255,255,0.82);
+        transform: scaleX(1.35);
+      }
+      .section-progress-tick:hover { background: rgba(255,255,255,0.58); transform: scaleX(1.2); }
+      .section-progress-tick.is-active:hover { background: #fff; transform: scaleX(1.35); }
+      @media (max-width: 899px) { .section-progress { display: none; } }
     </style>
   `);
 
@@ -120,6 +165,63 @@
       </div>
     </footer>
   `);
+
+  /* ── CASE-STUDY SECTION PROGRESS ── */
+  if (document.body.dataset.case) {
+    const sections = [...document.body.querySelectorAll(':scope > section')]
+      .filter(section => !section.classList.contains('cs-foot'));
+
+    if (sections.length > 1) {
+      const progress = document.createElement('nav');
+      progress.className = 'section-progress';
+      progress.setAttribute('aria-label', 'Case study sections');
+
+      const ticks = sections.map((section, index) => {
+        const tick = document.createElement('button');
+        const label = section.querySelector('.eyebrow, [class$="-eyebrow"], h1, h2')?.textContent.trim()
+          || `Section ${index + 1}`;
+        tick.type = 'button';
+        tick.className = 'section-progress-tick';
+        tick.setAttribute('aria-label', `Jump to ${label}`);
+        tick.title = label;
+        tick.addEventListener('click', () => section.scrollIntoView({ behavior: 'smooth' }));
+        progress.appendChild(tick);
+        return tick;
+      });
+
+      document.body.appendChild(progress);
+
+      const setActive = index => ticks.forEach((tick, tickIndex) => {
+        tick.classList.toggle('is-active', tickIndex === index);
+        tick.setAttribute('aria-current', tickIndex === index ? 'step' : 'false');
+      });
+
+      const updateProgress = () => {
+        const marker = innerHeight * 0.5;
+        let active = 0;
+        sections.forEach((section, index) => {
+          if (section.getBoundingClientRect().top <= marker) active = index;
+        });
+        setActive(active);
+
+        const first = sections[0].getBoundingClientRect();
+        const last = sections[sections.length - 1].getBoundingClientRect();
+        progress.classList.toggle('is-visible', first.top < innerHeight && last.bottom > 0);
+      };
+
+      let progressFrame = null;
+      const requestProgressUpdate = () => {
+        if (progressFrame) return;
+        progressFrame = requestAnimationFrame(() => {
+          progressFrame = null;
+          updateProgress();
+        });
+      };
+      addEventListener('scroll', requestProgressUpdate, { passive: true });
+      addEventListener('resize', requestProgressUpdate, { passive: true });
+      updateProgress();
+    }
+  }
 
   /* ── SCROLL REVEAL ── */
   const io = new IntersectionObserver(entries => {
