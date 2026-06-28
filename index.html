@@ -1146,29 +1146,38 @@
 
       document.body.appendChild(nav);
 
-      // Show/hide based on precise scroll position
-      function updateNavVisibility() {
+      function updateCaseNav() {
         const vh = window.innerHeight;
-        const first = cards[0].getBoundingClientRect();
-        const last  = cards[cards.length - 1].getBoundingClientRect();
-        // Show once first card's top is above 25% of viewport
-        // Hide once last card's bottom has passed 75% of viewport
-        const show = first.top < vh * 0.25 && last.bottom > vh * 0.75;
+        const sectionRect = workSection.getBoundingClientRect();
+        const show = sectionRect.top < vh && sectionRect.bottom > 0;
         nav.classList.toggle('visible', show);
-      }
-      window.addEventListener('scroll', updateNavVisibility, { passive: true });
-      updateNavVisibility();
 
-      // Highlight the dot for whichever card is ≥50% visible
-      const cardObs = new IntersectionObserver(entries => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            const i = cards.indexOf(e.target);
-            if (i >= 0) dots.forEach((d, j) => d.classList.toggle('active', j === i));
+        if (!show) return;
+        const marker = vh * 0.5;
+        let activeIndex = 0;
+        let closestDistance = Infinity;
+        cards.forEach((card, index) => {
+          const rect = card.getBoundingClientRect();
+          const center = rect.top + rect.height / 2;
+          const distance = Math.abs(center - marker);
+          if (distance < closestDistance) {
+            closestDistance = distance;
+            activeIndex = index;
           }
         });
-      }, { threshold: 0.5 });
-      cards.forEach(c => cardObs.observe(c));
+        dots.forEach((dot, index) => dot.classList.toggle('active', index === activeIndex));
+      }
+      let caseNavFrame = null;
+      const queueCaseNav = () => {
+        if (caseNavFrame) return;
+        caseNavFrame = requestAnimationFrame(() => {
+          caseNavFrame = null;
+          updateCaseNav();
+        });
+      };
+      window.addEventListener('scroll', queueCaseNav, { passive: true });
+      window.addEventListener('resize', queueCaseNav, { passive: true });
+      updateCaseNav();
     })();
 
   </script>
