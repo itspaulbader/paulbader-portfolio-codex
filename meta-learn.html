@@ -15,6 +15,15 @@
     :root {
       --gutter: max(22px, calc((100vw - 1260px) / 2));
       --bg: #f5f5f7;
+      --surface: #f5f5f7;
+      --surface-soft: #fbfbfd;
+      --surface-line: #e8e8ed;
+      --text: #1d1d1f;
+      --muted: #6e6e73;
+      --muted-soft: #86868b;
+      --radius-section: 28px;
+      --radius-card: 24px;
+      --radius-inner: 20px;
       --ease: cubic-bezier(0.22, 1, 0.36, 1);
       --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
     }
@@ -80,9 +89,9 @@
     .hero-meta-item dd { font-size: 17px; font-weight: 600; color: #1d1d1f; line-height: 1.3; }
 
     /* ─── HIGHLIGHTS (Apple full-bleed gallery) ─── */
-    .highlights { background: #f5f5f7; padding: 130px 0 110px; overflow: hidden; }
+    .highlights { background: #f5f5f7; padding: 130px 0 170px; overflow: clip; }
     .hl-hd { padding: 0 var(--gutter); margin: 0 0 44px; }
-    .hl-title { font-size: clamp(32px, 4vw, 48px); font-weight: 600; letter-spacing: -0.003em; line-height: 1.08; }
+    .hl-title { font-size: clamp(32px, 4vw, 48px); font-weight: 600; letter-spacing: -0.003em; line-height: 1.08; color: #1d1d1f; max-width: 18ch; text-wrap: balance; }
     /* Full-bleed stage. Cards snap to CENTER, so the active card sits in the middle
        of the viewport with equal peeks of the prev/next cards on both sides (Apple). */
     .hl-stage {
@@ -124,37 +133,57 @@
       opacity: 0;
       will-change: opacity, transform;
     }
-    /* Controls: play/pause + timed dot-nav, centered under the gallery (Apple). */
-    .hl-controls { display: flex; align-items: center; justify-content: center; gap: 18px; margin: 44px auto 0; }
-    .hl-play {
-      flex: 0 0 auto; width: 32px; height: 32px; border-radius: 50%; border: none;
-      background: rgba(0,0,0,0.05); cursor: pointer;
-      display: flex; align-items: center; justify-content: center; transition: background 0.2s;
+    /* Controls: sticky frosted dot-nav, centered over the gallery like Apple's compare controls. */
+    .hl-controls {
+      position: sticky; top: calc(100svh - 92px); z-index: 8;
+      display: flex; align-items: center; justify-content: center; gap: 14px;
+      width: max-content; margin: -86px auto 0; padding: 0 14px;
+      pointer-events: none;
     }
-    .hl-play:hover { background: rgba(0,0,0,0.09); }
-    .hl-play svg { width: 15px; height: 15px; fill: #1d1d1f; }
+    .hl-dot-shell {
+      height: 54px; padding: 0 22px; border-radius: 999px;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(232,232,237,0.72);
+      backdrop-filter: saturate(180%) blur(22px);
+      -webkit-backdrop-filter: saturate(180%) blur(22px);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.42), 0 14px 40px rgba(0,0,0,0.08);
+      pointer-events: auto;
+    }
+    .hl-play {
+      flex: 0 0 auto; width: 54px; height: 54px; border-radius: 50%; border: none;
+      background: rgba(232,232,237,0.72); cursor: pointer;
+      display: flex; align-items: center; justify-content: center; transition: background 0.2s;
+      backdrop-filter: saturate(180%) blur(22px);
+      -webkit-backdrop-filter: saturate(180%) blur(22px);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.42), 0 14px 40px rgba(0,0,0,0.08);
+      pointer-events: auto;
+    }
+    .hl-play:hover { background: rgba(218,218,224,0.82); }
+    .hl-play svg { width: 19px; height: 19px; fill: #1d1d1f; }
     .hl-ic-play { display: none; }
     .hl-controls.paused .hl-ic-pause { display: none; }
     .hl-controls.paused .hl-ic-play { display: block; }
-    .hl-dots { display: flex; align-items: center; gap: 8px; }
+    .hl-dots { display: flex; align-items: center; gap: 14px; }
     .hl-dot {
       position: relative; width: 8px; height: 8px; padding: 0; border: none;
-      border-radius: 50%; background: rgba(0,0,0,0.16); cursor: pointer; overflow: hidden;
+      border-radius: 50%; background: rgba(29,29,31,0.58); cursor: pointer; overflow: hidden;
       transition: width 0.45s cubic-bezier(0.4,0,0.2,1), border-radius 0.45s;
     }
-    .hl-dot:hover { background: rgba(0,0,0,0.28); }
-    .hl-dot.active { width: 34px; border-radius: 5px; background: rgba(0,0,0,0.16); }
+    .hl-dot:hover { background: rgba(29,29,31,0.78); }
+    .hl-dot.active { width: 56px; border-radius: 999px; background: rgba(29,29,31,0.18); }
     .hl-fill { position: absolute; inset: 0; width: 0; background: #1d1d1f; border-radius: inherit; }
     @keyframes hlFill { from { width: 0; } to { width: 100%; } }
 
     /* ─── SHARED SECTION STYLES ─── */
     .sec { padding: 120px var(--gutter); }
     .sec-narrow { max-width: 1260px; margin: 0 auto; }
-    .label { font-size: 21px; font-weight: 600; color: #1d1d1f; margin-bottom: 8px; letter-spacing: 0.004em; }
+    .label { font-size: 21px; line-height: 1.25; font-weight: 600; color: #1d1d1f; margin-bottom: 8px; letter-spacing: 0.004em; }
+    .section-eyebrow { font-size: 21px; line-height: 1.25; font-weight: 600; color: #1d1d1f; margin-bottom: 8px; letter-spacing: 0.004em; }
+    .mini-eyebrow { font-size: 16px; line-height: 1.4; font-weight: 600; letter-spacing: -0.005em; color: #86868b; }
     .label-light { color: rgba(255,255,255,0.8); }
-    .heading-xl { font-size: clamp(40px, 5.6vw, 72px); font-weight: 600; letter-spacing: -0.015em; line-height: 1.06; color: #1d1d1f; }
+    .heading-xl { font-size: clamp(32px, 4vw, 48px); font-weight: 600; letter-spacing: -0.003em; line-height: 1.08; color: #1d1d1f; max-width: 18ch; text-wrap: balance; }
     .heading-xl-white { color: #f5f5f7; }
-    .heading-lg { font-size: clamp(32px, 4vw, 56px); font-weight: 600; letter-spacing: -0.005em; line-height: 1.07; color: #1d1d1f; }
+    .heading-lg { font-size: clamp(32px, 4vw, 48px); font-weight: 600; letter-spacing: -0.003em; line-height: 1.08; color: #1d1d1f; max-width: 18ch; text-wrap: balance; }
     .heading-lg-white { color: #f5f5f7; }
     .body-lg { font-size: clamp(19px, 1.5vw, 21px); font-weight: 500; line-height: 1.52; letter-spacing: 0.004em; color: #86868b; max-width: 60ch; margin-top: 24px; }
     .body-lg em { color: #1d1d1f; font-style: normal; font-weight: 600; }
@@ -164,13 +193,21 @@
     /* ─── PROBLEM ─── */
     .problem { background: #fff; padding: 120px var(--gutter) 0; }
     /* Before / After slider */
-    .ba-wrap { margin-top: 72px; position: relative; overflow: hidden; border-radius: 20px; user-select: none; cursor: ew-resize; }
+    .ba-wrap { margin-top: 72px; position: relative; overflow: hidden; border-radius: var(--radius-card); user-select: none; cursor: ew-resize; }
     .ba-before { width: 100%; display: block; }
     .ba-after-clip { position: absolute; top: 0; left: 0; bottom: 0; overflow: hidden; width: 50%; }
     .ba-after { height: 100%; width: auto; max-width: none; display: block; }
-    .ba-label { position: absolute; top: 18px; padding: 5px 13px; border-radius: 100px; font-size: 12px; font-weight: 600; color: #fff; background: rgba(0,0,0,0.4); backdrop-filter: blur(8px); pointer-events: none; }
+    .ba-label {
+      position: absolute; top: 18px; padding: 7px 13px;
+      border-radius: 100px; font-size: 13px; line-height: 1; font-weight: 600;
+      color: #1d1d1f; background: rgba(255,255,255,0.74);
+      backdrop-filter: saturate(180%) blur(18px);
+      -webkit-backdrop-filter: saturate(180%) blur(18px);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.56), 0 6px 20px rgba(0,0,0,0.08);
+      pointer-events: none;
+    }
     .ba-label-b { left: 18px; }
-    .ba-label-a { left: calc(50% + 8px); }
+    .ba-label-a { right: 18px; }
     .ba-line { position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; background: #fff; transform: translateX(-50%); pointer-events: none; }
     .ba-knob {
       position: absolute; top: 50%; left: 50%;
@@ -188,8 +225,8 @@
     .bac-card {
       position: relative; flex: 0 0 auto;
       width: 70vw; aspect-ratio: 480 / 810;
-      border-radius: 22px; overflow: hidden;
-      background: #f5f5f7;
+      border-radius: var(--radius-card); overflow: hidden;
+      background: var(--surface);
       scroll-snap-align: start; user-select: none;
       container-type: inline-size;
     }
@@ -215,7 +252,15 @@
       cursor: ew-resize; touch-action: none;   /* knob is the drag handle; card body still scrolls the rail */
     }
     .bac-knob svg { width: 15px; height: 9px; }
-    .bac-lbl { position: absolute; top: 12px; padding: 4px 11px; border-radius: 100px; font-size: 11px; font-weight: 600; color: #fff; background: rgba(0,0,0,0.42); backdrop-filter: blur(6px); pointer-events: none; }
+    .bac-lbl {
+      position: absolute; top: 12px; padding: 6px 11px; border-radius: 100px;
+      font-size: 12px; line-height: 1; font-weight: 600; color: #1d1d1f;
+      background: rgba(255,255,255,0.74);
+      backdrop-filter: saturate(180%) blur(16px);
+      -webkit-backdrop-filter: saturate(180%) blur(16px);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.56), 0 5px 16px rgba(0,0,0,0.08);
+      pointer-events: none;
+    }
     .bac-lbl-b { left: 12px; }
     .bac-lbl-a { right: 12px; }
 
@@ -238,10 +283,10 @@
       scroll-snap-align: start;
     }
     .r-copy { padding: 38px 34px 26px; }
-    .r-tag { font-size: 12px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: #86868b; margin-bottom: 16px; }
+    .r-tag { font-size: 16px; line-height: 1.4; font-weight: 600; letter-spacing: -0.005em; color: #86868b; margin-bottom: 14px; }
     .r-title { font-size: 24px; font-weight: 600; letter-spacing: -0.012em; line-height: 1.22; color: #1d1d1f; margin-bottom: 12px; }
     .r-body { font-size: 17px; line-height: 1.5; color: #6e6e73; }
-    .r-body em { color: #1d1d1f; font-weight: 600; font-style: normal; }
+    .r-body em { color: inherit; font-weight: inherit; font-style: normal; }
     /* Visual panel — the actual old-design screen the finding came from, cropped to its top.
        background-size 300% pulls one phone out of the 3-up composite; --px picks which. */
     .r-visual {
@@ -321,33 +366,40 @@
     .r-modal-body em { color: #1d1d1f; font-weight: 600; font-style: normal; }
 
     /* ─── REFLECTIONS ─── */
-    .reflections { background: #f5f5f7; padding: 100px var(--gutter); }
+    .reflections { background: #f5f5f7; padding: 88px var(--gutter); }
     .reflections-inner { max-width: 1260px; margin: 0 auto; }
-    /* 2-col layout: learnings list LEFT, next-steps dark card RIGHT */
-    .refl-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 44px; align-items: stretch; }
-    /* Left: numbered learnings list — rows flex to share the full column height so the
-       list always bottoms out level with the dark card beside it */
-    .refl-list { display: flex; flex-direction: column; gap: 0; }
-    .refl-item { flex: 1; display: flex; gap: 20px; align-items: center; padding: 22px 0; border-bottom: 1px solid rgba(0,0,0,0.07); }
-    .refl-item:last-child { border-bottom: none; }
-    .refl-item-num { font-size: 12px; font-weight: 600; color: #aeaeb2; flex: 0 0 20px; }
-    .refl-item-body { flex: 1; }
-    .refl-item-label { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #86868b; margin-bottom: 4px; }
-    .refl-item-title { font-size: 17px; font-weight: 600; letter-spacing: -0.01em; color: #1d1d1f; line-height: 1.3; }
-    /* Right: dark next-steps card — full height */
-    .refl-next { background: #1d1d1f; border-radius: 20px; overflow: hidden; padding: 40px 36px; display: flex; flex-direction: column; gap: 32px; }
-    .refl-next-hd { display: flex; flex-direction: column; gap: 8px; }
-    .refl-next-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: rgba(255,255,255,0.38); }
-    .refl-next-heading { font-size: clamp(22px,2.4vw,30px); font-weight: 600; letter-spacing: -.015em; line-height: 1.1; color: #f5f5f7; }
-    .refl-next-steps { display: flex; flex-direction: column; gap: 24px; }
-    .refl-step { display: flex; gap: 16px; align-items: flex-start; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08); }
-    .refl-step:first-child { border-top: none; padding-top: 0; }
-    .refl-step-num { font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.3); flex: 0 0 20px; padding-top: 2px; }
-    .refl-step-content { flex: 1; }
-    .refl-step-title { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; color: #f5f5f7; margin-bottom: 4px; }
-    .refl-step-body { font-size: 14px; line-height: 1.5; color: rgba(255,255,255,0.48); }
-    @media (max-width: 734px) {
-      .refl-2col { grid-template-columns: 1fr; }
+    .refl-hd { margin-bottom: 36px; }
+    .refl-panel {
+      background: #fff; border-radius: 28px; padding: clamp(24px, 4vw, 44px);
+      display: grid; grid-template-columns: minmax(300px, 0.95fr) minmax(0, 1.05fr);
+      gap: clamp(24px, 4vw, 48px); align-items: stretch;
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,0.03);
+    }
+    .refl-takeaway {
+      border-radius: 24px; padding: clamp(28px, 4vw, 44px);
+      background: #1d1d1f; color: #f5f5f7;
+      display: flex; flex-direction: column; min-height: 360px;
+      overflow: hidden; position: relative;
+    }
+    .refl-takeaway-label { font-size: 16px; line-height: 1.4; font-weight: 600; letter-spacing: -0.005em; color: rgba(255,255,255,0.56); }
+    .refl-takeaway-text { position: relative; z-index: 1; font-size: clamp(28px, 3.4vw, 44px); font-weight: 600; letter-spacing: -0.025em; line-height: 1.08; max-width: 12ch; margin-top: clamp(40px, 6vw, 72px); }
+    .refl-takeaway-note { position: relative; z-index: 1; font-size: 15px; line-height: 1.55; color: rgba(255,255,255,0.56); max-width: 34ch; margin-top: auto; padding-top: clamp(40px, 6vw, 72px); }
+    .refl-lessons { display: flex; flex-direction: column; justify-content: center; gap: 0; }
+    .refl-lesson {
+      padding: 28px 0;
+      display: grid; grid-template-columns: 42px 1fr; gap: 18px; align-items: start;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+    .refl-lesson:first-child { padding-top: 0; }
+    .refl-lesson:last-child { padding-bottom: 0; border-bottom: none; }
+    .refl-lesson-num { width: 42px; height: 42px; border-radius: 50%; background: #f5f5f7; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; color: #6e6e73; }
+    .refl-lesson-label { font-size: 16px; line-height: 1.4; font-weight: 600; letter-spacing: -0.005em; color: #86868b; margin-bottom: 8px; }
+    .refl-lesson-title { font-size: 21px; font-weight: 600; letter-spacing: -0.015em; line-height: 1.2; color: #1d1d1f; margin-bottom: 8px; }
+    .refl-lesson-body { font-size: 16px; line-height: 1.52; color: #6e6e73; max-width: 48ch; }
+    @media (max-width: 900px) {
+      .refl-hd, .refl-panel { grid-template-columns: 1fr; }
+      .refl-takeaway { min-height: 300px; }
+      .refl-takeaway-text { max-width: 13ch; }
     }
 
     /* ─── WIREFRAMES SLIDER (auto-scrolling marquee, Framer-style) ─── */
@@ -384,106 +436,246 @@
     @keyframes wfScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
     @media (prefers-reduced-motion: reduce) { .wf-track { animation: none; } }
 
-    /* ─── VALUES ─── */
-    .values { background: #fff; padding: 120px var(--gutter); }
-    .v-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: 56px; }
-    .v-card { background: #f5f5f7; border-radius: 20px; padding: 48px 36px; }
-    .v-icon { width: 34px; height: 34px; display: block; margin-bottom: 36px; color: #1d1d1f; }
-    .v-title { font-size: 21px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.3; margin-bottom: 22px; color: #1d1d1f; }
-    .v-list { list-style: none; margin: 0; padding: 0; }
-    .v-item { font-size: 17px; line-height: 1.4; color: #6e6e73; }
-    .v-item + .v-item { margin-top: 13px; }
-    .v-body { font-size: 15px; line-height: 1.65; color: #6e6e73; }
-    .v-body em { color: #1d1d1f; font-weight: 600; font-style: normal; }
+    /* ─── VALUES / GOALS SCROLL MOMENT ─── */
+    .values {
+      --goal-vision: 0;
+      --goal-bg: 0;
+      position: relative; min-height: 280vh; overflow: clip; background: #1d1d1f;
+    }
+    .values::before {
+      content: ''; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background: #1d1d1f; opacity: var(--goal-bg);
+    }
+    .goals-head {
+      position: relative; z-index: 6;
+      width: min(1260px, calc(100% - 2 * var(--gutter)));
+      margin: 0 auto; padding-top: 120px; padding-bottom: 32px;
+      max-width: 1260px;
+    }
+    .goals-head .heading-lg { color: #f5f5f7; }
+    .goals-head .label { color: rgba(245,245,247,0.72); }
+    .goals-sticky {
+      position: sticky; top: 0; min-height: 100svh;
+      display: flex; align-items: center; justify-content: center;
+      padding: 88px var(--gutter); overflow: hidden;
+    }
+    .goals-sticky::after {
+      content: ''; position: absolute; inset: 0; z-index: 4; pointer-events: none;
+      background: #1d1d1f; opacity: var(--goal-vision, 0);
+    }
+    .goal-cloud {
+      position: absolute; left: 50%; top: 50%; z-index: 1;
+      width: min(1180px, 100vw); height: min(620px, 70svh);
+      transform: translate(-50%, -50%);
+    }
+    .goal-bubble {
+      position: absolute; left: 50%; top: 50%;
+      width: var(--s); height: var(--s); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; text-align: center;
+      padding: 16px; background: rgba(245,245,247,0.92); color: #1d1d1f;
+      font-size: clamp(12px, 1.05vw, 15px); font-weight: 600; line-height: 1.18;
+      transform: translate3d(calc(var(--tx, 0px) - 50%), calc(var(--ty, 0px) - 50%), 0) scale(var(--sc, 1));
+      opacity: var(--op, 1);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.16), 0 18px 48px rgba(0,0,0,0.22);
+      will-change: transform, opacity;
+    }
+    .goal-bubble.is-main {
+      background: #f5f5f7; color: #1d1d1f; z-index: 3;
+      font-size: clamp(20px, 2.2vw, 32px); letter-spacing: -0.022em; line-height: 1.05;
+      box-shadow: 0 28px 72px rgba(0,0,0,0.32);
+    }
+    .goal-vision {
+      position: relative; z-index: 7; max-width: min(850px, 86vw);
+      opacity: var(--goal-vision, 0);
+      transform: translateY(calc((1 - var(--goal-vision, 0)) * 28px));
+      text-align: center; pointer-events: none;
+    }
+    .goal-vision-kicker { font-size: 21px; line-height: 1.25; font-weight: 600; color: rgba(245,245,247,0.72); margin-bottom: 12px; letter-spacing: 0.004em; }
+    .goal-vision-text { font-size: clamp(36px, 5.2vw, 72px); font-weight: 600; letter-spacing: -0.025em; line-height: 1.05; color: #f5f5f7; text-wrap: balance; }
+    @media (prefers-reduced-motion: reduce) {
+      .values { min-height: auto; background: #1d1d1f; }
+      .values::before { display: none; }
+      .goals-sticky::after { display: none; }
+      .goals-sticky { position: relative; min-height: auto; padding-top: 120px; padding-bottom: 120px; }
+      .goal-cloud { position: relative; inset: auto; min-height: 460px; width: 100%; }
+      .goal-vision { opacity: 1; transform: none; margin-top: 48px; }
+    }
 
-    /* ─── DESIGN (phone showcases + onboarding / exercise tile stacks) ─── */
-    .design { background: #fff; padding: 120px var(--gutter) 0; }
-    .design-block { max-width: 1260px; margin: 0 auto; padding-bottom: 120px; }
-    .design-hd { margin-bottom: 56px; }
-    /* Showcase: feature list beside a tall phone */
-    .design-showcase { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(48px, 8vw, 120px); align-items: center; }
-    .design-feat-h3 { font-size: 24px; font-weight: 600; letter-spacing: -0.012em; line-height: 1.22; color: #1d1d1f; margin-bottom: 40px; max-width: 26ch; }
-    .design-feat { padding: 24px 0; border-bottom: 1px solid rgba(0,0,0,0.08); max-width: 46ch; }
-    .design-feat:first-of-type { padding-top: 0; }
-    .design-feat:last-of-type { border-bottom: none; padding-bottom: 0; }
-    .design-feat-title { font-size: 17px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.4; color: #1d1d1f; margin-bottom: 4px; }
-    .design-feat-desc { font-size: 17px; font-weight: 500; line-height: 1.47; letter-spacing: 0.004em; color: #6e6e73; }
-    .design-showcase-phone { justify-self: end; }
-    .design-showcase.is-flipped .design-showcase-phone { justify-self: start; }
-    .design-showcase-phone img { width: 100%; max-width: 320px; display: block; border-radius: 28px; }
-    /* Tile stacks: 3 grey tiles with phone screens + captions */
-    .design-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-    .design-card-vis { background: #f5f5f7; border-radius: 20px; aspect-ratio: 344 / 450; overflow: hidden; display: flex; align-items: flex-end; justify-content: center; }
-    .design-card-vis img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
-    .design-card-vis.is-inset { align-items: center; aspect-ratio: 344 / 550; padding: 6% 0; }
-    .design-card-vis.is-inset img { height: 100%; width: auto; max-width: 88%; object-fit: contain; }
-    .design-card-cap { padding: 22px 6px 0; }
-    .design-card-title { font-size: 17px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.4; color: #1d1d1f; margin-bottom: 2px; }
-    .design-card-desc { font-size: 17px; font-weight: 500; line-height: 1.47; letter-spacing: 0.004em; color: #6e6e73; max-width: 30ch; }
+    /* ─── EXPLORE (Apple "iPhone 17 Design" hero: gradient headline + interactive
+       feature-pill viewer). New intro section ahead of the existing Design
+       breakdown — pills swap the phone screenshot on the right. ─── */
+    .explore {
+      background: #f5f5f7; padding: 130px var(--gutter);
+      display: flex; flex-direction: column; align-items: center; gap: 64px;
+      position: relative; overflow: hidden;
+    }
+    .explore-inner { max-width: 1260px; width: 100%; display: grid; grid-template-columns: minmax(0, 1fr) minmax(320px, 520px); gap: 48px; align-items: end; }
+    /* Typography matches the rest of the page: .label / .heading-xl / .body-lg scales */
+    .explore-eyebrow { font-size: 21px; line-height: 1.25; font-weight: 600; letter-spacing: 0.004em; color: #1d1d1f; margin-bottom: 8px; }
+    .explore-headline {
+      font-size: clamp(32px, 4vw, 48px); font-weight: 600; letter-spacing: -0.003em; line-height: 1.08;
+      color: #1d1d1f; max-width: 18ch; text-wrap: balance;
+    }
+    .explore-copy { font-size: clamp(19px, 1.5vw, 21px); font-weight: 500; line-height: 1.52; letter-spacing: 0.004em; color: #86868b; max-width: 60ch; }
+    .explore-copy strong { color: #1d1d1f; font-weight: 600; }
+    .explore-note { font-size: 15px; line-height: 1.55; color: #86868b; max-width: 42ch; }
+    .explore-note strong { color: #1d1d1f; font-weight: 600; }
+    .explore-viewer {
+      background: #fff; border-radius: 28px;
+      max-width: 1260px; width: 100%;
+      padding: clamp(24px, 5vw, 64px); gap: clamp(28px, 5vw, 64px);
+      display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr); align-items: center; position: relative;
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,0.03);
+    }
+    .explore-stage {
+      min-height: 520px; border-radius: 24px; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+      background:
+        radial-gradient(circle at 34% 22%, rgba(198,221,195,0.8), transparent 28%),
+        radial-gradient(circle at 72% 68%, rgba(231,232,237,0.95), transparent 30%),
+        linear-gradient(135deg, #f6f6f8, #eceeef);
+    }
+    .explore-stage::before,
+    .explore-stage::after {
+      content: ''; position: absolute; width: 240px; height: 240px; border-radius: 50%;
+      background: rgba(255,255,255,0.48); filter: blur(4px);
+    }
+    .explore-stage::before { left: -70px; bottom: -90px; }
+    .explore-stage::after { right: -100px; top: -70px; }
+    .explore-ghost {
+      position: absolute; width: 198px; border-radius: 32px; overflow: hidden;
+      box-shadow: 0 22px 50px rgba(0,0,0,0.12);
+      opacity: 0.32; transform: translate3d(var(--x), var(--y), 0) rotate(var(--r)) scale(0.92);
+      transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+      pointer-events: none;
+    }
+    .explore-ghost img { display: block; width: 100%; }
+    .explore-phone {
+      position: relative; z-index: 2; width: min(292px, 62vw); border-radius: 38px; overflow: hidden;
+      background: #111; box-shadow: 0 34px 80px rgba(0,0,0,0.22);
+      transform: translateZ(0);
+      transition: transform 0.55s var(--ease), box-shadow 0.55s var(--ease);
+    }
+    .explore-phone:hover { transform: translateY(-4px); box-shadow: 0 42px 90px rgba(0,0,0,0.25); }
+    .explore-phone img { width: 100%; display: block; transition: opacity 0.42s ease, transform 0.55s var(--ease), filter 0.42s ease; }
+    .explore-phone.is-changing img { opacity: 0; transform: scale(0.985); filter: blur(8px); }
+    .explore-controls {
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .explore-pill {
+      min-height: 58px; padding: 16px 20px; border-radius: 28px; border: none; cursor: pointer;
+      display: flex; flex-direction: column; align-items: flex-start; gap: 8px; text-align: left;
+      background: #f5f5f7; box-shadow: inset 0 0 0.5px rgba(0,0,0,0.11);
+      transition: background 0.32s var(--ease), border-radius 0.32s var(--ease), transform 0.32s var(--ease), box-shadow 0.32s var(--ease);
+    }
+    .explore-pill:hover { background: #ececef; transform: translateY(-1px); }
+    .explore-pill.is-active { background: #1d1d1f; border-radius: 20px; box-shadow: 0 18px 36px rgba(0,0,0,0.14); }
+    .explore-pill-row { display: flex; align-items: center; gap: 12px; }
+    .explore-pill-label { font-size: 17px; font-weight: 600; letter-spacing: -0.01em; color: #1d1d1f; }
+    .explore-pill.is-active .explore-pill-label { color: #fff; }
+    .explore-pill-dot { width: 24px; height: 24px; border-radius: 50%; flex-shrink: 0; overflow: hidden; }
+    .explore-pill-dot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .explore-pill-desc {
+      max-height: 0; opacity: 0; overflow: hidden; font-size: 15px; font-weight: 500; line-height: 1.5;
+      letter-spacing: 0.004em; color: rgba(255,255,255,0.65); padding-left: 36px;
+      transition: max-height 0.42s var(--ease), opacity 0.34s ease;
+    }
+    .explore-pill.is-active .explore-pill-desc { max-height: 96px; opacity: 1; }
+    .explore-progress { height: 3px; width: calc(100% - 36px); margin-left: 36px; border-radius: 999px; overflow: hidden; background: rgba(255,255,255,0.18); display: none; }
+    .explore-pill.is-active .explore-progress { display: block; }
+    .explore-progress span { display: block; height: 100%; width: 0; border-radius: inherit; background: #f5f5f7; }
+    .explore-pill.is-active .explore-progress span { animation: exploreFill 6200ms linear forwards; }
+    @keyframes exploreFill { from { width: 0; } to { width: 100%; } }
+    .explore-fade { display: none; }
     @media (max-width: 1024px) {
-      .design { padding-top: 90px; }
-      .design-block { padding-bottom: 90px; }
-      .design-showcase, .design-showcase.is-flipped { grid-template-columns: 1fr; gap: 48px; }
-      .design-showcase-phone, .design-showcase.is-flipped .design-showcase-phone { justify-self: center; order: 2; }
-      .design-showcase-phone img { max-width: min(290px, 72vw); }
-      .design-feat, .design-feat-h3 { max-width: none; }
-      .design-cards { grid-template-columns: 1fr; gap: 28px; max-width: 380px; margin: 0 auto; }
-      .design-hd { margin-bottom: 44px; }
+      .explore { padding-top: 90px; gap: 40px; }
+      .explore-inner { grid-template-columns: 1fr; gap: 24px; }
+      .explore-viewer { grid-template-columns: 1fr; padding: 28px; gap: 28px; }
+      .explore-stage { min-height: 480px; }
+      .explore-controls { flex: none; width: 100%; }
+      .explore-pill-desc { color: rgba(255,255,255,0.65); }
+    }
+    @media (max-width: 599px) {
+      .explore { padding-top: 72px; padding-bottom: 72px; }
+      .explore-copy { font-size: 17px; }
+      .explore-viewer { margin-inline: calc(-1 * var(--gutter)); width: calc(100% + 2 * var(--gutter)); border-radius: 0; padding: 26px var(--gutter) 32px; }
+      .explore-stage { min-height: 430px; border-radius: 22px; }
+      .explore-phone { width: min(250px, 70vw); border-radius: 34px; }
+      .explore-ghost { width: 156px; border-radius: 24px; }
+      .explore-controls { overflow-x: auto; flex-direction: row; padding-bottom: 4px; scroll-snap-type: x mandatory; scrollbar-width: none; }
+      .explore-controls::-webkit-scrollbar { display: none; }
+      .explore-pill { flex: 0 0 82%; scroll-snap-align: start; }
     }
 
     /* ─── OUTCOMES (Apple-style mixed photo/stat/icon tiles) ─── */
-    .features { background: #fff; padding: 130px var(--gutter); }
+    .features { background: #fff; padding: 110px var(--gutter); }
     .features-inner { max-width: 1260px; margin: 0 auto; }
-    .feat-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: 56px; }
+    /* Gray card wrapping heading + grid, like Apple's compare-gallery panel on
+       desktop. It disappears on mobile (see breakpoint below) where the tiles
+       go full-bleed instead — matching the Apple reference's mobile behavior. */
+    .feat-wrap { background: var(--surface); border-radius: var(--radius-section); padding: 48px; }
+    .feat-wrap-hd { margin-bottom: 36px; }
+    .feat-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
 
     /* Base cell — all tiles share this */
     .feat-cell {
-      background: #f5f5f7; border-radius: 20px;
-      display: flex; flex-direction: column; overflow: hidden; min-height: 300px;
+      background: #fff; border-radius: var(--radius-card);
+      display: flex; flex-direction: column; overflow: hidden; min-height: 262px;
     }
 
     /* ── Photo tile: descriptor at top center, abstract shape fills bottom ── */
-    .feat-cell--photo .feat-copy { padding: 28px 28px 0; text-align: center; }
-    .feat-copy-label { font-size: 17px; font-weight: 600; color: #6e6e73; line-height: 1.4; }
-    .feat-copy-label strong { color: #6e6e73; font-weight: 600; }
+    .feat-cell--photo .feat-copy { padding: 26px 24px 0; text-align: center; }
+    .feat-copy-label { font-size: 17px; font-weight: 600; color: var(--muted); line-height: 1.35; }
+    .feat-copy-label strong { color: var(--text); font-weight: 600; }
     /* Shape canvas */
-    .feat-vis { margin-top: auto; flex: 1; min-height: 190px; position: relative; overflow: hidden; }
+    .feat-vis { margin-top: auto; flex: 1; min-height: 144px; position: relative; overflow: hidden; background: var(--surface-soft); }
     .feat-vis .s { position: absolute; border-radius: 50%; }
 
     /* ── Stat tile: centred large number + descriptor, no gradient ── */
     .feat-cell--stat {
-      align-items: center; justify-content: center; text-align: center; padding: 48px 32px;
-      min-height: 300px;
+      align-items: center; justify-content: center; text-align: center; padding: 40px 28px;
+      min-height: 262px;
     }
-    .feat-stat-pre { font-size: 17px; font-weight: 600; color: #6e6e73; margin-bottom: 4px; }
+    .feat-stat-pre { font-size: 17px; font-weight: 600; color: var(--muted); margin-bottom: 4px; }
     .feat-stat-num {
-      font-size: clamp(56px, 6vw, 84px); font-weight: 600; letter-spacing: -0.03em; line-height: 1;
-      color: #6e6e73;
+      font-size: clamp(50px, 5.4vw, 76px); font-weight: 600; letter-spacing: -0.03em; line-height: 1;
+      color: var(--muted);
     }
-    .feat-stat-unit { font-size: 0.48em; font-weight: 600; color: #6e6e73; }
-    .feat-stat-post { font-size: 17px; font-weight: 600; color: #6e6e73; margin-top: 10px; line-height: 1.4; }
+    .feat-stat-unit { font-size: 0.48em; font-weight: 600; color: var(--muted); }
+    .feat-stat-post { font-size: 17px; font-weight: 600; color: var(--muted); margin-top: 10px; line-height: 1.36; }
 
     /* ── Icon tile: icon + title + body ── */
-    .feat-cell--icon { padding: 40px 36px; justify-content: flex-start; }
-    .feat-icon-wrap { width: 52px; height: 52px; border-radius: 14px; background: #e8e8ed; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; color: #1d1d1f; }
-    .feat-icon-wrap svg { width: 26px; height: 26px; }
-    .feat-icon-title { font-size: 22px; font-weight: 600; letter-spacing: -0.012em; color: #6e6e73; line-height: 1.2; margin-bottom: 12px; }
-    .feat-icon-body { font-size: 17px; font-weight: 600; color: #6e6e73; line-height: 1.55; }
-    .feat-icon-body strong { color: #6e6e73; font-weight: 600; }
+    .feat-cell--icon { padding: 32px 30px; justify-content: flex-start; }
+    .feat-icon-wrap { width: 48px; height: 48px; border-radius: 14px; background: var(--surface-line); display: flex; align-items: center; justify-content: center; margin-bottom: 22px; color: var(--text); }
+    .feat-icon-wrap svg { width: 24px; height: 24px; }
+    .feat-icon-title { font-size: 21px; font-weight: 600; letter-spacing: -0.012em; color: var(--muted); line-height: 1.18; margin-bottom: 10px; }
+    .feat-icon-body { font-size: 16px; font-weight: 600; color: var(--muted); line-height: 1.48; }
+    .feat-icon-body strong { color: var(--muted); font-weight: 600; }
 
     /* ─── RESULTS ─── */
     .results { background: #f5f5f7; padding: 130px var(--gutter); }
     .results-inner { max-width: 1260px; margin: 0 auto; }
-    .results-hdr { display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 24px; margin-bottom: 48px; }
-    .results-sub { font-size: 19px; color: #6e6e73; max-width: 40ch; }
-    .stat-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
-    .stat-cell { background: #fff; border-radius: 24px; padding: 56px 44px; }
-    .stat-num { font-size: clamp(52px,5.4vw,76px); font-weight: 600; letter-spacing: -0.025em; line-height: 1; color: #1d1d1f; }
-    .stat-num sup { font-size: 0.4em; font-weight: 500; vertical-align: super; color: #86868b; }
-    .stat-desc { font-size: 17px; color: #6e6e73; margin-top: 16px; line-height: 1.5; }
-    .stat-desc strong { color: #1d1d1f; font-weight: 600; }
-    .stat-note { font-size: 13px; color: #aeaeb2; margin-top: 8px; }
-    .results-beta { font-size: 15px; color: #86868b; margin-top: 28px; }
+    .results-hdr { margin-bottom: 56px; }
+    .validation-panel { display: grid; grid-template-columns: minmax(220px, 0.7fr) minmax(320px, 1fr) minmax(280px, 0.9fr); gap: clamp(28px, 5vw, 72px); align-items: center; }
+    .validation-score { padding: 0; }
+    .validation-score-kicker { font-size: 16px; line-height: 1.4; font-weight: 600; letter-spacing: -0.005em; color: #86868b; margin-bottom: 18px; }
+    .validation-score-main { font-size: clamp(72px, 9vw, 118px); font-weight: 600; line-height: 0.9; letter-spacing: -0.05em; color: #1d1d1f; }
+    .validation-score-main sup { font-size: 0.26em; letter-spacing: -0.02em; vertical-align: super; color: #6e6e73; margin-left: 4px; }
+    .validation-score-caption { font-size: 17px; font-weight: 600; line-height: 1.4; color: #6e6e73; margin-top: 18px; max-width: 18ch; }
+    .validation-flow { display: flex; flex-direction: column; gap: 18px; }
+    .validation-row { display: grid; grid-template-columns: 86px 1fr auto; gap: 18px; align-items: center; padding: 18px 0; border-bottom: 1px solid rgba(0,0,0,0.07); }
+    .validation-row:last-child { border-bottom: none; }
+    .validation-label { font-size: 13px; font-weight: 600; color: #86868b; }
+    .validation-bar { height: 10px; border-radius: 999px; background: #e8e8ed; overflow: hidden; }
+    .validation-bar span { display: block; height: 100%; width: var(--w); border-radius: inherit; background: #1d1d1f; transform-origin: left; transform: scaleX(0); transition: transform 1s var(--ease); }
+    .reveal.in .validation-bar span { transform: scaleX(1); }
+    .validation-value { font-size: 24px; font-weight: 600; letter-spacing: -0.02em; color: #1d1d1f; min-width: 70px; text-align: right; }
+    .results-beta { font-size: 15px; color: #86868b; margin-top: 24px; }
+    .validation-note { border-radius: var(--radius-card); background: #fff; padding: 30px 28px; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.03); }
+    .validation-note-kicker { font-size: 16px; line-height: 1.4; font-weight: 600; letter-spacing: -0.005em; color: #86868b; margin-bottom: 12px; }
+    .validation-note-title { font-size: clamp(22px, 2.4vw, 30px); font-weight: 600; letter-spacing: -0.02em; line-height: 1.14; color: #1d1d1f; margin-bottom: 12px; }
+    .validation-note-text { font-size: 16px; line-height: 1.52; color: #6e6e73; }
 
     /* ─── SCALE (Apple "essentials" banner-card style) ─── */
     .scale { background: #fff; padding: 130px var(--gutter); }
@@ -491,35 +683,73 @@
     .scale-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 56px; }
     /* Each card: light gray, landscape, copy left + visual right */
     .scale-card {
-      background: #f5f5f7; border-radius: 20px; overflow: hidden;
-      display: flex; flex-direction: row; min-height: 320px;
+      background: var(--surface); border-radius: var(--radius-card); overflow: hidden;
+      display: flex; flex-direction: column; min-height: 420px;
     }
     .scale-copy {
-      flex: 0 0 44%; padding: 40px 36px; display: flex; flex-direction: column; justify-content: flex-start; z-index: 1;
+      padding: 40px 36px 28px; display: flex; flex-direction: column; justify-content: flex-start; z-index: 1;
     }
-    .scale-eyebrow { font-size: 12px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: #6e6e73; margin-bottom: 12px; }
+    .scale-eyebrow { font-size: 16px; line-height: 1.4; font-weight: 600; letter-spacing: -0.005em; color: #86868b; margin-bottom: 12px; }
     .scale-title { font-size: clamp(22px, 2vw, 28px); font-weight: 600; letter-spacing: -0.018em; line-height: 1.2; color: #1d1d1f; margin-bottom: 12px; }
     .scale-text { font-size: 15px; line-height: 1.6; color: #6e6e73; }
     /* Visual — fills the right half, image bleeds to all edges */
     .scale-vis {
-      flex: 1; position: relative; overflow: hidden; min-height: 240px;
+      flex: 1; position: relative; overflow: hidden; min-height: 250px; margin: 0 20px 20px; border-radius: var(--radius-inner);
       background-size: cover; background-position: center;
     }
-    /* Colour-fill shapes as placeholder visual */
-    .scale-vis .sv { position: absolute; border-radius: 50%; }
+    .scale-system {
+      background: linear-gradient(135deg, #edeef6, #f9f9fb);
+      padding: 28px; display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 16px;
+    }
+    .scale-token {
+      border-radius: var(--radius-inner); background: #fff; min-height: 132px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 48px; font-weight: 600; letter-spacing: -0.05em; color: #1d1d1f;
+      box-shadow: 0 18px 34px rgba(0,0,0,0.06);
+    }
+    .scale-chip-row { display: flex; gap: 8px; align-self: start; flex-wrap: wrap; }
+    .scale-chip-row span { padding: 8px 12px; border-radius: 999px; background: #fff; font-size: 12px; font-weight: 600; color: #6e6e73; box-shadow: 0 10px 22px rgba(0,0,0,0.05); }
+    .scale-component-card {
+      grid-column: 1 / -1; border-radius: var(--radius-inner); background: #fff; padding: 18px;
+      display: grid; grid-template-columns: 56px 1fr; gap: 12px; align-items: center;
+      box-shadow: 0 18px 34px rgba(0,0,0,0.06);
+    }
+    .scale-component-card span:first-child { width: 56px; height: 56px; border-radius: 16px; background: #dfe8d8; grid-row: span 2; }
+    .scale-component-card span:nth-child(2) { height: 12px; border-radius: 999px; background: #1d1d1f; opacity: 0.85; }
+    .scale-component-card span:nth-child(3) { height: 10px; width: 70%; border-radius: 999px; background: #d6d6dc; }
+    .scale-component-list {
+      position: absolute; right: 28px; bottom: 28px; width: 42%; border-radius: var(--radius-inner); padding: 16px; background: rgba(255,255,255,0.76);
+      backdrop-filter: blur(16px); display: flex; flex-direction: column; gap: 10px; box-shadow: 0 18px 34px rgba(0,0,0,0.07);
+    }
+    .scale-component-list span { height: 10px; border-radius: 999px; background: #cfd2dc; }
+    .scale-component-list span:nth-child(2) { width: 74%; }
+    .scale-component-list span:nth-child(3) { width: 52%; }
+    .scale-handoff {
+      background: linear-gradient(135deg, #eaf2ec, #f8faf8);
+      display: flex; align-items: center; justify-content: center; padding: 28px;
+    }
+    .handoff-window { width: min(430px, 100%); border-radius: 22px; background: rgba(255,255,255,0.82); backdrop-filter: blur(18px); box-shadow: 0 24px 48px rgba(39,74,47,0.12); overflow: hidden; }
+    .handoff-bar { height: 42px; display: flex; align-items: center; gap: 7px; padding: 0 18px; border-bottom: 1px solid rgba(0,0,0,0.07); }
+    .handoff-bar span { width: 9px; height: 9px; border-radius: 50%; background: #c9d7ca; }
+    .handoff-row { display: flex; justify-content: space-between; gap: 18px; align-items: center; padding: 18px 20px; border-bottom: 1px solid rgba(0,0,0,0.06); }
+    .handoff-row:last-child { border-bottom: none; }
+    .handoff-row strong { font-size: 15px; color: #1d1d1f; }
+    .handoff-row span { font-size: 13px; font-weight: 600; color: #55745a; padding: 7px 10px; border-radius: 999px; background: #e5f0e6; }
     @media (max-width: 734px) {
       .scale-card { flex-direction: column; }
       .scale-copy { flex: none; padding: 30px 28px 20px; }
       .scale-vis { min-height: 180px; }
+      .scale-system { grid-template-columns: 1fr; }
+      .scale-component-list { display: none; }
     }
 
     /* ─── MORE WORK GALLERY (Apple feature-card style) ─── */
     .cs-foot { background: #fff; padding: 100px 0 0; }
     .cs-foot-hd { padding: 0 var(--gutter) 48px; max-width: calc(1260px + 2 * var(--gutter)); margin: 0 auto; }
-    .cs-foot-label { font-size: 11px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: #86868b; margin-bottom: 16px; }
-    /* Horizontal scroll rail */
+    .cs-foot-label { font-size: 21px; line-height: 1.25; font-weight: 600; letter-spacing: 0.004em; color: #1d1d1f; margin-bottom: 8px; }
+    /* Horizontal scroll rail — same gap/gutter rhythm as the highlights stage above */
     .cs-foot-rail {
-      display: flex; gap: 12px;
+      display: flex; gap: 20px;
       overflow-x: auto; overflow-y: visible;
       scroll-snap-type: x mandatory; scrollbar-width: none;
       overscroll-behavior-x: contain;
@@ -528,29 +758,34 @@
       padding-bottom: 80px; /* room for paddle nav */
     }
     .cs-foot-rail::-webkit-scrollbar { display: none; }
-    /* Cards — portrait, dark, ~380px wide on desktop */
+    /* Cards — portrait, dark */
     .nc {
       flex: 0 0 auto;
-      /* 2 cards + 1 gap (12px) = full content column (1260px max).
-         Formula: (viewport − 2 gutters − gap) ÷ 2, capped at 624px. */
-      width: min(624px, calc((100vw - 2 * var(--gutter) - 12px) / 2));
-      aspect-ratio: 4 / 3;
-      border-radius: 24px; overflow: hidden;
+      /* vw-based on purpose: tying this to the 1260px content column (like the
+         rest of the page) caps it at ~620px forever past that width, since
+         --gutter grows to exactly cancel the extra viewport. Cards intentionally
+         bleed past the column here, peeking on the right like the highlights rail. */
+      width: clamp(560px, 56vw, 820px);
+      aspect-ratio: 5 / 4;
+      border-radius: var(--radius-section); overflow: hidden;
       background: #1d1d1f;
       position: relative; display: flex; flex-direction: column;
       scroll-snap-align: start; text-decoration: none;
-      transition: transform 0.3s cubic-bezier(0.22,1,0.36,1);
     }
-    .nc:hover { transform: scale(1.018); }
     /* Copy block — top-left */
-    .nc-copy { padding: 28px 30px; position: relative; z-index: 2; }
-    .nc-label { font-size: 12px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: rgba(255,255,255,0.52); margin-bottom: 10px; }
-    .nc-title { font-size: clamp(22px, 2vw, 28px); font-weight: 600; letter-spacing: -0.015em; line-height: 1.2; color: #f5f5f7; }
-    .nc-tag { display: inline-flex; align-items: center; height: 22px; padding: 0 10px; border-radius: 100px; background: rgba(255,255,255,0.1); font-size: 11px; font-weight: 500; color: rgba(255,255,255,0.55); margin-top: 12px; }
+    .nc-copy { padding: 44px 48px; position: relative; z-index: 2; }
+    .nc-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+    .nc-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; overflow: hidden; flex-shrink: 0; }
+    .nc-icon img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .nc-co { font-size: 15px; font-weight: 600; letter-spacing: 0.02em; color: rgba(255,255,255,0.7); }
+    .nc-title { font-size: clamp(28px, 3.4vw, 44px); font-weight: 600; letter-spacing: -0.02em; line-height: 1.14; color: #f5f5f7; margin-bottom: 16px; }
+    .nc-desc { font-size: clamp(16px, 1.4vw, 19px); font-weight: 500; line-height: 1.5; color: rgba(255,255,255,0.62); max-width: 36ch; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
     /* Image — fills bottom, bleeds to edges */
     .nc-img {
       position: absolute; inset: 0;
       background-size: cover; background-position: center;
+      /* desktop/mobile urls are set per-card as inline custom props by components.js */
+      background-image: var(--nc-img-desktop);
       /* gradient darkens the top for text legibility */
     }
     .nc-img::after {
@@ -569,8 +804,16 @@
     .cs-paddle:disabled { opacity: 0.3; cursor: default; }
     .cs-paddle svg { width: 9px; height: 15px; }
     @media (max-width: 734px) {
-      .nc { width: 82vw; aspect-ratio: 4 / 3; }
+      .cs-foot-rail { gap: 20px; }
+      .nc { width: 88vw; aspect-ratio: 3 / 4; border-radius: 20px; }
+      .nc-copy { padding: 30px 28px; }
+      .nc-meta { gap: 10px; margin-bottom: 14px; }
+      .nc-icon { width: 26px; height: 26px; }
+      .nc-co { font-size: 13px; }
+      .nc-title { font-size: clamp(24px, 6.5vw, 30px); margin-bottom: 12px; }
+      .nc-desc { font-size: 15px; max-width: none; }
       .cs-foot-nav { padding-bottom: 56px; }
+      .nc-img { background-image: var(--nc-img-mobile); }
     }
     @media (max-width: 599px) {
       .cs-foot { padding-top: 72px; }
@@ -584,7 +827,16 @@
 
     /* ─── RESPONSIVE ─── */
     @media (max-width: 900px) {
-      .v-grid { grid-template-columns: 1fr; }
+      .values { min-height: 240vh; }
+      .goals-head { padding-top: 88px; padding-bottom: 24px; }
+      .goal-cloud { width: 100vw; height: min(560px, 66svh); }
+      .goal-bubble { font-size: 12px; padding: 12px; }
+      .goal-bubble.is-main { font-size: 20px; }
+      .goal-vision-text { font-size: clamp(34px, 9vw, 48px); }
+      /* Wrapper disappears on mobile/tablet — tiles go full-bleed, same as the Apple reference */
+      .feat-wrap { background: none; border-radius: 0; padding: 0; }
+      .feat-wrap-hd { margin-bottom: 32px; }
+      .feat-cell { background: #f5f5f7; }
       .feat-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; grid-auto-rows: 220px; }
       .feat-cell { height: 220px; min-height: unset; }
       .feat-vis { min-height: unset; flex: 1; }
@@ -592,7 +844,7 @@
       .feat-stat-num { font-size: 46px; }
       .feat-cell--icon { padding: 24px 22px; }
       .feat-cell--photo .feat-copy { padding: 20px 20px 0; }
-      .stat-grid { grid-template-columns: 1fr 1fr; }
+      .validation-panel { grid-template-columns: 1fr; }
       .scale-grid { grid-template-columns: 1fr; }
       .cs-foot-grid { grid-template-columns: 1fr; }
     }
@@ -611,13 +863,17 @@
       .hero-meta-item dd { font-size: 16px; }
       .highlights { padding: 88px 0 76px; }
       .hl-hd { margin-bottom: 32px; }
-      .hl-stage { gap: 14px; padding-inline: var(--gutter); scroll-padding-left: var(--gutter); }
+      .hl-stage { gap: 20px; padding-inline: var(--gutter); scroll-padding-left: var(--gutter); }
       .hl-card { width: 80vw; height: 465px; border-radius: 20px; scroll-snap-align: start; }
       .hl-card-text { padding: 26px 24px; font-size: clamp(18px, 5.2vw, 22px); }
       /* On mobile (card ≈ 80vw), 40% would be too narrow — use 78% of card instead */
       .ht-left, .ht-right { max-width: 78%; }
       .ht-center { max-width: 78%; left: 50%; transform: translateX(-50%); }
-      .hl-controls { margin-top: 30px; }
+      .hl-controls { top: calc(100svh - 68px); gap: 10px; margin-top: -76px; padding: 0 8px; }
+      .hl-dot-shell { height: 46px; padding: 0 17px; }
+      .hl-play { width: 46px; height: 46px; }
+      .hl-dots { gap: 11px; }
+      .hl-dot.active { width: 46px; }
       .wireframes { padding: 84px 0; }
       .wf-hd { margin-bottom: 36px; }
       .wf-slide { width: 168px; margin-right: 28px; border-radius: 26px; box-shadow: 0 14px 34px rgba(0,0,0,0.10); }
@@ -628,7 +884,7 @@
          FIRST card on the gutter line (same as the heading) and lets cards bleed off the right. */
       .bac { display: block; margin-top: 44px; margin-inline: calc(-1 * var(--gutter)); }
       .bac-track {
-        display: flex; gap: 14px;
+        display: flex; gap: 20px;
         overflow-x: auto; overflow-y: hidden; overscroll-behavior-x: contain;
         padding-inline: var(--gutter); scroll-padding-left: var(--gutter);
         scroll-snap-type: x mandatory; scrollbar-width: none; -webkit-overflow-scrolling: touch;
@@ -641,11 +897,31 @@
       .hero-content { padding-bottom: 40px; }
       .sec { padding-top: 72px; padding-bottom: 72px; }
       .problem { padding-top: 72px; padding-bottom: 56px; }
-      .values, .features, .results, .scale, .cs-foot { padding-top: 72px; padding-bottom: 72px; }
-      .design { padding-top: 72px; }
-      .design-block { padding-bottom: 72px; }
+      .features, .results, .scale, .cs-foot { padding-top: 72px; padding-bottom: 72px; }
+      .values { min-height: 230vh; }
+      .goals-sticky { padding: 74px var(--gutter); align-items: center; }
+      .goals-head { padding-top: 74px; padding-bottom: 12px; }
+      .goal-cloud { width: 108vw; height: min(520px, 62svh); }
+      .goal-bubble { padding: 10px; }
+      .goal-bubble:not(.is-main) { --s: 78px !important; }
+      .goal-bubble.is-main { --s: 132px !important; }
       .research { padding-top: 72px; padding-bottom: 72px; }
-      .stat-grid { grid-template-columns: 1fr; }
+      .results-hdr { margin-bottom: 36px; }
+      .validation-panel { gap: 34px; }
+      .validation-score { text-align: left; }
+      .validation-row { grid-template-columns: 68px 1fr auto; gap: 12px; }
+      .validation-value { font-size: 20px; min-width: 56px; }
+      .validation-note { padding: 26px 24px; border-radius: 22px; }
+      .scale { padding-top: 72px; padding-bottom: 72px; }
+      .scale-grid { margin-top: 36px; }
+      .scale-card { min-height: 360px; }
+      .scale-vis { min-height: 150px; }
+      .reflections { padding-top: 72px; padding-bottom: 72px; }
+      .refl-hd { margin-bottom: 28px; }
+      .refl-panel { padding: 18px; border-radius: 24px; gap: 16px; }
+      .refl-takeaway { min-height: 280px; border-radius: 20px; }
+      .refl-lesson { grid-template-columns: 1fr; padding: 22px; gap: 14px; }
+      .refl-lesson-num { width: 34px; height: 34px; }
       /* Research cards, reverse-engineered from the Figma mobile frame: 260 / 390 = 2/3.
          66.67vw keeps that ratio at any phone width (390 → 260, 360 → 240, 430 → 287),
          leaving a peek of the next card + the gutter on the right. */
@@ -655,7 +931,7 @@
     }
   </style>
 </head>
-<body>
+<body data-case="meta-learn">
 
   <!-- ─── HERO ─── -->
   <section class="hero">
@@ -698,11 +974,13 @@
       </div>
     </div>
     <div class="hl-controls" id="hlControls">
+      <div class="hl-dot-shell">
+        <div class="hl-dots" id="hlDots" role="tablist" aria-label="Highlights"></div>
+      </div>
       <button class="hl-play" id="hlPlay" aria-label="Pause highlights gallery">
         <svg class="hl-ic-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="6" width="3.4" height="12" rx="1.1"/><rect x="13.6" y="6" width="3.4" height="12" rx="1.1"/></svg>
         <svg class="hl-ic-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
       </button>
-      <div class="hl-dots" id="hlDots" role="tablist" aria-label="Highlights"></div>
     </div>
   </section>
 
@@ -711,8 +989,8 @@
     <div class="sec-narrow">
       <div class="reveal">
         <p class="label">Problem</p>
-        <h2 class="heading-xl">Great content.<br>Poor delivery.</h2>
-        <p class="body-lg">The original Meta Learn had the right ingredients — science-backed exercises, quality programs, genuine expertise in mental fitness. But <em>none of it was reachable</em>. Critical features were <em>buried two or three levels deep</em>. Navigation created <em>dead ends</em>. Progress tracking was <em>invisible</em>. Users dropped off before they ever found what they came for.<br><br>The redesign didn't change the content. It <em>changed everything around it</em>.</p>
+        <h2 class="heading-xl">Great content. Poor delivery.</h2>
+        <p class="body-lg">Meta Learn already had strong content: science-backed exercises, quality programs, and real mental-fitness expertise. The problem was access. Key actions were buried, progress was invisible, and users dropped off before reaching the value.</p>
       </div>
       <!-- Before / After (desktop: one wide slider) -->
       <div class="ba-wrap reveal" id="baWrap">
@@ -722,7 +1000,7 @@
           <img src="images/ml/node-100.png" alt="Before — original" class="ba-after" id="baAfter" draggable="false" />
         </div>
         <span class="ba-label ba-label-b">Before</span>
-        <span class="ba-label ba-label-a" id="baLabelA">After</span>
+        <span class="ba-label ba-label-a">After</span>
         <div class="ba-line" id="baLine"></div>
         <div class="ba-knob" id="baKnob">
           <svg viewBox="0 0 16 10" fill="none"><path d="M5 5H1M5 5L2.5 2M5 5L2.5 8" stroke="#1d1d1f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 5h4M11 5l2.5-3M11 5l2.5 3" stroke="#1d1d1f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -764,14 +1042,14 @@
   <section class="research" id="research">
     <div class="research-hd reveal">
       <p class="label">Research</p>
-      <h2 class="heading-lg" style="max-width:18ch">A multi-method audit confirmed what users already felt.</h2>
+      <h2 class="heading-lg">Research confirmed what users already felt.</h2>
     </div>
     <div class="r-track reveal" id="rTrack">
       <div class="r-card">
         <div class="r-copy">
           <p class="r-tag">Usability testing</p>
-          <p class="r-title">Finding what to do next was a dead end.</p>
-          <p class="r-body">Users hit <em>navigation walls</em> trying to discover new exercises. The content was there — <em>the path wasn't</em>.</p>
+          <p class="r-title">Users could not find the next step.</p>
+          <p class="r-body">Exercise content existed, but the route to it felt unclear and easy to abandon.</p>
         </div>
         <div class="r-visual" style="--px:6.3%"></div>
         <button class="r-plus" aria-label="Read more"><svg viewBox="0 0 36 36"><path d="m24 16.5h-4.5v-4.5c0-.8286-.6719-1.5-1.5-1.5s-1.5.6714-1.5 1.5v4.5h-4.5c-.8281 0-1.5.6714-1.5 1.5s.6719 1.5 1.5 1.5h4.5v4.5c0 .8286.6719 1.5 1.5 1.5s1.5-.6714 1.5-1.5v-4.5h4.5c.8281 0 1.5-.6714 1.5-1.5s-.6719-1.5-1.5-1.5z"/></svg></button>
@@ -779,8 +1057,8 @@
       <div class="r-card">
         <div class="r-copy">
           <p class="r-tag">Analytics</p>
-          <p class="r-title">Progress was invisible.</p>
-          <p class="r-body">Users couldn't tell if they were <em>improving</em>, building habits, or falling behind. Motivation had <em>no anchor</em>.</p>
+          <p class="r-title">Progress had no visible anchor.</p>
+          <p class="r-body">Users had little feedback on improvement, consistency, or what their sessions added up to.</p>
         </div>
         <div class="r-visual" style="--px:49.85%"></div>
         <button class="r-plus" aria-label="Read more"><svg viewBox="0 0 36 36"><path d="m24 16.5h-4.5v-4.5c0-.8286-.6719-1.5-1.5-1.5s-1.5.6714-1.5 1.5v4.5h-4.5c-.8281 0-1.5.6714-1.5 1.5s.6719 1.5 1.5 1.5h4.5v4.5c0 .8286.6719 1.5 1.5 1.5s1.5-.6714 1.5-1.5v-4.5h4.5c.8281 0 1.5-.6714 1.5-1.5s-.6719-1.5-1.5-1.5z"/></svg></button>
@@ -788,8 +1066,8 @@
       <div class="r-card">
         <div class="r-copy">
           <p class="r-tag">Heuristic evaluation</p>
-          <p class="r-title">The best features were buried.</p>
-          <p class="r-body">Professionals needed <em>quick wins</em>. The features that could deliver them were <em>two or three taps too deep</em>.</p>
+          <p class="r-title">High-value actions sat too deep.</p>
+          <p class="r-body">Useful tools were often two or three taps away from the moments users needed them.</p>
         </div>
         <div class="r-visual" style="--px:93.6%"></div>
         <button class="r-plus" aria-label="Read more"><svg viewBox="0 0 36 36"><path d="m24 16.5h-4.5v-4.5c0-.8286-.6719-1.5-1.5-1.5s-1.5.6714-1.5 1.5v4.5h-4.5c-.8281 0-1.5.6714-1.5 1.5s.6719 1.5 1.5 1.5h4.5v4.5c0 .8286.6719 1.5 1.5 1.5s1.5-.6714 1.5-1.5v-4.5h4.5c.8281 0 1.5-.6714 1.5-1.5s-.6719-1.5-1.5-1.5z"/></svg></button>
@@ -797,8 +1075,8 @@
       <div class="r-card">
         <div class="r-copy">
           <p class="r-tag">User surveys</p>
-          <p class="r-title">Onboarding created drop-off before value.</p>
-          <p class="r-body">The <em>11-step setup</em> asked for commitment before delivering anything worth committing to. <em>68% quit before finishing</em>.</p>
+          <p class="r-title">Onboarding asked too much too soon.</p>
+          <p class="r-body">The original setup delayed value and lost most new users before they reached the product.</p>
         </div>
         <div class="r-visual r-visual--tint"><span class="r-big">68%</span></div>
         <button class="r-plus" aria-label="Read more"><svg viewBox="0 0 36 36"><path d="m24 16.5h-4.5v-4.5c0-.8286-.6719-1.5-1.5-1.5s-1.5.6714-1.5 1.5v4.5h-4.5c-.8281 0-1.5.6714-1.5 1.5s.6719 1.5 1.5 1.5h4.5v4.5c0 .8286.6719 1.5 1.5 1.5s1.5-.6714 1.5-1.5v-4.5h4.5c.8281 0 1.5-.6714 1.5-1.5s-.6719-1.5-1.5-1.5z"/></svg></button>
@@ -807,7 +1085,7 @@
         <div class="r-copy">
           <p class="r-tag">User interviews</p>
           <p class="r-title">Professionals wanted quick wins.</p>
-          <p class="r-body">Time-pressed users came for <em>fast, science-backed sessions</em> they could fit between meetings — but the shortcuts they needed were <em>buried in the menus</em>.</p>
+          <p class="r-body">Users needed short, credible sessions they could fit between meetings without searching.</p>
         </div>
         <div class="r-visual r-visual--tint" style="background:radial-gradient(120% 120% at 78% 8%, #eef0ff, #cdd4f4)"><span class="r-big" style="color:rgba(40,50,120,0.18)">18</span></div>
         <button class="r-plus" aria-label="Read more"><svg viewBox="0 0 36 36"><path d="m24 16.5h-4.5v-4.5c0-.8286-.6719-1.5-1.5-1.5s-1.5.6714-1.5 1.5v4.5h-4.5c-.8281 0-1.5.6714-1.5 1.5s.6719 1.5 1.5 1.5h4.5v4.5c0 .8286.6719 1.5 1.5 1.5s1.5-.6714 1.5-1.5v-4.5h4.5c.8281 0 1.5-.6714 1.5-1.5s-.6719-1.5-1.5-1.5z"/></svg></button>
@@ -815,8 +1093,8 @@
       <div class="r-card">
         <div class="r-copy">
           <p class="r-tag">SUS testing + benchmarking</p>
-          <p class="r-title">Usability scored in the “poor” band.</p>
-          <p class="r-body">The original app benchmarked at <em>52 — well below the 68-point industry average</em>, putting it squarely in the “poor” range.</p>
+          <p class="r-title">Usability benchmarked poorly.</p>
+          <p class="r-body">The original app scored 52 on SUS, well below the 68-point industry benchmark.</p>
         </div>
         <div class="r-visual r-visual--tint" style="background:radial-gradient(120% 120% at 78% 8%, #fff7e3, #ffe6ab)"><span class="r-big" style="color:rgba(140,90,10,0.20)">52</span></div>
         <button class="r-plus" aria-label="Read more"><svg viewBox="0 0 36 36"><path d="m24 16.5h-4.5v-4.5c0-.8286-.6719-1.5-1.5-1.5s-1.5.6714-1.5 1.5v4.5h-4.5c-.8281 0-1.5.6714-1.5 1.5s.6719 1.5 1.5 1.5h4.5v4.5c0 .8286.6719 1.5 1.5 1.5s1.5-.6714 1.5-1.5v-4.5h4.5c.8281 0 1.5-.6714 1.5-1.5s-.6719-1.5-1.5-1.5z"/></svg></button>
@@ -824,8 +1102,8 @@
       <div class="r-card">
         <div class="r-copy">
           <p class="r-tag">Desk research</p>
-          <p class="r-title">Habits are built on cues and rewards.</p>
-          <p class="r-body">The cognitive-training literature is consistent: engagement <em>thrives on habit cues, streaks, and rewards</em> — exactly the loops the original app was missing.</p>
+          <p class="r-title">Habit loops were missing.</p>
+          <p class="r-body">Research pointed to cues, streaks, and rewards as the missing support for repeat use.</p>
         </div>
         <div class="r-visual r-visual--tint" style="background:radial-gradient(120% 120% at 78% 8%, #eafbe9, #cdeccf)"><span class="r-big" style="color:rgba(30,90,50,0.20)">40+</span></div>
         <button class="r-plus" aria-label="Read more"><svg viewBox="0 0 36 36"><path d="m24 16.5h-4.5v-4.5c0-.8286-.6719-1.5-1.5-1.5s-1.5.6714-1.5 1.5v4.5h-4.5c-.8281 0-1.5.6714-1.5 1.5s.6719 1.5 1.5 1.5h4.5v4.5c0 .8286.6719 1.5 1.5 1.5s1.5-.6714 1.5-1.5v-4.5h4.5c.8281 0 1.5-.6714 1.5-1.5s-.6719-1.5-1.5-1.5z"/></svg></button>
@@ -843,40 +1121,30 @@
 
   <!-- ─── VALUES ─── -->
   <section class="values" id="values">
-    <div class="sec-narrow">
-      <div class="reveal">
-        <p class="label">Goals</p>
-        <h2 class="heading-lg">Defining the redesign goals.</h2>
+    <div class="goals-head">
+      <p class="label">Goals</p>
+      <h2 class="heading-lg">Defining the redesign goals.</h2>
+    </div>
+    <div class="goals-sticky">
+      <div class="goal-cloud" id="goalsMoment" aria-label="Small improvements grouping into three redesign goals">
+        <span class="goal-bubble is-small" data-x0="-43" data-y0="-28" data-x1="-23" data-y1="-8" data-s0="0.9" data-s1="0.66" style="--s:92px;">fewer dead ends</span>
+        <span class="goal-bubble is-small" data-x0="-18" data-y0="-36" data-x1="-21" data-y1="-12" data-s0="1" data-s1="0.64" style="--s:112px;">clear content paths</span>
+        <span class="goal-bubble is-small" data-x0="-35" data-y0="19" data-x1="-19" data-y1="8" data-s0="0.92" data-s1="0.62" style="--s:86px;">visible free states</span>
+        <span class="goal-bubble is-main" data-x0="-10" data-y0="28" data-x1="-21" data-y1="0" data-s0="0.92" data-s1="1.04" style="--s:170px;">Clearer paths</span>
+
+        <span class="goal-bubble is-small" data-x0="4" data-y0="-31" data-x1="-2" data-y1="-11" data-s0="0.95" data-s1="0.64" style="--s:98px;">shorter setup</span>
+        <span class="goal-bubble is-small" data-x0="16" data-y0="27" data-x1="2" data-y1="9" data-s0="1" data-s1="0.66" style="--s:108px;">progress cues</span>
+        <span class="goal-bubble is-small" data-x0="-5" data-y0="15" data-x1="-3" data-y1="6" data-s0="0.96" data-s1="0.62" style="--s:88px;">early reward</span>
+        <span class="goal-bubble is-main" data-x0="25" data-y0="-10" data-x1="0" data-y1="0" data-s0="0.88" data-s1="1.04" style="--s:170px;">Faster momentum</span>
+
+        <span class="goal-bubble is-small" data-x0="33" data-y0="-34" data-x1="19" data-y1="-11" data-s0="0.96" data-s1="0.64" style="--s:102px;">calmer hierarchy</span>
+        <span class="goal-bubble is-small" data-x0="43" data-y0="6" data-x1="23" data-y1="7" data-s0="0.94" data-s1="0.62" style="--s:96px;">accessible contrast</span>
+        <span class="goal-bubble is-small" data-x0="22" data-y0="31" data-x1="19" data-y1="10" data-s0="1" data-s1="0.64" style="--s:110px;">reusable components</span>
+        <span class="goal-bubble is-main" data-x0="8" data-y0="-4" data-x1="21" data-y1="0" data-s0="0.9" data-s1="1.04" style="--s:170px;">Calmer system</span>
       </div>
-      <div class="v-grid">
-        <div class="v-card reveal">
-          <svg class="v-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.6 3.5a1.7 1.7 0 0 1 3.3 0c0 .5-.2 1 .1 1.3.3.3.8.2 1.2.2H17a1 1 0 0 1 1 1v2.7c0 .4-.1.9.2 1.2.3.3.8.1 1.3.1a1.7 1.7 0 0 1 0 3.3c-.5 0-1-.2-1.3.1-.3.3-.2.8-.2 1.2V18a1 1 0 0 1-1 1h-2.7c-.4 0-.9.1-1.2-.2-.3-.3-.1-.8-.1-1.3a1.7 1.7 0 0 0-3.3 0c0 .5.2 1-.1 1.3-.3.3-.8.2-1.2.2H6a1 1 0 0 1-1-1v-2.7c0-.4.1-.9-.2-1.2-.3-.3-.8-.1-1.3-.1a1.7 1.7 0 0 1 0-3.3c.5 0 1 .2 1.3-.1.3-.3.2-.8.2-1.2V6a1 1 0 0 1 1-1h2.7c.4 0 .9.1 1.2-.2.3-.3.1-.8.1-1.3z"/></svg>
-          <p class="v-title">Structure &amp;<br>Scalability</p>
-          <ul class="v-list">
-            <li class="v-item">No dead ends</li>
-            <li class="v-item">Familiar navigation</li>
-            <li class="v-item">Clarified hierarchy</li>
-            <li class="v-item">Free vs Paid</li>
-          </ul>
-        </div>
-        <div class="v-card reveal d1">
-          <svg class="v-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 3 3 10.6l7.2 2.6 2.6 7.2L21 3z"/><path d="M10.2 13.2 21 3"/></svg>
-          <p class="v-title">Flow &amp;<br>Onboarding</p>
-          <ul class="v-list">
-            <li class="v-item">Reduce drop-off</li>
-            <li class="v-item">Emphasise progress</li>
-            <li class="v-item">Light gamification</li>
-          </ul>
-        </div>
-        <div class="v-card reveal d2">
-          <svg class="v-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18c.95 0 1.7-.77 1.7-1.7 0-.43-.18-.82-.43-1.12-.26-.32-.44-.7-.44-1.1 0-.93.76-1.68 1.7-1.68H16a5 5 0 0 0 5-5C21 6.36 16.97 3 12 3z"/><circle cx="7.6" cy="11.6" r="1.05" fill="currentColor" stroke="none"/><circle cx="10.6" cy="7.6" r="1.05" fill="currentColor" stroke="none"/><circle cx="15" cy="7.6" r="1.05" fill="currentColor" stroke="none"/><circle cx="17.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg>
-          <p class="v-title">Visual System</p>
-          <ul class="v-list">
-            <li class="v-item">Grouped with intention</li>
-            <li class="v-item">Color contrast</li>
-            <li class="v-item">Accessible typography</li>
-          </ul>
-        </div>
+      <div class="goal-vision" aria-live="polite">
+        <p class="goal-vision-kicker">Vision</p>
+        <p class="goal-vision-text">Turn scattered fixes into one clear path: find value fast, feel progress early, and move through a calmer system.</p>
       </div>
     </div>
   </section>
@@ -885,7 +1153,7 @@
   <section class="wireframes" id="wireframes">
     <div class="wf-hd reveal">
       <p class="label">Process</p>
-      <h2 class="heading-lg">Wireframing every flow.</h2>
+      <h2 class="heading-lg">Wireframing every core flow.</h2>
       <p class="wf-sub"><em>Dozens of low-fidelity screens</em> mapped the full experience <em>before a single pixel was polished</em>.</p>
     </div>
     <div class="wf-mask">
@@ -916,156 +1184,113 @@
       <div class="results-hdr reveal">
         <div>
           <p class="label">Validation</p>
-          <h2 class="heading-lg">Results that speak<br>for themselves</h2>
-        </div>
-        <p class="results-sub">Before a single pixel was polished, the wireframes went in front of real users. Early signals confirmed the new structure was working.</p>
-      </div>
-      <div class="stat-grid">
-        <div class="stat-cell reveal">
-          <p class="stat-num">9<sup>/10</sup></p>
-          <p class="stat-desc"><strong>Found key features unaided</strong><br>up from 3 of 10 on the old app</p>
-          <p class="stat-note">Moderated wireframe test, n=10</p>
-        </div>
-        <div class="stat-cell reveal d1">
-          <p class="stat-num">2<sup>taps</sup></p>
-          <p class="stat-desc"><strong>To reach any core exercise</strong><br>down from 4–5 taps</p>
-          <p class="stat-note">Task-based walkthrough</p>
-        </div>
-        <div class="stat-cell reveal d2">
-          <p class="stat-num">0</p>
-          <p class="stat-desc"><strong>Dead ends hit</strong><br>across every tested flow</p>
-          <p class="stat-note">First-click &amp; navigation test</p>
+          <h2 class="heading-lg">The structure worked before the polish.</h2>
         </div>
       </div>
-      <p class="results-beta reveal">Quick, moderated tests on the low-fidelity wireframes — early validation, well before visual design.</p>
+      <div class="validation-panel reveal d1">
+        <div class="validation-score">
+          <p class="validation-score-kicker">Moderated test, n=10</p>
+          <p class="validation-score-main">9<sup>/10</sup></p>
+          <p class="validation-score-caption">found a useful exercise without help.</p>
+        </div>
+        <div class="validation-flow" aria-label="Validation comparison">
+          <div class="validation-row">
+            <p class="validation-label">Before</p>
+            <div class="validation-bar"><span style="--w:33%"></span></div>
+            <p class="validation-value">3/10</p>
+          </div>
+          <div class="validation-row">
+            <p class="validation-label">Wireframe</p>
+            <div class="validation-bar"><span style="--w:90%"></span></div>
+            <p class="validation-value">9/10</p>
+          </div>
+          <p class="results-beta">Same core task, same user profile, redesigned information architecture.</p>
+        </div>
+        <div class="validation-note">
+          <p class="validation-note-kicker">Reconsidered after testing</p>
+          <p class="validation-note-title">Progress still did not feel motivating enough.</p>
+          <p class="validation-note-text">Users could find an exercise, but the reward loop felt too quiet. That pushed the next design pass toward clearer progress cues, streaks, and moments of feedback.</p>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- ─── DESIGN ─── -->
-  <section class="design" id="solution">
-
-    <!-- A new home screen -->
-    <div class="design-block">
-      <div class="design-hd reveal">
-        <p class="label">Design</p>
-        <h2 class="heading-lg">A new home screen.</h2>
+  <!-- ─── EXPLORE ─── -->
+  <section class="explore" id="explore">
+    <div class="explore-inner">
+      <div>
+        <p class="explore-eyebrow reveal">Design</p>
+        <h2 class="explore-headline reveal">Even more thoughtful. Even more calming.</h2>
       </div>
-      <div class="design-showcase">
-        <div class="reveal">
-          <h3 class="design-feat-h3">Everything you need at a glance</h3>
-          <div class="design-feat">
-            <p class="design-feat-title">Greeting, quote &amp; streak</p>
-            <p class="design-feat-desc">A quick boost of motivation with your daily progress in view.</p>
-          </div>
-          <div class="design-feat">
-            <p class="design-feat-title">Emotional slider</p>
-            <p class="design-feat-desc">Pick how you feel and get exercises that match your current mood.</p>
-          </div>
-          <div class="design-feat">
-            <p class="design-feat-title">Tailored content</p>
-            <p class="design-feat-desc">Curated exercises based on time of day and what you've done before.</p>
-          </div>
+      <p class="explore-copy reveal d1">Meet the redesigned Meta Learn. Built around a single daily check-in, <strong>tailored exercises</strong>, and a streak system that actually feels earned.</p>
+    </div>
+    <div class="explore-viewer reveal d1">
+      <div class="explore-stage" aria-live="polite">
+        <div class="explore-ghost" style="--x:-170px;--y:40px;--r:-9deg"><img src="images/ml/design/onb-1.png" alt=""></div>
+        <div class="explore-ghost" style="--x:170px;--y:-35px;--r:8deg"><img src="images/ml/design/phone-explore.png" alt=""></div>
+        <div class="explore-phone">
+          <img id="exploreImg" src="images/ml/design/phone-home.png" alt="Meta Learn home dashboard screen">
         </div>
-        <div class="design-showcase-phone reveal d1">
-          <img loading="lazy" src="images/ml/design/phone-home.png" alt="New Meta Learn home screen" />
-        </div>
+      </div>
+      <div class="explore-controls" id="exploreControls">
+        <button class="explore-pill is-active" data-img="images/ml/design/phone-home.png" data-alt="Meta Learn home dashboard screen">
+          <span class="explore-pill-row">
+            <span class="explore-pill-dot"><img src="images/ml/design/phone-home.png" alt=""></span>
+            <span class="explore-pill-label">Home dashboard</span>
+          </span>
+          <span class="explore-pill-desc">Your evening check-in, mood picker, and personalized exercise picks — all in one glance.</span>
+          <span class="explore-progress" aria-hidden="true"><span></span></span>
+        </button>
+        <button class="explore-pill" data-img="images/ml/design/onb-1.png" data-alt="Meta Learn personalized onboarding screen">
+          <span class="explore-pill-row">
+            <span class="explore-pill-dot"><img src="images/ml/design/onb-1.png" alt=""></span>
+            <span class="explore-pill-label">Personalized onboarding</span>
+          </span>
+          <span class="explore-pill-desc">A guided setup that learns how you're feeling before recommending a single exercise.</span>
+          <span class="explore-progress" aria-hidden="true"><span></span></span>
+        </button>
+        <button class="explore-pill" data-img="images/ml/design/phone-explore.png" data-alt="Meta Learn exercise library screen">
+          <span class="explore-pill-row">
+            <span class="explore-pill-dot"><img src="images/ml/design/phone-explore.png" alt=""></span>
+            <span class="explore-pill-label">Exercise library</span>
+          </span>
+          <span class="explore-pill-desc">Filter by Interactive, Audio, or Text — and jump back into anything you've favorited.</span>
+          <span class="explore-progress" aria-hidden="true"><span></span></span>
+        </button>
+        <button class="explore-pill" data-img="images/ml/design/ex-1.png" data-alt="Meta Learn guided exercise detail screen">
+          <span class="explore-pill-row">
+            <span class="explore-pill-dot"><img src="images/ml/design/ex-1.png" alt=""></span>
+            <span class="explore-pill-label">Guided exercise detail</span>
+          </span>
+          <span class="explore-pill-desc">Clear instructions and an optional mood check-in before you even start the timer.</span>
+          <span class="explore-progress" aria-hidden="true"><span></span></span>
+        </button>
+        <button class="explore-pill" data-img="images/ml/design/ex-2.png" data-alt="Meta Learn live breathing session screen">
+          <span class="explore-pill-row">
+            <span class="explore-pill-dot"><img src="images/ml/design/ex-2.png" alt=""></span>
+            <span class="explore-pill-label">Live breathing session</span>
+          </span>
+          <span class="explore-pill-desc">A focused, full-screen breathing guide with a visible countdown so you always know where you are.</span>
+          <span class="explore-progress" aria-hidden="true"><span></span></span>
+        </button>
+        <button class="explore-pill" data-img="images/ml/design/onb-3.png" data-alt="Meta Learn streak rewards screen">
+          <span class="explore-pill-row">
+            <span class="explore-pill-dot"><img src="images/ml/design/onb-3.png" alt=""></span>
+            <span class="explore-pill-label">Streak rewards</span>
+          </span>
+          <span class="explore-pill-desc">Finish onboarding and unlock a full week of premium access — momentum, rewarded.</span>
+          <span class="explore-progress" aria-hidden="true"><span></span></span>
+        </button>
       </div>
     </div>
-
-    <!-- Streamlined onboarding -->
-    <div class="design-block">
-      <div class="design-hd reveal">
-        <h2 class="heading-lg">A streamlined onboarding<br>goes a long way.</h2>
-      </div>
-      <div class="design-cards reveal">
-        <div class="design-card">
-          <div class="design-card-vis"><img loading="lazy" src="images/ml/design/onb-1.png" alt="Onboarding checklist on the home screen"></div>
-          <div class="design-card-cap">
-            <p class="design-card-title">Non-Intrusive</p>
-            <p class="design-card-desc">Onboarding is built into the home screen. Do it anytime.</p>
-          </div>
-        </div>
-        <div class="design-card">
-          <div class="design-card-vis"><img loading="lazy" src="images/ml/design/onb-2.png" alt="Onboarding tasks in any order"></div>
-          <div class="design-card-cap">
-            <p class="design-card-title">Motivating</p>
-            <p class="design-card-desc">Complete tasks in any order while exploring the app.</p>
-          </div>
-        </div>
-        <div class="design-card">
-          <div class="design-card-vis"><img loading="lazy" src="images/ml/design/onb-3.png" alt="Onboarding completion reward screen"></div>
-          <div class="design-card-cap">
-            <p class="design-card-title">Rewarding</p>
-            <p class="design-card-desc">Finish to unlock 7 days of Premium access.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Guided exercise discovery -->
-    <div class="design-block">
-      <div class="design-hd reveal">
-        <h2 class="heading-lg">Guided exercise discovery.</h2>
-      </div>
-      <div class="design-showcase is-flipped">
-        <div class="design-showcase-phone reveal">
-          <img loading="lazy" src="images/ml/design/phone-explore.png" alt="Meta Learn exercises screen" />
-        </div>
-        <div class="reveal d1">
-          <h3 class="design-feat-h3">Reach your goal with endless content</h3>
-          <div class="design-feat">
-            <p class="design-feat-title">Programs</p>
-            <p class="design-feat-desc">Structured sessions to build long-term habits.</p>
-          </div>
-          <div class="design-feat">
-            <p class="design-feat-title">Curated Collections</p>
-            <p class="design-feat-desc">Explore themed content across formats you prefer.</p>
-          </div>
-          <div class="design-feat">
-            <p class="design-feat-title">Find What Works for You</p>
-            <p class="design-feat-desc">Use tabs, search, or favorites to quickly access what you need.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Training mental fitness -->
-    <div class="design-block">
-      <div class="design-hd reveal">
-        <h2 class="heading-lg">Training mental fitness.</h2>
-      </div>
-      <div class="design-cards reveal">
-        <div class="design-card">
-          <div class="design-card-vis is-inset"><img loading="lazy" src="images/ml/design/ex-1.png" alt="Pre-exercise setup screen"></div>
-          <div class="design-card-cap">
-            <p class="design-card-title">Pre-Exercise</p>
-            <p class="design-card-desc">Set your intention and duration before you begin.</p>
-          </div>
-        </div>
-        <div class="design-card">
-          <div class="design-card-vis is-inset"><img loading="lazy" src="images/ml/design/ex-2.png" alt="Breathing exercise in progress"></div>
-          <div class="design-card-cap">
-            <p class="design-card-title">During Exercise</p>
-            <p class="design-card-desc">A calm, focused player keeps you in the moment.</p>
-          </div>
-        </div>
-        <div class="design-card">
-          <div class="design-card-vis is-inset"><img loading="lazy" src="images/ml/design/ex-3.png" alt="Exercise complete summary screen"></div>
-          <div class="design-card-cap">
-            <p class="design-card-title">After Exercise</p>
-            <p class="design-card-desc">Reflect, track your streak, and see your progress grow.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
+    <div class="explore-fade"></div>
   </section>
 
   <!-- ─── SCALE ─── -->
   <section class="scale" id="scale">
     <div class="scale-inner">
       <div class="reveal">
-        <p class="label" style="color:#6e6e73">Collab</p>
+        <p class="label">Collab</p>
         <h2 class="heading-lg">Built to scale.</h2>
       </div>
       <div class="scale-grid">
@@ -1075,11 +1300,15 @@
             <p class="scale-title">Carry your system everywhere.</p>
             <p class="scale-text">80 components, fully documented in Figma. The dev team ships new features 50% faster since handoff.</p>
           </div>
-          <div class="scale-vis" style="background:#e8e8f4">
-            <!-- placeholder shapes — swap for design-system screenshot -->
-            <div class="sv" style="width:180px;height:180px;background:#c4c4e8;top:-30px;right:-30px;opacity:.7"></div>
-            <div class="sv" style="width:120px;height:120px;background:#a0a0d8;bottom:20px;right:60px;opacity:.6"></div>
-            <div class="sv" style="width:80px;height:80px;background:#8080c8;bottom:70px;right:140px;opacity:.5"></div>
+          <div class="scale-vis scale-system">
+            <div class="scale-token scale-token-lg">Aa</div>
+            <div class="scale-chip-row"><span>Primary</span><span>Rest</span><span>Active</span></div>
+            <div class="scale-component-card">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="scale-component-list">
+              <span></span><span></span><span></span>
+            </div>
           </div>
         </div>
         <div class="scale-card reveal d1">
@@ -1088,11 +1317,13 @@
             <p class="scale-title">App Store ready.</p>
             <p class="scale-text">Passed Apple review on first submission. Helped close a seed funding round with a refreshed investor deck.</p>
           </div>
-          <div class="scale-vis" style="background:#e8f4ec">
-            <!-- placeholder shapes -->
-            <div class="sv" style="width:160px;height:160px;background:#b8dfc4;top:-20px;right:-20px;opacity:.7"></div>
-            <div class="sv" style="width:100px;height:100px;background:#80c89a;bottom:30px;right:50px;opacity:.6"></div>
-            <div class="sv" style="width:70px;height:70px;background:#50b070;bottom:80px;right:120px;opacity:.5"></div>
+          <div class="scale-vis scale-handoff">
+            <div class="handoff-window">
+              <div class="handoff-bar"><span></span><span></span><span></span></div>
+              <div class="handoff-row"><strong>Ready for review</strong><span>Passed</span></div>
+              <div class="handoff-row"><strong>Component specs</strong><span>80/80</span></div>
+              <div class="handoff-row"><strong>Investor deck</strong><span>Updated</span></div>
+            </div>
           </div>
         </div>
       </div>
@@ -1102,7 +1333,8 @@
   <!-- ─── SOLUTION FEATURES ─── -->
   <section class="features">
     <div class="features-inner">
-      <div class="reveal">
+      <div class="feat-wrap">
+      <div class="feat-wrap-hd reveal">
         <p class="label">Outcomes</p>
         <h2 class="heading-lg">The numbers don't lie.</h2>
       </div>
@@ -1113,12 +1345,12 @@
           <div class="feat-copy">
             <p class="feat-copy-label">SUS usability score<br><strong>84 pts</strong> — up from 52</p>
           </div>
-          <div class="feat-vis" style="background:#eef0ff">
+          <div class="feat-vis">
             <!-- overlapping soft circles -->
-            <div class="s" style="width:180px;height:180px;background:#c7cdff;bottom:-50px;left:-40px;opacity:.7"></div>
-            <div class="s" style="width:120px;height:120px;background:#a5aef9;bottom:10px;left:60px;opacity:.6"></div>
-            <div class="s" style="width:80px;height:80px;background:#7c89f4;bottom:60px;left:120px;opacity:.55"></div>
-            <div class="s" style="width:100px;height:100px;background:#dde0ff;bottom:-20px;right:-20px;opacity:.8"></div>
+            <div class="s" style="width:180px;height:180px;background:#e8e8ed;bottom:-50px;left:-40px;opacity:.86"></div>
+            <div class="s" style="width:120px;height:120px;background:#d6d6dc;bottom:10px;left:60px;opacity:.7"></div>
+            <div class="s" style="width:80px;height:80px;background:#c7c7cc;bottom:60px;left:120px;opacity:.58"></div>
+            <div class="s" style="width:100px;height:100px;background:#f5f5f7;bottom:-20px;right:-20px;opacity:1"></div>
           </div>
         </div>
 
@@ -1127,12 +1359,12 @@
           <div class="feat-copy">
             <p class="feat-copy-label">Task completion<br><strong>2.1× faster</strong> across 5 flows</p>
           </div>
-          <div class="feat-vis" style="background:#fff0e8">
+          <div class="feat-vis">
             <!-- warm oval forms -->
-            <div class="s" style="width:200px;height:140px;background:#ffd0ad;bottom:-30px;right:-50px;opacity:.7"></div>
-            <div class="s" style="width:110px;height:110px;background:#ffb97a;bottom:20px;left:20px;opacity:.55"></div>
-            <div class="s" style="width:70px;height:70px;background:#ff9f4a;bottom:70px;left:80px;opacity:.5"></div>
-            <div class="s" style="width:90px;height:60px;background:#ffe0c4;bottom:0;left:-10px;opacity:.8"></div>
+            <div class="s" style="width:200px;height:140px;background:#e8e8ed;bottom:-30px;right:-50px;opacity:.86"></div>
+            <div class="s" style="width:110px;height:110px;background:#d6d6dc;bottom:20px;left:20px;opacity:.68"></div>
+            <div class="s" style="width:70px;height:70px;background:#c7c7cc;bottom:70px;left:80px;opacity:.55"></div>
+            <div class="s" style="width:90px;height:60px;background:#f5f5f7;bottom:0;left:-10px;opacity:1"></div>
           </div>
         </div>
 
@@ -1154,12 +1386,12 @@
           <div class="feat-copy">
             <p class="feat-copy-label">Time to first action<br><strong>12 s</strong> from cold launch</p>
           </div>
-          <div class="feat-vis" style="background:#e8f8f0">
+          <div class="feat-vis">
             <!-- fresh green blobs -->
-            <div class="s" style="width:160px;height:160px;background:#b3eacb;bottom:-40px;right:-30px;opacity:.7"></div>
-            <div class="s" style="width:100px;height:100px;background:#7dd5a8;bottom:20px;left:10px;opacity:.55"></div>
-            <div class="s" style="width:65px;height:65px;background:#4cbf83;bottom:70px;left:70px;opacity:.5"></div>
-            <div class="s" style="width:120px;height:80px;background:#d4f5e5;bottom:-10px;left:-20px;opacity:.75"></div>
+            <div class="s" style="width:160px;height:160px;background:#e8e8ed;bottom:-40px;right:-30px;opacity:.86"></div>
+            <div class="s" style="width:100px;height:100px;background:#d6d6dc;bottom:20px;left:10px;opacity:.68"></div>
+            <div class="s" style="width:65px;height:65px;background:#c7c7cc;bottom:70px;left:70px;opacity:.55"></div>
+            <div class="s" style="width:120px;height:80px;background:#f5f5f7;bottom:-10px;left:-20px;opacity:1"></div>
           </div>
         </div>
 
@@ -1174,81 +1406,45 @@
         </div>
 
       </div>
+      </div>
     </div>
   </section>
 
   <!-- ─── REFLECTIONS ─── -->
   <section class="reflections" id="reflections">
     <div class="reflections-inner">
-      <div class="reveal">
-        <p class="label">Reflection</p>
-        <h2 class="heading-lg">What I learned.</h2>
+      <div class="refl-hd reveal">
+        <div>
+          <p class="label">Reflection</p>
+          <h2 class="heading-lg">What I learned.</h2>
+        </div>
       </div>
-      <div class="refl-2col">
 
-        <!-- LEFT: compact numbered learnings -->
-        <div class="refl-list reveal">
-          <div class="refl-item">
-            <span class="refl-item-num">01</span>
-            <div class="refl-item-body">
-              <p class="refl-item-label">Navigation</p>
-              <p class="refl-item-title">Structure is invisible — until it breaks.</p>
+      <div class="refl-panel reveal d1">
+        <div class="refl-takeaway">
+          <p class="refl-takeaway-label">Main takeaway</p>
+          <p class="refl-takeaway-text">The interface was never the first problem. The path was.</p>
+          <p class="refl-takeaway-note">Once the product had a clear route to value, the visual system had something meaningful to support. Next, I would deepen the progress model around adaptive paths and richer habit cues.</p>
+        </div>
+
+        <div class="refl-lessons">
+          <div class="refl-lesson">
+            <span class="refl-lesson-num">01</span>
+            <div>
+              <p class="refl-lesson-label">Navigation</p>
+              <p class="refl-lesson-title">Structure is invisible until it breaks.</p>
+              <p class="refl-lesson-body">Users did not describe the app as an information architecture problem. They described it as feeling stuck, unsure, or unmotivated.</p>
             </div>
           </div>
-          <div class="refl-item">
-            <span class="refl-item-num">02</span>
-            <div class="refl-item-body">
-              <p class="refl-item-label">Research</p>
-              <p class="refl-item-title">Data confirmed what users couldn't articulate.</p>
-            </div>
-          </div>
-          <div class="refl-item">
-            <span class="refl-item-num">03</span>
-            <div class="refl-item-body">
-              <p class="refl-item-label">Onboarding</p>
-              <p class="refl-item-title">Ask less, deliver faster.</p>
-            </div>
-          </div>
-          <div class="refl-item">
-            <span class="refl-item-num">04</span>
-            <div class="refl-item-body">
-              <p class="refl-item-label">Design systems</p>
-              <p class="refl-item-title">The 80-component library paid off immediately.</p>
+          <div class="refl-lesson">
+            <span class="refl-lesson-num">02</span>
+            <div>
+              <p class="refl-lesson-label">Research</p>
+              <p class="refl-lesson-title">The numbers made the feeling actionable.</p>
+              <p class="refl-lesson-body">Testing and analytics turned a vague sense of friction into specific decisions: fewer steps, clearer entry points, and visible progress.</p>
             </div>
           </div>
         </div>
-
-        <!-- RIGHT: dark next-steps card -->
-        <div class="refl-next reveal d1">
-          <div class="refl-next-hd">
-            <p class="refl-next-eyebrow">Next steps</p>
-            <p class="refl-next-heading">Where this goes next.</p>
-          </div>
-          <div class="refl-next-steps">
-            <div class="refl-step">
-              <span class="refl-step-num">01</span>
-              <div class="refl-step-content">
-                <p class="refl-step-title">Personalised learning paths</p>
-                <p class="refl-step-body">Use check-in data to surface adaptive sequences — moving from a catalogue to a coach.</p>
-              </div>
-            </div>
-            <div class="refl-step">
-              <span class="refl-step-num">02</span>
-              <div class="refl-step-content">
-                <p class="refl-step-title">Progress & streak system</p>
-                <p class="refl-step-body">A richer streak and milestone model would close the retention loop — habit cues that reward consistency.</p>
-              </div>
-            </div>
-            <div class="refl-step">
-              <span class="refl-step-num">03</span>
-              <div class="refl-step-content">
-                <p class="refl-step-title">B2B / team dashboard</p>
-                <p class="refl-step-body">A team-level view — mood trends, completion rates, programme adoption — is the logical next unlock.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
       </div>
     </div>
   </section>
@@ -1257,43 +1453,13 @@
   <section class="cs-foot">
     <div class="cs-foot-hd reveal">
       <p class="cs-foot-label">More work</p>
-      <h2 class="heading-lg">See what else<br>I've been building.</h2>
+      <h2 class="heading-lg">See what else I've been building.</h2>
     </div>
 
-    <!-- Feature-card rail (Apple "Get to know" style) -->
-    <div class="cs-foot-rail" id="ncRail">
-
-      <!-- Bershka — replace nc-img background with real cover image when ready -->
-      <a href="#" class="nc reveal">
-        <div class="nc-img" style="background:linear-gradient(160deg,#1a0a0a 0%,#3d1212 60%,#2a0808 100%)"></div>
-        <div class="nc-copy">
-          <p class="nc-label">Fashion Retail · UX Design</p>
-          <p class="nc-title">Bershka</p>
-          <span class="nc-tag">Case study</span>
-        </div>
-      </a>
-
-      <!-- Sheer -->
-      <a href="#" class="nc reveal d1">
-        <div class="nc-img" style="background:linear-gradient(160deg,#0a0a12 0%,#18182e 60%,#0d0d1f 100%)"></div>
-        <div class="nc-copy">
-          <p class="nc-label">SaaS · Product Design</p>
-          <p class="nc-title">Sheer</p>
-          <span class="nc-tag">Case study</span>
-        </div>
-      </a>
-
-      <!-- Grundfos -->
-      <a href="#" class="nc reveal d2">
-        <div class="nc-img" style="background:linear-gradient(160deg,#061018 0%,#0d2030 60%,#081520 100%)"></div>
-        <div class="nc-copy">
-          <p class="nc-label">Industrial · Design Systems</p>
-          <p class="nc-title">Grundfos</p>
-          <span class="nc-tag">Case study</span>
-        </div>
-      </a>
-
-    </div>
+    <!-- Feature-card rail (Apple "Get to know" style) — populated at runtime
+         from index.html's work cards by components.js, so editing a case
+         there (title, tags, images) updates this rail automatically. -->
+    <div class="cs-foot-rail" id="ncRail"></div>
 
     <!-- Paddle nav (bottom-right, Apple-style) -->
     <div class="cs-foot-nav">
@@ -1319,7 +1485,7 @@
     </div>
   </div>
 
-  <script src="components.js"></script>
+  <script src="components.js?v=6"></script>
   <script>
 
     // Scroll reveal
@@ -1327,6 +1493,107 @@
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+    // ─── Goals scroll moment ───
+    const goalsSection = document.getElementById('values');
+    const goalCloud = document.getElementById('goalsMoment');
+    const goalBubbles = goalCloud ? [...goalCloud.querySelectorAll('.goal-bubble')] : [];
+    const goalsReduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let goalsRAF = null;
+    const clamp01 = v => Math.max(0, Math.min(1, v));
+    const easeScroll = t => 1 - Math.pow(1 - t, 3);
+    function renderGoals() {
+      goalsRAF = null;
+      if (!goalsSection || !goalBubbles.length) return;
+      const rect = goalsSection.getBoundingClientRect();
+      const total = Math.max(1, goalsSection.offsetHeight - innerHeight);
+      const raw = goalsReduced ? 1 : clamp01(-rect.top / total);
+      const grouped = easeScroll(clamp01(raw / 0.68));
+      const vision = clamp01((raw - 0.66) / 0.24);
+      const fadeIn = clamp01((innerHeight * 0.82 - rect.top) / (innerHeight * 0.46));
+      const fadeOut = clamp01((rect.bottom - innerHeight * 0.18) / (innerHeight * 0.46));
+      const bg = goalsReduced ? 1 : Math.min(fadeIn, fadeOut);
+      goalsSection.style.setProperty('--goal-vision', vision.toFixed(3));
+      goalsSection.style.setProperty('--goal-bg', bg.toFixed(3));
+      const cloudRect = goalCloud.getBoundingClientRect();
+      const vw = cloudRect.width / 100;
+      const vh = cloudRect.height / 100;
+      goalBubbles.forEach(bubble => {
+        const x0 = Number(bubble.dataset.x0 || 0) * vw;
+        const y0 = Number(bubble.dataset.y0 || 0) * vh;
+        const x1 = Number(bubble.dataset.x1 || 0) * vw;
+        const y1 = Number(bubble.dataset.y1 || 0) * vh;
+        const s0 = Number(bubble.dataset.s0 || 1);
+        const s1 = Number(bubble.dataset.s1 || 1);
+        const x = x0 + (x1 - x0) * grouped;
+        const y = y0 + (y1 - y0) * grouped;
+        const scale = s0 + (s1 - s0) * grouped;
+        const groupedOpacity = bubble.classList.contains('is-main') ? 1 : 0.58;
+        const baseOpacity = 1 + (groupedOpacity - 1) * grouped;
+        const finalOpacity = Math.max(0.12, baseOpacity * (1 - vision * 0.78));
+        bubble.style.setProperty('--tx', `${x.toFixed(1)}px`);
+        bubble.style.setProperty('--ty', `${y.toFixed(1)}px`);
+        bubble.style.setProperty('--sc', scale.toFixed(3));
+        bubble.style.setProperty('--op', finalOpacity.toFixed(3));
+      });
+    }
+    function queueGoals() {
+      if (!goalsRAF) goalsRAF = requestAnimationFrame(renderGoals);
+    }
+    renderGoals();
+    window.addEventListener('scroll', queueGoals, { passive: true });
+    window.addEventListener('resize', queueGoals);
+
+    // ─── Explore viewer (feature pills swap the phone screenshot) ───
+    const exploreImg = document.getElementById('exploreImg');
+    const explorePhone = document.querySelector('.explore-phone');
+    const exploreGhosts = [...document.querySelectorAll('.explore-ghost img')];
+    const explorePills = [...document.querySelectorAll('.explore-pill')];
+    const EXPLORE_DUR = 6200;
+    let exploreIdx = 0, exploreTimer = null, exploreVisible = true, exploreReduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function setExplore(i, userInitiated = false) {
+      exploreIdx = (i + explorePills.length) % explorePills.length;
+      const pill = explorePills[exploreIdx];
+      if (!pill || pill.classList.contains('is-active') && userInitiated) return;
+      explorePills.forEach(p => {
+        p.classList.remove('is-active');
+        const fill = p.querySelector('.explore-progress span');
+        if (fill) { fill.style.animation = 'none'; void fill.offsetWidth; fill.style.animation = ''; }
+      });
+      pill.classList.add('is-active');
+      explorePhone.classList.add('is-changing');
+      const nextSrc = pill.dataset.img;
+      const nextAlt = pill.dataset.alt || 'Meta Learn screen preview';
+      setTimeout(() => {
+        exploreImg.src = nextSrc;
+        exploreImg.alt = nextAlt;
+        const decoded = exploreImg.decode ? exploreImg.decode() : Promise.resolve();
+        decoded.catch(() => {}).finally(() => {
+          explorePhone.classList.remove('is-changing');
+        });
+        exploreGhosts.forEach((img, gi) => {
+          const source = explorePills[(exploreIdx + gi + 1) % explorePills.length]?.dataset.img;
+          if (source) img.src = source;
+        });
+      }, 180);
+      scheduleExplore();
+    }
+    function scheduleExplore() {
+      clearTimeout(exploreTimer);
+      if (exploreReduced || !exploreVisible) return;
+      exploreTimer = setTimeout(() => setExplore(exploreIdx + 1), EXPLORE_DUR);
+    }
+    explorePills.forEach((pill, i) => {
+      pill.addEventListener('click', () => setExplore(i, true));
+    });
+    new IntersectionObserver(es => {
+      es.forEach(e => {
+        exploreVisible = e.isIntersecting;
+        if (exploreVisible) scheduleExplore();
+        else clearTimeout(exploreTimer);
+      });
+    }, { threshold: 0.35 }).observe(document.getElementById('explore'));
+    scheduleExplore();
 
     // ─── Highlights gallery (autoplay + timed dot-nav, Apple-style) ───
     const hlTrack    = document.getElementById('hlTrack');
@@ -1484,14 +1751,12 @@
     const baClip  = document.getElementById('baClip');
     const baLine  = document.getElementById('baLine');
     const baKnob  = document.getElementById('baKnob');
-    const baLblA  = document.getElementById('baLabelA');
     let dragging = false;
     function setPct(pct) {
       pct = Math.max(5, Math.min(95, pct));
       baClip.style.width = pct + '%';
       baLine.style.left  = pct + '%';
       baKnob.style.left  = pct + '%';
-      baLblA.style.left  = `calc(${pct}% + 8px)`;
     }
     setPct(50);
     function fromEvent(e) {
@@ -1560,20 +1825,20 @@
     // PLACEHOLDER copy — Paul to replace with the real write-ups + data per method.
     // Order matches the .r-card order in the markup.
     const rData = [
-      { label: 'Usability testing', title: 'Finding what to do next was a dead end.',
-        body: '<p>In moderated sessions, users repeatedly <em>hit navigation walls</em> when trying to discover new exercises. The content existed — the path to it didn’t.</p><p>Most participants gave up after two or three taps, the moment a screen offered <em>no obvious next step</em>.</p>' },
-      { label: 'Analytics', title: 'Progress was invisible.',
-        body: '<p>Behavioural data showed users had <em>no way to tell whether they were improving</em>. Sessions rarely surfaced streaks, history, or outcomes.</p><p>With no visible anchor, motivation dropped and <em>repeat sessions fell off sharply</em> in the first week.</p>' },
-      { label: 'Heuristic evaluation', title: 'The best features were buried.',
-        body: '<p>An expert review found the app’s most valuable tools sat <em>two or three levels deep</em>, behind unlabelled menus.</p><p>High-value, high-frequency actions broke the principle of <em>visibility and easy access</em>.</p>' },
-      { label: 'User surveys', title: 'Onboarding created drop-off before value.',
-        body: '<p>The original <em>11-step setup</em> asked for commitment long before delivering anything worth committing to.</p><p>Survey responses showed <em>68% of new users quit before finishing</em> onboarding.</p>' },
+      { label: 'Usability testing', title: 'Users could not find the next step.',
+        body: '<p>In moderated sessions, users struggled to discover new exercises even when the content was available.</p><p>The main issue was not content quality. It was the lack of an obvious path forward after the first few taps.</p>' },
+      { label: 'Analytics', title: 'Progress had no visible anchor.',
+        body: '<p>Behavioural data showed that sessions rarely surfaced streaks, history, or outcomes.</p><p>Without visible feedback, users had little reason to connect one session to the next.</p>' },
+      { label: 'Heuristic evaluation', title: 'High-value actions sat too deep.',
+        body: '<p>The expert review found that core tools were often hidden behind menus or low-priority screens.</p><p>Actions users needed frequently were not visible enough to support quick use.</p>' },
+      { label: 'User surveys', title: 'Onboarding asked too much too soon.',
+        body: '<p>The original 11-step setup asked users for commitment before they had experienced value.</p><p>Survey responses showed that 68% of new users quit before finishing onboarding.</p>' },
       { label: 'User interviews', title: 'Professionals wanted quick wins.',
-        body: '<p>Time-pressed professionals said they came for <em>fast, science-backed sessions</em> they could fit between meetings.</p><p>Instead, the features that delivered those wins were <em>buried in the menus</em> — so they bounced.</p>' },
-      { label: 'SUS testing + benchmarking', title: 'Usability scored in the “poor” band.',
-        body: '<p>A System Usability Scale study put the original app at <em>52 points — well below the 68-point industry average</em>.</p><p>That placed the experience squarely in the <em>“poor” range</em>, validating the qualitative findings with a hard number.</p>' },
-      { label: 'Desk research', title: 'Habits are built on cues and rewards.',
-        body: '<p>A review of the cognitive-training literature was consistent: lasting engagement <em>thrives on habit cues, streaks, and rewards</em>.</p><p>The original app offered <em>none of these reinforcement loops</em>, leaving retention to chance.</p>' }
+        body: '<p>Time-pressed professionals wanted fast, science-backed sessions they could fit between meetings.</p><p>The redesign needed to make those quick wins visible from the start.</p>' },
+      { label: 'SUS testing + benchmarking', title: 'Usability benchmarked poorly.',
+        body: '<p>A System Usability Scale study put the original app at 52 points, below the 68-point industry benchmark.</p><p>That score validated the qualitative findings with a clear baseline for improvement.</p>' },
+      { label: 'Desk research', title: 'Habit loops were missing.',
+        body: '<p>A review of cognitive-training literature pointed to cues, streaks, and rewards as important retention supports.</p><p>The original app had content, but it lacked the reinforcement loops that help users return.</p>' }
     ];
     const rModal  = document.getElementById('rModal');
     const rmLabel = document.getElementById('rmLabel');

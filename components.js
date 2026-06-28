@@ -79,9 +79,9 @@
   /* ── NAV ── */
   document.body.insertAdjacentHTML('afterbegin', `
     <header class="topbar">
-      <a href="/" class="topbar-name">it's Paul Bader</a>
+      <a href="./" class="topbar-name">it's Paul Bader</a>
       <ul class="topbar-links">
-        <li><a href="/#work">Work</a></li>
+        <li><a href="./#work">Work</a></li>
         <li><a href="mailto:hello@itspaulbader.xyz">Contact</a></li>
       </ul>
     </header>
@@ -133,6 +133,107 @@
     });
   }, { threshold: 0.05 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  /* ── MORE WORK RAIL (case-study pages) ──
+     Pulls cards live from index.html's work section instead of hardcoding
+     copy/images per page, so editing a case there keeps every case page in sync. */
+  const ncRail = document.getElementById('ncRail');
+  if (ncRail) {
+    const currentCase = document.body.dataset.case || '';
+    const fallbackCards = [
+      {
+        caseId: 'bershka',
+        co: 'Bershka',
+        titleHTML: 'A smoother<br>self-checkout',
+        desc: 'Redesigning the in-store experience to reduce friction and speed up payment.',
+        desktopImg: 'images/bershka-desk.png',
+        mobileImg: 'images/bershka-desk-mobile2.png',
+        href: '#',
+        iconHTML: '<img src="images/bershka-icon.jpg" alt="Bershka logo">'
+      },
+      {
+        caseId: 'sheer',
+        co: 'Sheer',
+        titleHTML: 'Quicker & better<br>onboarding',
+        desc: 'Creating a seamless entry point so users could start strong without friction.',
+        desktopImg: 'images/sheer-desktop.png',
+        mobileImg: 'images/sheer-mobile.png',
+        href: '#',
+        iconHTML: '<img src="images/sheer-icon.jpeg" alt="Sheer logo">'
+      },
+      {
+        caseId: 'meta-learn',
+        co: 'Meta Learn',
+        titleHTML: 'Mental fitness,<br>made intuitive',
+        desc: 'Meta Learn is a mobile app for stress relief, focus, and emotional resilience.',
+        desktopImg: 'images/meta-learn-hero.png',
+        mobileImg: 'images/ml-mobile.png',
+        href: 'meta-learn.html',
+        iconHTML: 'ML',
+        iconStyle: 'background:#dbeafe;color:#1d4ed8;'
+      },
+      {
+        caseId: 'grundfos',
+        co: 'Grundfos',
+        titleHTML: 'From print to<br>PowerApp',
+        desc: 'UX-driven internal tool used by 200+, replacing 80% of printed material.',
+        desktopImg: 'images/grundfos-hero.png',
+        mobileImg: 'images/grundfos-mobile.png',
+        href: '#',
+        iconHTML: '<img src="images/grundfos-icon.png" alt="Grundfos logo">'
+      }
+    ];
+
+    function renderCards(cards) {
+      ncRail.innerHTML = '';
+      cards
+        .filter(card => card.caseId !== currentCase)
+        .forEach((card, i) => {
+          const a = document.createElement('a');
+          a.href = card.href || '#';
+          a.className = 'nc';
+          a.innerHTML = `
+            <div class="nc-img" style="--nc-img-desktop:url('${card.desktopImg}'); --nc-img-mobile:url('${card.mobileImg || card.desktopImg}')"></div>
+            <div class="nc-copy">
+              <div class="nc-meta">
+                <span class="nc-icon"></span>
+                <span class="nc-co">${card.co}</span>
+              </div>
+              <p class="nc-title">${card.titleHTML}</p>
+              <p class="nc-desc">${card.desc}</p>
+            </div>`;
+          const ncIcon = a.querySelector('.nc-icon');
+          ncIcon.innerHTML = card.iconHTML || '';
+          if (card.iconStyle) ncIcon.setAttribute('style', card.iconStyle);
+          ncRail.appendChild(a);
+        });
+    }
+
+    fetch('index.html')
+      .then(r => {
+        if (!r.ok) throw new Error('index.html unavailable');
+        return r.text();
+      })
+      .then(html => {
+        const doc = new DOMParser().parseFromString(html, 'text/html');
+        const cards = [...doc.querySelectorAll('.card-featured[data-case]')].map(card => {
+          const iconEl = card.querySelector('.card-icon');
+          return {
+            caseId: card.dataset.case,
+            co: card.querySelector('.card-co')?.textContent.trim() || '',
+            titleHTML: card.querySelector('.card-title')?.innerHTML || '',
+            desc: card.querySelector('.card-desc')?.textContent.trim() || '',
+            desktopImg: card.querySelector('.card-visual img')?.getAttribute('src') || '',
+            mobileImg: card.querySelector('.card-img-below img')?.getAttribute('src') || card.querySelector('.card-visual img')?.getAttribute('src') || '',
+            href: card.querySelector('.btn-soon') ? '#' : (card.querySelector('.card-cta a')?.getAttribute('href') || '#'),
+            iconHTML: iconEl?.innerHTML || '',
+            iconStyle: iconEl?.getAttribute('style') || ''
+          };
+        });
+        renderCards(cards.length ? cards : fallbackCards);
+      })
+      .catch(() => renderCards(fallbackCards));
+  }
 
   /* ── FOOTER WORDMARK PARALLAX ── */
   const wordmark = document.querySelector('.footer-wordmark');

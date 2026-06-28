@@ -170,8 +170,13 @@
       .card-violet.card-featured .card-visual { display: none; }
       .card-violet.card-featured { min-height: 100svh; }
       .card-violet.card-featured .card-body { padding-bottom: 36px !important; }
-      /* wall.png bg — keep white text on tablet/mobile too */
-      .card-featured { min-height: auto; }
+      /* Grundfos: same full-bleed bg treatment as Bershka on mobile/tablet */
+      .grundfos-bg { background-image: url('images/grundfos-mobile.png'); background-size: cover !important; background-position: center center !important; }
+      .card-ink.card-featured .card-img-below,
+      .card-ink.card-featured .card-visual { display: none; }
+      .card-ink.card-featured { min-height: 100svh; }
+      /* Every featured case fills the screen on mobile/tablet, not just Bershka/Sheer/Grundfos */
+      .card-featured { min-height: 100svh; }
       .card-featured .card-body { padding-bottom: 0 !important; }
       .card-img-below {
         position: static;
@@ -375,30 +380,52 @@
     .ht-center { left: 50%; transform: translateX(-50%); text-align: center; max-width: min(500px, 55%); }
     .ht-right  { right: 0; left: auto; text-align: right;  max-width: min(500px, 55%); }
     .hl-card-inner { display: block; opacity: 0; will-change: opacity, transform; }
-    .hl-controls { display: flex; align-items: center; justify-content: center; gap: 18px; margin: 32px auto 0; padding-bottom: 72px; }
-    .hl-play {
-      flex: 0 0 auto; width: 32px; height: 32px; border-radius: 50%; border: none;
-      background: rgba(0,0,0,0.05); cursor: pointer;
-      display: flex; align-items: center; justify-content: center; transition: background 0.2s;
+    .hl-controls {
+      display: flex; align-items: center; justify-content: center; gap: 14px;
+      width: max-content; margin: 32px auto 0; padding: 0 14px 72px;
+      pointer-events: none;
     }
-    .hl-play:hover { background: rgba(0,0,0,0.09); }
-    .hl-play svg { width: 15px; height: 15px; fill: #1d1d1f; }
+    .hl-dot-shell {
+      height: 54px; padding: 0 22px; border-radius: 999px;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(232,232,237,0.72);
+      backdrop-filter: saturate(180%) blur(22px);
+      -webkit-backdrop-filter: saturate(180%) blur(22px);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.42), 0 14px 40px rgba(0,0,0,0.08);
+      pointer-events: auto;
+    }
+    .hl-play {
+      flex: 0 0 auto; width: 54px; height: 54px; border-radius: 50%; border: none;
+      background: rgba(232,232,237,0.72); cursor: pointer;
+      display: flex; align-items: center; justify-content: center; transition: background 0.2s;
+      backdrop-filter: saturate(180%) blur(22px);
+      -webkit-backdrop-filter: saturate(180%) blur(22px);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.42), 0 14px 40px rgba(0,0,0,0.08);
+      pointer-events: auto;
+    }
+    .hl-play:hover { background: rgba(218,218,224,0.82); }
+    .hl-play svg { width: 19px; height: 19px; fill: #1d1d1f; }
     .hl-ic-play { display: none; }
     .hl-controls.paused .hl-ic-pause { display: none; }
     .hl-controls.paused .hl-ic-play  { display: block; }
-    .hl-dots { display: flex; align-items: center; gap: 8px; }
+    .hl-dots { display: flex; align-items: center; gap: 14px; }
     .hl-dot {
       position: relative; width: 8px; height: 8px; padding: 0; border: none;
-      border-radius: 50%; background: rgba(0,0,0,0.16); cursor: pointer; overflow: hidden;
+      border-radius: 50%; background: rgba(29,29,31,0.58); cursor: pointer; overflow: hidden;
       transition: width 0.45s cubic-bezier(0.4,0,0.2,1), border-radius 0.45s;
     }
-    .hl-dot:hover { background: rgba(0,0,0,0.28); }
-    .hl-dot.active { width: 34px; border-radius: 5px; }
+    .hl-dot:hover { background: rgba(29,29,31,0.78); }
+    .hl-dot.active { width: 56px; border-radius: 999px; background: rgba(29,29,31,0.18); }
     .hl-fill { position: absolute; inset: 0; width: 0; background: #1d1d1f; border-radius: inherit; }
     @keyframes hlFill { from { width: 0; } to { width: 100%; } }
     @media (max-width: 734px) {
       .hl-card { height: 420px; border-radius: 18px; }
       .hl-card-text { padding: 28px 28px; font-size: clamp(18px, 5vw, 22px); }
+      .hl-controls { gap: 10px; padding: 0 8px 56px; }
+      .hl-dot-shell { height: 46px; padding: 0 17px; }
+      .hl-play { width: 46px; height: 46px; }
+      .hl-dots { gap: 11px; }
+      .hl-dot.active { width: 46px; }
     }
 
     /* ─── STORY HERO (new concept) ─── */
@@ -480,7 +507,7 @@
     .story-card.wide { width: 560px; }
 
     .sc-visual {
-      height: 400px;
+      height: 500px;
       border-radius: 18px;
       overflow: hidden;
       position: relative;
@@ -497,29 +524,74 @@
 
     /* ── card 1: profile — warm neutral ── */
     .sc-profile .sc-visual {
-      background: linear-gradient(160deg, #dedad5 0%, #cac5be 100%);
-      display: flex; align-items: flex-end; justify-content: center;
+      background: #dedad5;
     }
-    .sc-profile .sc-photo-placeholder { width: 68%; opacity: 0.22; }
+    .sc-profile .sc-visual img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
 
-    /* ── card 2: experience — dark ── */
+    /* ── card 2: experience — compact UI list ── */
     .sc-exp .sc-visual {
-      background: #111;
-      display: flex; flex-direction: column; justify-content: flex-end; padding: 32px;
+      background:
+        radial-gradient(circle at 22% 12%, rgba(255,255,255,0.98), rgba(255,255,255,0) 34%),
+        linear-gradient(155deg, #f7f7f9 0%, #e9eaee 100%);
+      display: flex; flex-direction: column; justify-content: flex-start;
+      padding: 54px 16px 0;
     }
-    .sc-exp .sc-num {
-      font-size: 96px; font-weight: 700; letter-spacing: -0.06em;
-      line-height: 0.88; color: white;
+    .exp-title {
+      position: relative; z-index: 1;
+      margin: 0 0 36px;
+      text-align: center;
+      color: #050505;
+      font-size: 30px; line-height: 1.04; font-weight: 700; letter-spacing: -0.05em;
     }
-    .sc-exp .sc-unit {
-      font-size: 18px; font-weight: 400; color: rgba(255,255,255,0.4);
-      margin-top: 10px; letter-spacing: -0.02em;
+    .exp-list {
+      display: flex; flex-direction: column; gap: 12px;
+      height: calc(100% - 92px);
+      overflow: visible;
+      clip-path: inset(0 -40px 0 -40px);
+      position: relative; z-index: 1;
+      padding: 0;
+    }
+    .exp-item {
+      min-height: 62px;
+      padding: 10px 10px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.74);
+      border: 1px solid rgba(255,255,255,0.82);
+      backdrop-filter: saturate(180%) blur(24px);
+      -webkit-backdrop-filter: saturate(180%) blur(24px);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.88), 0 18px 38px rgba(29,29,31,0.06);
+      display: grid; grid-template-columns: 40px minmax(0, 1fr) auto; gap: 8px;
+      align-items: center;
+    }
+    .exp-logo {
+      width: 40px; height: 40px; border-radius: 11px;
+      display: flex; align-items: center; justify-content: center;
+      background: #1d1d1f; color: #fff;
+      font-size: 11px; font-weight: 700; letter-spacing: -0.02em;
+      overflow: hidden; flex-shrink: 0;
+    }
+    .exp-logo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .exp-item > div:nth-child(2) { min-width: 0; }
+    .exp-company { font-size: 13px; line-height: 1; color: #6e6e73; font-weight: 700; letter-spacing: -0.025em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .exp-role { margin-top: 4px; font-size: 13px; line-height: 1.04; color: #1d1d1f; font-weight: 700; letter-spacing: -0.045em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .exp-period {
+      align-self: center;
+      font-size: 9.5px; line-height: 1; font-weight: 700; letter-spacing: -0.01em;
+      color: #6e6e73;
+      background: rgba(255,255,255,0.58);
+      border: 1px solid rgba(255,255,255,0.72);
+      border-radius: 999px;
+      padding: 7px 7px;
+      white-space: nowrap;
     }
 
     /* ── card 3: psychology — soft lavender, wide ── */
     .sc-psych .sc-visual {
-      background: linear-gradient(150deg, #eeebf8 0%, #ddd6f4 100%);
-      display: flex; flex-direction: column; justify-content: flex-end; padding: 32px;
+      background: #f5ede0;
+      padding: 0;
+    }
+    .sc-psych .sc-visual video {
+      width: 100%; height: 100%; object-fit: cover; display: block;
     }
     .sc-psych .sc-text {
       font-size: 26px; font-weight: 600; letter-spacing: -0.03em;
@@ -528,7 +600,7 @@
 
     /* ── card 4: branding — warm cream ── */
     .sc-brand .sc-visual {
-      background: linear-gradient(150deg, #f5ede0 0%, #eddcca 100%);
+      background: linear-gradient(150deg, #eeebf8 0%, #ddd6f4 100%);
       display: flex; flex-direction: column; justify-content: flex-end; padding: 32px;
     }
     .sc-brand .sc-text {
@@ -549,15 +621,34 @@
     @media (max-width: 1024px) and (min-width: 600px) {
       .story-card { width: 280px; }
       .story-card.wide { width: 430px; }
-      .sc-visual { height: 320px; }
+      .sc-visual { height: 400px; }
     }
     @media (max-width: 599px) {
       .story-header { padding: 0 var(--gutter) 24px; }
       .story-track { padding: 4px var(--gutter) 24px; gap: 14px; scroll-padding-left: var(--gutter); }
       /* 260/390 = 66.67% — keeps the designed ratio at any phone width */
       .story-card, .story-card.wide { width: 66.67vw; }
-      .sc-visual { height: 370px; }
-      .sc-exp .sc-num { font-size: 80px; }
+      .sc-visual { height: 460px; }
+      .sc-exp .sc-visual { padding: 48px 12px 0; }
+      .exp-title { margin-bottom: 28px; font-size: 24px; }
+      .exp-list { height: calc(100% - 82px); gap: 10px; padding: 0; clip-path: inset(0 -28px 0 -28px); }
+      .exp-item {
+        min-height: 58px;
+        padding: 8px 9px;
+        border-radius: 17px;
+        grid-template-columns: 38px minmax(0, 1fr);
+        gap: 10px;
+      }
+      .exp-logo { width: 38px; height: 38px; border-radius: 11px; font-size: 10px; }
+      .exp-company { font-size: 12px; }
+      .exp-role { margin-top: 3px; font-size: 13px; }
+      .exp-period {
+        grid-column: 2;
+        justify-self: start;
+        margin-top: 0;
+        font-size: 10px;
+        padding: 6px 8px;
+      }
     }
 
     /* ─── SCROLL REVEAL ─── */
@@ -629,46 +720,84 @@
 
         <div class="story-card sc-profile">
           <div class="sc-visual">
-            <div class="sc-photo-placeholder">
-              <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="36" cy="28" r="14" fill="#9e9e9a"/>
-                <ellipse cx="36" cy="64" rx="24" ry="16" fill="#9e9e9a"/>
-              </svg>
-            </div>
+            <img src="images/profile.jpg" alt="Paul Bader">
           </div>
           <p class="sc-caption"><strong>Paul Bader.</strong> Product & Brand Designer based in Copenhagen.</p>
         </div>
 
         <div class="story-card sc-exp">
           <div class="sc-visual">
-            <div class="sc-num">6+</div>
-            <div class="sc-unit">years in UX/UI</div>
+            <h2 class="exp-title">7+ years<br>of experience</h2>
+            <div class="exp-list">
+              <div class="exp-item">
+                <div class="exp-logo"><img src="images/sheer-icon.jpeg" alt="Sheer logo"></div>
+                <div>
+                  <div class="exp-company">Sheer</div>
+                  <div class="exp-role">UX/UI Designer</div>
+                </div>
+                <div class="exp-period">2026 - Present</div>
+              </div>
+              <div class="exp-item">
+                <div class="exp-logo">NL</div>
+                <div>
+                  <div class="exp-company">Neeo Lab</div>
+                  <div class="exp-role">Product & Brand Designer</div>
+                </div>
+                <div class="exp-period">2024 - 2025</div>
+              </div>
+              <div class="exp-item">
+                <div class="exp-logo">MI</div>
+                <div>
+                  <div class="exp-company">Make Influence</div>
+                  <div class="exp-role">Product Designer</div>
+                </div>
+                <div class="exp-period">2023 - 2024</div>
+              </div>
+              <div class="exp-item">
+                <div class="exp-logo">CU</div>
+                <div>
+                  <div class="exp-company">Custimy</div>
+                  <div class="exp-role">Product Designer</div>
+                </div>
+                <div class="exp-period">2022 - 2023</div>
+              </div>
+              <div class="exp-item">
+                <div class="exp-logo"><img src="images/grundfos-icon.png" alt="Grundfos logo"></div>
+                <div>
+                  <div class="exp-company">Grundfos</div>
+                  <div class="exp-role">Junior Designer</div>
+                </div>
+                <div class="exp-period">2018 - 2022</div>
+              </div>
+            </div>
           </div>
-          <p class="sc-caption"><strong>Deep experience.</strong> From early research and user flows to polished, shipped product.</p>
+          <p class="sc-caption"><strong>Work history.</strong> 7+ years across product, brand, UX/UI, SaaS, and internal tools.</p>
         </div>
 
         <div class="story-card sc-psych wide">
+          <div class="sc-visual">
+            <video src="https://framerusercontent.com/assets/LcVsL2hd7HhXtTa5HIf2kVmD7jk.m4v" autoplay muted loop playsinline></video>
+          </div>
+          <p class="sc-caption"><strong>Branding.</strong> Building visual systems that feel intentional and scale across every touchpoint.</p>
+        </div>
+
+        <div class="story-card sc-brand">
           <div class="sc-visual">
             <div class="sc-text">Fascinated by why people do what they do.</div>
           </div>
           <p class="sc-caption"><strong>User psychology.</strong> Human behavior is at the core of every design decision I make.</p>
         </div>
 
-        <div class="story-card sc-brand">
-          <div class="sc-visual">
-            <div class="sc-text">Brand that lives beyond the screen.</div>
-          </div>
-          <p class="sc-caption"><strong>Branding.</strong> Building visual systems that feel intentional and scale across every touchpoint.</p>
-        </div>
-
 
     </div>
     <div class="hl-controls" id="hlControls">
+      <div class="hl-dot-shell">
+        <div class="hl-dots" id="hlDots" role="tablist" aria-label="Hero story"></div>
+      </div>
       <button class="hl-play" id="hlPlay" aria-label="Pause highlights gallery">
         <svg class="hl-ic-pause" viewBox="0 0 24 24"><rect x="7" y="6" width="3.4" height="12" rx="1.1"/><rect x="13.6" y="6" width="3.4" height="12" rx="1.1"/></svg>
         <svg class="hl-ic-play"  viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg>
       </button>
-      <div class="hl-dots" id="hlDots" role="tablist"></div>
     </div>
   </section>
   <!-- ═══ END STORY HERO ═══ -->
@@ -678,14 +807,7 @@
     <div class="hero-left">
       <div class="hero-photo-wrap">
         <div class="hero-photo">
-          <!-- TO ADD YOUR PHOTO: replace the placeholder div with <img src="images/paul.jpg" alt="Paul Bader"> -->
-          <div class="photo-placeholder">
-            <svg width="52" height="52" viewBox="0 0 72 72" fill="none">
-              <circle cx="36" cy="28" r="14" fill="#9e9e9a"/>
-              <ellipse cx="36" cy="64" rx="24" ry="16" fill="#9e9e9a"/>
-            </svg>
-            <span>Add photo here</span>
-          </div>
+          <img src="images/profile.jpg" alt="Paul Bader">
         </div>
         <div class="photo-socials">
           <a href="https://linkedin.com/in/itspaulbader" target="_blank" aria-label="LinkedIn">
@@ -723,8 +845,8 @@
             <span class="work-date">2023 - 2024</span>
           </div>
           <div class="work-card work-card-1">
-            <div><div class="work-co">Neeo Lab</div><div class="work-role">Product & Brand Designer</div></div>
-            <span class="work-date">2024 - Present</span>
+            <div><div class="work-co">Sheer</div><div class="work-role">UX/UI Designer</div></div>
+            <span class="work-date">Latest</span>
           </div>
         </div>
 
@@ -738,7 +860,7 @@
   <section class="work-section" id="work">
     <div class="cards">
 
-      <div class="card card-violet card-featured">
+      <div class="card card-violet card-featured" data-case="bershka">
         <div class="card-bg bershka-bg"></div>
         <div class="card-scrim"></div>
         <div class="card-body">
@@ -763,11 +885,11 @@
           <img src="images/bershka-desk.png" alt="Bershka self-checkout kiosk">
         </div>
         <div class="card-img-below">
-          <img src="images/bershka-desk-mobile.png" alt="Bershka self-checkout" style="object-position: center center;">
+          <img src="images/bershka-desk-mobile2.png" alt="Bershka self-checkout" style="object-position: center center;">
         </div>
       </div>
 
-      <div class="card card-dark card-featured card-sheer">
+      <div class="card card-dark card-featured card-sheer" data-case="sheer">
         <div class="card-bg sheer-bg" style="background-color: #1a1040;"></div>
         <div class="card-scrim"></div>
         <div class="card-body">
@@ -796,7 +918,7 @@
         </div>
       </div>
 
-      <div class="card card-light card-featured">
+      <div class="card card-light card-featured" data-case="meta-learn">
         <div class="card-bg ml-bg" style="background-color: #fff;"></div>
         <div class="card-scrim"></div>
         <div class="card-body">
@@ -825,7 +947,7 @@
         </div>
       </div>
 
-      <div class="card card-ink card-featured">
+      <div class="card card-ink card-featured" data-case="grundfos">
         <div class="card-bg grundfos-bg" style="background-color: #12213a;"></div>
         <div class="card-scrim"></div>
         <div class="card-body">
@@ -954,7 +1076,7 @@
         hlTimer = setTimeout(() => hlGo(hlIdx + 1), HL_DUR);
       }
       function hlGo(i) {
-        hlIdx = (i + hlCards.length) % hlCards.length;
+        hlIdx = i >= hlCards.length ? 0 : Math.max(0, i);
         hlTrack.scrollTo({ left: hlCardLeft(hlIdx), behavior: 'smooth' });
         hlPaint(); hlSchedule();
       }
