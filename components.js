@@ -18,6 +18,22 @@
       .topbar-links a { font-size: 12px; font-weight: 400; color: #1d1d1f; text-decoration: none; opacity: 0.9; transition: opacity 0.2s; }
       .topbar-links a:hover { opacity: 0.55; }
 
+      @keyframes page-enter {
+        from { opacity: 0; transform: translateY(2px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      body { animation: page-enter 260ms var(--ease) both; }
+      body.page-leaving {
+        opacity: 0;
+        transform: translateY(-2px);
+        transition: opacity 160ms ease, transform 200ms var(--ease);
+        pointer-events: none;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        body { animation: none; }
+        body.page-leaving { transition: none; transform: none; }
+      }
+
       footer { background: #f5f5f7; color: #1d1d1f; padding: clamp(40px, 5vw, 80px) var(--gutter); }
       .footer-card { max-width: 1260px; margin: 0 auto; background: transparent; border-radius: 0; overflow: visible; }
       .footer-inner {
@@ -336,6 +352,26 @@
       })
       .catch(() => renderCards(fallbackCards));
   }
+
+  /* ── SUBTLE PAGE TRANSITIONS ── */
+  document.addEventListener('click', event => {
+    const link = event.target.closest('a[href]');
+    if (!link || event.defaultPrevented || event.button !== 0) return;
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    if (link.target === '_blank' || link.hasAttribute('download')) return;
+
+    const destination = new URL(link.href, location.href);
+    const samePage = destination.pathname === location.pathname
+      && destination.search === location.search;
+    if (destination.origin !== location.origin || samePage) return;
+
+    event.preventDefault();
+    document.body.classList.add('page-leaving');
+    const delay = matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 160;
+    setTimeout(() => { location.href = destination.href; }, delay);
+  });
+
+  addEventListener('pageshow', () => document.body.classList.remove('page-leaving'));
 
   /* ── FOOTER WORDMARK PARALLAX ── */
   const wordmark = document.querySelector('.footer-wordmark');
