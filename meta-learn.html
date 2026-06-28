@@ -501,9 +501,7 @@
       .goal-vision { opacity: 1; transform: none; margin-top: 48px; }
     }
 
-    /* ─── EXPLORE (Apple "iPhone 17 Design" hero: gradient headline + interactive
-       feature-pill viewer). New intro section ahead of the existing Design
-       breakdown — pills swap the phone screenshot on the right. ─── */
+    /* ─── EXPLORE — direct reconstruction of Apple's feature-pill product stage. ─── */
     .explore {
       background: #f5f5f7; padding: 130px var(--gutter);
       display: flex; flex-direction: column; align-items: center; gap: 64px;
@@ -522,90 +520,109 @@
     .explore-note strong { color: #1d1d1f; font-weight: 600; }
     .explore-viewer {
       background: #fff; border-radius: 28px;
-      max-width: 1260px; width: 100%;
-      padding: clamp(24px, 5vw, 64px); gap: clamp(28px, 5vw, 64px);
-      display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr); align-items: center; position: relative;
-      box-shadow: inset 0 0 0 1px rgba(0,0,0,0.03);
+      max-width: 1600px; width: 100%; min-height: clamp(650px, 58vw, 820px);
+      padding: clamp(48px, 6vw, 96px); gap: clamp(36px, 4vw, 72px);
+      display: grid; grid-template-columns: minmax(260px, 320px) minmax(0, 1fr);
+      align-items: center; position: relative; overflow: hidden;
     }
     .explore-stage {
-      min-height: 520px; border-radius: 24px; overflow: hidden;
-      display: flex; align-items: center; justify-content: center;
+      align-self: stretch; min-width: 0;
+      display: flex; align-items: flex-start; justify-content: center;
       position: relative;
-      background:
-        radial-gradient(circle at 34% 22%, rgba(198,221,195,0.8), transparent 28%),
-        radial-gradient(circle at 72% 68%, rgba(231,232,237,0.95), transparent 30%),
-        linear-gradient(135deg, #f6f6f8, #eceeef);
     }
-    .explore-stage::before,
-    .explore-stage::after {
-      content: ''; position: absolute; width: 240px; height: 240px; border-radius: 50%;
-      background: rgba(255,255,255,0.48); filter: blur(4px);
-    }
-    .explore-stage::before { left: -70px; bottom: -90px; }
-    .explore-stage::after { right: -100px; top: -70px; }
-    .explore-ghost {
-      position: absolute; width: 198px; border-radius: 32px; overflow: hidden;
-      box-shadow: 0 22px 50px rgba(0,0,0,0.12);
-      opacity: 0.32; transform: translate3d(var(--x), var(--y), 0) rotate(var(--r)) scale(0.92);
-      transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
-      pointer-events: none;
-    }
-    .explore-ghost img { display: block; width: 100%; }
     .explore-phone {
-      position: relative; z-index: 2; width: min(292px, 62vw); border-radius: 38px; overflow: hidden;
-      background: #111; box-shadow: 0 34px 80px rgba(0,0,0,0.22);
-      transform: translateZ(0);
-      transition: transform 0.55s var(--ease), box-shadow 0.55s var(--ease);
+      position: absolute; top: 0; left: 50%; z-index: 2;
+      width: min(430px, 52vw); transform: translateX(-50%);
+      transition: transform 0.55s var(--ease);
     }
-    .explore-phone:hover { transform: translateY(-4px); box-shadow: 0 42px 90px rgba(0,0,0,0.25); }
-    .explore-phone img { width: 100%; display: block; transition: opacity 0.42s ease, transform 0.55s var(--ease), filter 0.42s ease; }
-    .explore-phone.is-changing img { opacity: 0; transform: scale(0.985); filter: blur(8px); }
+    .explore-phone.is-wide { width: min(690px, 70vw); }
+    .explore-phone img { width: 100%; display: block; transition: opacity 0.3s ease, transform 0.45s var(--ease); }
+    .explore-phone.is-changing img { opacity: 0; transform: scale(0.985); }
     .explore-controls {
-      display: flex; flex-direction: column; gap: 12px;
+      display: flex; flex-direction: column; align-items: flex-start; gap: 12px;
+      position: relative; z-index: 4;
     }
     .explore-pill {
-      min-height: 58px; padding: 16px 20px; border-radius: 28px; border: none; cursor: pointer;
-      display: flex; flex-direction: column; align-items: flex-start; gap: 8px; text-align: left;
-      background: #f5f5f7; box-shadow: inset 0 0 0.5px rgba(0,0,0,0.11);
-      transition: background 0.32s var(--ease), border-radius 0.32s var(--ease), transform 0.32s var(--ease), box-shadow 0.32s var(--ease);
+      min-height: 56px; width: fit-content; max-width: 100%; padding: 14px 20px; border-radius: 999px;
+      border: none; cursor: pointer; display: flex; flex-direction: column;
+      align-items: flex-start; gap: 0; text-align: left; background: #f0f0f2;
+      transition: background 0.28s var(--ease), border-radius 0.38s var(--ease),
+        width 0.38s var(--ease), padding 0.38s var(--ease);
     }
-    .explore-pill:hover { background: #ececef; transform: translateY(-1px); }
-    .explore-pill.is-active { background: #1d1d1f; border-radius: 20px; box-shadow: 0 18px 36px rgba(0,0,0,0.14); }
+    .explore-pill:hover { background: #e8e8eb; }
+    .explore-pill.is-expanded { width: 100%; border-radius: 24px; padding: 24px; }
     .explore-pill-row { display: flex; align-items: center; gap: 12px; }
-    .explore-pill-label { font-size: 17px; font-weight: 600; letter-spacing: -0.01em; color: #1d1d1f; }
-    .explore-pill.is-active .explore-pill-label { color: #fff; }
-    .explore-pill-dot { width: 24px; height: 24px; border-radius: 50%; flex-shrink: 0; overflow: hidden; }
-    .explore-pill-dot img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .explore-pill-desc {
-      max-height: 0; opacity: 0; overflow: hidden; font-size: 15px; font-weight: 500; line-height: 1.5;
-      letter-spacing: 0.004em; color: rgba(255,255,255,0.65); padding-left: 36px;
-      transition: max-height 0.42s var(--ease), opacity 0.34s ease;
+    .explore-pill-label { font-size: 17px; font-weight: 600; letter-spacing: 0; color: #1d1d1f; white-space: nowrap; }
+    .explore-pill-icon {
+      width: 24px; height: 24px; border-radius: 50%; flex-shrink: 0;
+      border: 1.5px solid #1d1d1f; position: relative;
     }
-    .explore-pill.is-active .explore-pill-desc { max-height: 96px; opacity: 1; }
-    .explore-progress { height: 3px; width: calc(100% - 36px); margin-left: 36px; border-radius: 999px; overflow: hidden; background: rgba(255,255,255,0.18); display: none; }
-    .explore-pill.is-active .explore-progress { display: block; }
-    .explore-progress span { display: block; height: 100%; width: 0; border-radius: inherit; background: #f5f5f7; }
-    .explore-pill.is-active .explore-progress span { animation: exploreFill 6200ms linear forwards; }
-    @keyframes exploreFill { from { width: 0; } to { width: 100%; } }
-    .explore-fade { display: none; }
+    .explore-pill-icon::before,
+    .explore-pill-icon::after {
+      content: ''; position: absolute; top: 50%; left: 50%; width: 10px; height: 1.5px;
+      border-radius: 2px; background: #1d1d1f; transform: translate(-50%, -50%);
+    }
+    .explore-pill-icon::after { transform: translate(-50%, -50%) rotate(90deg); }
+    .explore-pill.is-active:not(.is-expanded) .explore-pill-icon {
+      background: #d9c5eb; border-color: rgba(29,29,31,0.22);
+    }
+    .explore-pill.is-active:not(.is-expanded) .explore-pill-icon::before,
+    .explore-pill.is-active:not(.is-expanded) .explore-pill-icon::after { display: none; }
+    .explore-pill.is-expanded .explore-pill-icon { display: none; }
+    .explore-pill-desc {
+      max-height: 0; opacity: 0; overflow: hidden; font-size: 17px; font-weight: 400;
+      line-height: 1.55; letter-spacing: 0; color: #1d1d1f;
+      transition: max-height 0.38s var(--ease), opacity 0.28s ease, margin 0.38s var(--ease);
+    }
+    .explore-pill.is-expanded .explore-pill-desc { max-height: 150px; opacity: 1; margin-top: 10px; }
+    .explore-pill-desc strong { font-weight: 600; }
+    .explore-close,
+    .explore-step {
+      width: 44px; height: 44px; border: 0; border-radius: 50%; background: #f0f0f2;
+      display: grid; place-items: center; color: #1d1d1f; cursor: pointer;
+      transition: background 0.25s var(--ease), opacity 0.25s ease;
+    }
+    .explore-close { position: absolute; top: 24px; right: 24px; z-index: 6; opacity: 0; visibility: hidden; pointer-events: none; }
+    .explore-viewer.is-expanded .explore-close { opacity: 1; visibility: visible; pointer-events: auto; }
+    .explore-close::before,
+    .explore-close::after { content: ''; width: 14px; height: 2px; border-radius: 2px; background: currentColor; position: absolute; transform: rotate(45deg); }
+    .explore-close::after { transform: rotate(-45deg); }
+    .explore-close:hover, .explore-step:hover { background: #e4e4e7; }
+    .explore-steps {
+      position: absolute; left: 22px; top: 50%; transform: translateY(-50%);
+      display: flex; flex-direction: column; gap: 10px; opacity: 0; pointer-events: none;
+      transition: opacity 0.25s ease, visibility 0s linear 0.25s; visibility: hidden;
+    }
+    .explore-viewer.is-expanded .explore-steps { opacity: 1; visibility: visible; pointer-events: auto; transition-delay: 0s; }
+    .explore-step::before {
+      content: ''; width: 9px; height: 9px; border-top: 3px solid currentColor;
+      border-left: 3px solid currentColor; transform: rotate(45deg) translate(2px, 2px);
+    }
+    .explore-step--next::before { transform: rotate(225deg) translate(2px, 2px); }
+    .explore-step:disabled { opacity: 0.28; cursor: default; }
     @media (max-width: 1024px) {
       .explore { padding-top: 90px; gap: 40px; }
       .explore-inner { grid-template-columns: 1fr; gap: 24px; }
-      .explore-viewer { grid-template-columns: 1fr; padding: 28px; gap: 28px; }
-      .explore-stage { min-height: 480px; }
-      .explore-controls { flex: none; width: 100%; }
-      .explore-pill-desc { color: rgba(255,255,255,0.65); }
+      .explore-viewer { grid-template-columns: minmax(230px, 320px) minmax(0, 1fr); padding: 48px; min-height: 650px; }
+      .explore-phone { width: min(380px, 48vw); }
+      .explore-phone.is-wide { width: min(600px, 62vw); }
     }
     @media (max-width: 599px) {
       .explore { padding-top: 72px; padding-bottom: 72px; }
       .explore-copy { font-size: 17px; }
-      .explore-viewer { margin-inline: calc(-1 * var(--gutter)); width: calc(100% + 2 * var(--gutter)); border-radius: 0; padding: 26px var(--gutter) 32px; }
-      .explore-stage { min-height: 430px; border-radius: 22px; }
-      .explore-phone { width: min(250px, 70vw); border-radius: 34px; }
-      .explore-ghost { width: 156px; border-radius: 24px; }
-      .explore-controls { overflow-x: auto; flex-direction: row; padding-bottom: 4px; scroll-snap-type: x mandatory; scrollbar-width: none; }
-      .explore-controls::-webkit-scrollbar { display: none; }
-      .explore-pill { flex: 0 0 82%; scroll-snap-align: start; }
+      .explore-viewer {
+        margin-inline: calc(-1 * var(--gutter)); width: calc(100% + 2 * var(--gutter));
+        border-radius: 0; min-height: 850px; padding: 42px var(--gutter);
+        grid-template-columns: 1fr; grid-template-rows: 470px auto; gap: 28px;
+      }
+      .explore-stage { grid-row: 1; }
+      .explore-controls { grid-row: 2; width: 100%; align-items: stretch; }
+      .explore-phone { width: min(300px, 78vw); }
+      .explore-phone.is-wide { width: min(470px, 120vw); }
+      .explore-pill { max-width: 100%; }
+      .explore-pill.is-expanded { width: 100%; }
+      .explore-steps { left: 12px; top: 265px; }
+      .explore-close { top: 16px; right: 16px; }
     }
 
     /* ─── OUTCOMES (Apple-style mixed photo/stat/icon tiles) ─── */
@@ -1225,65 +1242,61 @@
       <p class="explore-copy reveal d1">Meet the redesigned Meta Learn. Built around a single daily check-in, <strong>tailored exercises</strong>, and a streak system that actually feels earned.</p>
     </div>
     <div class="explore-viewer reveal d1">
+      <div class="explore-controls" id="exploreControls">
+        <button class="explore-pill is-active" data-img="images/ml/design/phone-home.png" data-alt="Meta Learn home dashboard screen">
+          <span class="explore-pill-row">
+            <span class="explore-pill-icon" aria-hidden="true"></span>
+            <span class="explore-pill-label">Home dashboard</span>
+          </span>
+          <span class="explore-pill-desc"><strong>Home dashboard.</strong> Your evening check-in, mood picker, and personalized exercise picks — all in one glance.</span>
+        </button>
+        <button class="explore-pill" data-img="images/ml/design/onb-1.png" data-alt="Meta Learn personalized onboarding screen" data-wide>
+          <span class="explore-pill-row">
+            <span class="explore-pill-icon" aria-hidden="true"></span>
+            <span class="explore-pill-label">Personalized onboarding</span>
+          </span>
+          <span class="explore-pill-desc"><strong>Personalized onboarding.</strong> A guided setup that learns how you're feeling before recommending a single exercise.</span>
+        </button>
+        <button class="explore-pill" data-img="images/ml/design/phone-explore.png" data-alt="Meta Learn exercise library screen">
+          <span class="explore-pill-row">
+            <span class="explore-pill-icon" aria-hidden="true"></span>
+            <span class="explore-pill-label">Exercise library</span>
+          </span>
+          <span class="explore-pill-desc"><strong>Exercise library.</strong> Filter by Interactive, Audio, or Text — and jump back into anything you've favorited.</span>
+        </button>
+        <button class="explore-pill" data-img="images/ml/design/ex-1.png" data-alt="Meta Learn guided exercise detail screen">
+          <span class="explore-pill-row">
+            <span class="explore-pill-icon" aria-hidden="true"></span>
+            <span class="explore-pill-label">Guided exercise detail</span>
+          </span>
+          <span class="explore-pill-desc"><strong>Guided exercise detail.</strong> Clear instructions and an optional mood check-in before you even start the timer.</span>
+        </button>
+        <button class="explore-pill" data-img="images/ml/design/ex-2.png" data-alt="Meta Learn live breathing session screen">
+          <span class="explore-pill-row">
+            <span class="explore-pill-icon" aria-hidden="true"></span>
+            <span class="explore-pill-label">Live breathing session</span>
+          </span>
+          <span class="explore-pill-desc"><strong>Live breathing session.</strong> A focused, full-screen breathing guide with a visible countdown so you always know where you are.</span>
+        </button>
+        <button class="explore-pill" data-img="images/ml/design/onb-3.png" data-alt="Meta Learn streak rewards screen" data-wide>
+          <span class="explore-pill-row">
+            <span class="explore-pill-icon" aria-hidden="true"></span>
+            <span class="explore-pill-label">Streak rewards</span>
+          </span>
+          <span class="explore-pill-desc"><strong>Streak rewards.</strong> Finish onboarding and unlock a full week of premium access — momentum, rewarded.</span>
+        </button>
+      </div>
       <div class="explore-stage" aria-live="polite">
-        <div class="explore-ghost" style="--x:-170px;--y:40px;--r:-9deg"><img src="images/ml/design/onb-1.png" alt=""></div>
-        <div class="explore-ghost" style="--x:170px;--y:-35px;--r:8deg"><img src="images/ml/design/phone-explore.png" alt=""></div>
         <div class="explore-phone">
           <img id="exploreImg" src="images/ml/design/phone-home.png" alt="Meta Learn home dashboard screen">
         </div>
       </div>
-      <div class="explore-controls" id="exploreControls">
-        <button class="explore-pill is-active" data-img="images/ml/design/phone-home.png" data-alt="Meta Learn home dashboard screen">
-          <span class="explore-pill-row">
-            <span class="explore-pill-dot"><img src="images/ml/design/phone-home.png" alt=""></span>
-            <span class="explore-pill-label">Home dashboard</span>
-          </span>
-          <span class="explore-pill-desc">Your evening check-in, mood picker, and personalized exercise picks — all in one glance.</span>
-          <span class="explore-progress" aria-hidden="true"><span></span></span>
-        </button>
-        <button class="explore-pill" data-img="images/ml/design/onb-1.png" data-alt="Meta Learn personalized onboarding screen">
-          <span class="explore-pill-row">
-            <span class="explore-pill-dot"><img src="images/ml/design/onb-1.png" alt=""></span>
-            <span class="explore-pill-label">Personalized onboarding</span>
-          </span>
-          <span class="explore-pill-desc">A guided setup that learns how you're feeling before recommending a single exercise.</span>
-          <span class="explore-progress" aria-hidden="true"><span></span></span>
-        </button>
-        <button class="explore-pill" data-img="images/ml/design/phone-explore.png" data-alt="Meta Learn exercise library screen">
-          <span class="explore-pill-row">
-            <span class="explore-pill-dot"><img src="images/ml/design/phone-explore.png" alt=""></span>
-            <span class="explore-pill-label">Exercise library</span>
-          </span>
-          <span class="explore-pill-desc">Filter by Interactive, Audio, or Text — and jump back into anything you've favorited.</span>
-          <span class="explore-progress" aria-hidden="true"><span></span></span>
-        </button>
-        <button class="explore-pill" data-img="images/ml/design/ex-1.png" data-alt="Meta Learn guided exercise detail screen">
-          <span class="explore-pill-row">
-            <span class="explore-pill-dot"><img src="images/ml/design/ex-1.png" alt=""></span>
-            <span class="explore-pill-label">Guided exercise detail</span>
-          </span>
-          <span class="explore-pill-desc">Clear instructions and an optional mood check-in before you even start the timer.</span>
-          <span class="explore-progress" aria-hidden="true"><span></span></span>
-        </button>
-        <button class="explore-pill" data-img="images/ml/design/ex-2.png" data-alt="Meta Learn live breathing session screen">
-          <span class="explore-pill-row">
-            <span class="explore-pill-dot"><img src="images/ml/design/ex-2.png" alt=""></span>
-            <span class="explore-pill-label">Live breathing session</span>
-          </span>
-          <span class="explore-pill-desc">A focused, full-screen breathing guide with a visible countdown so you always know where you are.</span>
-          <span class="explore-progress" aria-hidden="true"><span></span></span>
-        </button>
-        <button class="explore-pill" data-img="images/ml/design/onb-3.png" data-alt="Meta Learn streak rewards screen">
-          <span class="explore-pill-row">
-            <span class="explore-pill-dot"><img src="images/ml/design/onb-3.png" alt=""></span>
-            <span class="explore-pill-label">Streak rewards</span>
-          </span>
-          <span class="explore-pill-desc">Finish onboarding and unlock a full week of premium access — momentum, rewarded.</span>
-          <span class="explore-progress" aria-hidden="true"><span></span></span>
-        </button>
+      <button class="explore-close" id="exploreClose" type="button" aria-label="Close feature details"></button>
+      <div class="explore-steps" aria-label="Browse features">
+        <button class="explore-step explore-step--prev" id="explorePrev" type="button" aria-label="Previous feature"></button>
+        <button class="explore-step explore-step--next" id="exploreNext" type="button" aria-label="Next feature"></button>
       </div>
     </div>
-    <div class="explore-fade"></div>
   </section>
 
   <!-- ─── SCALE ─── -->
@@ -1485,7 +1498,7 @@
     </div>
   </div>
 
-  <script src="components.js?v=9"></script>
+  <script src="components.js?v=10"></script>
   <script>
 
     // Scroll reveal
@@ -1544,56 +1557,48 @@
     window.addEventListener('scroll', queueGoals, { passive: true });
     window.addEventListener('resize', queueGoals);
 
-    // ─── Explore viewer (feature pills swap the phone screenshot) ───
+    // ─── Explore viewer (Apple-style feature pills + expanded detail state) ───
     const exploreImg = document.getElementById('exploreImg');
     const explorePhone = document.querySelector('.explore-phone');
-    const exploreGhosts = [...document.querySelectorAll('.explore-ghost img')];
+    const exploreViewer = document.querySelector('.explore-viewer');
     const explorePills = [...document.querySelectorAll('.explore-pill')];
-    const EXPLORE_DUR = 6200;
-    let exploreIdx = 0, exploreTimer = null, exploreVisible = true, exploreReduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    function setExplore(i, userInitiated = false) {
+    const exploreClose = document.getElementById('exploreClose');
+    const explorePrev = document.getElementById('explorePrev');
+    const exploreNext = document.getElementById('exploreNext');
+    let exploreIdx = 0;
+    function setExplore(i, expand = true) {
       exploreIdx = (i + explorePills.length) % explorePills.length;
       const pill = explorePills[exploreIdx];
-      if (!pill || pill.classList.contains('is-active') && userInitiated) return;
+      if (!pill) return;
       explorePills.forEach(p => {
         p.classList.remove('is-active');
-        const fill = p.querySelector('.explore-progress span');
-        if (fill) { fill.style.animation = 'none'; void fill.offsetWidth; fill.style.animation = ''; }
+        p.classList.remove('is-expanded');
       });
       pill.classList.add('is-active');
+      if (expand) pill.classList.add('is-expanded');
+      exploreViewer.classList.toggle('is-expanded', expand);
+      explorePrev.disabled = exploreIdx === 0;
+      exploreNext.disabled = exploreIdx === explorePills.length - 1;
       explorePhone.classList.add('is-changing');
       const nextSrc = pill.dataset.img;
       const nextAlt = pill.dataset.alt || 'Meta Learn screen preview';
       setTimeout(() => {
         exploreImg.src = nextSrc;
         exploreImg.alt = nextAlt;
+        explorePhone.classList.toggle('is-wide', pill.hasAttribute('data-wide'));
         const decoded = exploreImg.decode ? exploreImg.decode() : Promise.resolve();
         decoded.catch(() => {}).finally(() => {
           explorePhone.classList.remove('is-changing');
         });
-        exploreGhosts.forEach((img, gi) => {
-          const source = explorePills[(exploreIdx + gi + 1) % explorePills.length]?.dataset.img;
-          if (source) img.src = source;
-        });
-      }, 180);
-      scheduleExplore();
-    }
-    function scheduleExplore() {
-      clearTimeout(exploreTimer);
-      if (exploreReduced || !exploreVisible) return;
-      exploreTimer = setTimeout(() => setExplore(exploreIdx + 1), EXPLORE_DUR);
+      }, 140);
     }
     explorePills.forEach((pill, i) => {
-      pill.addEventListener('click', () => setExplore(i, true));
+      pill.addEventListener('click', () => setExplore(i));
     });
-    new IntersectionObserver(es => {
-      es.forEach(e => {
-        exploreVisible = e.isIntersecting;
-        if (exploreVisible) scheduleExplore();
-        else clearTimeout(exploreTimer);
-      });
-    }, { threshold: 0.35 }).observe(document.getElementById('explore'));
-    scheduleExplore();
+    exploreClose.addEventListener('click', () => setExplore(exploreIdx, false));
+    explorePrev.addEventListener('click', () => setExplore(exploreIdx - 1));
+    exploreNext.addEventListener('click', () => setExplore(exploreIdx + 1));
+    setExplore(0, false);
 
     // ─── Highlights gallery (autoplay + timed dot-nav, Apple-style) ───
     const hlTrack    = document.getElementById('hlTrack');
