@@ -19,14 +19,14 @@
       .topbar-links a:hover { opacity: 0.55; }
 
       @keyframes page-enter {
-        from { opacity: 0; transform: translateY(2px); }
+        from { opacity: 0; transform: translateY(4px); }
         to { opacity: 1; transform: translateY(0); }
       }
-      body { animation: page-enter 260ms var(--ease) both; }
+      body { animation: page-enter 420ms var(--ease) both; }
       body.page-leaving {
         opacity: 0;
-        transform: translateY(-2px);
-        transition: opacity 160ms ease, transform 200ms var(--ease);
+        transform: translateY(-4px);
+        transition: opacity 260ms ease, transform 300ms var(--ease);
         pointer-events: none;
       }
       @media (prefers-reduced-motion: reduce) {
@@ -367,7 +367,7 @@
 
     event.preventDefault();
     document.body.classList.add('page-leaving');
-    const delay = matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 160;
+    const delay = matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 260;
     setTimeout(() => { location.href = destination.href; }, delay);
   });
 
