@@ -588,14 +588,13 @@
       position: relative; z-index: 4;
     }
     .explore-pill {
-      min-height: 56px; width: fit-content; max-width: 100%; padding: 14px 20px; border-radius: 999px;
+      min-height: 56px; width: fit-content; max-width: 100%; padding: 14px 20px; border-radius: 28px;
       border: none; cursor: pointer; display: flex; flex-direction: column;
       align-items: flex-start; gap: 0; text-align: left; background: #f0f0f2;
-      transition: background 0.28s var(--ease), border-radius 0.38s var(--ease),
-        width 0.38s var(--ease), padding 0.38s var(--ease);
+      transition: background 0.28s var(--ease), width 0.38s var(--ease), padding 0.38s var(--ease);
     }
     .explore-pill:hover { background: #e8e8eb; }
-    .explore-pill.is-expanded { width: 100%; border-radius: 24px; padding: 24px; }
+    .explore-pill.is-expanded { width: 100%; border-radius: 28px; padding: 24px; }
     .explore-pill-row { display: flex; align-items: center; gap: 12px; }
     .explore-pill-label { font-size: 17px; font-weight: 600; letter-spacing: 0; color: #1d1d1f; white-space: nowrap; }
     .explore-pill-icon {
@@ -656,16 +655,32 @@
       .explore-copy { font-size: 17px; }
       .explore-viewer {
         margin-inline: calc(-1 * var(--gutter)); width: calc(100% + 2 * var(--gutter));
-        border-radius: 0; min-height: 850px; padding: 42px var(--gutter);
-        grid-template-columns: 1fr; grid-template-rows: 470px auto; gap: 28px;
+        border-radius: 0; min-height: 700px; padding: 42px var(--gutter);
+        grid-template-columns: 1fr; grid-template-rows: 390px auto; gap: 30px;
       }
       .explore-stage { grid-row: 1; }
-      .explore-controls { grid-row: 2; width: 100%; align-items: stretch; }
-      .explore-phone { width: min(300px, 78vw); }
-      .explore-pill { max-width: 100%; }
-      .explore-pill.is-expanded { width: 100%; }
-      .explore-steps { left: 12px; top: 265px; }
-      .explore-close { top: 16px; right: 16px; }
+      .explore-controls {
+        grid-row: 2; width: calc(100% + var(--gutter)); align-items: stretch;
+        flex-direction: row; overflow-x: auto; overflow-y: hidden; gap: 14px;
+        padding-right: var(--gutter); scroll-padding-inline: 0 var(--gutter);
+        scroll-snap-type: x mandatory; overscroll-behavior-x: contain;
+        scrollbar-width: none; -webkit-overflow-scrolling: touch;
+      }
+      .explore-controls::-webkit-scrollbar { display: none; }
+      .explore-phone { width: min(250px, 66vw); }
+      .explore-pill,
+      .explore-pill.is-expanded {
+        flex: 0 0 84%; width: 84%; min-height: 176px; max-width: none;
+        padding: 24px; border-radius: 24px; scroll-snap-align: start;
+      }
+      .explore-pill.is-active { background: #e8e8eb; }
+      .explore-pill-icon { display: none; }
+      .explore-pill-desc,
+      .explore-pill.is-expanded .explore-pill-desc {
+        max-height: none; opacity: 1; overflow: visible; margin-top: 12px;
+        font-size: 16px; line-height: 1.5;
+      }
+      .explore-close, .explore-steps { display: none; }
     }
 
     /* ─── OUTCOMES (Apple-style mixed photo/stat/icon tiles) ─── */
@@ -1613,12 +1628,14 @@
     // ─── Explore viewer (Apple-style feature pills + expanded detail state) ───
     const explorePhone = document.getElementById('explorePhone');
     const exploreViewer = document.querySelector('.explore-viewer');
+    const exploreControls = document.getElementById('exploreControls');
     const explorePills = [...document.querySelectorAll('.explore-pill')];
     const exploreClose = document.getElementById('exploreClose');
     const explorePrev = document.getElementById('explorePrev');
     const exploreNext = document.getElementById('exploreNext');
+    const exploreMobile = matchMedia('(max-width: 599px)');
     let exploreIdx = 0;
-    function setExplore(i, expand = true) {
+    function setExplore(i, expand = !exploreMobile.matches) {
       exploreIdx = (i + explorePills.length) % explorePills.length;
       const pill = explorePills[exploreIdx];
       if (!pill) return;
@@ -1641,11 +1658,33 @@
       }, 140);
     }
     explorePills.forEach((pill, i) => {
-      pill.addEventListener('click', () => setExplore(i));
+      pill.addEventListener('click', () => {
+        setExplore(i);
+        if (exploreMobile.matches) pill.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+      });
     });
     exploreClose.addEventListener('click', () => setExplore(exploreIdx, false));
     explorePrev.addEventListener('click', () => setExplore(exploreIdx - 1));
     exploreNext.addEventListener('click', () => setExplore(exploreIdx + 1));
+    let exploreScrollFrame = null;
+    exploreControls.addEventListener('scroll', () => {
+      if (!exploreMobile.matches || exploreScrollFrame) return;
+      exploreScrollFrame = requestAnimationFrame(() => {
+        exploreScrollFrame = null;
+        const rail = exploreControls.getBoundingClientRect();
+        let nearest = exploreIdx;
+        let nearestDistance = Infinity;
+        explorePills.forEach((pill, index) => {
+          const rect = pill.getBoundingClientRect();
+          const distance = Math.abs(rect.left - rail.left);
+          if (distance < nearestDistance) {
+            nearestDistance = distance;
+            nearest = index;
+          }
+        });
+        if (nearest !== exploreIdx) setExplore(nearest, false);
+      });
+    }, { passive: true });
     setExplore(0, false);
 
     // ─── Highlights gallery (autoplay + timed dot-nav, Apple-style) ───
