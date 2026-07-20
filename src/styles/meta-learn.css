@@ -1,0 +1,999 @@
+/* Apple SF Pro system stack — renders as real SF Pro Display/Text on macOS/iOS */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    /* Single source of truth for the left/right content line — everything (nav, hero,
+       headlines, cards) aligns to this so the page reads on one invisible column.
+       Desktop: 22px floor, then margins grow to center a fixed 1260 column (unchanged).
+       Small screens get a proportional margin instead — see the mobile media query. */
+    :root {
+      --gutter: max(22px, calc((100vw - 1260px) / 2));
+      --bg: #f5f5f7;
+      --surface: #f5f5f7;
+      --surface-soft: #fbfbfd;
+      --surface-line: #e8e8ed;
+      --text: #1d1d1f;
+      --muted: #6e6e73;
+      --muted-soft: #86868b;
+      --radius-section: 28px;
+      --radius-card: 24px;
+      --radius-inner: 20px;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    body {
+      font-family: "SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+      background: #fff;
+      color: #1d1d1f;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      letter-spacing: -0.01em;
+      overflow-x: hidden;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative;
+      min-height: calc(100vh - 41px);
+      min-height: calc(100svh - 41px);
+      background-color: #d9cfc6;
+      background-image: var(--meta-hero-bg);
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+    /* Super-smooth white fade at the bottom so the hero dissolves into the page body. */
+    .hero::after {
+      content: '';
+      position: absolute; inset: 0; z-index: 0;
+      background: linear-gradient(to top, #fff 0%, #fff 4%, rgba(255,255,255,0.8) 11%, rgba(255,255,255,0.42) 21%, rgba(255,255,255,0.14) 32%, rgba(255,255,255,0) 47%);
+      pointer-events: none;
+    }
+    .hero-content {
+      position: relative; z-index: 1;
+      width: 100%;
+      padding: 0 var(--gutter) 56px;
+      display: flex; align-items: flex-end; justify-content: space-between; gap: 40px;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 11px;
+      font-size: 21px; font-weight: 600;
+      letter-spacing: 0.004em;
+      color: #1d1d1f;
+      margin-bottom: 12px;
+    }
+    /* Placeholder brand mark — swap the <span> for <img class="hero-logo" src="…"> when the real logo is ready. */
+    .hero-logo {
+      width: 32px; height: 32px; border-radius: 8px; flex: 0 0 auto;
+      background: linear-gradient(135deg, #ff8a5c, #b15be0);
+      color: #fff; font-size: 13px; font-weight: 700; letter-spacing: 0;
+      display: inline-flex; align-items: center; justify-content: center;
+      object-fit: contain;
+    }
+    .hero-title {
+      font-size: clamp(40px, 6.5vw, 74px);
+      font-weight: 600; letter-spacing: -0.015em; line-height: 1.05;
+      color: #1d1d1f;
+    }
+    /* Project meta — sits across from the title, bottom-aligned. */
+    .hero-meta { display: flex; gap: 44px; flex: 0 0 auto; padding-bottom: 8px; }
+    .hero-meta-item dt { font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #6e6e73; margin-bottom: 5px; }
+    .hero-meta-item dd { font-size: 17px; font-weight: 600; color: #1d1d1f; line-height: 1.3; }
+
+    /* ─── HIGHLIGHTS (Apple full-bleed gallery) ─── */
+    .highlights { background: #f5f5f7; padding: 130px 0 170px; overflow: clip; }
+    .hl-hd { padding: 0 var(--gutter); margin: 0 0 44px; }
+    .hl-title { font-size: clamp(32px, 4vw, 48px); font-weight: 600; letter-spacing: -0.003em; line-height: 1.08; color: #1d1d1f; max-width: 18ch; text-wrap: balance; }
+    /* Full-bleed stage. Cards snap to CENTER, so the active card sits in the middle
+       of the viewport with equal peeks of the prev/next cards on both sides (Apple). */
+    .hl-stage {
+      display: flex; gap: 20px;
+      overflow-x: auto; overflow-y: hidden;       /* lock to horizontal — never scroll cards vertically */
+      overscroll-behavior-x: contain;
+      scroll-snap-type: x mandatory;
+      /* Same gutter as the nav/headline. Card = full column width, so center-snap keeps the
+         first card's left edge on the headline AND keeps every card centered (equal peeks). */
+      padding-inline: var(--gutter);
+      scrollbar-width: none; -webkit-overflow-scrolling: touch;
+    }
+    .hl-stage::-webkit-scrollbar { display: none; }
+    .hl-card {
+      flex: 0 0 auto;
+      width: min(1260px, calc(100vw - 2 * var(--gutter)));
+      height: 665px;
+      border-radius: 28px; overflow: hidden;
+      scroll-snap-align: center;
+      position: relative;
+      background-color: #e8e8ed; background-size: cover; background-position: center;
+      display: block;
+    }
+    /* Positioning wrapper — no animation here */
+    .hl-card-text {
+      position: absolute; top: 0;
+      padding: 40px 44px;
+      font-size: clamp(21px, 2vw, 28px); font-weight: 600; line-height: 1.26;
+      letter-spacing: -0.01em; color: #1d1d1f;
+    }
+    .hl-card.is-dark .hl-card-text { color: #f5f5f7; }
+    /* Alignment variants — max-width scales with card (40% of card ≈ 500px at 1260px) */
+    .ht-left   { left: 0; right: auto; text-align: left;   max-width: min(500px, 40%); }
+    .ht-center { left: 50%; right: auto; transform: translateX(-50%); text-align: center; max-width: min(500px, 40%); }
+    .ht-right  { right: 0; left: auto;  text-align: right;  max-width: min(500px, 40%); }
+    /* Animation layer — JS scroll-parallax drives opacity + translateX every frame */
+    .hl-card-inner {
+      display: block;
+      opacity: 0;
+      will-change: opacity, transform;
+    }
+    /* Controls: sticky frosted dot-nav, centered over the gallery like Apple's compare controls. */
+    .hl-controls {
+      position: sticky; top: calc(100svh - 92px); z-index: 8;
+      display: flex; align-items: center; justify-content: center; gap: 14px;
+      width: max-content; margin: -86px auto 0; padding: 0 14px;
+      pointer-events: none;
+    }
+    .hl-dot-shell {
+      height: 54px; padding: 0 22px; border-radius: 999px;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(232,232,237,0.72);
+      backdrop-filter: saturate(180%) blur(22px);
+      -webkit-backdrop-filter: saturate(180%) blur(22px);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.42), 0 14px 40px rgba(0,0,0,0.08);
+      pointer-events: auto;
+    }
+    .hl-play {
+      flex: 0 0 auto; width: 54px; height: 54px; border-radius: 50%; border: none;
+      background: rgba(232,232,237,0.72); cursor: pointer;
+      display: flex; align-items: center; justify-content: center; transition: background 0.2s;
+      backdrop-filter: saturate(180%) blur(22px);
+      -webkit-backdrop-filter: saturate(180%) blur(22px);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.42), 0 14px 40px rgba(0,0,0,0.08);
+      pointer-events: auto;
+    }
+    .hl-play:hover { background: rgba(218,218,224,0.82); }
+    .hl-play svg { width: 19px; height: 19px; fill: #1d1d1f; }
+    .hl-ic-play { display: none; }
+    .hl-controls.paused .hl-ic-pause { display: none; }
+    .hl-controls.paused .hl-ic-play { display: block; }
+    .hl-dots { display: flex; align-items: center; gap: 14px; }
+    .hl-dot {
+      position: relative; width: 8px; height: 8px; padding: 0; border: none;
+      border-radius: 50%; background: rgba(29,29,31,0.58); cursor: pointer; overflow: hidden;
+      transition: width 0.45s cubic-bezier(0.4,0,0.2,1), border-radius 0.45s;
+    }
+    .hl-dot:hover { background: rgba(29,29,31,0.78); }
+    .hl-dot.active { width: 56px; border-radius: 999px; background: rgba(29,29,31,0.18); }
+    .hl-fill { position: absolute; inset: 0; width: 0; background: #1d1d1f; border-radius: inherit; }
+    @keyframes hlFill { from { width: 0; } to { width: 100%; } }
+
+    /* ─── SHARED SECTION STYLES ─── */
+    .sec { padding: 120px var(--gutter); }
+    .sec-narrow { max-width: 1260px; margin: 0 auto; }
+    .label { font-size: 21px; line-height: 1.25; font-weight: 600; color: #1d1d1f; margin-bottom: 8px; letter-spacing: 0.004em; }
+    .section-eyebrow { font-size: 21px; line-height: 1.25; font-weight: 600; color: #1d1d1f; margin-bottom: 8px; letter-spacing: 0.004em; }
+    .mini-eyebrow { font-size: 16px; line-height: 1.4; font-weight: 600; letter-spacing: -0.005em; color: #86868b; }
+    .label-light { color: rgba(255,255,255,0.8); }
+    .heading-xl { font-size: clamp(32px, 4vw, 48px); font-weight: 600; letter-spacing: -0.003em; line-height: 1.08; color: #1d1d1f; max-width: 18ch; text-wrap: balance; }
+    .heading-xl-white { color: #f5f5f7; }
+    .heading-lg { font-size: clamp(32px, 4vw, 48px); font-weight: 600; letter-spacing: -0.003em; line-height: 1.08; color: #1d1d1f; max-width: 18ch; text-wrap: balance; }
+    .heading-lg-white { color: #f5f5f7; }
+    .body-lg { font-size: clamp(19px, 1.5vw, 21px); font-weight: 500; line-height: 1.52; letter-spacing: 0.004em; color: #86868b; max-width: 60ch; margin-top: 24px; }
+    .body-lg em { color: #1d1d1f; font-style: normal; font-weight: 600; }
+    .body-lg-white { color: #a1a1a6; }
+    .body-lg-white em { color: #f5f5f7; }
+
+    /* ─── PROBLEM ─── */
+    .problem { background: #fff; padding: 120px var(--gutter) 0; }
+    /* Before / After slider */
+    .ba-wrap { margin-top: 72px; position: relative; overflow: hidden; border-radius: var(--radius-card); user-select: none; cursor: ew-resize; }
+    .ba-before { width: 100%; display: block; }
+    .ba-after-clip { position: absolute; top: 0; left: 0; bottom: 0; overflow: hidden; width: 50%; }
+    .ba-after { height: 100%; width: auto; max-width: none; display: block; }
+    .ba-label {
+      position: absolute; top: 18px; padding: 7px 13px;
+      border-radius: 100px; font-size: 13px; line-height: 1; font-weight: 600;
+      color: #1d1d1f; background: rgba(255,255,255,0.74);
+      backdrop-filter: saturate(180%) blur(18px);
+      -webkit-backdrop-filter: saturate(180%) blur(18px);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.56), 0 6px 20px rgba(0,0,0,0.08);
+      pointer-events: none;
+    }
+    .ba-label-b { left: 18px; }
+    .ba-label-a { right: 18px; }
+    .ba-line { position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; background: #fff; transform: translateX(-50%); pointer-events: none; }
+    .ba-knob {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 42px; height: 42px; border-radius: 50%; background: #fff;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.2);
+      display: flex; align-items: center; justify-content: center; gap: 3px;
+      pointer-events: none;
+    }
+    .ba-knob svg { width: 16px; height: 10px; }
+
+    /* Mobile before/after — 3 cards (one per screen), each with its own draggable split.
+       Hidden on desktop; the single wide .ba-wrap takes over there. */
+    .bac { display: none; }
+    .bac-card {
+      position: relative; flex: 0 0 auto;
+      width: 70vw; aspect-ratio: 480 / 810;
+      border-radius: var(--radius-card); overflow: hidden;
+      background: var(--surface);
+      scroll-snap-align: start; user-select: none;
+      container-type: inline-size;
+    }
+    .bac-before, .bac-after {
+      position: absolute; top: 0; left: 0; height: 100%;
+      background-repeat: no-repeat; background-size: 300% 100%;
+      background-position: var(--px, 0%) center;
+      /* The source screenshots have a baked-in white field around the phone. Multiply-blend a
+         light gray so that white reads as the card's #f5f5f7 while the colour screens are
+         left essentially untouched (~3% darker — imperceptible). */
+      background-color: #f5f5f7; background-blend-mode: multiply;
+    }
+    /* AFTER (new) is the full base on the right; the clip reveals BEFORE (old) on the left. */
+    .bac-after  { width: 100%;   background-image: var(--ba-after-img); }
+    .bac-before { width: 100cqw; background-image: var(--ba-before-img); }
+    .bac-clip { position: absolute; top: 0; bottom: 0; left: 0; width: 50%; overflow: hidden; }
+    .bac-line { position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; background: #fff; transform: translateX(-50%); pointer-events: none; box-shadow: 0 0 6px rgba(0,0,0,0.25); }
+    .bac-knob {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 40px; height: 40px; border-radius: 50%; background: #fff;
+      box-shadow: 0 2px 14px rgba(0,0,0,0.28);
+      display: flex; align-items: center; justify-content: center; gap: 3px;
+      cursor: ew-resize; touch-action: none;   /* knob is the drag handle; card body still scrolls the rail */
+    }
+    .bac-knob svg { width: 15px; height: 9px; }
+    .bac-lbl {
+      position: absolute; top: 12px; padding: 6px 11px; border-radius: 100px;
+      font-size: 12px; line-height: 1; font-weight: 600; color: #1d1d1f;
+      background: rgba(255,255,255,0.74);
+      backdrop-filter: saturate(180%) blur(16px);
+      -webkit-backdrop-filter: saturate(180%) blur(16px);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.56), 0 5px 16px rgba(0,0,0,0.08);
+      pointer-events: none;
+    }
+    .bac-lbl-b { left: 12px; }
+    .bac-lbl-a { right: 12px; }
+
+    /* ─── RESEARCH ─── */
+    .research { background: #f5f5f7; padding: 130px 0; }
+    .research-hd { padding: 0 var(--gutter); margin: 0 0 48px; }
+    .r-track {
+      display: flex; gap: 20px;
+      overflow-x: auto; overflow-y: hidden;      /* lock to horizontal — never scroll cards vertically */
+      overscroll-behavior-x: contain;
+      padding-inline: var(--gutter);
+      scroll-padding-left: var(--gutter);
+      scroll-snap-type: x mandatory; scrollbar-width: none; -webkit-overflow-scrolling: touch;
+    }
+    .r-track::-webkit-scrollbar { display: none; }
+    .r-card {
+      position: relative;
+      flex: 0 0 auto; width: min(80vw, 384px); background: #fff; border-radius: 28px;
+      overflow: hidden; display: flex; flex-direction: column; min-height: 540px;
+      scroll-snap-align: start;
+    }
+    .r-copy { padding: 38px 34px 26px; }
+    .r-tag { font-size: 16px; line-height: 1.4; font-weight: 600; letter-spacing: -0.005em; color: #86868b; margin-bottom: 14px; }
+    .r-title { font-size: 24px; font-weight: 600; letter-spacing: -0.012em; line-height: 1.22; color: #1d1d1f; margin-bottom: 12px; }
+    .r-body { font-size: 17px; line-height: 1.5; color: #6e6e73; }
+    .r-body em { color: inherit; font-weight: inherit; font-style: normal; }
+    /* Visual panel — the actual old-design screen the finding came from, cropped to its top.
+       background-size 300% pulls one phone out of the 3-up composite; --px picks which. */
+    .r-visual {
+      margin-top: auto; height: 250px; overflow: hidden;
+      background-repeat: no-repeat; background-size: 300% auto;
+      background-position: var(--px, 0%) top;
+      background-image: var(--research-visual-img);
+    }
+    .r-visual--tint {
+      background: radial-gradient(120% 120% at 78% 8%, #ffeef3, #f9c9da);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .r-big { font-size: 96px; font-weight: 700; letter-spacing: -0.04em; line-height: 0.9; color: rgba(120,30,60,0.16); padding: 0; }
+    /* Apple-style "+" control, bottom-right corner — solid dark over the visual */
+    .r-plus {
+      position: absolute; right: 24px; bottom: 22px; z-index: 2;
+      width: 44px; height: 44px; border-radius: 50%; border: none;
+      background: #1d1d1f; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.22);
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+    .r-card:hover .r-plus { background: #000; }
+    .r-plus:active { transform: scale(0.92); }
+    .r-plus svg { width: 22px; height: 22px; fill: #fff; }
+    .r-foot { display: flex; align-items: center; justify-content: flex-end; gap: 12px; padding: 40px var(--gutter) 0; }
+    .r-btn {
+      width: 42px; height: 42px; border-radius: 50%; border: none;
+      background: rgba(0,0,0,0.04); cursor: pointer;
+      display: flex; align-items: center; justify-content: center; transition: background 0.2s, opacity 0.2s;
+    }
+    .r-btn:hover:not(:disabled) { background: rgba(0,0,0,0.08); }
+    .r-btn:disabled { opacity: 0.32; cursor: default; }
+    .r-btn svg { width: 8px; height: 14px; }
+    .r-card { cursor: pointer; }
+
+    /* ─── Research detail modal (Apple-style overlay) ─── */
+    .r-modal {
+      position: fixed; inset: 0; z-index: 400;
+      display: flex; align-items: center; justify-content: center; padding: 24px;
+      visibility: hidden; pointer-events: none;
+      /* Stay in the DOM-visible state through the fade-out, then flip hidden. */
+      transition: visibility 0s linear 0.3s;
+    }
+    .r-modal.open { visibility: visible; pointer-events: auto; transition-delay: 0s; }
+    /* Backdrop fades on its OWN fast track so the blur reads instantly, not gradually. */
+    .r-modal-backdrop {
+      position: absolute; inset: 0;
+      background: rgba(245,245,247,0.6);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      opacity: 0; transition: opacity 0.22s ease;
+    }
+    .r-modal.open .r-modal-backdrop { opacity: 1; }
+    .r-modal-card {
+      position: relative; width: min(680px, 100%); max-height: 88vh; overflow-y: auto;
+      background: #fff; border-radius: 28px; padding: 56px 56px 48px;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.22);
+      opacity: 0; transform: translateY(10px) scale(0.97);
+      transition: opacity 0.24s ease, transform 0.4s cubic-bezier(0.22,1,0.36,1);
+    }
+    .r-modal.open .r-modal-card { opacity: 1; transform: none; }
+    .r-modal-x {
+      position: absolute; top: 20px; right: 20px;
+      width: 36px; height: 36px; border: none; border-radius: 50%;
+      background: #1d1d1f; color: #fff; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; transition: background 0.2s;
+      outline: none; -webkit-tap-highlight-color: transparent;
+    }
+    .r-modal-x:focus, .r-modal-x:focus-visible { outline: none; box-shadow: none; }
+    .r-modal-x:hover { background: #000; }
+    .r-modal-x svg { width: 15px; height: 15px; }
+    .r-modal-label { font-size: 15px; font-weight: 600; color: #1d1d1f; margin-bottom: 18px; }
+    .r-modal-title { font-size: clamp(28px, 3.4vw, 40px); font-weight: 600; letter-spacing: -0.015em; line-height: 1.08; color: #1d1d1f; margin-bottom: 22px; }
+    .r-modal-body { font-size: 17px; line-height: 1.6; color: #6e6e73; }
+    .r-modal-body p + p { margin-top: 16px; }
+    .r-modal-body em { color: #1d1d1f; font-weight: 600; font-style: normal; }
+
+    /* ─── REFLECTIONS ─── */
+    .reflections { background: #f5f5f7; padding: 88px var(--gutter); }
+    .reflections-inner { max-width: 1260px; margin: 0 auto; }
+    .refl-hd { margin-bottom: 36px; }
+    .refl-panel {
+      background: #fff; border-radius: 28px; padding: clamp(24px, 4vw, 44px);
+      display: grid; grid-template-columns: minmax(300px, 0.95fr) minmax(0, 1.05fr);
+      gap: clamp(24px, 4vw, 48px); align-items: stretch;
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,0.03);
+    }
+    .refl-takeaway {
+      border-radius: 24px; padding: clamp(28px, 4vw, 44px);
+      background: #1d1d1f; color: #f5f5f7;
+      display: flex; flex-direction: column; min-height: 360px;
+      overflow: hidden; position: relative;
+    }
+    .refl-takeaway-label { font-size: 16px; line-height: 1.4; font-weight: 600; letter-spacing: -0.005em; color: rgba(255,255,255,0.56); }
+    .refl-takeaway-text { position: relative; z-index: 1; font-size: clamp(28px, 3.4vw, 44px); font-weight: 600; letter-spacing: -0.025em; line-height: 1.08; max-width: 12ch; margin-top: clamp(40px, 6vw, 72px); }
+    .refl-takeaway-note { position: relative; z-index: 1; font-size: 15px; line-height: 1.55; color: rgba(255,255,255,0.56); max-width: 34ch; margin-top: auto; padding-top: clamp(40px, 6vw, 72px); }
+    .refl-lessons { display: flex; flex-direction: column; justify-content: center; gap: 0; }
+    .refl-lesson {
+      padding: 28px 0;
+      display: grid; grid-template-columns: 42px 1fr; gap: 18px; align-items: start;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+    .refl-lesson:first-child { padding-top: 0; }
+    .refl-lesson:last-child { padding-bottom: 0; border-bottom: none; }
+    .refl-lesson-num { width: 42px; height: 42px; border-radius: 50%; background: #f5f5f7; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; color: #6e6e73; }
+    .refl-lesson-label { font-size: 16px; line-height: 1.4; font-weight: 600; letter-spacing: -0.005em; color: #86868b; margin-bottom: 8px; }
+    .refl-lesson-title { font-size: 21px; font-weight: 600; letter-spacing: -0.015em; line-height: 1.2; color: #1d1d1f; margin-bottom: 8px; }
+    .refl-lesson-body { font-size: 16px; line-height: 1.52; color: #6e6e73; max-width: 48ch; }
+    @media (max-width: 900px) {
+      .refl-hd, .refl-panel { grid-template-columns: 1fr; }
+      .refl-takeaway { min-height: 300px; }
+      .refl-takeaway-text { max-width: 13ch; }
+    }
+
+    /* ─── WIREFRAMES SLIDER (auto-scrolling marquee, Framer-style) ─── */
+    .wireframes { background: #fff; padding: 120px 0; overflow: hidden; }
+    .wf-hd { padding: 0 var(--gutter); margin: 0 0 56px; }
+    .wf-title { font-size: clamp(32px, 4vw, 48px); font-weight: 600; letter-spacing: -0.003em; line-height: 1.08; color: #1d1d1f; }
+    .wf-sub { font-size: 19px; line-height: 1.5; color: #6e6e73; margin-top: 12px; max-width: 600px; }
+    .wf-sub em { color: #1d1d1f; font-weight: 600; font-style: normal; }
+    /* Edge fade: mask makes the rail transparent at the sides, revealing the white section
+       background — so the cards dissolve into white for a soft, dreamy effect. */
+    .wf-mask {
+      width: 100%; overflow: hidden;
+      /* Vertical padding gives the card drop-shadows room to fall — without it the
+         overflow:hidden slices the shadow flat and the cards look hard-cut top & bottom. */
+      padding: 36px 0 64px;
+      -webkit-mask-image: linear-gradient(to right, transparent 0, #000 12.5%, #000 87.5%, transparent 100%);
+              mask-image: linear-gradient(to right, transparent 0, #000 12.5%, #000 87.5%, transparent 100%);
+    }
+    /* Track holds TWO identical sets; each slide carries its own trailing margin so the row is
+       perfectly periodic and translateX(-50%) lands exactly on the loop boundary (seamless). */
+    .wf-track {
+      display: flex; width: max-content; margin: 0; padding: 0; list-style: none;
+      animation: wfScroll 45s linear infinite; will-change: transform;
+    }
+    .wf-mask:hover .wf-track { animation-play-state: paused; }
+    .wf-slide {
+      flex: 0 0 auto; margin-right: 50px;
+      width: 248px; aspect-ratio: 375 / 812;
+      border-radius: 34px; overflow: hidden;
+      background: #f0f0f2;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.10);
+    }
+    .wf-slide img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    @keyframes wfScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    @media (prefers-reduced-motion: reduce) { .wf-track { animation: none; } }
+
+    /* ─── VALUES / GOALS SCROLL MOMENT ─── */
+    .values {
+      --goal-vision: 0;
+      --goal-bg: 0;
+      position: relative; min-height: 280vh; overflow: clip; background: #1d1d1f;
+    }
+    .values::before {
+      content: ''; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background: #1d1d1f; opacity: var(--goal-bg);
+    }
+    .goals-head {
+      position: relative; z-index: 6;
+      width: min(1260px, calc(100% - 2 * var(--gutter)));
+      margin: 0 auto; padding-top: 120px; padding-bottom: 32px;
+      max-width: 1260px;
+    }
+    .goals-head .heading-lg { color: #f5f5f7; }
+    .goals-head .label { color: rgba(245,245,247,0.72); }
+    .goals-sticky {
+      position: sticky; top: 0; min-height: 100svh;
+      display: flex; align-items: center; justify-content: center;
+      padding: 88px var(--gutter); overflow: hidden;
+    }
+    .goals-sticky::after {
+      content: ''; position: absolute; inset: 0; z-index: 4; pointer-events: none;
+      background: #1d1d1f; opacity: var(--goal-vision, 0);
+    }
+    .goal-cloud {
+      position: absolute; left: 50%; top: 50%; z-index: 1;
+      width: min(1180px, 100vw); height: min(620px, 70svh);
+      transform: translate(-50%, -50%);
+    }
+    .goal-bubble {
+      position: absolute; left: 50%; top: 50%;
+      width: var(--s); height: var(--s); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; text-align: center;
+      padding: 16px; background: rgba(245,245,247,0.92); color: #1d1d1f;
+      font-size: clamp(12px, 1.05vw, 15px); font-weight: 600; line-height: 1.18;
+      transform: translate3d(calc(var(--tx, 0px) - 50%), calc(var(--ty, 0px) - 50%), 0) scale(var(--sc, 1));
+      opacity: var(--op, 1);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.16), 0 18px 48px rgba(0,0,0,0.22);
+      will-change: transform, opacity;
+    }
+    .goal-bubble.is-main {
+      background: #f5f5f7; color: #1d1d1f; z-index: 3;
+      font-size: clamp(20px, 2.2vw, 32px); letter-spacing: -0.022em; line-height: 1.05;
+      box-shadow: 0 28px 72px rgba(0,0,0,0.32);
+    }
+    .goal-vision {
+      position: relative; z-index: 7; max-width: min(850px, 86vw);
+      opacity: var(--goal-vision, 0);
+      transform: translateY(calc((1 - var(--goal-vision, 0)) * 28px));
+      text-align: center; pointer-events: none;
+    }
+    .goal-vision-kicker { font-size: 21px; line-height: 1.25; font-weight: 600; color: rgba(245,245,247,0.72); margin-bottom: 12px; letter-spacing: 0.004em; }
+    .goal-vision-text { font-size: clamp(36px, 5.2vw, 72px); font-weight: 600; letter-spacing: -0.025em; line-height: 1.05; color: #f5f5f7; text-wrap: balance; }
+    @media (prefers-reduced-motion: reduce) {
+      .values { min-height: auto; background: #1d1d1f; }
+      .values::before { display: none; }
+      .goals-sticky::after { display: none; }
+      .goals-sticky { position: relative; min-height: auto; padding-top: 120px; padding-bottom: 120px; }
+      .goal-cloud { position: relative; inset: auto; min-height: 460px; width: 100%; }
+      .goal-vision { opacity: 1; transform: none; margin-top: 48px; }
+    }
+
+    /* ─── EXPLORE — direct reconstruction of Apple's feature-pill product stage. ─── */
+    .explore {
+      background: #f5f5f7; padding: 130px var(--gutter);
+      display: flex; flex-direction: column; align-items: center; gap: 64px;
+      position: relative; overflow: hidden;
+    }
+    .explore-inner { max-width: 1260px; width: 100%; display: grid; grid-template-columns: minmax(0, 1fr) minmax(320px, 520px); gap: 48px; align-items: end; }
+    /* Typography matches the rest of the page: .label / .heading-xl / .body-lg scales */
+    .explore-eyebrow { font-size: 21px; line-height: 1.25; font-weight: 600; letter-spacing: 0.004em; color: #1d1d1f; margin-bottom: 8px; }
+    .explore-headline {
+      font-size: clamp(32px, 4vw, 48px); font-weight: 600; letter-spacing: -0.003em; line-height: 1.08;
+      color: #1d1d1f; max-width: 18ch; text-wrap: balance;
+    }
+    .explore-copy { font-size: clamp(19px, 1.5vw, 21px); font-weight: 500; line-height: 1.52; letter-spacing: 0.004em; color: #86868b; max-width: 60ch; }
+    .explore-copy strong { color: #1d1d1f; font-weight: 600; }
+    .explore-note { font-size: 15px; line-height: 1.55; color: #86868b; max-width: 42ch; }
+    .explore-note strong { color: #1d1d1f; font-weight: 600; }
+    .explore-viewer {
+      background: #fff; border-radius: 28px;
+      max-width: 1600px; width: 100%; min-height: clamp(650px, 58vw, 820px);
+      padding: clamp(48px, 6vw, 96px); gap: clamp(36px, 4vw, 72px);
+      display: grid; grid-template-columns: minmax(260px, 320px) minmax(0, 1fr);
+      align-items: center; position: relative; overflow: hidden;
+    }
+    .explore-stage {
+      align-self: stretch; min-width: 0;
+      display: flex; align-items: flex-start; justify-content: center;
+      position: relative;
+    }
+    .explore-phone {
+      position: absolute; top: 0; left: 50%; z-index: 2;
+      width: min(430px, 52vw); aspect-ratio: 415 / 843; transform: translateX(-50%);
+      padding: 11px; border-radius: 72px; background: #202024;
+      box-shadow: 0 24px 54px rgba(0,0,0,0.18), inset 0 0 0 2px rgba(255,255,255,0.16);
+      transition: transform 0.55s var(--ease), opacity 0.28s ease;
+    }
+    .explore-phone.is-changing { opacity: 0; transform: translateX(-50%) scale(0.985); }
+    .explore-phone-screen {
+      width: 100%; height: 100%; border-radius: 62px; overflow: hidden; position: relative;
+      background: #f7f7f8; color: #26262a;
+    }
+    .explore-phone-notch {
+      position: absolute; z-index: 3; top: 15px; left: 50%; transform: translateX(-50%);
+      width: 36%; height: 34px; border-radius: 999px; background: #202024;
+    }
+    .explore-placeholder {
+      --screen-accent: #d7d0df;
+      height: 100%; padding: 74px 24px 26px; display: flex; flex-direction: column; gap: 18px;
+      transition: opacity 0.3s ease;
+    }
+    .explore-phone[data-screen="1"] .explore-placeholder { --screen-accent: #cddbe7; }
+    .explore-phone[data-screen="2"] .explore-placeholder { --screen-accent: #d6e1d2; }
+    .explore-phone[data-screen="3"] .explore-placeholder { --screen-accent: #ead9cf; }
+    .explore-phone[data-screen="4"] .explore-placeholder { --screen-accent: #d5d8e7; }
+    .explore-phone[data-screen="5"] .explore-placeholder { --screen-accent: #e7d9cf; }
+    .explore-ph-kicker { width: 28%; height: 10px; border-radius: 999px; background: #c9c9cd; }
+    .explore-ph-title { width: 68%; height: 28px; border-radius: 8px; background: #29292d; opacity: 0.9; }
+    .explore-ph-hero {
+      height: 170px; border-radius: 24px; background: var(--screen-accent); position: relative; overflow: hidden;
+    }
+    .explore-ph-hero::before {
+      content: ''; position: absolute; width: 112px; height: 112px; border-radius: 50%;
+      background: rgba(255,255,255,0.72); top: 50%; left: 50%; transform: translate(-50%,-50%);
+    }
+    .explore-ph-lines { display: grid; gap: 10px; }
+    .explore-ph-lines span { height: 10px; border-radius: 999px; background: #d8d8dc; }
+    .explore-ph-lines span:nth-child(2) { width: 78%; }
+    .explore-ph-lines span:nth-child(3) { width: 55%; }
+    .explore-ph-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 2px; }
+    .explore-ph-grid span { height: 112px; border-radius: 20px; background: #ececef; }
+    .explore-ph-grid span:first-child { background: color-mix(in srgb, var(--screen-accent) 68%, white); }
+    .explore-ph-tabbar {
+      margin-top: auto; height: 58px; border-radius: 20px; background: #ececef;
+      display: flex; align-items: center; justify-content: space-around;
+    }
+    .explore-ph-tabbar span { width: 24px; height: 24px; border-radius: 8px; background: #c8c8cc; }
+    .explore-phone[data-screen="1"] .explore-ph-hero { height: 230px; }
+    .explore-phone[data-screen="2"] .explore-ph-grid { grid-template-columns: 1fr; }
+    .explore-phone[data-screen="2"] .explore-ph-grid span { height: 72px; }
+    .explore-phone[data-screen="3"] .explore-ph-hero { border-radius: 50%; width: 170px; align-self: center; }
+    .explore-phone[data-screen="4"] .explore-ph-hero::before { width: 74px; height: 74px; box-shadow: 0 0 0 30px rgba(255,255,255,0.28); }
+    .explore-phone[data-screen="5"] .explore-ph-grid span { height: 150px; }
+    .explore-controls {
+      display: flex; flex-direction: column; align-items: flex-start; gap: 12px;
+      position: relative; z-index: 4;
+    }
+    .explore-pill {
+      min-height: 56px; width: fit-content; max-width: 100%; padding: 14px 20px; border-radius: 28px;
+      border: none; cursor: pointer; display: flex; flex-direction: column;
+      align-items: flex-start; gap: 0; text-align: left; background: #f0f0f2;
+      transition: background 0.28s var(--ease), width 0.38s var(--ease), padding 0.38s var(--ease);
+    }
+    .explore-pill:hover { background: #e8e8eb; }
+    .explore-pill.is-expanded { width: 100%; border-radius: 28px; padding: 24px; }
+    .explore-pill-row { display: flex; align-items: center; gap: 12px; }
+    .explore-pill-label { font-size: 17px; font-weight: 600; letter-spacing: 0; color: #1d1d1f; white-space: nowrap; }
+    .explore-pill-icon {
+      width: 24px; height: 24px; border-radius: 50%; flex-shrink: 0;
+      border: 1.5px solid #1d1d1f; position: relative;
+    }
+    .explore-pill-icon::before,
+    .explore-pill-icon::after {
+      content: ''; position: absolute; top: 50%; left: 50%; width: 10px; height: 1.5px;
+      border-radius: 2px; background: #1d1d1f; transform: translate(-50%, -50%);
+    }
+    .explore-pill-icon::after { transform: translate(-50%, -50%) rotate(90deg); }
+    .explore-pill.is-active:not(.is-expanded) .explore-pill-icon {
+      background: #d9c5eb; border-color: rgba(29,29,31,0.22);
+    }
+    .explore-pill.is-active:not(.is-expanded) .explore-pill-icon::before,
+    .explore-pill.is-active:not(.is-expanded) .explore-pill-icon::after { display: none; }
+    .explore-pill.is-expanded .explore-pill-icon { display: none; }
+    .explore-pill-desc {
+      max-height: 0; opacity: 0; overflow: hidden; font-size: 17px; font-weight: 400;
+      line-height: 1.55; letter-spacing: 0; color: #1d1d1f;
+      transition: max-height 0.38s var(--ease), opacity 0.28s ease, margin 0.38s var(--ease);
+    }
+    .explore-pill.is-expanded .explore-pill-desc { max-height: 150px; opacity: 1; margin-top: 10px; }
+    .explore-pill-desc strong { font-weight: 600; }
+    .explore-close,
+    .explore-step {
+      width: 44px; height: 44px; border: 0; border-radius: 50%; background: #f0f0f2;
+      display: grid; place-items: center; color: #1d1d1f; cursor: pointer;
+      transition: background 0.25s var(--ease), opacity 0.25s ease;
+    }
+    .explore-close { position: absolute; top: 24px; right: 24px; z-index: 6; opacity: 0; visibility: hidden; pointer-events: none; }
+    .explore-viewer.is-expanded .explore-close { opacity: 1; visibility: visible; pointer-events: auto; }
+    .explore-close::before,
+    .explore-close::after { content: ''; width: 14px; height: 2px; border-radius: 2px; background: currentColor; position: absolute; transform: rotate(45deg); }
+    .explore-close::after { transform: rotate(-45deg); }
+    .explore-close:hover, .explore-step:hover { background: #e4e4e7; }
+    .explore-steps {
+      position: absolute; left: 22px; top: 50%; transform: translateY(-50%);
+      display: flex; flex-direction: column; gap: 10px; opacity: 0; pointer-events: none;
+      transition: opacity 0.25s ease, visibility 0s linear 0.25s; visibility: hidden;
+    }
+    .explore-viewer.is-expanded .explore-steps { opacity: 1; visibility: visible; pointer-events: auto; transition-delay: 0s; }
+    .explore-step::before {
+      content: ''; width: 9px; height: 9px; border-top: 3px solid currentColor;
+      border-left: 3px solid currentColor; transform: rotate(45deg) translate(2px, 2px);
+    }
+    .explore-step--next::before { transform: rotate(225deg) translate(2px, 2px); }
+    .explore-step:disabled { opacity: 0.28; cursor: default; }
+    @media (max-width: 1024px) {
+      .explore { padding-top: 90px; gap: 40px; }
+      .explore-inner { grid-template-columns: 1fr; gap: 24px; }
+      .explore-viewer { grid-template-columns: minmax(230px, 320px) minmax(0, 1fr); padding: 48px; min-height: 650px; }
+      .explore-phone { width: min(380px, 48vw); }
+    }
+    @media (max-width: 599px) {
+      .explore { padding-top: 72px; padding-bottom: 72px; }
+      .explore-copy { font-size: 17px; }
+      .explore-viewer {
+        margin-inline: calc(-1 * var(--gutter)); width: calc(100% + 2 * var(--gutter));
+        border-radius: 0; min-height: 700px; padding: 42px var(--gutter);
+        grid-template-columns: 1fr; grid-template-rows: 390px auto; gap: 30px;
+      }
+      .explore-stage { grid-row: 1; }
+      .explore-controls {
+        grid-row: 2; width: calc(100% + var(--gutter)); align-items: stretch;
+        flex-direction: row; overflow-x: auto; overflow-y: hidden; gap: 14px;
+        padding-right: var(--gutter); scroll-padding-inline: 0 var(--gutter);
+        scroll-snap-type: x mandatory; overscroll-behavior-x: contain;
+        scrollbar-width: none; -webkit-overflow-scrolling: touch;
+      }
+      .explore-controls::-webkit-scrollbar { display: none; }
+      .explore-phone { width: min(250px, 66vw); }
+      .explore-pill,
+      .explore-pill.is-expanded {
+        flex: 0 0 84%; width: 84%; min-height: 176px; max-width: none;
+        padding: 24px; border-radius: 24px; scroll-snap-align: start;
+      }
+      .explore-pill.is-active { background: #e8e8eb; }
+      .explore-pill-icon { display: none; }
+      .explore-pill-desc,
+      .explore-pill.is-expanded .explore-pill-desc {
+        max-height: none; opacity: 1; overflow: visible; margin-top: 12px;
+        font-size: 16px; line-height: 1.5;
+      }
+      .explore-close, .explore-steps { display: none; }
+    }
+
+    /* ─── OUTCOMES (Apple-style mixed photo/stat/icon tiles) ─── */
+    .features { background: #fff; padding: 110px var(--gutter); }
+    .features-inner { max-width: 1260px; margin: 0 auto; }
+    /* Gray card wrapping heading + grid, like Apple's compare-gallery panel on
+       desktop. It disappears on mobile (see breakpoint below) where the tiles
+       go full-bleed instead — matching the Apple reference's mobile behavior. */
+    .feat-wrap { background: var(--surface); border-radius: var(--radius-section); padding: 48px; }
+    .feat-wrap-hd { margin-bottom: 36px; }
+    .feat-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+
+    /* Base cell — all tiles share this */
+    .feat-cell {
+      background: #fff; border-radius: var(--radius-card);
+      display: flex; flex-direction: column; overflow: hidden; min-height: 262px;
+    }
+
+    /* ── Photo tile: descriptor at top center, abstract shape fills bottom ── */
+    .feat-cell--photo .feat-copy { padding: 26px 24px 0; text-align: center; }
+    .feat-copy-label { font-size: 17px; font-weight: 600; color: var(--muted); line-height: 1.35; }
+    .feat-copy-label strong { color: var(--text); font-weight: 600; }
+    /* Shape canvas */
+    .feat-vis { margin-top: auto; flex: 1; min-height: 144px; position: relative; overflow: hidden; background: var(--surface-soft); }
+    .feat-vis .s { position: absolute; border-radius: 50%; }
+
+    /* ── Stat tile: centred large number + descriptor, no gradient ── */
+    .feat-cell--stat {
+      align-items: center; justify-content: center; text-align: center; padding: 40px 28px;
+      min-height: 262px;
+    }
+    .feat-stat-pre { font-size: 17px; font-weight: 600; color: var(--muted); margin-bottom: 4px; }
+    .feat-stat-num {
+      font-size: clamp(50px, 5.4vw, 76px); font-weight: 600; letter-spacing: -0.03em; line-height: 1;
+      color: var(--muted);
+    }
+    .feat-stat-unit { font-size: 0.48em; font-weight: 600; color: var(--muted); }
+    .feat-stat-post { font-size: 17px; font-weight: 600; color: var(--muted); margin-top: 10px; line-height: 1.36; }
+
+    /* ── Icon tile: icon + title + body ── */
+    .feat-cell--icon { padding: 32px 30px; justify-content: flex-start; }
+    .feat-icon-wrap { width: 48px; height: 48px; border-radius: 14px; background: var(--surface-line); display: flex; align-items: center; justify-content: center; margin-bottom: 22px; color: var(--text); }
+    .feat-icon-wrap svg { width: 24px; height: 24px; }
+    .feat-icon-title { font-size: 21px; font-weight: 600; letter-spacing: -0.012em; color: var(--muted); line-height: 1.18; margin-bottom: 10px; }
+    .feat-icon-body { font-size: 16px; font-weight: 600; color: var(--muted); line-height: 1.48; }
+    .feat-icon-body strong { color: var(--muted); font-weight: 600; }
+
+    /* ─── RESULTS ─── */
+    .results { background: #f5f5f7; padding: 130px var(--gutter); }
+    .results-inner { max-width: 1260px; margin: 0 auto; }
+    .results-hdr { margin-bottom: 56px; }
+    .validation-panel { display: grid; grid-template-columns: minmax(220px, 0.7fr) minmax(320px, 1fr) minmax(280px, 0.9fr); gap: clamp(28px, 5vw, 72px); align-items: center; }
+    .validation-score { padding: 0; }
+    .validation-score-kicker { font-size: 16px; line-height: 1.4; font-weight: 600; letter-spacing: -0.005em; color: #86868b; margin-bottom: 18px; }
+    .validation-score-main { font-size: clamp(72px, 9vw, 118px); font-weight: 600; line-height: 0.9; letter-spacing: -0.05em; color: #1d1d1f; }
+    .validation-score-main sup { font-size: 0.26em; letter-spacing: -0.02em; vertical-align: super; color: #6e6e73; margin-left: 4px; }
+    .validation-score-caption { font-size: 17px; font-weight: 600; line-height: 1.4; color: #6e6e73; margin-top: 18px; max-width: 18ch; }
+    .validation-flow { display: flex; flex-direction: column; gap: 18px; }
+    .validation-row { display: grid; grid-template-columns: 86px 1fr auto; gap: 18px; align-items: center; padding: 18px 0; border-bottom: 1px solid rgba(0,0,0,0.07); }
+    .validation-row:last-child { border-bottom: none; }
+    .validation-label { font-size: 13px; font-weight: 600; color: #86868b; }
+    .validation-bar { height: 10px; border-radius: 999px; background: #e8e8ed; overflow: hidden; }
+    .validation-bar span { display: block; height: 100%; width: var(--w); border-radius: inherit; background: #1d1d1f; transform-origin: left; transform: scaleX(0); transition: transform 1s var(--ease); }
+    .reveal.in .validation-bar span { transform: scaleX(1); }
+    .validation-value { font-size: 24px; font-weight: 600; letter-spacing: -0.02em; color: #1d1d1f; min-width: 70px; text-align: right; }
+    .results-beta { font-size: 15px; color: #86868b; margin-top: 24px; }
+    .validation-note { border-radius: var(--radius-card); background: #fff; padding: 30px 28px; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.03); }
+    .validation-note-kicker { font-size: 16px; line-height: 1.4; font-weight: 600; letter-spacing: -0.005em; color: #86868b; margin-bottom: 12px; }
+    .validation-note-title { font-size: clamp(22px, 2.4vw, 30px); font-weight: 600; letter-spacing: -0.02em; line-height: 1.14; color: #1d1d1f; margin-bottom: 12px; }
+    .validation-note-text { font-size: 16px; line-height: 1.52; color: #6e6e73; }
+
+    /* ─── SCALE (Apple "essentials" banner-card style) ─── */
+    .scale { background: #fff; padding: 130px var(--gutter); }
+    .scale-inner { max-width: 1260px; margin: 0 auto; }
+    .scale-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 56px; }
+    /* Each card: light gray, landscape, copy left + visual right */
+    .scale-card {
+      background: var(--surface); border-radius: var(--radius-card); overflow: hidden;
+      display: flex; flex-direction: column; min-height: 420px;
+    }
+    .scale-copy {
+      padding: 40px 36px 28px; display: flex; flex-direction: column; justify-content: flex-start; z-index: 1;
+    }
+    .scale-eyebrow { font-size: 16px; line-height: 1.4; font-weight: 600; letter-spacing: -0.005em; color: #86868b; margin-bottom: 12px; }
+    .scale-title { font-size: clamp(22px, 2vw, 28px); font-weight: 600; letter-spacing: -0.018em; line-height: 1.2; color: #1d1d1f; margin-bottom: 12px; }
+    .scale-text { font-size: 15px; line-height: 1.6; color: #6e6e73; }
+    /* Visual — fills the right half, image bleeds to all edges */
+    .scale-vis {
+      flex: 1; position: relative; overflow: hidden; min-height: 250px; margin: 0 20px 20px; border-radius: var(--radius-inner);
+      background-size: cover; background-position: center;
+    }
+    .scale-system {
+      background: linear-gradient(135deg, #edeef6, #f9f9fb);
+      padding: 28px; display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 16px;
+    }
+    .scale-token {
+      border-radius: var(--radius-inner); background: #fff; min-height: 132px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 48px; font-weight: 600; letter-spacing: -0.05em; color: #1d1d1f;
+      box-shadow: 0 18px 34px rgba(0,0,0,0.06);
+    }
+    .scale-chip-row { display: flex; gap: 8px; align-self: start; flex-wrap: wrap; }
+    .scale-chip-row span { padding: 8px 12px; border-radius: 999px; background: #fff; font-size: 12px; font-weight: 600; color: #6e6e73; box-shadow: 0 10px 22px rgba(0,0,0,0.05); }
+    .scale-component-card {
+      grid-column: 1 / -1; border-radius: var(--radius-inner); background: #fff; padding: 18px;
+      display: grid; grid-template-columns: 56px 1fr; gap: 12px; align-items: center;
+      box-shadow: 0 18px 34px rgba(0,0,0,0.06);
+    }
+    .scale-component-card span:first-child { width: 56px; height: 56px; border-radius: 16px; background: #dfe8d8; grid-row: span 2; }
+    .scale-component-card span:nth-child(2) { height: 12px; border-radius: 999px; background: #1d1d1f; opacity: 0.85; }
+    .scale-component-card span:nth-child(3) { height: 10px; width: 70%; border-radius: 999px; background: #d6d6dc; }
+    .scale-component-list {
+      position: absolute; right: 28px; bottom: 28px; width: 42%; border-radius: var(--radius-inner); padding: 16px; background: rgba(255,255,255,0.76);
+      backdrop-filter: blur(16px); display: flex; flex-direction: column; gap: 10px; box-shadow: 0 18px 34px rgba(0,0,0,0.07);
+    }
+    .scale-component-list span { height: 10px; border-radius: 999px; background: #cfd2dc; }
+    .scale-component-list span:nth-child(2) { width: 74%; }
+    .scale-component-list span:nth-child(3) { width: 52%; }
+    .scale-handoff {
+      background: linear-gradient(135deg, #eaf2ec, #f8faf8);
+      display: flex; align-items: center; justify-content: center; padding: 28px;
+    }
+    .handoff-window { width: min(430px, 100%); border-radius: 22px; background: rgba(255,255,255,0.82); backdrop-filter: blur(18px); box-shadow: 0 24px 48px rgba(39,74,47,0.12); overflow: hidden; }
+    .handoff-bar { height: 42px; display: flex; align-items: center; gap: 7px; padding: 0 18px; border-bottom: 1px solid rgba(0,0,0,0.07); }
+    .handoff-bar span { width: 9px; height: 9px; border-radius: 50%; background: #c9d7ca; }
+    .handoff-row { display: flex; justify-content: space-between; gap: 18px; align-items: center; padding: 18px 20px; border-bottom: 1px solid rgba(0,0,0,0.06); }
+    .handoff-row:last-child { border-bottom: none; }
+    .handoff-row strong { font-size: 15px; color: #1d1d1f; }
+    .handoff-row span { font-size: 13px; font-weight: 600; color: #55745a; padding: 7px 10px; border-radius: 999px; background: #e5f0e6; }
+    @media (max-width: 734px) {
+      .scale-card { flex-direction: column; }
+      .scale-copy { flex: none; padding: 30px 28px 20px; }
+      .scale-vis { min-height: 180px; }
+      .scale-system { grid-template-columns: 1fr; }
+      .scale-component-list { display: none; }
+    }
+
+    /* ─── MORE WORK GALLERY (Apple feature-card style) ─── */
+    .cs-foot { background: #fff; padding: 100px 0 0; }
+    .cs-foot-hd { padding: 0 var(--gutter) 48px; max-width: calc(1260px + 2 * var(--gutter)); margin: 0 auto; }
+    .cs-foot-label { font-size: 21px; line-height: 1.25; font-weight: 600; letter-spacing: 0.004em; color: #1d1d1f; margin-bottom: 8px; }
+    /* Horizontal scroll rail — same gap/gutter rhythm as the highlights stage above */
+    .cs-foot-rail {
+      display: flex; gap: 20px;
+      overflow-x: auto; overflow-y: visible;
+      scroll-snap-type: x mandatory; scrollbar-width: none;
+      overscroll-behavior-x: contain;
+      padding-inline: var(--gutter);
+      scroll-padding-left: var(--gutter);
+      padding-bottom: 80px; /* room for paddle nav */
+    }
+    .cs-foot-rail::-webkit-scrollbar { display: none; }
+    /* Cards — portrait, dark */
+    .nc {
+      flex: 0 0 auto;
+      /* vw-based on purpose: tying this to the 1260px content column (like the
+         rest of the page) caps it at ~620px forever past that width, since
+         --gutter grows to exactly cancel the extra viewport. Cards intentionally
+         bleed past the column here, peeking on the right like the highlights rail. */
+      width: clamp(560px, 56vw, 820px);
+      aspect-ratio: 5 / 4;
+      border-radius: var(--radius-section); overflow: hidden;
+      background: #1d1d1f;
+      position: relative; display: flex; flex-direction: column;
+      scroll-snap-align: start; text-decoration: none;
+    }
+    /* Copy block — top-left */
+    .nc-copy { padding: 44px 48px; position: relative; z-index: 2; }
+    .nc-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+    .nc-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; overflow: hidden; flex-shrink: 0; }
+    .nc-icon img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .nc-co { font-size: 15px; font-weight: 600; letter-spacing: 0.02em; color: rgba(255,255,255,0.7); }
+    .nc-title { font-size: clamp(28px, 3.4vw, 44px); font-weight: 600; letter-spacing: -0.02em; line-height: 1.14; color: #f5f5f7; margin-bottom: 16px; }
+    .nc-desc { font-size: clamp(16px, 1.4vw, 19px); font-weight: 500; line-height: 1.5; color: rgba(255,255,255,0.62); max-width: 36ch; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    /* Image — fills bottom, bleeds to edges */
+    .nc-img {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center;
+      /* desktop/mobile urls are set per-card as inline custom props by components.js */
+      background-image: var(--nc-img-desktop);
+      /* gradient darkens the top for text legibility */
+    }
+    .nc-img::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.28) 45%, rgba(0,0,0,0) 100%);
+    }
+    /* Paddle nav */
+    .cs-foot-nav { display: flex; gap: 8px; justify-content: flex-end; padding: 0 var(--gutter) 80px; }
+    .cs-paddle {
+      width: 42px; height: 42px; border-radius: 50%; border: none;
+      background: rgba(0,0,0,0.05); cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.18s;
+    }
+    .cs-paddle:hover:not(:disabled) { background: rgba(0,0,0,0.1); }
+    .cs-paddle:disabled { opacity: 0.3; cursor: default; }
+    .cs-paddle svg { width: 9px; height: 15px; }
+    @media (max-width: 734px) {
+      .cs-foot-rail { gap: 20px; }
+      .nc { width: 88vw; aspect-ratio: 3 / 4; border-radius: 20px; }
+      .nc-copy { padding: 30px 28px; }
+      .nc-meta { gap: 10px; margin-bottom: 14px; }
+      .nc-icon { width: 26px; height: 26px; }
+      .nc-co { font-size: 13px; }
+      .nc-title { font-size: clamp(24px, 6.5vw, 30px); margin-bottom: 12px; }
+      .nc-desc { font-size: 15px; max-width: none; }
+      .cs-foot-nav { padding-bottom: 56px; }
+      .nc-img { background-image: var(--nc-img-mobile); }
+    }
+    @media (max-width: 599px) {
+      .cs-foot { padding-top: 72px; }
+      .cs-foot-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ─── REVEAL ─── */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.8s cubic-bezier(0.22,1,0.36,1), transform 0.8s cubic-bezier(0.22,1,0.36,1); }
+    .reveal.in { opacity: 1; transform: none; }
+    .d1 { transition-delay: 0.1s; } .d2 { transition-delay: 0.2s; } .d3 { transition-delay: 0.3s; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .values { min-height: 240vh; }
+      .goals-head { padding-top: 88px; padding-bottom: 24px; }
+      .goal-cloud { width: 100vw; height: min(560px, 66svh); }
+      .goal-bubble { font-size: 12px; padding: 12px; }
+      .goal-bubble.is-main { font-size: 20px; }
+      .goal-vision-text { font-size: clamp(34px, 9vw, 48px); }
+      /* Wrapper disappears on mobile/tablet — tiles go full-bleed, same as the Apple reference */
+      .feat-wrap { background: none; border-radius: 0; padding: 0; }
+      .feat-wrap-hd { margin-bottom: 32px; }
+      .feat-cell { background: #f5f5f7; }
+      .feat-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; grid-auto-rows: 220px; }
+      .feat-cell { height: 220px; min-height: unset; }
+      .feat-vis { min-height: unset; flex: 1; }
+      .feat-cell--stat { padding: 28px 18px; min-height: unset; }
+      .feat-stat-num { font-size: 46px; }
+      .feat-cell--icon { padding: 24px 22px; }
+      .feat-cell--photo .feat-copy { padding: 20px 20px 0; }
+      .validation-panel { grid-template-columns: 1fr; }
+      .scale-grid { grid-template-columns: 1fr; }
+      .cs-foot-grid { grid-template-columns: 1fr; }
+    }
+    /* Tablet / small: cards left-align to the gutter with a visible peek on the right.
+       (Switch from center-snap to start-snap so the first card's left edge hits the line.) */
+    @media (max-width: 734px) {
+      /* Reverse-engineered from the Figma mobile frame: margin = 6.25% per side
+         (content = 87.5%), e.g. 390 → 24.375px gutter / 341.25 content. Scales to any
+         phone width (360, 414, 430…); 16px floor guards ultra-narrow / landscape. */
+      :root { --gutter: max(16px, 6.25vw); }
+      /* svh = the viewport WITH the browser bars showing, so the hero is never cut off by
+         Chrome's bottom bar on first paint (vh fallback for older browsers). */
+      .hero { min-height: calc(90vh - 41px); min-height: calc(90svh - 41px); }
+      .hero-content { flex-direction: column; align-items: flex-start; gap: 26px; }
+      .hero-meta { gap: 30px; padding-bottom: 0; flex-wrap: wrap; }
+      .hero-meta-item dd { font-size: 16px; }
+      .highlights { padding: 88px 0 76px; }
+      .hl-hd { margin-bottom: 32px; }
+      .hl-stage { gap: 20px; padding-inline: var(--gutter); scroll-padding-left: var(--gutter); }
+      .hl-card { width: 80vw; height: 465px; border-radius: 20px; scroll-snap-align: start; }
+      .hl-card-text { padding: 26px 24px; font-size: clamp(18px, 5.2vw, 22px); }
+      /* On mobile (card ≈ 80vw), 40% would be too narrow — use 78% of card instead */
+      .ht-left, .ht-right { max-width: 78%; }
+      .ht-center { max-width: 78%; left: 50%; transform: translateX(-50%); }
+      .hl-controls { top: calc(100svh - 68px); gap: 10px; margin-top: -76px; padding: 0 8px; }
+      .hl-dot-shell { height: 46px; padding: 0 17px; }
+      .hl-play { width: 46px; height: 46px; }
+      .hl-dots { gap: 11px; }
+      .hl-dot.active { width: 46px; }
+      .wireframes { padding: 84px 0; }
+      .wf-hd { margin-bottom: 36px; }
+      .wf-slide { width: 168px; margin-right: 28px; border-radius: 26px; box-shadow: 0 14px 34px rgba(0,0,0,0.10); }
+      /* Swap the single wide before/after for a swipeable rail of 3 per-screen cards. */
+      .problem { padding-bottom: 56px; }
+      .ba-wrap { display: none; }
+      /* Full-bleed: cancel .problem's gutter so the rail's own padding-inline puts the
+         FIRST card on the gutter line (same as the heading) and lets cards bleed off the right. */
+      .bac { display: block; margin-top: 44px; margin-inline: calc(-1 * var(--gutter)); }
+      .bac-track {
+        display: flex; gap: 20px;
+        overflow-x: auto; overflow-y: hidden; overscroll-behavior-x: contain;
+        padding-inline: var(--gutter); scroll-padding-left: var(--gutter);
+        scroll-snap-type: x mandatory; scrollbar-width: none; -webkit-overflow-scrolling: touch;
+      }
+      .bac-track::-webkit-scrollbar { display: none; }
+    }
+    /* Phone: only tighten vertical rhythm + stack grids. Horizontal stays on var(--gutter),
+       so nav, hero, every headline and every card share the same left line. */
+    @media (max-width: 599px) {
+      .hero-content { padding-bottom: 40px; }
+      .sec { padding-top: 72px; padding-bottom: 72px; }
+      .problem { padding-top: 72px; padding-bottom: 56px; }
+      .features, .results, .scale, .cs-foot { padding-top: 72px; padding-bottom: 72px; }
+      .values { min-height: 230vh; }
+      .goals-sticky { padding: 74px var(--gutter); align-items: center; }
+      .goals-head { padding-top: 74px; padding-bottom: 12px; }
+      .goal-cloud { width: 108vw; height: min(520px, 62svh); }
+      .goal-bubble { padding: 10px; }
+      .goal-bubble:not(.is-main) { --s: 78px !important; }
+      .goal-bubble.is-main { --s: 132px !important; }
+      .research { padding-top: 72px; padding-bottom: 72px; }
+      .results-hdr { margin-bottom: 36px; }
+      .validation-panel { gap: 34px; }
+      .validation-score { text-align: left; }
+      .validation-row { grid-template-columns: 68px 1fr auto; gap: 12px; }
+      .validation-value { font-size: 20px; min-width: 56px; }
+      .validation-note { padding: 26px 24px; border-radius: 22px; }
+      .scale { padding-top: 72px; padding-bottom: 72px; }
+      .scale-grid { margin-top: 36px; }
+      .scale-card { min-height: 360px; }
+      .scale-vis { min-height: 150px; }
+      .reflections { padding-top: 72px; padding-bottom: 72px; }
+      .refl-hd { margin-bottom: 28px; }
+      .refl-panel { padding: 18px; border-radius: 24px; gap: 16px; }
+      .refl-takeaway { min-height: 280px; border-radius: 20px; }
+      .refl-lesson { grid-template-columns: 1fr; padding: 22px; gap: 14px; }
+      .refl-lesson-num { width: 34px; height: 34px; }
+      /* Research cards, reverse-engineered from the Figma mobile frame: 260 / 390 = 2/3.
+         66.67vw keeps that ratio at any phone width (390 → 260, 360 → 240, 430 → 287),
+         leaving a peek of the next card + the gutter on the right. */
+      .r-card { width: 66.67vw; }
+      .r-modal-card { padding: 40px 26px 32px; border-radius: 22px; }
+      .r-modal-title { font-size: 27px; }
+    }

@@ -1,0 +1,17 @@
+---
+import { hero } from '../../data/metaLearn';
+import { cssUrl } from '../../utils/assetPath';
+---
+<section class="hero" style={`--meta-hero-bg:${cssUrl('images/Apple-iPhone-14-iPhone-14-Plus-hero-220907_Full-Bleed-Image.jpg.large.jpg')}`}>
+  <div class="hero-content">
+    <div class="hero-lead">
+      <p class="hero-eyebrow"><span class="hero-logo" aria-hidden="true">ML</span>{hero.eyebrow}</p>
+      <h1 class="hero-title" set:html={hero.titleHtml} />
+    </div>
+    <dl class="hero-meta">
+      {hero.meta.map(item => (
+        <div class="hero-meta-item"><dt>{item.label}</dt><dd>{item.value}</dd></div>
+      ))}
+    </dl>
+  </div>
+</section>

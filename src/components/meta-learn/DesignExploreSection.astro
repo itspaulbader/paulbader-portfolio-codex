@@ -1,0 +1,49 @@
+---
+import { explore } from '../../data/metaLearn';
+---
+<section class="explore" id="explore">
+  <div class="explore-inner">
+    <div>
+      <p class="explore-eyebrow reveal">{explore.eyebrow}</p>
+      <h2 class="explore-headline reveal">{explore.heading}</h2>
+    </div>
+    <p class="explore-copy reveal d1" set:html={explore.copyHtml}></p>
+  </div>
+  <div class="explore-viewer reveal d1">
+    <div class="explore-controls" id="exploreControls">
+      {explore.features.map((feature, index) => (
+        <button
+          class:list={['explore-pill', index === 0 && 'is-active']}
+          data-screen={index}
+          data-alt={feature.alt}
+        >
+          <span class="explore-pill-row">
+            <span class="explore-pill-icon" aria-hidden="true"></span>
+            <span class="explore-pill-label">{feature.label}</span>
+          </span>
+          <span class="explore-pill-desc" set:html={feature.descriptionHtml}></span>
+        </button>
+      ))}
+    </div>
+    <div class="explore-stage" aria-live="polite">
+      <div class="explore-phone" id="explorePhone" data-screen="0" role="img" aria-label={explore.features[0].alt}>
+        <div class="explore-phone-screen">
+          <span class="explore-phone-notch" aria-hidden="true"></span>
+          <div class="explore-placeholder" aria-hidden="true">
+            <span class="explore-ph-kicker"></span>
+            <span class="explore-ph-title"></span>
+            <div class="explore-ph-hero"></div>
+            <div class="explore-ph-lines"><span></span><span></span><span></span></div>
+            <div class="explore-ph-grid"><span></span><span></span></div>
+            <div class="explore-ph-tabbar"><span></span><span></span><span></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="explore-close" id="exploreClose" type="button" aria-label="Close feature details"></button>
+    <div class="explore-steps" aria-label="Browse features">
+      <button class="explore-step explore-step--prev" id="explorePrev" type="button" aria-label="Previous feature"></button>
+      <button class="explore-step explore-step--next" id="exploreNext" type="button" aria-label="Next feature"></button>
+    </div>
+  </div>
+</section>

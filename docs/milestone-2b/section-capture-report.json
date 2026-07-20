@@ -1,0 +1,1286 @@
+[
+  {
+    "variant": "legacy",
+    "viewport": "desktop-1440",
+    "section": "values",
+    "file": "docs/milestone-2b/sections/legacy-values-desktop-1440.png",
+    "status": 200,
+    "box": {
+      "x": 0,
+      "y": -809.890625,
+      "width": 1440,
+      "height": 2520
+    },
+    "images": [],
+    "incompleteImages": [],
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "variant": "legacy",
+    "viewport": "desktop-1440",
+    "section": "wireframes",
+    "file": "docs/milestone-2b/sections/legacy-wireframes-desktop-1440.png",
+    "status": 200,
+    "box": {
+      "x": 0,
+      "y": -119.890625,
+      "width": 1440,
+      "height": 1139.90625
+    },
+    "images": [
+      {
+        "src": "https://framerusercontent.com/images/IUZwbv1PpIeWqeRZXN94th99eA.png?width=375&height=812",
+        "complete": true,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/Ia9D6ia7dpXYYvb0RPwt9kdLQX8.png?width=375&height=812",
+        "complete": true,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/1fyoxlrdpsqT4A2eRowdWaHY3zQ.png?width=375&height=812",
+        "complete": true,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/GkNFaDA7KDpcYJKM3ef4X0eLqs.png?width=375&height=812",
+        "complete": true,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/lF5ihXcN4UJQjW3wZfbNvpzGwys.png?width=375&height=812",
+        "complete": true,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/wMv8cOW7LUrqzgUjWrVKQlYNY.png?width=375&height=812",
+        "complete": true,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/2pytTADzx4CBo2lxd3wbd53mXA.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      },
+      {
+        "src": "https://framerusercontent.com/images/IUZwbv1PpIeWqeRZXN94th99eA.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/Ia9D6ia7dpXYYvb0RPwt9kdLQX8.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/1fyoxlrdpsqT4A2eRowdWaHY3zQ.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/GkNFaDA7KDpcYJKM3ef4X0eLqs.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/lF5ihXcN4UJQjW3wZfbNvpzGwys.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/wMv8cOW7LUrqzgUjWrVKQlYNY.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/2pytTADzx4CBo2lxd3wbd53mXA.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      }
+    ],
+    "incompleteImages": [
+      {
+        "src": "https://framerusercontent.com/images/2pytTADzx4CBo2lxd3wbd53mXA.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      },
+      {
+        "src": "https://framerusercontent.com/images/IUZwbv1PpIeWqeRZXN94th99eA.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/Ia9D6ia7dpXYYvb0RPwt9kdLQX8.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/1fyoxlrdpsqT4A2eRowdWaHY3zQ.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/GkNFaDA7KDpcYJKM3ef4X0eLqs.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/lF5ihXcN4UJQjW3wZfbNvpzGwys.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/wMv8cOW7LUrqzgUjWrVKQlYNY.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/2pytTADzx4CBo2lxd3wbd53mXA.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      }
+    ],
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "variant": "legacy",
+    "viewport": "desktop-1440",
+    "section": "results",
+    "file": "docs/milestone-2b/sections/legacy-results-desktop-1440.png",
+    "status": 200,
+    "box": {
+      "x": 0,
+      "y": 87.015625,
+      "width": 1440,
+      "height": 725.921875
+    },
+    "images": [],
+    "incompleteImages": [],
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "variant": "legacy",
+    "viewport": "desktop-1440",
+    "section": "explore",
+    "file": "docs/milestone-2b/sections/legacy-explore-desktop-1440.png",
+    "status": 200,
+    "box": {
+      "x": 0,
+      "y": -0.0625,
+      "width": 1440,
+      "height": 1281.90625
+    },
+    "images": [],
+    "incompleteImages": [],
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "variant": "next",
+    "viewport": "desktop-1440",
+    "section": "values",
+    "file": "docs/milestone-2b/sections/next-values-desktop-1440.png",
+    "status": 200,
+    "box": {
+      "x": 0,
+      "y": -809.890625,
+      "width": 1440,
+      "height": 2520
+    },
+    "images": [],
+    "incompleteImages": [],
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "variant": "next",
+    "viewport": "desktop-1440",
+    "section": "wireframes",
+    "file": "docs/milestone-2b/sections/next-wireframes-desktop-1440.png",
+    "status": 200,
+    "box": {
+      "x": 0,
+      "y": -119.890625,
+      "width": 1440,
+      "height": 1139.90625
+    },
+    "images": [
+      {
+        "src": "https://framerusercontent.com/images/IUZwbv1PpIeWqeRZXN94th99eA.png?width=375&height=812",
+        "complete": true,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/Ia9D6ia7dpXYYvb0RPwt9kdLQX8.png?width=375&height=812",
+        "complete": true,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/1fyoxlrdpsqT4A2eRowdWaHY3zQ.png?width=375&height=812",
+        "complete": true,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/GkNFaDA7KDpcYJKM3ef4X0eLqs.png?width=375&height=812",
+        "complete": true,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/lF5ihXcN4UJQjW3wZfbNvpzGwys.png?width=375&height=812",
+        "complete": true,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/wMv8cOW7LUrqzgUjWrVKQlYNY.png?width=375&height=812",
+        "complete": true,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/2pytTADzx4CBo2lxd3wbd53mXA.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      },
+      {
+        "src": "https://framerusercontent.com/images/IUZwbv1PpIeWqeRZXN94th99eA.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/Ia9D6ia7dpXYYvb0RPwt9kdLQX8.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/1fyoxlrdpsqT4A2eRowdWaHY3zQ.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/GkNFaDA7KDpcYJKM3ef4X0eLqs.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/lF5ihXcN4UJQjW3wZfbNvpzGwys.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/wMv8cOW7LUrqzgUjWrVKQlYNY.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/2pytTADzx4CBo2lxd3wbd53mXA.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      }
+    ],
+    "incompleteImages": [
+      {
+        "src": "https://framerusercontent.com/images/2pytTADzx4CBo2lxd3wbd53mXA.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      },
+      {
+        "src": "https://framerusercontent.com/images/IUZwbv1PpIeWqeRZXN94th99eA.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/Ia9D6ia7dpXYYvb0RPwt9kdLQX8.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/1fyoxlrdpsqT4A2eRowdWaHY3zQ.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/GkNFaDA7KDpcYJKM3ef4X0eLqs.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/lF5ihXcN4UJQjW3wZfbNvpzGwys.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/wMv8cOW7LUrqzgUjWrVKQlYNY.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/2pytTADzx4CBo2lxd3wbd53mXA.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      }
+    ],
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "variant": "next",
+    "viewport": "desktop-1440",
+    "section": "results",
+    "file": "docs/milestone-2b/sections/next-results-desktop-1440.png",
+    "status": 200,
+    "box": {
+      "x": 0,
+      "y": 87.015625,
+      "width": 1440,
+      "height": 725.921875
+    },
+    "images": [],
+    "incompleteImages": [],
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "variant": "next",
+    "viewport": "desktop-1440",
+    "section": "explore",
+    "file": "docs/milestone-2b/sections/next-explore-desktop-1440.png",
+    "status": 200,
+    "box": {
+      "x": 0,
+      "y": -0.0625,
+      "width": 1440,
+      "height": 1281.90625
+    },
+    "images": [],
+    "incompleteImages": [],
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "variant": "legacy",
+    "viewport": "tablet-1024",
+    "section": "values",
+    "file": "docs/milestone-2b/sections/legacy-values-tablet-1024.png",
+    "status": 200,
+    "box": {
+      "x": 0,
+      "y": -691.53125,
+      "width": 1024,
+      "height": 2150.390625
+    },
+    "images": [],
+    "incompleteImages": [],
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "variant": "legacy",
+    "viewport": "tablet-1024",
+    "section": "wireframes",
+    "file": "docs/milestone-2b/sections/legacy-wireframes-tablet-1024.png",
+    "status": 200,
+    "box": {
+      "x": 0,
+      "y": -178.140625,
+      "width": 1024,
+      "height": 1124.6875
+    },
+    "images": [
+      {
+        "src": "https://framerusercontent.com/images/IUZwbv1PpIeWqeRZXN94th99eA.png?width=375&height=812",
+        "complete": true,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/Ia9D6ia7dpXYYvb0RPwt9kdLQX8.png?width=375&height=812",
+        "complete": true,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/1fyoxlrdpsqT4A2eRowdWaHY3zQ.png?width=375&height=812",
+        "complete": true,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/GkNFaDA7KDpcYJKM3ef4X0eLqs.png?width=375&height=812",
+        "complete": true,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/lF5ihXcN4UJQjW3wZfbNvpzGwys.png?width=375&height=812",
+        "complete": true,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/wMv8cOW7LUrqzgUjWrVKQlYNY.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      },
+      {
+        "src": "https://framerusercontent.com/images/2pytTADzx4CBo2lxd3wbd53mXA.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      },
+      {
+        "src": "https://framerusercontent.com/images/IUZwbv1PpIeWqeRZXN94th99eA.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/Ia9D6ia7dpXYYvb0RPwt9kdLQX8.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/1fyoxlrdpsqT4A2eRowdWaHY3zQ.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/GkNFaDA7KDpcYJKM3ef4X0eLqs.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/lF5ihXcN4UJQjW3wZfbNvpzGwys.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/wMv8cOW7LUrqzgUjWrVKQlYNY.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      },
+      {
+        "src": "https://framerusercontent.com/images/2pytTADzx4CBo2lxd3wbd53mXA.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      }
+    ],
+    "incompleteImages": [
+      {
+        "src": "https://framerusercontent.com/images/wMv8cOW7LUrqzgUjWrVKQlYNY.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      },
+      {
+        "src": "https://framerusercontent.com/images/2pytTADzx4CBo2lxd3wbd53mXA.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      },
+      {
+        "src": "https://framerusercontent.com/images/IUZwbv1PpIeWqeRZXN94th99eA.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/Ia9D6ia7dpXYYvb0RPwt9kdLQX8.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/1fyoxlrdpsqT4A2eRowdWaHY3zQ.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/GkNFaDA7KDpcYJKM3ef4X0eLqs.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/lF5ihXcN4UJQjW3wZfbNvpzGwys.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/wMv8cOW7LUrqzgUjWrVKQlYNY.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      },
+      {
+        "src": "https://framerusercontent.com/images/2pytTADzx4CBo2lxd3wbd53mXA.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      }
+    ],
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "variant": "legacy",
+    "viewport": "tablet-1024",
+    "section": "results",
+    "file": "docs/milestone-2b/sections/legacy-results-tablet-1024.png",
+    "status": 200,
+    "box": {
+      "x": 0,
+      "y": 22.546875,
+      "width": 1024,
+      "height": 722.671875
+    },
+    "images": [],
+    "incompleteImages": [],
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "variant": "legacy",
+    "viewport": "tablet-1024",
+    "section": "explore",
+    "file": "docs/milestone-2b/sections/legacy-explore-tablet-1024.png",
+    "status": 200,
+    "box": {
+      "x": 0,
+      "y": 0.21875,
+      "width": 1024,
+      "height": 1114.4375
+    },
+    "images": [],
+    "incompleteImages": [],
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "variant": "next",
+    "viewport": "tablet-1024",
+    "section": "values",
+    "file": "docs/milestone-2b/sections/next-values-tablet-1024.png",
+    "status": 200,
+    "box": {
+      "x": 0,
+      "y": -691.53125,
+      "width": 1024,
+      "height": 2150.390625
+    },
+    "images": [],
+    "incompleteImages": [],
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "variant": "next",
+    "viewport": "tablet-1024",
+    "section": "wireframes",
+    "file": "docs/milestone-2b/sections/next-wireframes-tablet-1024.png",
+    "status": 200,
+    "box": {
+      "x": 0,
+      "y": -178.140625,
+      "width": 1024,
+      "height": 1124.6875
+    },
+    "images": [
+      {
+        "src": "https://framerusercontent.com/images/IUZwbv1PpIeWqeRZXN94th99eA.png?width=375&height=812",
+        "complete": true,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/Ia9D6ia7dpXYYvb0RPwt9kdLQX8.png?width=375&height=812",
+        "complete": true,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/1fyoxlrdpsqT4A2eRowdWaHY3zQ.png?width=375&height=812",
+        "complete": true,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/GkNFaDA7KDpcYJKM3ef4X0eLqs.png?width=375&height=812",
+        "complete": true,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/lF5ihXcN4UJQjW3wZfbNvpzGwys.png?width=375&height=812",
+        "complete": true,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/wMv8cOW7LUrqzgUjWrVKQlYNY.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      },
+      {
+        "src": "https://framerusercontent.com/images/2pytTADzx4CBo2lxd3wbd53mXA.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      },
+      {
+        "src": "https://framerusercontent.com/images/IUZwbv1PpIeWqeRZXN94th99eA.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/Ia9D6ia7dpXYYvb0RPwt9kdLQX8.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/1fyoxlrdpsqT4A2eRowdWaHY3zQ.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/GkNFaDA7KDpcYJKM3ef4X0eLqs.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/lF5ihXcN4UJQjW3wZfbNvpzGwys.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/wMv8cOW7LUrqzgUjWrVKQlYNY.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      },
+      {
+        "src": "https://framerusercontent.com/images/2pytTADzx4CBo2lxd3wbd53mXA.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      }
+    ],
+    "incompleteImages": [
+      {
+        "src": "https://framerusercontent.com/images/wMv8cOW7LUrqzgUjWrVKQlYNY.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      },
+      {
+        "src": "https://framerusercontent.com/images/2pytTADzx4CBo2lxd3wbd53mXA.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      },
+      {
+        "src": "https://framerusercontent.com/images/IUZwbv1PpIeWqeRZXN94th99eA.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/Ia9D6ia7dpXYYvb0RPwt9kdLQX8.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/1fyoxlrdpsqT4A2eRowdWaHY3zQ.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/GkNFaDA7KDpcYJKM3ef4X0eLqs.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/lF5ihXcN4UJQjW3wZfbNvpzGwys.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/wMv8cOW7LUrqzgUjWrVKQlYNY.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      },
+      {
+        "src": "https://framerusercontent.com/images/2pytTADzx4CBo2lxd3wbd53mXA.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      }
+    ],
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "variant": "next",
+    "viewport": "tablet-1024",
+    "section": "results",
+    "file": "docs/milestone-2b/sections/next-results-tablet-1024.png",
+    "status": 200,
+    "box": {
+      "x": 0,
+      "y": 22.546875,
+      "width": 1024,
+      "height": 722.671875
+    },
+    "images": [],
+    "incompleteImages": [],
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "variant": "next",
+    "viewport": "tablet-1024",
+    "section": "explore",
+    "file": "docs/milestone-2b/sections/next-explore-tablet-1024.png",
+    "status": 200,
+    "box": {
+      "x": 0,
+      "y": 0.21875,
+      "width": 1024,
+      "height": 1114.4375
+    },
+    "images": [],
+    "incompleteImages": [],
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "variant": "legacy",
+    "viewport": "mobile-390",
+    "section": "values",
+    "file": "docs/milestone-2b/sections/legacy-values-mobile-390.png",
+    "status": 200,
+    "box": {
+      "x": 0,
+      "y": -548.171875,
+      "width": 390,
+      "height": 1941.1875
+    },
+    "images": [],
+    "incompleteImages": [],
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "variant": "legacy",
+    "viewport": "mobile-390",
+    "section": "wireframes",
+    "file": "docs/milestone-2b/sections/legacy-wireframes-mobile-390.png",
+    "status": 200,
+    "box": {
+      "x": 0,
+      "y": -11.984375,
+      "width": 390,
+      "height": 868.609375
+    },
+    "images": [
+      {
+        "src": "https://framerusercontent.com/images/IUZwbv1PpIeWqeRZXN94th99eA.png?width=375&height=812",
+        "complete": true,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/Ia9D6ia7dpXYYvb0RPwt9kdLQX8.png?width=375&height=812",
+        "complete": true,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/1fyoxlrdpsqT4A2eRowdWaHY3zQ.png?width=375&height=812",
+        "complete": true,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/GkNFaDA7KDpcYJKM3ef4X0eLqs.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      },
+      {
+        "src": "https://framerusercontent.com/images/lF5ihXcN4UJQjW3wZfbNvpzGwys.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      },
+      {
+        "src": "https://framerusercontent.com/images/wMv8cOW7LUrqzgUjWrVKQlYNY.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      },
+      {
+        "src": "https://framerusercontent.com/images/2pytTADzx4CBo2lxd3wbd53mXA.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      },
+      {
+        "src": "https://framerusercontent.com/images/IUZwbv1PpIeWqeRZXN94th99eA.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/Ia9D6ia7dpXYYvb0RPwt9kdLQX8.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/1fyoxlrdpsqT4A2eRowdWaHY3zQ.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/GkNFaDA7KDpcYJKM3ef4X0eLqs.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      },
+      {
+        "src": "https://framerusercontent.com/images/lF5ihXcN4UJQjW3wZfbNvpzGwys.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      },
+      {
+        "src": "https://framerusercontent.com/images/wMv8cOW7LUrqzgUjWrVKQlYNY.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      },
+      {
+        "src": "https://framerusercontent.com/images/2pytTADzx4CBo2lxd3wbd53mXA.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      }
+    ],
+    "incompleteImages": [
+      {
+        "src": "https://framerusercontent.com/images/GkNFaDA7KDpcYJKM3ef4X0eLqs.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      },
+      {
+        "src": "https://framerusercontent.com/images/lF5ihXcN4UJQjW3wZfbNvpzGwys.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      },
+      {
+        "src": "https://framerusercontent.com/images/wMv8cOW7LUrqzgUjWrVKQlYNY.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      },
+      {
+        "src": "https://framerusercontent.com/images/2pytTADzx4CBo2lxd3wbd53mXA.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      },
+      {
+        "src": "https://framerusercontent.com/images/IUZwbv1PpIeWqeRZXN94th99eA.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/Ia9D6ia7dpXYYvb0RPwt9kdLQX8.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/1fyoxlrdpsqT4A2eRowdWaHY3zQ.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/GkNFaDA7KDpcYJKM3ef4X0eLqs.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      },
+      {
+        "src": "https://framerusercontent.com/images/lF5ihXcN4UJQjW3wZfbNvpzGwys.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      },
+      {
+        "src": "https://framerusercontent.com/images/wMv8cOW7LUrqzgUjWrVKQlYNY.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      },
+      {
+        "src": "https://framerusercontent.com/images/2pytTADzx4CBo2lxd3wbd53mXA.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      }
+    ],
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "variant": "legacy",
+    "viewport": "mobile-390",
+    "section": "results",
+    "file": "docs/milestone-2b/sections/legacy-results-mobile-390.png",
+    "status": 200,
+    "box": {
+      "x": 0,
+      "y": -71.375,
+      "width": 390,
+      "height": 985.921875
+    },
+    "images": [],
+    "incompleteImages": [],
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "variant": "legacy",
+    "viewport": "mobile-390",
+    "section": "explore",
+    "file": "docs/milestone-2b/sections/legacy-explore-mobile-390.png",
+    "status": 200,
+    "box": {
+      "x": 0,
+      "y": -122.453125,
+      "width": 390,
+      "height": 1088.828125
+    },
+    "images": [],
+    "incompleteImages": [],
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "variant": "next",
+    "viewport": "mobile-390",
+    "section": "values",
+    "file": "docs/milestone-2b/sections/next-values-mobile-390.png",
+    "status": 200,
+    "box": {
+      "x": 0,
+      "y": -548.171875,
+      "width": 390,
+      "height": 1941.1875
+    },
+    "images": [],
+    "incompleteImages": [],
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "variant": "next",
+    "viewport": "mobile-390",
+    "section": "wireframes",
+    "file": "docs/milestone-2b/sections/next-wireframes-mobile-390.png",
+    "status": 200,
+    "box": {
+      "x": 0,
+      "y": -11.984375,
+      "width": 390,
+      "height": 868.609375
+    },
+    "images": [
+      {
+        "src": "https://framerusercontent.com/images/IUZwbv1PpIeWqeRZXN94th99eA.png?width=375&height=812",
+        "complete": true,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/Ia9D6ia7dpXYYvb0RPwt9kdLQX8.png?width=375&height=812",
+        "complete": true,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/1fyoxlrdpsqT4A2eRowdWaHY3zQ.png?width=375&height=812",
+        "complete": true,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/GkNFaDA7KDpcYJKM3ef4X0eLqs.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      },
+      {
+        "src": "https://framerusercontent.com/images/lF5ihXcN4UJQjW3wZfbNvpzGwys.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      },
+      {
+        "src": "https://framerusercontent.com/images/wMv8cOW7LUrqzgUjWrVKQlYNY.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      },
+      {
+        "src": "https://framerusercontent.com/images/2pytTADzx4CBo2lxd3wbd53mXA.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      },
+      {
+        "src": "https://framerusercontent.com/images/IUZwbv1PpIeWqeRZXN94th99eA.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/Ia9D6ia7dpXYYvb0RPwt9kdLQX8.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/1fyoxlrdpsqT4A2eRowdWaHY3zQ.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/GkNFaDA7KDpcYJKM3ef4X0eLqs.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      },
+      {
+        "src": "https://framerusercontent.com/images/lF5ihXcN4UJQjW3wZfbNvpzGwys.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      },
+      {
+        "src": "https://framerusercontent.com/images/wMv8cOW7LUrqzgUjWrVKQlYNY.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      },
+      {
+        "src": "https://framerusercontent.com/images/2pytTADzx4CBo2lxd3wbd53mXA.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      }
+    ],
+    "incompleteImages": [
+      {
+        "src": "https://framerusercontent.com/images/GkNFaDA7KDpcYJKM3ef4X0eLqs.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      },
+      {
+        "src": "https://framerusercontent.com/images/lF5ihXcN4UJQjW3wZfbNvpzGwys.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      },
+      {
+        "src": "https://framerusercontent.com/images/wMv8cOW7LUrqzgUjWrVKQlYNY.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      },
+      {
+        "src": "https://framerusercontent.com/images/2pytTADzx4CBo2lxd3wbd53mXA.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      },
+      {
+        "src": "https://framerusercontent.com/images/IUZwbv1PpIeWqeRZXN94th99eA.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/Ia9D6ia7dpXYYvb0RPwt9kdLQX8.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/1fyoxlrdpsqT4A2eRowdWaHY3zQ.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 375,
+        "naturalHeight": 812
+      },
+      {
+        "src": "https://framerusercontent.com/images/GkNFaDA7KDpcYJKM3ef4X0eLqs.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      },
+      {
+        "src": "https://framerusercontent.com/images/lF5ihXcN4UJQjW3wZfbNvpzGwys.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      },
+      {
+        "src": "https://framerusercontent.com/images/wMv8cOW7LUrqzgUjWrVKQlYNY.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      },
+      {
+        "src": "https://framerusercontent.com/images/2pytTADzx4CBo2lxd3wbd53mXA.png?width=375&height=812",
+        "complete": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0
+      }
+    ],
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "variant": "next",
+    "viewport": "mobile-390",
+    "section": "results",
+    "file": "docs/milestone-2b/sections/next-results-mobile-390.png",
+    "status": 200,
+    "box": {
+      "x": 0,
+      "y": -71.375,
+      "width": 390,
+      "height": 985.921875
+    },
+    "images": [],
+    "incompleteImages": [],
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "variant": "next",
+    "viewport": "mobile-390",
+    "section": "explore",
+    "file": "docs/milestone-2b/sections/next-explore-mobile-390.png",
+    "status": 200,
+    "box": {
+      "x": 0,
+      "y": -122.453125,
+      "width": 390,
+      "height": 1088.828125
+    },
+    "images": [],
+    "incompleteImages": [],
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  }
+]

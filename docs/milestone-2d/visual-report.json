@@ -1,0 +1,133 @@
+{
+  "home": {
+    "desktop": {
+      "width": 1440,
+      "height": 5017,
+      "innerWidth": 1440,
+      "innerHeight": 900,
+      "comparison": {
+        "ok": true,
+        "width": 1440,
+        "height": 5017,
+        "baseline": {
+          "width": 1440,
+          "height": 5017
+        },
+        "candidate": {
+          "width": 1440,
+          "height": 5017
+        },
+        "diffPixels": 428876,
+        "diffRatio": 0.059364
+      }
+    },
+    "tablet": {
+      "width": 1024,
+      "height": 4727,
+      "innerWidth": 1024,
+      "innerHeight": 768,
+      "comparison": {
+        "ok": true,
+        "width": 1024,
+        "height": 4727,
+        "baseline": {
+          "width": 1024,
+          "height": 4727
+        },
+        "candidate": {
+          "width": 1024,
+          "height": 4727
+        },
+        "diffPixels": 241757,
+        "diffRatio": 0.049945
+      }
+    },
+    "mobile": {
+      "width": 390,
+      "height": 4610,
+      "innerWidth": 390,
+      "innerHeight": 844,
+      "comparison": {
+        "ok": true,
+        "width": 390,
+        "height": 4610,
+        "baseline": {
+          "width": 390,
+          "height": 4610
+        },
+        "candidate": {
+          "width": 390,
+          "height": 4610
+        },
+        "diffPixels": 98873,
+        "diffRatio": 0.054994
+      }
+    }
+  },
+  "metaLearn": {
+    "desktop": {
+      "width": 1440,
+      "height": 14245,
+      "innerWidth": 1440,
+      "innerHeight": 900,
+      "comparison": {
+        "ok": true,
+        "width": 1440,
+        "height": 14245,
+        "baseline": {
+          "width": 1440,
+          "height": 14245
+        },
+        "candidate": {
+          "width": 1440,
+          "height": 14245
+        },
+        "diffPixels": 47786,
+        "diffRatio": 0.00233
+      }
+    },
+    "tablet": {
+      "width": 1024,
+      "height": 12985,
+      "innerWidth": 1024,
+      "innerHeight": 768,
+      "comparison": {
+        "ok": true,
+        "width": 1024,
+        "height": 12985,
+        "baseline": {
+          "width": 1024,
+          "height": 12985
+        },
+        "candidate": {
+          "width": 1024,
+          "height": 12985
+        },
+        "diffPixels": 41074,
+        "diffRatio": 0.003089
+      }
+    },
+    "mobile": {
+      "width": 390,
+      "height": 13024,
+      "innerWidth": 390,
+      "innerHeight": 844,
+      "comparison": {
+        "ok": true,
+        "width": 390,
+        "height": 13024,
+        "baseline": {
+          "width": 390,
+          "height": 13024
+        },
+        "candidate": {
+          "width": 390,
+          "height": 13024
+        },
+        "diffPixels": 9456,
+        "diffRatio": 0.001862
+      }
+    }
+  },
+  "console": []
+}

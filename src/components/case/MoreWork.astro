@@ -1,0 +1,79 @@
+---
+import { projects } from '../../data/projects';
+import { cssUrl } from '../../utils/assetPath';
+
+interface Props {
+  currentProjectId: string;
+  eyebrow: string;
+  heading: string;
+}
+
+const { currentProjectId, eyebrow, heading } = Astro.props;
+const moreProjects = projects.filter(project => project.id !== currentProjectId);
+
+const imageStyle = (desktop: string, mobile: string) =>
+  `--nc-img-desktop:${cssUrl(desktop)}; --nc-img-mobile:${cssUrl(mobile || desktop)}`;
+---
+<section class="cs-foot" data-progress-skip>
+  <div class="cs-foot-hd reveal">
+    <p class="cs-foot-label">{eyebrow}</p>
+    <h2 class="heading-lg">{heading}</h2>
+  </div>
+
+  <div class="cs-foot-rail" id="ncRail">
+    {moreProjects.map(project => (
+      project.href === '#' ? (
+        <div
+          class="nc"
+          role="group"
+          aria-label={`${project.company} case study coming soon`}
+          data-project-id={project.id}
+          data-placeholder="true"
+        >
+          <div class="nc-img" style={imageStyle(project.desktopImage.src, project.mobileImage.src)}></div>
+          <div class="nc-copy">
+            <div class="nc-meta">
+              <span class="nc-icon" style={project.icon.type === 'text' ? project.icon.style : undefined}>
+                {project.icon.type === 'image'
+                  ? <img src={project.icon.src} alt={project.icon.alt} />
+                  : project.icon.label}
+              </span>
+              <span class="nc-co">{project.company}</span>
+            </div>
+            <p class="nc-title" set:html={project.titleHtml}></p>
+            <p class="nc-desc">{project.description}</p>
+          </div>
+        </div>
+      ) : (
+        <a
+          class="nc"
+          href={project.href}
+          data-project-id={project.id}
+        >
+          <div class="nc-img" style={imageStyle(project.desktopImage.src, project.mobileImage.src)}></div>
+          <div class="nc-copy">
+            <div class="nc-meta">
+              <span class="nc-icon" style={project.icon.type === 'text' ? project.icon.style : undefined}>
+                {project.icon.type === 'image'
+                  ? <img src={project.icon.src} alt={project.icon.alt} />
+                  : project.icon.label}
+              </span>
+              <span class="nc-co">{project.company}</span>
+            </div>
+            <p class="nc-title" set:html={project.titleHtml}></p>
+            <p class="nc-desc">{project.description}</p>
+          </div>
+        </a>
+      )
+    ))}
+  </div>
+
+  <div class="cs-foot-nav">
+    <button class="cs-paddle" id="ncPrev" aria-label="Previous" disabled>
+      <svg viewBox="0 0 9 15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="8,1 1,7.5 8,14"></polyline></svg>
+    </button>
+    <button class="cs-paddle" id="ncNext" aria-label="Next">
+      <svg viewBox="0 0 9 15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="1,1 8,7.5 1,14"></polyline></svg>
+    </button>
+  </div>
+</section>

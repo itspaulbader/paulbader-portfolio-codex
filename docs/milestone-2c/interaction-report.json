@@ -1,0 +1,116 @@
+{
+  "result": {
+    "noindex": "noindex, nofollow",
+    "horizontalOverflow": false,
+    "sectionProgressTicks": 11,
+    "sectionOrder": [
+      "hero",
+      "highlights",
+      "problem",
+      "research",
+      "values",
+      "wireframes",
+      "results",
+      "explore",
+      "scale",
+      "features",
+      "reflections"
+    ],
+    "progressLabels": [
+      "Jump to MLMeta Learn",
+      "Jump to Get the highlights.",
+      "Jump to Great content. Poor delivery.",
+      "Jump to Research confirmed what users already felt.",
+      "Jump to Defining the redesign goals.",
+      "Jump to Wireframing every core flow.",
+      "Jump to The structure worked before the polish.",
+      "Jump to Even more thoughtful. Even more calming.",
+      "Jump to Built to scale.",
+      "Jump to The numbers don't lie.",
+      "Jump to What I learned."
+    ],
+    "progressClickActive": true,
+    "highlightPaused": true,
+    "highlightThirdActive": true,
+    "researchScrolled": true,
+    "modalOpen": true,
+    "modalFocusedClose": true,
+    "bodyLocked": true,
+    "modalClosedByEscape": true,
+    "modalFocusRestored": true,
+    "goals": {
+      "vision": "0.143",
+      "bg": "1.000",
+      "tx": "-271.4px"
+    },
+    "wireframesAnimation": "wfScroll",
+    "wireframesHoverPause": "paused",
+    "validationBars": [
+      "matrix(1, 0, 0, 1, 0, 0)",
+      "matrix(1, 0, 0, 1, 0, 0)"
+    ],
+    "explore": {
+      "active": 3,
+      "expanded": true,
+      "screen": "3"
+    },
+    "exploreClosed": true
+  },
+  "mobile": {
+    "moreWorkOverflow": {
+      "bodyOverflow": false,
+      "railOverflow": true
+    },
+    "moreWorkTouchEquivalentScroll": true,
+    "exploreScrollActive": 1
+  },
+  "reduced": {
+    "highlightsPaused": true,
+    "highlightFillAnimation": "none",
+    "wireframeAnimation": "none",
+    "goals": {
+      "vision": "1.000",
+      "bg": "1.000"
+    }
+  },
+  "moreWorkData": {
+    "cards": [
+      {
+        "projectId": "bershka",
+        "href": "#",
+        "company": "Bershka",
+        "title": "A smoother<br>self-checkout",
+        "desc": "Redesigning the in-store experience to reduce friction and speed up payment.",
+        "bg": "url(\"http://127.0.0.1:4324/portfolio/images/bershka-desk.png\")"
+      },
+      {
+        "projectId": "sheer",
+        "href": "#",
+        "company": "Sheer",
+        "title": "Quicker &amp; better<br>onboarding",
+        "desc": "Creating a seamless entry point so users could start strong without friction.",
+        "bg": "url(\"http://127.0.0.1:4324/portfolio/images/sheer-desktop.png\")"
+      },
+      {
+        "projectId": "grundfos",
+        "href": "#",
+        "company": "Grundfos",
+        "title": "From print to<br>PowerApp",
+        "desc": "UX-driven internal tool used by 200+, replacing 80% of printed material.",
+        "bg": "url(\"http://127.0.0.1:4324/portfolio/images/grundfos-hero.png\")"
+      }
+    ],
+    "excludesMetaLearn": true,
+    "noNestedInteractive": true,
+    "prevDisabledInitial": true,
+    "nextDisabledInitial": false,
+    "scrolledAfterNext": true,
+    "prevEnabledAfterNext": true,
+    "backToStart": true,
+    "placeholderStayedOnPage": true,
+    "keyboardFocusExists": true
+  },
+  "consoleMessages": [],
+  "failed": [],
+  "badResponses": []
+}

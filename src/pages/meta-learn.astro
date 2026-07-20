@@ -1,0 +1,35 @@
+---
+import '../styles/meta-learn.css';
+import CaseStudyLayout from '../layouts/CaseStudyLayout.astro';
+import MetaHero from '../components/meta-learn/MetaHero.astro';
+import HighlightsSection from '../components/meta-learn/HighlightsSection.astro';
+import ProblemSection from '../components/meta-learn/ProblemSection.astro';
+import ResearchSection from '../components/meta-learn/ResearchSection.astro';
+import GoalsSection from '../components/meta-learn/GoalsSection.astro';
+import WireframesSection from '../components/meta-learn/WireframesSection.astro';
+import ValidationSection from '../components/meta-learn/ValidationSection.astro';
+import DesignExploreSection from '../components/meta-learn/DesignExploreSection.astro';
+import ScaleSection from '../components/meta-learn/ScaleSection.astro';
+import OutcomesSection from '../components/meta-learn/OutcomesSection.astro';
+import ReflectionsSection from '../components/meta-learn/ReflectionsSection.astro';
+import MoreWork from '../components/case/MoreWork.astro';
+import { moreWork } from '../data/metaLearn';
+---
+<CaseStudyLayout title="Meta Learn — Paul Bader" caseId="meta-learn">
+  <MetaHero />
+  <HighlightsSection />
+  <ProblemSection />
+  <ResearchSection />
+  <GoalsSection />
+  <WireframesSection />
+  <ValidationSection />
+  <DesignExploreSection />
+  <ScaleSection />
+  <OutcomesSection />
+  <ReflectionsSection />
+  <MoreWork currentProjectId="meta-learn" eyebrow={moreWork.eyebrow} heading={moreWork.heading} />
+
+  <script>
+    import '../scripts/meta-learn.js';
+  </script>
+</CaseStudyLayout>

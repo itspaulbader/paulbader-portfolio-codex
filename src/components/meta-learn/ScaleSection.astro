@@ -1,0 +1,43 @@
+---
+import { scale } from '../../data/metaLearn';
+---
+<section class="scale" id="scale">
+  <div class="scale-inner">
+    <div class="reveal">
+      <p class="label">{scale.eyebrow}</p>
+      <h2 class="heading-lg">{scale.heading}</h2>
+    </div>
+    <div class="scale-grid">
+      {scale.cards.map((card, index) => (
+        <div class:list={['scale-card', 'reveal', index === 1 && 'd1']}>
+          <div class="scale-copy">
+            <p class="scale-eyebrow">{card.eyebrow}</p>
+            <p class="scale-title">{card.title}</p>
+            <p class="scale-text">{card.text}</p>
+          </div>
+          {card.variant === 'system' ? (
+            <div class="scale-vis scale-system">
+              <div class="scale-token scale-token-lg">Aa</div>
+              <div class="scale-chip-row"><span>Primary</span><span>Rest</span><span>Active</span></div>
+              <div class="scale-component-card">
+                <span></span><span></span><span></span>
+              </div>
+              <div class="scale-component-list">
+                <span></span><span></span><span></span>
+              </div>
+            </div>
+          ) : (
+            <div class="scale-vis scale-handoff">
+              <div class="handoff-window">
+                <div class="handoff-bar"><span></span><span></span><span></span></div>
+                <div class="handoff-row"><strong>Ready for review</strong><span>Passed</span></div>
+                <div class="handoff-row"><strong>Component specs</strong><span>80/80</span></div>
+                <div class="handoff-row"><strong>Investor deck</strong><span>Updated</span></div>
+              </div>
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

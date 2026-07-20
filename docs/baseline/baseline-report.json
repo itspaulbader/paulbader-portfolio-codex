@@ -1,0 +1,1156 @@
+[
+  {
+    "page": "home",
+    "viewport": "desktop-1440",
+    "status": 200,
+    "screenshot": "docs/baseline/home-desktop-1440.png",
+    "consoleMessages": [
+      "error: Failed to load resource: the server responded with a status of 404 (File not found)"
+    ],
+    "failed": [],
+    "metrics": {
+      "title": "Paul Bader — Product & Brand Designer",
+      "bodyWidth": 1440,
+      "viewportWidth": 1440,
+      "fullHeight": 7017,
+      "images": [
+        {
+          "src": "http://127.0.0.1:4182/images/profile.jpg",
+          "complete": true,
+          "naturalWidth": 1600,
+          "naturalHeight": 1200
+        },
+        {
+          "src": "http://127.0.0.1:4182/images/sheer-icon.jpeg",
+          "complete": true,
+          "naturalWidth": 200,
+          "naturalHeight": 200
+        },
+        {
+          "src": "http://127.0.0.1:4182/images/grundfos-icon.png",
+          "complete": true,
+          "naturalWidth": 225,
+          "naturalHeight": 225
+        },
+        {
+          "src": "http://127.0.0.1:4182/images/profile.jpg",
+          "complete": true,
+          "naturalWidth": 1600,
+          "naturalHeight": 1200
+        },
+        {
+          "src": "http://127.0.0.1:4182/images/bershka-icon.jpg",
+          "complete": true,
+          "naturalWidth": 512,
+          "naturalHeight": 512
+        },
+        {
+          "src": "http://127.0.0.1:4182/images/bershka-desk.png",
+          "complete": true,
+          "naturalWidth": 2896,
+          "naturalHeight": 2172
+        },
+        {
+          "src": "http://127.0.0.1:4182/images/bershka-desk-mobile2.png",
+          "complete": true,
+          "naturalWidth": 1706,
+          "naturalHeight": 2344
+        },
+        {
+          "src": "http://127.0.0.1:4182/images/sheer-icon.jpeg",
+          "complete": true,
+          "naturalWidth": 200,
+          "naturalHeight": 200
+        },
+        {
+          "src": "http://127.0.0.1:4182/images/sheer-desktop.png",
+          "complete": true,
+          "naturalWidth": 1448,
+          "naturalHeight": 1086
+        },
+        {
+          "src": "http://127.0.0.1:4182/images/sheer-mobile.png",
+          "complete": true,
+          "naturalWidth": 853,
+          "naturalHeight": 1172
+        },
+        {
+          "src": "http://127.0.0.1:4182/images/meta-learn-hero.png",
+          "complete": true,
+          "naturalWidth": 6286,
+          "naturalHeight": 3618
+        },
+        {
+          "src": "http://127.0.0.1:4182/images/ml-mobile.png",
+          "complete": true,
+          "naturalWidth": 853,
+          "naturalHeight": 692
+        },
+        {
+          "src": "http://127.0.0.1:4182/images/grundfos-icon.png",
+          "complete": true,
+          "naturalWidth": 225,
+          "naturalHeight": 225
+        },
+        {
+          "src": "http://127.0.0.1:4182/images/grundfos-hero.png",
+          "complete": true,
+          "naturalWidth": 1920,
+          "naturalHeight": 1209
+        },
+        {
+          "src": "http://127.0.0.1:4182/images/grundfos-mobile.png",
+          "complete": true,
+          "naturalWidth": 853,
+          "naturalHeight": 1172
+        }
+      ],
+      "navLinks": [
+        {
+          "text": "it's Paul Bader",
+          "href": "./"
+        },
+        {
+          "text": "Work",
+          "href": "./#work"
+        },
+        {
+          "text": "Contact",
+          "href": "mailto:hello@itspaulbader.xyz"
+        },
+        {
+          "text": "",
+          "href": "https://linkedin.com/in/itspaulbader"
+        },
+        {
+          "text": "",
+          "href": "https://dribbble.com/itspaulbader"
+        },
+        {
+          "text": "View Case",
+          "href": "#"
+        },
+        {
+          "text": "View Case",
+          "href": "meta-learn.html"
+        },
+        {
+          "text": "View Case",
+          "href": "#"
+        },
+        {
+          "text": "itspaulbader@gmail.com",
+          "href": "mailto:itspaulbader@gmail.com"
+        },
+        {
+          "text": "",
+          "href": "https://linkedin.com/in/itspaulbader"
+        },
+        {
+          "text": "",
+          "href": "https://dribbble.com/itspaulbader"
+        }
+      ],
+      "sections": [
+        {
+          "id": "",
+          "cls": "story-section"
+        },
+        {
+          "id": "",
+          "cls": "hero"
+        },
+        {
+          "id": "work",
+          "cls": "work-section"
+        }
+      ]
+    }
+  },
+  {
+    "page": "meta-learn",
+    "viewport": "desktop-1440",
+    "status": 200,
+    "screenshot": "docs/baseline/meta-learn-desktop-1440.png",
+    "consoleMessages": [],
+    "failed": [],
+    "metrics": {
+      "title": "Meta Learn — Paul Bader",
+      "bodyWidth": 1440,
+      "viewportWidth": 1440,
+      "fullHeight": 16145,
+      "images": [
+        {
+          "src": "http://127.0.0.1:4182/images/ml/node-104.png",
+          "complete": true,
+          "naturalWidth": 1440,
+          "naturalHeight": 810
+        },
+        {
+          "src": "http://127.0.0.1:4182/images/ml/node-100.png",
+          "complete": true,
+          "naturalWidth": 1440,
+          "naturalHeight": 810
+        },
+        {
+          "src": "https://framerusercontent.com/images/IUZwbv1PpIeWqeRZXN94th99eA.png?width=375&height=812",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0
+        },
+        {
+          "src": "https://framerusercontent.com/images/Ia9D6ia7dpXYYvb0RPwt9kdLQX8.png?width=375&height=812",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0
+        },
+        {
+          "src": "https://framerusercontent.com/images/1fyoxlrdpsqT4A2eRowdWaHY3zQ.png?width=375&height=812",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0
+        },
+        {
+          "src": "https://framerusercontent.com/images/GkNFaDA7KDpcYJKM3ef4X0eLqs.png?width=375&height=812",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0
+        },
+        {
+          "src": "https://framerusercontent.com/images/lF5ihXcN4UJQjW3wZfbNvpzGwys.png?width=375&height=812",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0
+        },
+        {
+          "src": "https://framerusercontent.com/images/wMv8cOW7LUrqzgUjWrVKQlYNY.png?width=375&height=812",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0
+        },
+        {
+          "src": "https://framerusercontent.com/images/2pytTADzx4CBo2lxd3wbd53mXA.png?width=375&height=812",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0
+        },
+        {
+          "src": "https://framerusercontent.com/images/IUZwbv1PpIeWqeRZXN94th99eA.png?width=375&height=812",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0
+        },
+        {
+          "src": "https://framerusercontent.com/images/Ia9D6ia7dpXYYvb0RPwt9kdLQX8.png?width=375&height=812",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0
+        },
+        {
+          "src": "https://framerusercontent.com/images/1fyoxlrdpsqT4A2eRowdWaHY3zQ.png?width=375&height=812",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0
+        },
+        {
+          "src": "https://framerusercontent.com/images/GkNFaDA7KDpcYJKM3ef4X0eLqs.png?width=375&height=812",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0
+        },
+        {
+          "src": "https://framerusercontent.com/images/lF5ihXcN4UJQjW3wZfbNvpzGwys.png?width=375&height=812",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0
+        },
+        {
+          "src": "https://framerusercontent.com/images/wMv8cOW7LUrqzgUjWrVKQlYNY.png?width=375&height=812",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0
+        },
+        {
+          "src": "https://framerusercontent.com/images/2pytTADzx4CBo2lxd3wbd53mXA.png?width=375&height=812",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0
+        },
+        {
+          "src": "http://127.0.0.1:4182/images/bershka-icon.jpg",
+          "complete": true,
+          "naturalWidth": 512,
+          "naturalHeight": 512
+        },
+        {
+          "src": "http://127.0.0.1:4182/images/sheer-icon.jpeg",
+          "complete": true,
+          "naturalWidth": 200,
+          "naturalHeight": 200
+        },
+        {
+          "src": "http://127.0.0.1:4182/images/grundfos-icon.png",
+          "complete": true,
+          "naturalWidth": 225,
+          "naturalHeight": 225
+        }
+      ],
+      "navLinks": [
+        {
+          "text": "it's Paul Bader",
+          "href": "./"
+        },
+        {
+          "text": "Work",
+          "href": "./#work"
+        },
+        {
+          "text": "Contact",
+          "href": "mailto:hello@itspaulbader.xyz"
+        },
+        {
+          "text": "Bershka A smootherself-checkout Redesigning the in-store experience to reduce friction and speed up payment.",
+          "href": "#"
+        },
+        {
+          "text": "Sheer Quicker & betteronboarding Creating a seamless entry point so users could start strong without friction.",
+          "href": "#"
+        },
+        {
+          "text": "Grundfos From print toPowerApp UX-driven internal tool used by 200+, replacing 80% of printed material.",
+          "href": "#"
+        },
+        {
+          "text": "itspaulbader@gmail.com",
+          "href": "mailto:itspaulbader@gmail.com"
+        },
+        {
+          "text": "",
+          "href": "https://linkedin.com/in/itspaulbader"
+        },
+        {
+          "text": "",
+          "href": "https://dribbble.com/itspaulbader"
+        }
+      ],
+      "sections": [
+        {
+          "id": "",
+          "cls": "hero"
+        },
+        {
+          "id": "highlights",
+          "cls": "highlights"
+        },
+        {
+          "id": "problem",
+          "cls": "problem"
+        },
+        {
+          "id": "research",
+          "cls": "research"
+        },
+        {
+          "id": "values",
+          "cls": "values"
+        },
+        {
+          "id": "wireframes",
+          "cls": "wireframes"
+        },
+        {
+          "id": "results",
+          "cls": "results"
+        },
+        {
+          "id": "explore",
+          "cls": "explore"
+        },
+        {
+          "id": "scale",
+          "cls": "scale"
+        },
+        {
+          "id": "",
+          "cls": "features"
+        },
+        {
+          "id": "reflections",
+          "cls": "reflections"
+        },
+        {
+          "id": "",
+          "cls": "cs-foot"
+        }
+      ]
+    }
+  },
+  {
+    "page": "home",
+    "viewport": "tablet-1024",
+    "status": 200,
+    "screenshot": "docs/baseline/home-tablet-1024.png",
+    "consoleMessages": [],
+    "failed": [],
+    "metrics": {
+      "title": "Paul Bader — Product & Brand Designer",
+      "bodyWidth": 1024,
+      "viewportWidth": 1024,
+      "fullHeight": 6845,
+      "images": [
+        {
+          "src": "http://127.0.0.1:4182/images/profile.jpg",
+          "complete": true,
+          "naturalWidth": 1600,
+          "naturalHeight": 1200
+        },
+        {
+          "src": "http://127.0.0.1:4182/images/sheer-icon.jpeg",
+          "complete": true,
+          "naturalWidth": 200,
+          "naturalHeight": 200
+        },
+        {
+          "src": "http://127.0.0.1:4182/images/grundfos-icon.png",
+          "complete": true,
+          "naturalWidth": 225,
+          "naturalHeight": 225
+        },
+        {
+          "src": "http://127.0.0.1:4182/images/profile.jpg",
+          "complete": true,
+          "naturalWidth": 1600,
+          "naturalHeight": 1200
+        },
+        {
+          "src": "http://127.0.0.1:4182/images/bershka-icon.jpg",
+          "complete": true,
+          "naturalWidth": 512,
+          "naturalHeight": 512
+        },
+        {
+          "src": "http://127.0.0.1:4182/images/bershka-desk.png",
+          "complete": true,
+          "naturalWidth": 2896,
+          "naturalHeight": 2172
+        },
+        {
+          "src": "http://127.0.0.1:4182/images/bershka-desk-mobile2.png",
+          "complete": true,
+          "naturalWidth": 1706,
+          "naturalHeight": 2344
+        },
+        {
+          "src": "http://127.0.0.1:4182/images/sheer-icon.jpeg",
+          "complete": true,
+          "naturalWidth": 200,
+          "naturalHeight": 200
+        },
+        {
+          "src": "http://127.0.0.1:4182/images/sheer-desktop.png",
+          "complete": true,
+          "naturalWidth": 1448,
+          "naturalHeight": 1086
+        },
+        {
+          "src": "http://127.0.0.1:4182/images/sheer-mobile.png",
+          "complete": true,
+          "naturalWidth": 853,
+          "naturalHeight": 1172
+        },
+        {
+          "src": "http://127.0.0.1:4182/images/meta-learn-hero.png",
+          "complete": true,
+          "naturalWidth": 6286,
+          "naturalHeight": 3618
+        },
+        {
+          "src": "http://127.0.0.1:4182/images/ml-mobile.png",
+          "complete": true,
+          "naturalWidth": 853,
+          "naturalHeight": 692
+        },
+        {
+          "src": "http://127.0.0.1:4182/images/grundfos-icon.png",
+          "complete": true,
+          "naturalWidth": 225,
+          "naturalHeight": 225
+        },
+        {
+          "src": "http://127.0.0.1:4182/images/grundfos-hero.png",
+          "complete": true,
+          "naturalWidth": 1920,
+          "naturalHeight": 1209
+        },
+        {
+          "src": "http://127.0.0.1:4182/images/grundfos-mobile.png",
+          "complete": true,
+          "naturalWidth": 853,
+          "naturalHeight": 1172
+        }
+      ],
+      "navLinks": [
+        {
+          "text": "it's Paul Bader",
+          "href": "./"
+        },
+        {
+          "text": "Work",
+          "href": "./#work"
+        },
+        {
+          "text": "Contact",
+          "href": "mailto:hello@itspaulbader.xyz"
+        },
+        {
+          "text": "",
+          "href": "https://linkedin.com/in/itspaulbader"
+        },
+        {
+          "text": "",
+          "href": "https://dribbble.com/itspaulbader"
+        },
+        {
+          "text": "View Case",
+          "href": "#"
+        },
+        {
+          "text": "View Case",
+          "href": "meta-learn.html"
+        },
+        {
+          "text": "View Case",
+          "href": "#"
+        },
+        {
+          "text": "itspaulbader@gmail.com",
+          "href": "mailto:itspaulbader@gmail.com"
+        },
+        {
+          "text": "",
+          "href": "https://linkedin.com/in/itspaulbader"
+        },
+        {
+          "text": "",
+          "href": "https://dribbble.com/itspaulbader"
+        }
+      ],
+      "sections": [
+        {
+          "id": "",
+          "cls": "story-section"
+        },
+        {
+          "id": "",
+          "cls": "hero"
+        },
+        {
+          "id": "work",
+          "cls": "work-section"
+        }
+      ]
+    }
+  },
+  {
+    "page": "meta-learn",
+    "viewport": "tablet-1024",
+    "status": 200,
+    "screenshot": "docs/baseline/meta-learn-tablet-1024.png",
+    "consoleMessages": [],
+    "failed": [],
+    "metrics": {
+      "title": "Meta Learn — Paul Bader",
+      "bodyWidth": 1024,
+      "viewportWidth": 1024,
+      "fullHeight": 15386,
+      "images": [
+        {
+          "src": "http://127.0.0.1:4182/images/ml/node-104.png",
+          "complete": true,
+          "naturalWidth": 1440,
+          "naturalHeight": 810
+        },
+        {
+          "src": "http://127.0.0.1:4182/images/ml/node-100.png",
+          "complete": true,
+          "naturalWidth": 1440,
+          "naturalHeight": 810
+        },
+        {
+          "src": "https://framerusercontent.com/images/IUZwbv1PpIeWqeRZXN94th99eA.png?width=375&height=812",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0
+        },
+        {
+          "src": "https://framerusercontent.com/images/Ia9D6ia7dpXYYvb0RPwt9kdLQX8.png?width=375&height=812",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0
+        },
+        {
+          "src": "https://framerusercontent.com/images/1fyoxlrdpsqT4A2eRowdWaHY3zQ.png?width=375&height=812",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0
+        },
+        {
+          "src": "https://framerusercontent.com/images/GkNFaDA7KDpcYJKM3ef4X0eLqs.png?width=375&height=812",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0
+        },
+        {
+          "src": "https://framerusercontent.com/images/lF5ihXcN4UJQjW3wZfbNvpzGwys.png?width=375&height=812",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0
+        },
+        {
+          "src": "https://framerusercontent.com/images/wMv8cOW7LUrqzgUjWrVKQlYNY.png?width=375&height=812",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0
+        },
+        {
+          "src": "https://framerusercontent.com/images/2pytTADzx4CBo2lxd3wbd53mXA.png?width=375&height=812",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0
+        },
+        {
+          "src": "https://framerusercontent.com/images/IUZwbv1PpIeWqeRZXN94th99eA.png?width=375&height=812",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0
+        },
+        {
+          "src": "https://framerusercontent.com/images/Ia9D6ia7dpXYYvb0RPwt9kdLQX8.png?width=375&height=812",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0
+        },
+        {
+          "src": "https://framerusercontent.com/images/1fyoxlrdpsqT4A2eRowdWaHY3zQ.png?width=375&height=812",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0
+        },
+        {
+          "src": "https://framerusercontent.com/images/GkNFaDA7KDpcYJKM3ef4X0eLqs.png?width=375&height=812",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0
+        },
+        {
+          "src": "https://framerusercontent.com/images/lF5ihXcN4UJQjW3wZfbNvpzGwys.png?width=375&height=812",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0
+        },
+        {
+          "src": "https://framerusercontent.com/images/wMv8cOW7LUrqzgUjWrVKQlYNY.png?width=375&height=812",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0
+        },
+        {
+          "src": "https://framerusercontent.com/images/2pytTADzx4CBo2lxd3wbd53mXA.png?width=375&height=812",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0
+        },
+        {
+          "src": "http://127.0.0.1:4182/images/bershka-icon.jpg",
+          "complete": true,
+          "naturalWidth": 512,
+          "naturalHeight": 512
+        },
+        {
+          "src": "http://127.0.0.1:4182/images/sheer-icon.jpeg",
+          "complete": true,
+          "naturalWidth": 200,
+          "naturalHeight": 200
+        },
+        {
+          "src": "http://127.0.0.1:4182/images/grundfos-icon.png",
+          "complete": true,
+          "naturalWidth": 225,
+          "naturalHeight": 225
+        }
+      ],
+      "navLinks": [
+        {
+          "text": "it's Paul Bader",
+          "href": "./"
+        },
+        {
+          "text": "Work",
+          "href": "./#work"
+        },
+        {
+          "text": "Contact",
+          "href": "mailto:hello@itspaulbader.xyz"
+        },
+        {
+          "text": "Bershka A smootherself-checkout Redesigning the in-store experience to reduce friction and speed up payment.",
+          "href": "#"
+        },
+        {
+          "text": "Sheer Quicker & betteronboarding Creating a seamless entry point so users could start strong without friction.",
+          "href": "#"
+        },
+        {
+          "text": "Grundfos From print toPowerApp UX-driven internal tool used by 200+, replacing 80% of printed material.",
+          "href": "#"
+        },
+        {
+          "text": "itspaulbader@gmail.com",
+          "href": "mailto:itspaulbader@gmail.com"
+        },
+        {
+          "text": "",
+          "href": "https://linkedin.com/in/itspaulbader"
+        },
+        {
+          "text": "",
+          "href": "https://dribbble.com/itspaulbader"
+        }
+      ],
+      "sections": [
+        {
+          "id": "",
+          "cls": "hero"
+        },
+        {
+          "id": "highlights",
+          "cls": "highlights"
+        },
+        {
+          "id": "problem",
+          "cls": "problem"
+        },
+        {
+          "id": "research",
+          "cls": "research"
+        },
+        {
+          "id": "values",
+          "cls": "values"
+        },
+        {
+          "id": "wireframes",
+          "cls": "wireframes"
+        },
+        {
+          "id": "results",
+          "cls": "results"
+        },
+        {
+          "id": "explore",
+          "cls": "explore"
+        },
+        {
+          "id": "scale",
+          "cls": "scale"
+        },
+        {
+          "id": "",
+          "cls": "features"
+        },
+        {
+          "id": "reflections",
+          "cls": "reflections"
+        },
+        {
+          "id": "",
+          "cls": "cs-foot"
+        }
+      ]
+    }
+  },
+  {
+    "page": "home",
+    "viewport": "mobile-390",
+    "status": 200,
+    "screenshot": "docs/baseline/home-mobile-390.png",
+    "consoleMessages": [],
+    "failed": [],
+    "metrics": {
+      "title": "Paul Bader — Product & Brand Designer",
+      "bodyWidth": 390,
+      "viewportWidth": 390,
+      "fullHeight": 6034,
+      "images": [
+        {
+          "src": "http://127.0.0.1:4182/images/profile.jpg",
+          "complete": true,
+          "naturalWidth": 1600,
+          "naturalHeight": 1200
+        },
+        {
+          "src": "http://127.0.0.1:4182/images/sheer-icon.jpeg",
+          "complete": true,
+          "naturalWidth": 200,
+          "naturalHeight": 200
+        },
+        {
+          "src": "http://127.0.0.1:4182/images/grundfos-icon.png",
+          "complete": true,
+          "naturalWidth": 225,
+          "naturalHeight": 225
+        },
+        {
+          "src": "http://127.0.0.1:4182/images/profile.jpg",
+          "complete": true,
+          "naturalWidth": 1600,
+          "naturalHeight": 1200
+        },
+        {
+          "src": "http://127.0.0.1:4182/images/bershka-icon.jpg",
+          "complete": true,
+          "naturalWidth": 512,
+          "naturalHeight": 512
+        },
+        {
+          "src": "http://127.0.0.1:4182/images/bershka-desk.png",
+          "complete": true,
+          "naturalWidth": 2896,
+          "naturalHeight": 2172
+        },
+        {
+          "src": "http://127.0.0.1:4182/images/bershka-desk-mobile2.png",
+          "complete": true,
+          "naturalWidth": 1706,
+          "naturalHeight": 2344
+        },
+        {
+          "src": "http://127.0.0.1:4182/images/sheer-icon.jpeg",
+          "complete": true,
+          "naturalWidth": 200,
+          "naturalHeight": 200
+        },
+        {
+          "src": "http://127.0.0.1:4182/images/sheer-desktop.png",
+          "complete": true,
+          "naturalWidth": 1448,
+          "naturalHeight": 1086
+        },
+        {
+          "src": "http://127.0.0.1:4182/images/sheer-mobile.png",
+          "complete": true,
+          "naturalWidth": 853,
+          "naturalHeight": 1172
+        },
+        {
+          "src": "http://127.0.0.1:4182/images/meta-learn-hero.png",
+          "complete": true,
+          "naturalWidth": 6286,
+          "naturalHeight": 3618
+        },
+        {
+          "src": "http://127.0.0.1:4182/images/ml-mobile.png",
+          "complete": true,
+          "naturalWidth": 853,
+          "naturalHeight": 692
+        },
+        {
+          "src": "http://127.0.0.1:4182/images/grundfos-icon.png",
+          "complete": true,
+          "naturalWidth": 225,
+          "naturalHeight": 225
+        },
+        {
+          "src": "http://127.0.0.1:4182/images/grundfos-hero.png",
+          "complete": true,
+          "naturalWidth": 1920,
+          "naturalHeight": 1209
+        },
+        {
+          "src": "http://127.0.0.1:4182/images/grundfos-mobile.png",
+          "complete": true,
+          "naturalWidth": 853,
+          "naturalHeight": 1172
+        }
+      ],
+      "navLinks": [
+        {
+          "text": "it's Paul Bader",
+          "href": "./"
+        },
+        {
+          "text": "Work",
+          "href": "./#work"
+        },
+        {
+          "text": "Contact",
+          "href": "mailto:hello@itspaulbader.xyz"
+        },
+        {
+          "text": "",
+          "href": "https://linkedin.com/in/itspaulbader"
+        },
+        {
+          "text": "",
+          "href": "https://dribbble.com/itspaulbader"
+        },
+        {
+          "text": "View Case",
+          "href": "#"
+        },
+        {
+          "text": "View Case",
+          "href": "meta-learn.html"
+        },
+        {
+          "text": "View Case",
+          "href": "#"
+        },
+        {
+          "text": "itspaulbader@gmail.com",
+          "href": "mailto:itspaulbader@gmail.com"
+        },
+        {
+          "text": "",
+          "href": "https://linkedin.com/in/itspaulbader"
+        },
+        {
+          "text": "",
+          "href": "https://dribbble.com/itspaulbader"
+        }
+      ],
+      "sections": [
+        {
+          "id": "",
+          "cls": "story-section"
+        },
+        {
+          "id": "",
+          "cls": "hero"
+        },
+        {
+          "id": "work",
+          "cls": "work-section"
+        }
+      ]
+    }
+  },
+  {
+    "page": "meta-learn",
+    "viewport": "mobile-390",
+    "status": 200,
+    "screenshot": "docs/baseline/meta-learn-mobile-390.png",
+    "consoleMessages": [],
+    "failed": [],
+    "metrics": {
+      "title": "Meta Learn — Paul Bader",
+      "bodyWidth": 390,
+      "viewportWidth": 390,
+      "fullHeight": 14163,
+      "images": [
+        {
+          "src": "http://127.0.0.1:4182/images/ml/node-104.png",
+          "complete": true,
+          "naturalWidth": 1440,
+          "naturalHeight": 810
+        },
+        {
+          "src": "http://127.0.0.1:4182/images/ml/node-100.png",
+          "complete": true,
+          "naturalWidth": 1440,
+          "naturalHeight": 810
+        },
+        {
+          "src": "https://framerusercontent.com/images/IUZwbv1PpIeWqeRZXN94th99eA.png?width=375&height=812",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0
+        },
+        {
+          "src": "https://framerusercontent.com/images/Ia9D6ia7dpXYYvb0RPwt9kdLQX8.png?width=375&height=812",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0
+        },
+        {
+          "src": "https://framerusercontent.com/images/1fyoxlrdpsqT4A2eRowdWaHY3zQ.png?width=375&height=812",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0
+        },
+        {
+          "src": "https://framerusercontent.com/images/GkNFaDA7KDpcYJKM3ef4X0eLqs.png?width=375&height=812",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0
+        },
+        {
+          "src": "https://framerusercontent.com/images/lF5ihXcN4UJQjW3wZfbNvpzGwys.png?width=375&height=812",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0
+        },
+        {
+          "src": "https://framerusercontent.com/images/wMv8cOW7LUrqzgUjWrVKQlYNY.png?width=375&height=812",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0
+        },
+        {
+          "src": "https://framerusercontent.com/images/2pytTADzx4CBo2lxd3wbd53mXA.png?width=375&height=812",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0
+        },
+        {
+          "src": "https://framerusercontent.com/images/IUZwbv1PpIeWqeRZXN94th99eA.png?width=375&height=812",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0
+        },
+        {
+          "src": "https://framerusercontent.com/images/Ia9D6ia7dpXYYvb0RPwt9kdLQX8.png?width=375&height=812",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0
+        },
+        {
+          "src": "https://framerusercontent.com/images/1fyoxlrdpsqT4A2eRowdWaHY3zQ.png?width=375&height=812",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0
+        },
+        {
+          "src": "https://framerusercontent.com/images/GkNFaDA7KDpcYJKM3ef4X0eLqs.png?width=375&height=812",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0
+        },
+        {
+          "src": "https://framerusercontent.com/images/lF5ihXcN4UJQjW3wZfbNvpzGwys.png?width=375&height=812",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0
+        },
+        {
+          "src": "https://framerusercontent.com/images/wMv8cOW7LUrqzgUjWrVKQlYNY.png?width=375&height=812",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0
+        },
+        {
+          "src": "https://framerusercontent.com/images/2pytTADzx4CBo2lxd3wbd53mXA.png?width=375&height=812",
+          "complete": false,
+          "naturalWidth": 0,
+          "naturalHeight": 0
+        },
+        {
+          "src": "http://127.0.0.1:4182/images/bershka-icon.jpg",
+          "complete": true,
+          "naturalWidth": 512,
+          "naturalHeight": 512
+        },
+        {
+          "src": "http://127.0.0.1:4182/images/sheer-icon.jpeg",
+          "complete": true,
+          "naturalWidth": 200,
+          "naturalHeight": 200
+        },
+        {
+          "src": "http://127.0.0.1:4182/images/grundfos-icon.png",
+          "complete": true,
+          "naturalWidth": 225,
+          "naturalHeight": 225
+        }
+      ],
+      "navLinks": [
+        {
+          "text": "it's Paul Bader",
+          "href": "./"
+        },
+        {
+          "text": "Work",
+          "href": "./#work"
+        },
+        {
+          "text": "Contact",
+          "href": "mailto:hello@itspaulbader.xyz"
+        },
+        {
+          "text": "Bershka A smootherself-checkout Redesigning the in-store experience to reduce friction and speed up payment.",
+          "href": "#"
+        },
+        {
+          "text": "Sheer Quicker & betteronboarding Creating a seamless entry point so users could start strong without friction.",
+          "href": "#"
+        },
+        {
+          "text": "Grundfos From print toPowerApp UX-driven internal tool used by 200+, replacing 80% of printed material.",
+          "href": "#"
+        },
+        {
+          "text": "itspaulbader@gmail.com",
+          "href": "mailto:itspaulbader@gmail.com"
+        },
+        {
+          "text": "",
+          "href": "https://linkedin.com/in/itspaulbader"
+        },
+        {
+          "text": "",
+          "href": "https://dribbble.com/itspaulbader"
+        }
+      ],
+      "sections": [
+        {
+          "id": "",
+          "cls": "hero"
+        },
+        {
+          "id": "highlights",
+          "cls": "highlights"
+        },
+        {
+          "id": "problem",
+          "cls": "problem"
+        },
+        {
+          "id": "research",
+          "cls": "research"
+        },
+        {
+          "id": "values",
+          "cls": "values"
+        },
+        {
+          "id": "wireframes",
+          "cls": "wireframes"
+        },
+        {
+          "id": "results",
+          "cls": "results"
+        },
+        {
+          "id": "explore",
+          "cls": "explore"
+        },
+        {
+          "id": "scale",
+          "cls": "scale"
+        },
+        {
+          "id": "",
+          "cls": "features"
+        },
+        {
+          "id": "reflections",
+          "cls": "reflections"
+        },
+        {
+          "id": "",
+          "cls": "cs-foot"
+        }
+      ]
+    }
+  }
+]

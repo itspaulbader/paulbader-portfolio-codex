@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 — Page Not Found · Paul Bader</title>
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg:         #f6f6f4;
+      --white:      #ffffff;
+      --black:      rgb(29,29,31);
+      --cod-gray:   #121212;
+      --mine-shaft: #2b2b2b;
+      --emperor:    #545454;
+      --gray:       #828282;
+      --alto:       #dedede;
+      --gallery:    #f0f0f0;
+      --blue:       #1569f2;
+      --ease:        cubic-bezier(0.22, 1, 0.36, 1);
+      --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --gutter: max(22px, calc((100vw - 1260px) / 2));
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont, 'Inter', "Helvetica Neue", sans-serif;
+      background: var(--bg);
+      color: var(--black);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      letter-spacing: -0.01em;
+      overflow-x: hidden;
+    }
+
+
+    /* ─── 404 CONTENT ─── */
+    .notfound {
+      min-height: 70vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      background: #fff;
+      padding: 120px 24px 80px;
+    }
+
+    .notfound-title {
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      color: var(--black);
+      max-width: 640px;
+      margin-bottom: 32px;
+    }
+
+    .btn-home {
+      display: inline-flex; align-items: center;
+      padding: 11px 22px; border-radius: 100px;
+      background: var(--blue); color: white;
+      font-size: 15px; font-weight: 500;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: background 0.2s var(--ease);
+    }
+    .btn-home:hover { background: #1260e0; }
+    .btn-home:active { background: #0f52c8; }
+
+
+    /* ─── SCROLL REVEAL ─── */
+    .reveal { opacity: 0; transform: translateY(36px) scale(0.98); filter: blur(5px); transition: opacity 1.0s var(--ease), transform 1.0s var(--ease), filter 1.0s var(--ease); }
+    .reveal.in { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+    .reveal-d1.in { transition-delay: 0.1s; }
+
+    /* ─── MOBILE ─── */
+    @media (max-width: 599px) {
+      .notfound { min-height: 60vh; padding: 100px 24px 60px; }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="notfound">
+    <h1 class="notfound-title">The page you’re looking<br>for can’t be found.</h1>
+    <a href="./" class="btn-home">Back Home</a>
+  </section>
+
+  <script src="components.js"></script>
+</body>
+</html>

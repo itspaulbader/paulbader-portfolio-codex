@@ -1,0 +1,89 @@
+{
+  "result": {
+    "noindex": "noindex, nofollow",
+    "width": 1440,
+    "viewport": 1440,
+    "sectionProgressTicks": 8,
+    "sectionOrder": [
+      "hero",
+      "highlights",
+      "problem",
+      "research",
+      "values",
+      "wireframes",
+      "results",
+      "explore"
+    ],
+    "progressButtonLabels": [
+      "Jump to MLMeta Learn",
+      "Jump to Get the highlights.",
+      "Jump to Great content. Poor delivery.",
+      "Jump to Research confirmed what users already felt.",
+      "Jump to Defining the redesign goals.",
+      "Jump to Wireframing every core flow.",
+      "Jump to The structure worked before the polish.",
+      "Jump to Even more thoughtful. Even more calming."
+    ],
+    "highlightDots": 6,
+    "highlightPaused": true,
+    "highlightPlayingAgain": true,
+    "highlightThirdActive": true,
+    "researchScrolled": true,
+    "modalOpen": true,
+    "modalFocusedClose": true,
+    "bodyLocked": true,
+    "modalClosedByEscape": true,
+    "focusRestoredAfterEscape": true,
+    "goalsScrollMoment": {
+      "start": {
+        "vision": "0.000",
+        "bg": "1.000"
+      },
+      "mid": {
+        "vision": "0.143",
+        "bg": "1.000",
+        "firstTx": "-271.4px"
+      }
+    },
+    "wireframeAnimation": {
+      "name": "wfScroll",
+      "state": "paused"
+    },
+    "wireframeHoverPause": "paused",
+    "validationBars": [
+      "matrix(0.999998, 0, 0, 1, 0, 0)",
+      "matrix(0.999998, 0, 0, 1, 0, 0)"
+    ],
+    "exploreAfterClick": {
+      "active": 2,
+      "expanded": true,
+      "screen": "2",
+      "alt": "Abstract exercise library placeholder"
+    },
+    "exploreNext": "3",
+    "explorePrev": "2",
+    "exploreClosed": true,
+    "keyboardFocusExists": true
+  },
+  "mobile": {
+    "exploreLayout": {
+      "controlsOverflowX": "auto",
+      "viewerColumns": "341.25px",
+      "pillCount": 6
+    },
+    "exploreScrollActive": 1,
+    "horizontalOverflow": false
+  },
+  "reduced": {
+    "highlightsPaused": true,
+    "highlightFillAnimation": "none",
+    "wireframeAnimation": "none",
+    "goals": {
+      "vision": "1.000",
+      "bg": "1.000"
+    }
+  },
+  "consoleMessages": [],
+  "failed": [],
+  "badResponses": []
+}

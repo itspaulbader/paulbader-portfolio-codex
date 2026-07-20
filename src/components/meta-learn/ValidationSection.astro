@@ -1,0 +1,35 @@
+---
+import { validation } from '../../data/metaLearn';
+---
+<section class="results" id="results">
+  <div class="results-inner">
+    <div class="results-hdr reveal">
+      <div>
+        <p class="label">{validation.eyebrow}</p>
+        <h2 class="heading-lg">{validation.heading}</h2>
+      </div>
+    </div>
+    <div class="validation-panel reveal d1">
+      <div class="validation-score">
+        <p class="validation-score-kicker">{validation.scoreKicker}</p>
+        <p class="validation-score-main">{validation.scoreMain}<sup>{validation.scoreTotal}</sup></p>
+        <p class="validation-score-caption">{validation.scoreCaption}</p>
+      </div>
+      <div class="validation-flow" aria-label="Validation comparison">
+        {validation.rows.map(row => (
+          <div class="validation-row">
+            <p class="validation-label">{row.label}</p>
+            <div class="validation-bar"><span style={`--w:${row.width}`}></span></div>
+            <p class="validation-value">{row.value}</p>
+          </div>
+        ))}
+        <p class="results-beta">{validation.beta}</p>
+      </div>
+      <div class="validation-note">
+        <p class="validation-note-kicker">{validation.noteKicker}</p>
+        <p class="validation-note-title">{validation.noteTitle}</p>
+        <p class="validation-note-text">{validation.noteText}</p>
+      </div>
+    </div>
+  </div>
+</section>

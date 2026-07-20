@@ -1,0 +1,209 @@
+[
+  {
+    "legacySize": [
+      1440,
+      915
+    ],
+    "nextSize": [
+      1440,
+      915
+    ],
+    "sameSize": true,
+    "rms": 0.0,
+    "changedPercent": 0.0,
+    "bbox": null,
+    "viewport": "desktop-1440x900",
+    "section": "scale"
+  },
+  {
+    "legacySize": [
+      1440,
+      983
+    ],
+    "nextSize": [
+      1440,
+      983
+    ],
+    "sameSize": true,
+    "rms": 0.0,
+    "changedPercent": 0.0,
+    "bbox": null,
+    "viewport": "desktop-1440x900",
+    "section": "features"
+  },
+  {
+    "legacySize": [
+      1440,
+      925
+    ],
+    "nextSize": [
+      1440,
+      925
+    ],
+    "sameSize": true,
+    "rms": 0.0,
+    "changedPercent": 0.0,
+    "bbox": null,
+    "viewport": "desktop-1440x900",
+    "section": "reflections"
+  },
+  {
+    "legacySize": [
+      1440,
+      1134
+    ],
+    "nextSize": [
+      1440,
+      1134
+    ],
+    "sameSize": true,
+    "rms": 1.766,
+    "changedPercent": 0.088,
+    "bbox": [
+      1308,
+      1012,
+      1350,
+      1054
+    ],
+    "viewport": "desktop-1440x900",
+    "section": "more-work"
+  },
+  {
+    "legacySize": [
+      1024,
+      900
+    ],
+    "nextSize": [
+      1024,
+      900
+    ],
+    "sameSize": true,
+    "rms": 0.0,
+    "changedPercent": 0.0,
+    "bbox": null,
+    "viewport": "tablet-1024x768",
+    "section": "scale"
+  },
+  {
+    "legacySize": [
+      1024,
+      978
+    ],
+    "nextSize": [
+      1024,
+      978
+    ],
+    "sameSize": true,
+    "rms": 0.0,
+    "changedPercent": 0.0,
+    "bbox": null,
+    "viewport": "tablet-1024x768",
+    "section": "features"
+  },
+  {
+    "legacySize": [
+      1024,
+      844
+    ],
+    "nextSize": [
+      1024,
+      844
+    ],
+    "sameSize": true,
+    "rms": 0.0,
+    "changedPercent": 0.0,
+    "bbox": null,
+    "viewport": "tablet-1024x768",
+    "section": "reflections"
+  },
+  {
+    "legacySize": [
+      1024,
+      933
+    ],
+    "nextSize": [
+      1024,
+      933
+    ],
+    "sameSize": true,
+    "rms": 2.309,
+    "changedPercent": 0.15,
+    "bbox": [
+      960,
+      810,
+      1002,
+      852
+    ],
+    "viewport": "tablet-1024x768",
+    "section": "more-work"
+  },
+  {
+    "legacySize": [
+      390,
+      1363
+    ],
+    "nextSize": [
+      390,
+      1363
+    ],
+    "sameSize": true,
+    "rms": 0.0,
+    "changedPercent": 0.0,
+    "bbox": null,
+    "viewport": "mobile-390x844",
+    "section": "scale"
+  },
+  {
+    "legacySize": [
+      390,
+      945
+    ],
+    "nextSize": [
+      390,
+      945
+    ],
+    "sameSize": true,
+    "rms": 0.0,
+    "changedPercent": 0.0,
+    "bbox": null,
+    "viewport": "mobile-390x844",
+    "section": "features"
+  },
+  {
+    "legacySize": [
+      390,
+      1203
+    ],
+    "nextSize": [
+      390,
+      1203
+    ],
+    "sameSize": true,
+    "rms": 0.0,
+    "changedPercent": 0.0,
+    "bbox": null,
+    "viewport": "mobile-390x844",
+    "section": "reflections"
+  },
+  {
+    "legacySize": [
+      390,
+      932
+    ],
+    "nextSize": [
+      390,
+      932
+    ],
+    "sameSize": true,
+    "rms": 3.744,
+    "changedPercent": 0.395,
+    "bbox": [
+      324,
+      761,
+      366,
+      803
+    ],
+    "viewport": "mobile-390x844",
+    "section": "more-work"
+  }
+]
