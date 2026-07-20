@@ -1,0 +1,710 @@
+[
+  {
+    "variant": "legacy",
+    "viewport": {
+      "name": "desktop-1440x900",
+      "width": 1440,
+      "height": 900
+    },
+    "section": "scale",
+    "file": "docs/milestone-2c/sections/legacy-scale-desktop-1440x900.png",
+    "status": 200,
+    "box": {
+      "x": 0,
+      "y": -7.15625,
+      "width": 1440,
+      "height": 914.0625
+    },
+    "images": [],
+    "backgrounds": [],
+    "incompleteImages": [],
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "variant": "legacy",
+    "viewport": {
+      "name": "desktop-1440x900",
+      "width": 1440,
+      "height": 900
+    },
+    "section": "features",
+    "file": "docs/milestone-2c/sections/legacy-features-desktop-1440x900.png",
+    "status": 200,
+    "box": {
+      "x": 0,
+      "y": -41.09375,
+      "width": 1440,
+      "height": 982.078125
+    },
+    "images": [],
+    "backgrounds": [],
+    "incompleteImages": [],
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "variant": "legacy",
+    "viewport": {
+      "name": "desktop-1440x900",
+      "width": 1440,
+      "height": 900
+    },
+    "section": "reflections",
+    "file": "docs/milestone-2c/sections/legacy-reflections-desktop-1440x900.png",
+    "status": 200,
+    "box": {
+      "x": 0,
+      "y": -12.015625,
+      "width": 1440,
+      "height": 923.53125
+    },
+    "images": [],
+    "backgrounds": [],
+    "incompleteImages": [],
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "variant": "legacy",
+    "viewport": {
+      "name": "desktop-1440x900",
+      "width": 1440,
+      "height": 900
+    },
+    "section": "more-work",
+    "file": "docs/milestone-2c/sections/legacy-more-work-desktop-1440x900.png",
+    "status": 200,
+    "box": {
+      "x": 0,
+      "y": -116.484375,
+      "width": 1440,
+      "height": 1133.015625
+    },
+    "images": [
+      {
+        "index": 0,
+        "src": "http://127.0.0.1:4324/portfolio/images/bershka-icon.jpg",
+        "complete": true,
+        "naturalWidth": 512,
+        "naturalHeight": 512
+      },
+      {
+        "index": 1,
+        "src": "http://127.0.0.1:4324/portfolio/images/sheer-icon.jpeg",
+        "complete": true,
+        "naturalWidth": 200,
+        "naturalHeight": 200
+      },
+      {
+        "index": 2,
+        "src": "http://127.0.0.1:4324/portfolio/images/grundfos-icon.png",
+        "complete": true,
+        "naturalWidth": 225,
+        "naturalHeight": 225
+      }
+    ],
+    "backgrounds": [
+      "url(\"http://127.0.0.1:4324/portfolio/images/bershka-desk.png\")",
+      "url(\"http://127.0.0.1:4324/portfolio/images/sheer-desktop.png\")",
+      "url(\"http://127.0.0.1:4324/portfolio/images/grundfos-hero.png\")"
+    ],
+    "incompleteImages": [],
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "variant": "next",
+    "viewport": {
+      "name": "desktop-1440x900",
+      "width": 1440,
+      "height": 900
+    },
+    "section": "scale",
+    "file": "docs/milestone-2c/sections/next-scale-desktop-1440x900.png",
+    "status": 200,
+    "box": {
+      "x": 0,
+      "y": -7.15625,
+      "width": 1440,
+      "height": 914.0625
+    },
+    "images": [],
+    "backgrounds": [],
+    "incompleteImages": [],
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "variant": "next",
+    "viewport": {
+      "name": "desktop-1440x900",
+      "width": 1440,
+      "height": 900
+    },
+    "section": "features",
+    "file": "docs/milestone-2c/sections/next-features-desktop-1440x900.png",
+    "status": 200,
+    "box": {
+      "x": 0,
+      "y": -41.09375,
+      "width": 1440,
+      "height": 982.078125
+    },
+    "images": [],
+    "backgrounds": [],
+    "incompleteImages": [],
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "variant": "next",
+    "viewport": {
+      "name": "desktop-1440x900",
+      "width": 1440,
+      "height": 900
+    },
+    "section": "reflections",
+    "file": "docs/milestone-2c/sections/next-reflections-desktop-1440x900.png",
+    "status": 200,
+    "box": {
+      "x": 0,
+      "y": -12.015625,
+      "width": 1440,
+      "height": 923.53125
+    },
+    "images": [],
+    "backgrounds": [],
+    "incompleteImages": [],
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "variant": "next",
+    "viewport": {
+      "name": "desktop-1440x900",
+      "width": 1440,
+      "height": 900
+    },
+    "section": "more-work",
+    "file": "docs/milestone-2c/sections/next-more-work-desktop-1440x900.png",
+    "status": 200,
+    "box": {
+      "x": 0,
+      "y": -116.484375,
+      "width": 1440,
+      "height": 1133.015625
+    },
+    "images": [
+      {
+        "index": 0,
+        "src": "http://127.0.0.1:4324/portfolio/images/bershka-icon.jpg",
+        "complete": true,
+        "naturalWidth": 512,
+        "naturalHeight": 512
+      },
+      {
+        "index": 1,
+        "src": "http://127.0.0.1:4324/portfolio/images/sheer-icon.jpeg",
+        "complete": true,
+        "naturalWidth": 200,
+        "naturalHeight": 200
+      },
+      {
+        "index": 2,
+        "src": "http://127.0.0.1:4324/portfolio/images/grundfos-icon.png",
+        "complete": true,
+        "naturalWidth": 225,
+        "naturalHeight": 225
+      }
+    ],
+    "backgrounds": [
+      "url(\"http://127.0.0.1:4324/portfolio/images/bershka-desk.png\")",
+      "url(\"http://127.0.0.1:4324/portfolio/images/sheer-desktop.png\")",
+      "url(\"http://127.0.0.1:4324/portfolio/images/grundfos-hero.png\")"
+    ],
+    "incompleteImages": [],
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "variant": "legacy",
+    "viewport": {
+      "name": "tablet-1024x768",
+      "width": 1024,
+      "height": 768
+    },
+    "section": "scale",
+    "file": "docs/milestone-2c/sections/legacy-scale-tablet-1024x768.png",
+    "status": 200,
+    "box": {
+      "x": 0,
+      "y": -65.34375,
+      "width": 1024,
+      "height": 899.25
+    },
+    "images": [],
+    "backgrounds": [],
+    "incompleteImages": [],
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "variant": "legacy",
+    "viewport": {
+      "name": "tablet-1024x768",
+      "width": 1024,
+      "height": 768
+    },
+    "section": "features",
+    "file": "docs/milestone-2c/sections/legacy-features-tablet-1024x768.png",
+    "status": 200,
+    "box": {
+      "x": 0,
+      "y": -104.09375,
+      "width": 1024,
+      "height": 977.015625
+    },
+    "images": [],
+    "backgrounds": [],
+    "incompleteImages": [],
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "variant": "legacy",
+    "viewport": {
+      "name": "tablet-1024x768",
+      "width": 1024,
+      "height": 768
+    },
+    "section": "reflections",
+    "file": "docs/milestone-2c/sections/legacy-reflections-tablet-1024x768.png",
+    "status": 200,
+    "box": {
+      "x": 0,
+      "y": -37.078125,
+      "width": 1024,
+      "height": 842.921875
+    },
+    "images": [],
+    "backgrounds": [],
+    "incompleteImages": [],
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "variant": "legacy",
+    "viewport": {
+      "name": "tablet-1024x768",
+      "width": 1024,
+      "height": 768
+    },
+    "section": "more-work",
+    "file": "docs/milestone-2c/sections/legacy-more-work-tablet-1024x768.png",
+    "status": 200,
+    "box": {
+      "x": 0,
+      "y": -82.15625,
+      "width": 1024,
+      "height": 931.4375
+    },
+    "images": [
+      {
+        "index": 0,
+        "src": "http://127.0.0.1:4324/portfolio/images/bershka-icon.jpg",
+        "complete": true,
+        "naturalWidth": 512,
+        "naturalHeight": 512
+      },
+      {
+        "index": 1,
+        "src": "http://127.0.0.1:4324/portfolio/images/sheer-icon.jpeg",
+        "complete": true,
+        "naturalWidth": 200,
+        "naturalHeight": 200
+      },
+      {
+        "index": 2,
+        "src": "http://127.0.0.1:4324/portfolio/images/grundfos-icon.png",
+        "complete": true,
+        "naturalWidth": 225,
+        "naturalHeight": 225
+      }
+    ],
+    "backgrounds": [
+      "url(\"http://127.0.0.1:4324/portfolio/images/bershka-desk.png\")",
+      "url(\"http://127.0.0.1:4324/portfolio/images/sheer-desktop.png\")",
+      "url(\"http://127.0.0.1:4324/portfolio/images/grundfos-hero.png\")"
+    ],
+    "incompleteImages": [],
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "variant": "next",
+    "viewport": {
+      "name": "tablet-1024x768",
+      "width": 1024,
+      "height": 768
+    },
+    "section": "scale",
+    "file": "docs/milestone-2c/sections/next-scale-tablet-1024x768.png",
+    "status": 200,
+    "box": {
+      "x": 0,
+      "y": -65.34375,
+      "width": 1024,
+      "height": 899.25
+    },
+    "images": [],
+    "backgrounds": [],
+    "incompleteImages": [],
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "variant": "next",
+    "viewport": {
+      "name": "tablet-1024x768",
+      "width": 1024,
+      "height": 768
+    },
+    "section": "features",
+    "file": "docs/milestone-2c/sections/next-features-tablet-1024x768.png",
+    "status": 200,
+    "box": {
+      "x": 0,
+      "y": -104.09375,
+      "width": 1024,
+      "height": 977.015625
+    },
+    "images": [],
+    "backgrounds": [],
+    "incompleteImages": [],
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "variant": "next",
+    "viewport": {
+      "name": "tablet-1024x768",
+      "width": 1024,
+      "height": 768
+    },
+    "section": "reflections",
+    "file": "docs/milestone-2c/sections/next-reflections-tablet-1024x768.png",
+    "status": 200,
+    "box": {
+      "x": 0,
+      "y": -37.078125,
+      "width": 1024,
+      "height": 842.921875
+    },
+    "images": [],
+    "backgrounds": [],
+    "incompleteImages": [],
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "variant": "next",
+    "viewport": {
+      "name": "tablet-1024x768",
+      "width": 1024,
+      "height": 768
+    },
+    "section": "more-work",
+    "file": "docs/milestone-2c/sections/next-more-work-tablet-1024x768.png",
+    "status": 200,
+    "box": {
+      "x": 0,
+      "y": -82.15625,
+      "width": 1024,
+      "height": 931.4375
+    },
+    "images": [
+      {
+        "index": 0,
+        "src": "http://127.0.0.1:4324/portfolio/images/bershka-icon.jpg",
+        "complete": true,
+        "naturalWidth": 512,
+        "naturalHeight": 512
+      },
+      {
+        "index": 1,
+        "src": "http://127.0.0.1:4324/portfolio/images/sheer-icon.jpeg",
+        "complete": true,
+        "naturalWidth": 200,
+        "naturalHeight": 200
+      },
+      {
+        "index": 2,
+        "src": "http://127.0.0.1:4324/portfolio/images/grundfos-icon.png",
+        "complete": true,
+        "naturalWidth": 225,
+        "naturalHeight": 225
+      }
+    ],
+    "backgrounds": [
+      "url(\"http://127.0.0.1:4324/portfolio/images/bershka-desk.png\")",
+      "url(\"http://127.0.0.1:4324/portfolio/images/sheer-desktop.png\")",
+      "url(\"http://127.0.0.1:4324/portfolio/images/grundfos-hero.png\")"
+    ],
+    "incompleteImages": [],
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "variant": "legacy",
+    "viewport": {
+      "name": "mobile-390x844",
+      "width": 390,
+      "height": 844
+    },
+    "section": "scale",
+    "file": "docs/milestone-2c/sections/legacy-scale-mobile-390x844.png",
+    "status": 200,
+    "box": {
+      "x": 0,
+      "y": 275.375,
+      "width": 390,
+      "height": 1361.75
+    },
+    "images": [],
+    "backgrounds": [],
+    "incompleteImages": [],
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "variant": "legacy",
+    "viewport": {
+      "name": "mobile-390x844",
+      "width": 390,
+      "height": 844
+    },
+    "section": "features",
+    "file": "docs/milestone-2c/sections/legacy-features-mobile-390x844.png",
+    "status": 200,
+    "box": {
+      "x": 0,
+      "y": -49.875,
+      "width": 390,
+      "height": 944.796875
+    },
+    "images": [],
+    "backgrounds": [],
+    "incompleteImages": [],
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "variant": "legacy",
+    "viewport": {
+      "name": "mobile-390x844",
+      "width": 390,
+      "height": 844
+    },
+    "section": "reflections",
+    "file": "docs/milestone-2c/sections/legacy-reflections-mobile-390x844.png",
+    "status": 200,
+    "box": {
+      "x": 0,
+      "y": -178.078125,
+      "width": 390,
+      "height": 1201.40625
+    },
+    "images": [],
+    "backgrounds": [],
+    "incompleteImages": [],
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "variant": "legacy",
+    "viewport": {
+      "name": "mobile-390x844",
+      "width": 390,
+      "height": 844
+    },
+    "section": "more-work",
+    "file": "docs/milestone-2c/sections/legacy-more-work-mobile-390x844.png",
+    "status": 200,
+    "box": {
+      "x": 0,
+      "y": -402.671875,
+      "width": 390,
+      "height": 930.921875
+    },
+    "images": [
+      {
+        "index": 0,
+        "src": "http://127.0.0.1:4324/portfolio/images/bershka-icon.jpg",
+        "complete": true,
+        "naturalWidth": 512,
+        "naturalHeight": 512
+      },
+      {
+        "index": 1,
+        "src": "http://127.0.0.1:4324/portfolio/images/sheer-icon.jpeg",
+        "complete": true,
+        "naturalWidth": 200,
+        "naturalHeight": 200
+      },
+      {
+        "index": 2,
+        "src": "http://127.0.0.1:4324/portfolio/images/grundfos-icon.png",
+        "complete": true,
+        "naturalWidth": 225,
+        "naturalHeight": 225
+      }
+    ],
+    "backgrounds": [
+      "url(\"http://127.0.0.1:4324/portfolio/images/bershka-desk-mobile2.png\")",
+      "url(\"http://127.0.0.1:4324/portfolio/images/sheer-mobile.png\")",
+      "url(\"http://127.0.0.1:4324/portfolio/images/grundfos-mobile.png\")"
+    ],
+    "incompleteImages": [],
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "variant": "next",
+    "viewport": {
+      "name": "mobile-390x844",
+      "width": 390,
+      "height": 844
+    },
+    "section": "scale",
+    "file": "docs/milestone-2c/sections/next-scale-mobile-390x844.png",
+    "status": 200,
+    "box": {
+      "x": 0,
+      "y": 275.375,
+      "width": 390,
+      "height": 1361.75
+    },
+    "images": [],
+    "backgrounds": [],
+    "incompleteImages": [],
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "variant": "next",
+    "viewport": {
+      "name": "mobile-390x844",
+      "width": 390,
+      "height": 844
+    },
+    "section": "features",
+    "file": "docs/milestone-2c/sections/next-features-mobile-390x844.png",
+    "status": 200,
+    "box": {
+      "x": 0,
+      "y": -49.875,
+      "width": 390,
+      "height": 944.796875
+    },
+    "images": [],
+    "backgrounds": [],
+    "incompleteImages": [],
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "variant": "next",
+    "viewport": {
+      "name": "mobile-390x844",
+      "width": 390,
+      "height": 844
+    },
+    "section": "reflections",
+    "file": "docs/milestone-2c/sections/next-reflections-mobile-390x844.png",
+    "status": 200,
+    "box": {
+      "x": 0,
+      "y": -178.078125,
+      "width": 390,
+      "height": 1201.40625
+    },
+    "images": [],
+    "backgrounds": [],
+    "incompleteImages": [],
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "variant": "next",
+    "viewport": {
+      "name": "mobile-390x844",
+      "width": 390,
+      "height": 844
+    },
+    "section": "more-work",
+    "file": "docs/milestone-2c/sections/next-more-work-mobile-390x844.png",
+    "status": 200,
+    "box": {
+      "x": 0,
+      "y": -402.671875,
+      "width": 390,
+      "height": 930.921875
+    },
+    "images": [
+      {
+        "index": 0,
+        "src": "http://127.0.0.1:4324/portfolio/images/bershka-icon.jpg",
+        "complete": true,
+        "naturalWidth": 512,
+        "naturalHeight": 512
+      },
+      {
+        "index": 1,
+        "src": "http://127.0.0.1:4324/portfolio/images/sheer-icon.jpeg",
+        "complete": true,
+        "naturalWidth": 200,
+        "naturalHeight": 200
+      },
+      {
+        "index": 2,
+        "src": "http://127.0.0.1:4324/portfolio/images/grundfos-icon.png",
+        "complete": true,
+        "naturalWidth": 225,
+        "naturalHeight": 225
+      }
+    ],
+    "backgrounds": [
+      "url(\"http://127.0.0.1:4324/portfolio/images/bershka-desk-mobile2.png\")",
+      "url(\"http://127.0.0.1:4324/portfolio/images/sheer-mobile.png\")",
+      "url(\"http://127.0.0.1:4324/portfolio/images/grundfos-mobile.png\")"
+    ],
+    "incompleteImages": [],
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  }
+]

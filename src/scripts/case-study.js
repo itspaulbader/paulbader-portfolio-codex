@@ -53,3 +53,24 @@ if (document.body.dataset.case) {
     updateProgress();
   }
 }
+
+const moreWorkRail = document.getElementById('ncRail');
+const moreWorkPrev = document.getElementById('ncPrev');
+const moreWorkNext = document.getElementById('ncNext');
+if (moreWorkRail && moreWorkPrev && moreWorkNext) {
+  function ncStep() {
+    const card = moreWorkRail.querySelector('.nc');
+    return card ? card.offsetWidth + 12 : 392;
+  }
+  function ncSync() {
+    moreWorkPrev.disabled = moreWorkRail.scrollLeft <= 4;
+    moreWorkNext.disabled = moreWorkRail.scrollLeft >= moreWorkRail.scrollWidth - moreWorkRail.clientWidth - 4;
+  }
+  moreWorkPrev.addEventListener('click', () => moreWorkRail.scrollBy({ left: -ncStep(), behavior: 'smooth' }));
+  moreWorkNext.addEventListener('click', () => moreWorkRail.scrollBy({ left: ncStep(), behavior: 'smooth' }));
+  moreWorkRail.addEventListener('scroll', ncSync, { passive: true });
+  moreWorkRail.querySelectorAll('.nc[data-placeholder="true"]').forEach(link => {
+    link.addEventListener('click', event => event.preventDefault());
+  });
+  requestAnimationFrame(ncSync);
+}

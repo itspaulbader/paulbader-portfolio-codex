@@ -1,0 +1,45 @@
+---
+import { outcomes } from '../../data/metaLearn';
+---
+<section class="features">
+  <div class="features-inner">
+    <div class="feat-wrap">
+      <div class="feat-wrap-hd reveal">
+        <p class="label">{outcomes.eyebrow}</p>
+        <h2 class="heading-lg">{outcomes.heading}</h2>
+      </div>
+      <div class="feat-grid">
+        {outcomes.tiles.map(tile => (
+          <div class:list={['feat-cell', `feat-cell--${tile.kind}`, 'reveal', tile.delayClass]}>
+            {tile.kind === 'photo' && (
+              <>
+                <div class="feat-copy">
+                  <p class="feat-copy-label" set:html={tile.labelHtml}></p>
+                </div>
+                <div class="feat-vis">
+                  {tile.shapes?.map(shape => <div class="s" style={shape.style}></div>)}
+                </div>
+              </>
+            )}
+            {tile.kind === 'stat' && (
+              <>
+                {tile.statPre && <p class="feat-stat-pre">{tile.statPre}</p>}
+                <p class="feat-stat-num">{tile.statNum}{tile.statUnit && <span class="feat-stat-unit">{tile.statUnit}</span>}</p>
+                <p class="feat-stat-post" set:html={tile.statPostHtml}></p>
+              </>
+            )}
+            {tile.kind === 'icon' && (
+              <>
+                <div class="feat-icon-wrap">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="8" height="8" rx="2"></rect><rect x="13" y="3" width="8" height="8" rx="2"></rect><rect x="3" y="13" width="8" height="8" rx="2"></rect><path d="M13 17h8M17 13v8"></path></svg>
+                </div>
+                <p class="feat-icon-title" set:html={tile.statPostHtml}></p>
+                <p class="feat-icon-body" set:html={tile.iconBodyHtml}></p>
+              </>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

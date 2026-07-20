@@ -44,6 +44,32 @@ export type ExploreFeature = {
   alt: string;
 };
 
+export type ScaleCard = {
+  eyebrow: string;
+  title: string;
+  text: string;
+  variant: 'system' | 'handoff';
+};
+
+export type OutcomeTile = {
+  kind: 'photo' | 'stat' | 'icon';
+  delayClass?: string;
+  labelHtml?: string;
+  shapes?: Array<{ style: string }>;
+  statPre?: string;
+  statNum?: string;
+  statUnit?: string;
+  statPostHtml?: string;
+  iconBodyHtml?: string;
+};
+
+export type ReflectionLesson = {
+  number: string;
+  label: string;
+  title: string;
+  body: string;
+};
+
 export const hero: MetaLearnHero = {
   eyebrow: 'Meta Learn',
   titleHtml: 'Mental fitness,<br>made intuitive.',
@@ -248,4 +274,108 @@ export const explore = {
       descriptionHtml: '<strong>Streak rewards.</strong> Finish onboarding and unlock a full week of premium access — momentum, rewarded.'
     }
   ] satisfies ExploreFeature[]
+};
+
+export const scale = {
+  eyebrow: 'Collab',
+  heading: 'Built to scale.',
+  cards: [
+    {
+      eyebrow: 'Design system',
+      title: 'Carry your system everywhere.',
+      text: '80 components, fully documented in Figma. The dev team ships new features 50% faster since handoff.',
+      variant: 'system'
+    },
+    {
+      eyebrow: 'Handoff',
+      title: 'App Store ready.',
+      text: 'Passed Apple review on first submission. Helped close a seed funding round with a refreshed investor deck.',
+      variant: 'handoff'
+    }
+  ] satisfies ScaleCard[]
+};
+
+export const outcomes = {
+  eyebrow: 'Outcomes',
+  heading: "The numbers don't lie.",
+  tiles: [
+    {
+      kind: 'photo',
+      labelHtml: 'SUS usability score<br><strong>84 pts</strong> — up from 52',
+      shapes: [
+        { style: 'width:180px;height:180px;background:#e8e8ed;bottom:-50px;left:-40px;opacity:.86' },
+        { style: 'width:120px;height:120px;background:#d6d6dc;bottom:10px;left:60px;opacity:.7' },
+        { style: 'width:80px;height:80px;background:#c7c7cc;bottom:60px;left:120px;opacity:.58' },
+        { style: 'width:100px;height:100px;background:#f5f5f7;bottom:-20px;right:-20px;opacity:1' }
+      ]
+    },
+    {
+      kind: 'photo',
+      delayClass: 'd1',
+      labelHtml: 'Task completion<br><strong>2.1× faster</strong> across 5 flows',
+      shapes: [
+        { style: 'width:200px;height:140px;background:#e8e8ed;bottom:-30px;right:-50px;opacity:.86' },
+        { style: 'width:110px;height:110px;background:#d6d6dc;bottom:20px;left:20px;opacity:.68' },
+        { style: 'width:70px;height:70px;background:#c7c7cc;bottom:70px;left:80px;opacity:.55' },
+        { style: 'width:90px;height:60px;background:#f5f5f7;bottom:0;left:-10px;opacity:1' }
+      ]
+    },
+    {
+      kind: 'stat',
+      delayClass: 'd2',
+      statPre: 'Up to',
+      statNum: '+71',
+      statUnit: '%',
+      statPostHtml: '30-day retention<br>after redesign launch'
+    },
+    {
+      kind: 'stat',
+      statNum: '3',
+      statPostHtml: 'Onboarding steps<br>down from 11'
+    },
+    {
+      kind: 'photo',
+      delayClass: 'd1',
+      labelHtml: 'Time to first action<br><strong>12 s</strong> from cold launch',
+      shapes: [
+        { style: 'width:160px;height:160px;background:#e8e8ed;bottom:-40px;right:-30px;opacity:.86' },
+        { style: 'width:100px;height:100px;background:#d6d6dc;bottom:20px;left:10px;opacity:.68' },
+        { style: 'width:65px;height:65px;background:#c7c7cc;bottom:70px;left:70px;opacity:.55' },
+        { style: 'width:120px;height:80px;background:#f5f5f7;bottom:-10px;left:-20px;opacity:1' }
+      ]
+    },
+    {
+      kind: 'icon',
+      delayClass: 'd2',
+      statPostHtml: '80-component<br>design system',
+      iconBodyHtml: 'Fully documented in Figma. The dev team ships new features <strong>50% faster</strong> since handoff.'
+    }
+  ] satisfies OutcomeTile[]
+};
+
+export const reflections = {
+  eyebrow: 'Reflection',
+  heading: 'What I learned.',
+  takeawayLabel: 'Main takeaway',
+  takeawayText: 'The interface was never the first problem. The path was.',
+  takeawayNote: 'Once the product had a clear route to value, the visual system had something meaningful to support. Next, I would deepen the progress model around adaptive paths and richer habit cues.',
+  lessons: [
+    {
+      number: '01',
+      label: 'Navigation',
+      title: 'Structure is invisible until it breaks.',
+      body: 'Users did not describe the app as an information architecture problem. They described it as feeling stuck, unsure, or unmotivated.'
+    },
+    {
+      number: '02',
+      label: 'Research',
+      title: 'The numbers made the feeling actionable.',
+      body: 'Testing and analytics turned a vague sense of friction into specific decisions: fewer steps, clearer entry points, and visible progress.'
+    }
+  ] satisfies ReflectionLesson[]
+};
+
+export const moreWork = {
+  eyebrow: 'More work',
+  heading: "See what else I've been building."
 };

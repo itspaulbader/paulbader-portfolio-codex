@@ -9,6 +9,11 @@ import GoalsSection from '../components/meta-learn/GoalsSection.astro';
 import WireframesSection from '../components/meta-learn/WireframesSection.astro';
 import ValidationSection from '../components/meta-learn/ValidationSection.astro';
 import DesignExploreSection from '../components/meta-learn/DesignExploreSection.astro';
+import ScaleSection from '../components/meta-learn/ScaleSection.astro';
+import OutcomesSection from '../components/meta-learn/OutcomesSection.astro';
+import ReflectionsSection from '../components/meta-learn/ReflectionsSection.astro';
+import MoreWork from '../components/case/MoreWork.astro';
+import { moreWork } from '../data/metaLearn';
 ---
 <CaseStudyLayout title="Meta Learn Next — Paul Bader" caseId="meta-learn">
   <Fragment slot="head">
@@ -23,36 +28,12 @@ import DesignExploreSection from '../components/meta-learn/DesignExploreSection.
   <WireframesSection />
   <ValidationSection />
   <DesignExploreSection />
-
-  <div class="migration-stop" data-progress-skip>
-    <strong>Internal development stop</strong>
-    <span>Milestone 2B ends here. Later Meta Learn sections remain on the legacy page until migrated.</span>
-  </div>
+  <ScaleSection />
+  <OutcomesSection />
+  <ReflectionsSection />
+  <MoreWork currentProjectId="meta-learn" eyebrow={moreWork.eyebrow} heading={moreWork.heading} />
 
   <script>
     import '../scripts/meta-learn.js';
   </script>
 </CaseStudyLayout>
-
-<style>
-  .migration-stop {
-    margin: 0;
-    padding: 18px var(--gutter);
-    background: repeating-linear-gradient(135deg, #ffeec2 0 12px, #ffd86f 12px 24px);
-    color: #1d1d1f;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-size: 13px;
-    letter-spacing: 0;
-    border-top: 2px solid #1d1d1f;
-    border-bottom: 2px solid #1d1d1f;
-    display: flex;
-    gap: 16px;
-    justify-content: center;
-    align-items: center;
-  }
-  .migration-stop span { opacity: 0.78; }
-  @media (max-width: 599px) {
-    .migration-stop { display: block; line-height: 1.45; }
-    .migration-stop span { display: block; margin-top: 4px; }
-  }
-</style>

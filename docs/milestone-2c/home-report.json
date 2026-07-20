@@ -1,0 +1,59 @@
+[
+  {
+    "viewport": {
+      "name": "desktop-1440x900",
+      "width": 1440,
+      "height": 900
+    },
+    "status": 200,
+    "screenshot": "docs/milestone-2c/home/home-desktop-1440x900.png",
+    "metrics": {
+      "bodyWidth": 1440,
+      "viewportWidth": 1440,
+      "viewportHeight": 900,
+      "fullHeight": 5017,
+      "metaHref": "meta-learn.html"
+    },
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "viewport": {
+      "name": "tablet-1024x768",
+      "width": 1024,
+      "height": 768
+    },
+    "status": 200,
+    "screenshot": "docs/milestone-2c/home/home-tablet-1024x768.png",
+    "metrics": {
+      "bodyWidth": 1024,
+      "viewportWidth": 1024,
+      "viewportHeight": 768,
+      "fullHeight": 4727,
+      "metaHref": "meta-learn.html"
+    },
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "viewport": {
+      "name": "mobile-390x844",
+      "width": 390,
+      "height": 844
+    },
+    "status": 200,
+    "screenshot": "docs/milestone-2c/home/home-mobile-390x844.png",
+    "metrics": {
+      "bodyWidth": 390,
+      "viewportWidth": 390,
+      "viewportHeight": 844,
+      "fullHeight": 4610,
+      "metaHref": "meta-learn.html"
+    },
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  }
+]

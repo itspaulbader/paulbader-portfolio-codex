@@ -1,0 +1,152 @@
+[
+  {
+    "variant": "legacy",
+    "viewport": {
+      "name": "desktop-1440x900",
+      "width": 1440,
+      "height": 900
+    },
+    "status": 200,
+    "file": "docs/milestone-2c/full-page/legacy-desktop-1440x900.png",
+    "metrics": {
+      "bodyWidth": 1440,
+      "viewportWidth": 1440,
+      "viewportHeight": 900,
+      "fullHeight": 14245
+    },
+    "incompleteImages": [],
+    "backgrounds": [
+      "url(\"http://127.0.0.1:4324/portfolio/images/bershka-desk.png\")",
+      "url(\"http://127.0.0.1:4324/portfolio/images/sheer-desktop.png\")",
+      "url(\"http://127.0.0.1:4324/portfolio/images/grundfos-hero.png\")"
+    ],
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "variant": "next",
+    "viewport": {
+      "name": "desktop-1440x900",
+      "width": 1440,
+      "height": 900
+    },
+    "status": 200,
+    "file": "docs/milestone-2c/full-page/next-desktop-1440x900.png",
+    "metrics": {
+      "bodyWidth": 1440,
+      "viewportWidth": 1440,
+      "viewportHeight": 900,
+      "fullHeight": 14245
+    },
+    "incompleteImages": [],
+    "backgrounds": [
+      "url(\"http://127.0.0.1:4324/portfolio/images/bershka-desk.png\")",
+      "url(\"http://127.0.0.1:4324/portfolio/images/sheer-desktop.png\")",
+      "url(\"http://127.0.0.1:4324/portfolio/images/grundfos-hero.png\")"
+    ],
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "variant": "legacy",
+    "viewport": {
+      "name": "tablet-1024x768",
+      "width": 1024,
+      "height": 768
+    },
+    "status": 200,
+    "file": "docs/milestone-2c/full-page/legacy-tablet-1024x768.png",
+    "metrics": {
+      "bodyWidth": 1024,
+      "viewportWidth": 1024,
+      "viewportHeight": 768,
+      "fullHeight": 12985
+    },
+    "incompleteImages": [],
+    "backgrounds": [
+      "url(\"http://127.0.0.1:4324/portfolio/images/bershka-desk.png\")",
+      "url(\"http://127.0.0.1:4324/portfolio/images/sheer-desktop.png\")",
+      "url(\"http://127.0.0.1:4324/portfolio/images/grundfos-hero.png\")"
+    ],
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "variant": "next",
+    "viewport": {
+      "name": "tablet-1024x768",
+      "width": 1024,
+      "height": 768
+    },
+    "status": 200,
+    "file": "docs/milestone-2c/full-page/next-tablet-1024x768.png",
+    "metrics": {
+      "bodyWidth": 1024,
+      "viewportWidth": 1024,
+      "viewportHeight": 768,
+      "fullHeight": 12985
+    },
+    "incompleteImages": [],
+    "backgrounds": [
+      "url(\"http://127.0.0.1:4324/portfolio/images/bershka-desk.png\")",
+      "url(\"http://127.0.0.1:4324/portfolio/images/sheer-desktop.png\")",
+      "url(\"http://127.0.0.1:4324/portfolio/images/grundfos-hero.png\")"
+    ],
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "variant": "legacy",
+    "viewport": {
+      "name": "mobile-390x844",
+      "width": 390,
+      "height": 844
+    },
+    "status": 200,
+    "file": "docs/milestone-2c/full-page/legacy-mobile-390x844.png",
+    "metrics": {
+      "bodyWidth": 390,
+      "viewportWidth": 390,
+      "viewportHeight": 844,
+      "fullHeight": 13024
+    },
+    "incompleteImages": [],
+    "backgrounds": [
+      "url(\"http://127.0.0.1:4324/portfolio/images/bershka-desk-mobile2.png\")",
+      "url(\"http://127.0.0.1:4324/portfolio/images/sheer-mobile.png\")",
+      "url(\"http://127.0.0.1:4324/portfolio/images/grundfos-mobile.png\")"
+    ],
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "variant": "next",
+    "viewport": {
+      "name": "mobile-390x844",
+      "width": 390,
+      "height": 844
+    },
+    "status": 200,
+    "file": "docs/milestone-2c/full-page/next-mobile-390x844.png",
+    "metrics": {
+      "bodyWidth": 390,
+      "viewportWidth": 390,
+      "viewportHeight": 844,
+      "fullHeight": 13024
+    },
+    "incompleteImages": [],
+    "backgrounds": [
+      "url(\"http://127.0.0.1:4324/portfolio/images/bershka-desk-mobile2.png\")",
+      "url(\"http://127.0.0.1:4324/portfolio/images/sheer-mobile.png\")",
+      "url(\"http://127.0.0.1:4324/portfolio/images/grundfos-mobile.png\")"
+    ],
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  }
+]
