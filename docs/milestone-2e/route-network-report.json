@@ -1,0 +1,208 @@
+{
+  "routes": [
+    {
+      "path": "/portfolio/",
+      "status": 200,
+      "expected": 200,
+      "ok": true
+    },
+    {
+      "path": "/portfolio/index.html",
+      "status": 200,
+      "expected": 200,
+      "ok": true
+    },
+    {
+      "path": "/portfolio/meta-learn.html",
+      "status": 200,
+      "expected": 200,
+      "ok": true
+    },
+    {
+      "path": "/portfolio/404.html",
+      "status": 200,
+      "expected": 200,
+      "ok": true
+    },
+    {
+      "path": "/portfolio/meta-learn-next.html",
+      "status": 404,
+      "expected": 404,
+      "ok": true
+    }
+  ],
+  "localAssets": [
+    {
+      "url": "/portfolio/",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "url": "/portfolio/_astro/index.DY-TleNj.css",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "url": "/portfolio/_astro/index.astro_astro_type_script_index_0_lang.BDNZ9S6J.js",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "url": "/portfolio/_astro/meta-learn.CTekLeMI.css",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "url": "/portfolio/_astro/meta-learn.astro_astro_type_script_index_0_lang.CbCgWFg9.js",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "url": "/portfolio/_astro/projects.CXJgDl7w.css",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "url": "/portfolio/components.js",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "url": "/portfolio/images/Apple-iPhone-14-iPhone-14-Plus-hero-220907_Full-Bleed-Image.jpg.large.jpg",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "url": "/portfolio/images/bershka-desk-mobile2.png",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "url": "/portfolio/images/bershka-desk.png",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "url": "/portfolio/images/bershka-icon.jpg",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "url": "/portfolio/images/grundfos-hero.png",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "url": "/portfolio/images/grundfos-icon.png",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "url": "/portfolio/images/grundfos-mobile.png",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "url": "/portfolio/images/meta-learn-hero.png",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "url": "/portfolio/images/ml-mobile.png",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "url": "/portfolio/images/ml/node-100.png",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "url": "/portfolio/images/ml/node-104.png",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "url": "/portfolio/images/ml/node-35.png",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "url": "/portfolio/images/ml/node-42.png",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "url": "/portfolio/images/profile.jpg",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "url": "/portfolio/images/sheer-desktop.png",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "url": "/portfolio/images/sheer-icon.jpeg",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "url": "/portfolio/images/sheer-mobile.png",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "url": "/portfolio/meta-learn.html",
+      "status": 200,
+      "ok": true
+    }
+  ],
+  "externalFramerAssets": [
+    {
+      "url": "https://framerusercontent.com/assets/LcVsL2hd7HhXtTa5HIf2kVmD7jk.m4v",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "url": "https://framerusercontent.com/images/1fyoxlrdpsqT4A2eRowdWaHY3zQ.png?width=375&height=812",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "url": "https://framerusercontent.com/images/2pytTADzx4CBo2lxd3wbd53mXA.png?width=375&height=812",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "url": "https://framerusercontent.com/images/GkNFaDA7KDpcYJKM3ef4X0eLqs.png?width=375&height=812",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "url": "https://framerusercontent.com/images/IUZwbv1PpIeWqeRZXN94th99eA.png?width=375&height=812",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "url": "https://framerusercontent.com/images/Ia9D6ia7dpXYYvb0RPwt9kdLQX8.png?width=375&height=812",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "url": "https://framerusercontent.com/images/lF5ihXcN4UJQjW3wZfbNvpzGwys.png?width=375&height=812",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "url": "https://framerusercontent.com/images/wMv8cOW7LUrqzgUjWrVKQlYNY.png?width=375&height=812",
+      "status": 200,
+      "ok": true
+    }
+  ],
+  "summary": {
+    "routeFailures": 0,
+    "localAssetFailures": 0,
+    "externalAssetFailures": 0
+  }
+}
