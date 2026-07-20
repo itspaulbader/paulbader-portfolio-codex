@@ -1,0 +1,81 @@
+[
+  {
+    "route": "/portfolio/",
+    "status": 200,
+    "title": "Paul Bader — Product & Brand Designer",
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "route": "/portfolio/index.html",
+    "status": 200,
+    "title": "Paul Bader — Product & Brand Designer",
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "route": "/portfolio/meta-learn.html",
+    "status": 200,
+    "title": "Meta Learn — Paul Bader",
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "route": "/portfolio/meta-learn-next.html",
+    "status": 200,
+    "title": "Meta Learn Next — Paul Bader",
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "route": "/portfolio/404.html",
+    "status": 200,
+    "title": "404 — Page Not Found · Paul Bader",
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "route": "/portfolio/ home desktop-1440",
+    "status": 200,
+    "metrics": {
+      "bodyWidth": 1440,
+      "viewportWidth": 1440,
+      "fullHeight": 5017,
+      "metaHref": "meta-learn.html"
+    },
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "route": "/portfolio/ home tablet-1024",
+    "status": 200,
+    "metrics": {
+      "bodyWidth": 1024,
+      "viewportWidth": 1024,
+      "fullHeight": 4727,
+      "metaHref": "meta-learn.html"
+    },
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  },
+  {
+    "route": "/portfolio/ home mobile-390",
+    "status": 200,
+    "metrics": {
+      "bodyWidth": 390,
+      "viewportWidth": 390,
+      "fullHeight": 4610,
+      "metaHref": "meta-learn.html"
+    },
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": []
+  }
+]

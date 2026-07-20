@@ -1,0 +1,24 @@
+---
+import { wireframes } from '../../data/metaLearn';
+---
+<section class="wireframes" id="wireframes">
+  <div class="wf-hd reveal">
+    <p class="label">{wireframes.eyebrow}</p>
+    <h2 class="heading-lg">{wireframes.heading}</h2>
+    <p class="wf-sub" set:html={wireframes.subtitleHtml}></p>
+  </div>
+  <div class="wf-mask">
+    <ul class="wf-track">
+      {wireframes.slides.map(slide => (
+        <li class="wf-slide">
+          <img loading="lazy" width="375" height="812" alt={slide.alt} src={slide.src} />
+        </li>
+      ))}
+      {wireframes.slides.map(slide => (
+        <li class="wf-slide" aria-hidden="true">
+          <img loading="lazy" width="375" height="812" alt="" src={slide.src} />
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

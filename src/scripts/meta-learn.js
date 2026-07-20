@@ -1,3 +1,116 @@
+const goalsSection = document.getElementById('values');
+const goalCloud = document.getElementById('goalsMoment');
+const goalBubbles = goalCloud ? [...goalCloud.querySelectorAll('.goal-bubble')] : [];
+if (goalsSection && goalCloud && goalBubbles.length) {
+  const goalsReduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let goalsRAF = null;
+  const clamp01 = v => Math.max(0, Math.min(1, v));
+  const easeScroll = t => 1 - Math.pow(1 - t, 3);
+  function renderGoals() {
+    goalsRAF = null;
+    const rect = goalsSection.getBoundingClientRect();
+    const total = Math.max(1, goalsSection.offsetHeight - innerHeight);
+    const raw = goalsReduced ? 1 : clamp01(-rect.top / total);
+    const grouped = easeScroll(clamp01(raw / 0.68));
+    const vision = clamp01((raw - 0.66) / 0.24);
+    const fadeIn = clamp01((innerHeight * 0.82 - rect.top) / (innerHeight * 0.46));
+    const fadeOut = clamp01((rect.bottom - innerHeight * 0.18) / (innerHeight * 0.46));
+    const bg = goalsReduced ? 1 : Math.min(fadeIn, fadeOut);
+    goalsSection.style.setProperty('--goal-vision', vision.toFixed(3));
+    goalsSection.style.setProperty('--goal-bg', bg.toFixed(3));
+    const cloudRect = goalCloud.getBoundingClientRect();
+    const vw = cloudRect.width / 100;
+    const vh = cloudRect.height / 100;
+    goalBubbles.forEach(bubble => {
+      const x0 = Number(bubble.dataset.x0 || 0) * vw;
+      const y0 = Number(bubble.dataset.y0 || 0) * vh;
+      const x1 = Number(bubble.dataset.x1 || 0) * vw;
+      const y1 = Number(bubble.dataset.y1 || 0) * vh;
+      const s0 = Number(bubble.dataset.s0 || 1);
+      const s1 = Number(bubble.dataset.s1 || 1);
+      const x = x0 + (x1 - x0) * grouped;
+      const y = y0 + (y1 - y0) * grouped;
+      const scale = s0 + (s1 - s0) * grouped;
+      const groupedOpacity = bubble.classList.contains('is-main') ? 1 : 0.58;
+      const baseOpacity = 1 + (groupedOpacity - 1) * grouped;
+      const finalOpacity = Math.max(0.12, baseOpacity * (1 - vision * 0.78));
+      bubble.style.setProperty('--tx', `${x.toFixed(1)}px`);
+      bubble.style.setProperty('--ty', `${y.toFixed(1)}px`);
+      bubble.style.setProperty('--sc', scale.toFixed(3));
+      bubble.style.setProperty('--op', finalOpacity.toFixed(3));
+    });
+  }
+  function queueGoals() {
+    if (!goalsRAF) goalsRAF = requestAnimationFrame(renderGoals);
+  }
+  renderGoals();
+  window.addEventListener('scroll', queueGoals, { passive: true });
+  window.addEventListener('resize', queueGoals);
+}
+
+const explorePhone = document.getElementById('explorePhone');
+const exploreViewer = document.querySelector('.explore-viewer');
+const exploreControls = document.getElementById('exploreControls');
+const explorePills = [...document.querySelectorAll('.explore-pill')];
+const exploreClose = document.getElementById('exploreClose');
+const explorePrev = document.getElementById('explorePrev');
+const exploreNext = document.getElementById('exploreNext');
+if (explorePhone && exploreViewer && exploreControls && explorePills.length && exploreClose && explorePrev && exploreNext) {
+  const exploreMobile = matchMedia('(max-width: 599px)');
+  let exploreIdx = 0;
+  function setExplore(i, expand = !exploreMobile.matches) {
+    exploreIdx = (i + explorePills.length) % explorePills.length;
+    const pill = explorePills[exploreIdx];
+    if (!pill) return;
+    explorePills.forEach(p => {
+      p.classList.remove('is-active');
+      p.classList.remove('is-expanded');
+    });
+    pill.classList.add('is-active');
+    if (expand) pill.classList.add('is-expanded');
+    exploreViewer.classList.toggle('is-expanded', expand);
+    explorePrev.disabled = exploreIdx === 0;
+    exploreNext.disabled = exploreIdx === explorePills.length - 1;
+    explorePhone.classList.add('is-changing');
+    const nextScreen = pill.dataset.screen || '0';
+    const nextAlt = pill.dataset.alt || 'Abstract mobile interface placeholder';
+    setTimeout(() => {
+      explorePhone.dataset.screen = nextScreen;
+      explorePhone.setAttribute('aria-label', nextAlt);
+      explorePhone.classList.remove('is-changing');
+    }, 140);
+  }
+  explorePills.forEach((pill, i) => {
+    pill.addEventListener('click', () => {
+      setExplore(i);
+      if (exploreMobile.matches) pill.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+    });
+  });
+  exploreClose.addEventListener('click', () => setExplore(exploreIdx, false));
+  explorePrev.addEventListener('click', () => setExplore(exploreIdx - 1));
+  exploreNext.addEventListener('click', () => setExplore(exploreIdx + 1));
+  let exploreScrollFrame = null;
+  exploreControls.addEventListener('scroll', () => {
+    if (!exploreMobile.matches || exploreScrollFrame) return;
+    exploreScrollFrame = requestAnimationFrame(() => {
+      exploreScrollFrame = null;
+      const rail = exploreControls.getBoundingClientRect();
+      let nearest = exploreIdx;
+      let nearestDistance = Infinity;
+      explorePills.forEach((pill, index) => {
+        const rect = pill.getBoundingClientRect();
+        const distance = Math.abs(rect.left - rail.left);
+        if (distance < nearestDistance) {
+          nearestDistance = distance;
+          nearest = index;
+        }
+      });
+      if (nearest !== exploreIdx) setExplore(nearest, false);
+    });
+  }, { passive: true });
+  setExplore(0, false);
+}
+
 const hlTrack = document.getElementById('hlTrack');
 const hlCards = hlTrack ? [...hlTrack.querySelectorAll('.hl-card')] : [];
 const hlDots = document.getElementById('hlDots');
