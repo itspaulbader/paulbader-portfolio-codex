@@ -1,0 +1,208 @@
+[
+  {
+    "viewport": "desktop-1440",
+    "status": 200,
+    "screenshot": "docs/milestone-1/home-astro-desktop-1440.png",
+    "consoleMessages": [
+      "error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "failed": [],
+    "responses": [],
+    "metrics": {
+      "title": "Paul Bader — Product & Brand Designer",
+      "bodyWidth": 1440,
+      "viewportWidth": 1440,
+      "fullHeight": 7017,
+      "topbar": true,
+      "footer": true,
+      "storyCards": 4,
+      "dots": 4,
+      "workCards": [
+        "bershka",
+        "sheer",
+        "meta-learn",
+        "grundfos"
+      ],
+      "caseNav": true,
+      "cardImages": [
+        {
+          "src": "images/bershka-desk.png",
+          "complete": true,
+          "naturalWidth": 2896
+        },
+        {
+          "src": "images/bershka-desk-mobile2.png",
+          "complete": true,
+          "naturalWidth": 1706
+        },
+        {
+          "src": "images/sheer-desktop.png",
+          "complete": true,
+          "naturalWidth": 1448
+        },
+        {
+          "src": "images/sheer-mobile.png",
+          "complete": true,
+          "naturalWidth": 853
+        },
+        {
+          "src": "images/meta-learn-hero.png",
+          "complete": true,
+          "naturalWidth": 6286
+        },
+        {
+          "src": "images/ml-mobile.png",
+          "complete": true,
+          "naturalWidth": 853
+        },
+        {
+          "src": "images/grundfos-hero.png",
+          "complete": true,
+          "naturalWidth": 1920
+        },
+        {
+          "src": "images/grundfos-mobile.png",
+          "complete": true,
+          "naturalWidth": 853
+        }
+      ],
+      "metaHref": "meta-learn.html"
+    }
+  },
+  {
+    "viewport": "tablet-1024",
+    "status": 200,
+    "screenshot": "docs/milestone-1/home-astro-tablet-1024.png",
+    "consoleMessages": [],
+    "failed": [],
+    "responses": [],
+    "metrics": {
+      "title": "Paul Bader — Product & Brand Designer",
+      "bodyWidth": 1024,
+      "viewportWidth": 1024,
+      "fullHeight": 6845,
+      "topbar": true,
+      "footer": true,
+      "storyCards": 4,
+      "dots": 4,
+      "workCards": [
+        "bershka",
+        "sheer",
+        "meta-learn",
+        "grundfos"
+      ],
+      "caseNav": true,
+      "cardImages": [
+        {
+          "src": "images/bershka-desk.png",
+          "complete": true,
+          "naturalWidth": 2896
+        },
+        {
+          "src": "images/bershka-desk-mobile2.png",
+          "complete": true,
+          "naturalWidth": 1706
+        },
+        {
+          "src": "images/sheer-desktop.png",
+          "complete": true,
+          "naturalWidth": 1448
+        },
+        {
+          "src": "images/sheer-mobile.png",
+          "complete": true,
+          "naturalWidth": 853
+        },
+        {
+          "src": "images/meta-learn-hero.png",
+          "complete": true,
+          "naturalWidth": 6286
+        },
+        {
+          "src": "images/ml-mobile.png",
+          "complete": true,
+          "naturalWidth": 853
+        },
+        {
+          "src": "images/grundfos-hero.png",
+          "complete": true,
+          "naturalWidth": 1920
+        },
+        {
+          "src": "images/grundfos-mobile.png",
+          "complete": true,
+          "naturalWidth": 853
+        }
+      ],
+      "metaHref": "meta-learn.html"
+    }
+  },
+  {
+    "viewport": "mobile-390",
+    "status": 200,
+    "screenshot": "docs/milestone-1/home-astro-mobile-390.png",
+    "consoleMessages": [],
+    "failed": [],
+    "responses": [],
+    "metrics": {
+      "title": "Paul Bader — Product & Brand Designer",
+      "bodyWidth": 390,
+      "viewportWidth": 390,
+      "fullHeight": 6034,
+      "topbar": true,
+      "footer": true,
+      "storyCards": 4,
+      "dots": 4,
+      "workCards": [
+        "bershka",
+        "sheer",
+        "meta-learn",
+        "grundfos"
+      ],
+      "caseNav": true,
+      "cardImages": [
+        {
+          "src": "images/bershka-desk.png",
+          "complete": true,
+          "naturalWidth": 2896
+        },
+        {
+          "src": "images/bershka-desk-mobile2.png",
+          "complete": true,
+          "naturalWidth": 1706
+        },
+        {
+          "src": "images/sheer-desktop.png",
+          "complete": true,
+          "naturalWidth": 1448
+        },
+        {
+          "src": "images/sheer-mobile.png",
+          "complete": true,
+          "naturalWidth": 853
+        },
+        {
+          "src": "images/meta-learn-hero.png",
+          "complete": true,
+          "naturalWidth": 6286
+        },
+        {
+          "src": "images/ml-mobile.png",
+          "complete": true,
+          "naturalWidth": 853
+        },
+        {
+          "src": "images/grundfos-hero.png",
+          "complete": true,
+          "naturalWidth": 1920
+        },
+        {
+          "src": "images/grundfos-mobile.png",
+          "complete": true,
+          "naturalWidth": 853
+        }
+      ],
+      "metaHref": "meta-learn.html"
+    }
+  }
+]

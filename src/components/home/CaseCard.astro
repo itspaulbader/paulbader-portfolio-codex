@@ -1,0 +1,46 @@
+---
+import type { ProjectCard } from '../../data/projects';
+
+interface Props {
+  project: ProjectCard;
+}
+
+const { project } = Astro.props;
+const classes = ['card', project.themeClass, 'card-featured', project.extraClass].filter(Boolean).join(' ');
+---
+<div class={classes} data-case={project.id}>
+  <div class={`card-bg ${project.backgroundClass}`} style={project.backgroundStyle || undefined}></div>
+  <div class="card-scrim"></div>
+  <div class="card-body">
+    <div>
+      <div class="card-meta">
+        {project.icon.type === 'image' ? (
+          <div class="card-icon"><img src={project.icon.src} alt={project.icon.alt} /></div>
+        ) : (
+          <div class="card-icon" style={project.icon.style}>{project.icon.label}</div>
+        )}
+        <span class="card-co">{project.company}</span>
+        <span class="card-dot"></span>
+        <span class="card-yr">{project.year}</span>
+      </div>
+      <h3 class="card-title" set:html={project.titleHtml} />
+      <p class="card-desc">{project.description}</p>
+      <div class="card-tags">
+        {project.tags.map(tag => <span class="card-tag">{tag}</span>)}
+      </div>
+    </div>
+    <div class="card-cta">
+      {project.comingSoon ? (
+        <span class="btn-soon">Coming Soon</span>
+      ) : (
+        <a href={project.href} class="btn-view">View Case</a>
+      )}
+    </div>
+  </div>
+  <div class="card-visual">
+    <img src={project.desktopImage.src} alt={project.desktopImage.alt} style={project.desktopImage.style || undefined} />
+  </div>
+  <div class="card-img-below">
+    <img src={project.mobileImage.src} alt={project.mobileImage.alt} style={project.mobileImage.style || undefined} />
+  </div>
+</div>

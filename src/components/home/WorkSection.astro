@@ -1,0 +1,9 @@
+---
+import CaseCard from './CaseCard.astro';
+import { projects } from '../../data/projects';
+---
+<section class="work-section" id="work">
+  <div class="cards">
+    {projects.map(project => <CaseCard project={project} />)}
+  </div>
+</section>

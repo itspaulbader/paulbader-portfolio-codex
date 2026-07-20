@@ -1,0 +1,60 @@
+---
+import { experience } from '../../data/experience';
+---
+<section class="story-section">
+  <div class="story-header">
+    <h1 class="story-title">Buna! Hej! Hi!<br />It's Paul Bader.</h1>
+  </div>
+  <div class="hl-stage" id="hlTrack">
+    <div class="story-card sc-profile">
+      <div class="sc-visual">
+        <img src="images/profile.jpg" alt="Paul Bader" />
+      </div>
+      <p class="sc-caption"><strong>Paul Bader.</strong> Product & Brand Designer based in Copenhagen.</p>
+    </div>
+
+    <div class="story-card sc-exp">
+      <div class="sc-visual">
+        <h2 class="exp-title">7+ years<br />of experience</h2>
+        <div class="exp-list">
+          {experience.map(item => (
+            <div class="exp-item">
+              <div class="exp-logo">
+                {item.logo ? <img src={item.logo.src} alt={item.logo.alt} /> : item.initials}
+              </div>
+              <div>
+                <div class="exp-company">{item.company}</div>
+                <div class="exp-role">{item.role}</div>
+              </div>
+              <div class="exp-period">{item.period}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <p class="sc-caption"><strong>Work history.</strong> 7+ years across product, brand, UX/UI, SaaS, and internal tools.</p>
+    </div>
+
+    <div class="story-card sc-psych wide">
+      <div class="sc-visual">
+        <video src="https://framerusercontent.com/assets/LcVsL2hd7HhXtTa5HIf2kVmD7jk.m4v" autoplay muted loop playsinline></video>
+      </div>
+      <p class="sc-caption"><strong>Branding.</strong> Building visual systems that feel intentional and scale across every touchpoint.</p>
+    </div>
+
+    <div class="story-card sc-brand">
+      <div class="sc-visual">
+        <div class="sc-text">Fascinated by why people do what they do.</div>
+      </div>
+      <p class="sc-caption"><strong>User psychology.</strong> Human behavior is at the core of every design decision I make.</p>
+    </div>
+  </div>
+  <div class="hl-controls" id="hlControls">
+    <div class="hl-dot-shell">
+      <div class="hl-dots" id="hlDots" role="tablist" aria-label="Hero story"></div>
+    </div>
+    <button class="hl-play" id="hlPlay" aria-label="Pause highlights gallery">
+      <svg class="hl-ic-pause" viewBox="0 0 24 24"><rect x="7" y="6" width="3.4" height="12" rx="1.1"></rect><rect x="13.6" y="6" width="3.4" height="12" rx="1.1"></rect></svg>
+      <svg class="hl-ic-play" viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"></path></svg>
+    </button>
+  </div>
+</section>

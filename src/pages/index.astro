@@ -1,0 +1,13 @@
+---
+import '../styles/home.css';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import StoryHero from '../components/home/StoryHero.astro';
+import WorkSection from '../components/home/WorkSection.astro';
+---
+<BaseLayout title="Paul Bader — Product & Brand Designer">
+  <StoryHero />
+  <WorkSection />
+  <script>
+    import '../scripts/home.js';
+  </script>
+</BaseLayout>

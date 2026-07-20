@@ -1,0 +1,111 @@
+{
+  "routeResults": [
+    {
+      "path": "/portfolio/",
+      "status": 200,
+      "title": "Paul Bader — Product & Brand Designer"
+    },
+    {
+      "path": "/portfolio/index.html",
+      "status": 200,
+      "title": "Paul Bader — Product & Brand Designer"
+    },
+    {
+      "path": "/portfolio/meta-learn.html",
+      "status": 200,
+      "title": "Meta Learn — Paul Bader"
+    },
+    {
+      "path": "/portfolio/404.html",
+      "status": 200,
+      "title": "404 — Page Not Found · Paul Bader"
+    }
+  ],
+  "home": {
+    "nav": true,
+    "footer": true,
+    "storyCards": 4,
+    "heroDots": 4,
+    "heroActiveBefore": 1,
+    "paused": true,
+    "playingAgain": true,
+    "dotTwoActive": true,
+    "projectCards": [
+      {
+        "id": "bershka",
+        "title": "A smootherself-checkout",
+        "cta": "Coming Soon",
+        "href": null
+      },
+      {
+        "id": "sheer",
+        "title": "Quicker & betteronboarding",
+        "cta": "View Case",
+        "href": "#"
+      },
+      {
+        "id": "meta-learn",
+        "title": "Mental fitness,made intuitive",
+        "cta": "View Case",
+        "href": "meta-learn.html"
+      },
+      {
+        "id": "grundfos",
+        "title": "From print toPowerApp",
+        "cta": "View Case",
+        "href": "#"
+      }
+    ],
+    "caseNavExists": true,
+    "caseNavVisible": true,
+    "caseNavDots": 4,
+    "imagesLoaded": true,
+    "bodyWidth": 1440,
+    "viewportWidth": 1440
+  },
+  "metaFromCard": {
+    "url": "http://127.0.0.1:4322/portfolio/meta-learn.html",
+    "statusText": "Meta Learn — Paul Bader"
+  },
+  "legacyMeta": {
+    "hasTopbar": true,
+    "hasFooter": true,
+    "sections": 12,
+    "moreWorkCards": 3,
+    "imagesLoaded": true
+  },
+  "mobileChecks": [
+    {
+      "viewport": "desktop-1440",
+      "bodyWidth": 1440,
+      "viewportWidth": 1440,
+      "visualDisplay": "block",
+      "belowDisplay": "none",
+      "bershkaBackground": "url(\"http://127.0.0.1:4322/portfolio/images/bershka-desk.png\")"
+    },
+    {
+      "viewport": "tablet-1024",
+      "bodyWidth": 1024,
+      "viewportWidth": 1024,
+      "visualDisplay": "none",
+      "belowDisplay": "none",
+      "bershkaBackground": "url(\"http://127.0.0.1:4322/portfolio/images/bershka-desk-mobile2.png\")"
+    },
+    {
+      "viewport": "mobile-390",
+      "bodyWidth": 390,
+      "viewportWidth": 390,
+      "visualDisplay": "none",
+      "belowDisplay": "none",
+      "bershkaBackground": "url(\"http://127.0.0.1:4322/portfolio/images/bershka-desk-mobile2.png\")"
+    }
+  ],
+  "reduced": {
+    "bodyAnimation": "none",
+    "controlsPaused": true,
+    "fillAnimation": "none"
+  },
+  "consoleMessages": [],
+  "failed": [],
+  "badResponses": []
+}
