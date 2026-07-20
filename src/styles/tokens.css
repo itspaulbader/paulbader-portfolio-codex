@@ -14,3 +14,7 @@
   --gutter: max(22px, calc((100vw - 1260px) / 2));
   --content-left: var(--gutter);
 }
+
+@media (max-width: 734px) {
+  :root { --gutter: max(16px, 6.25vw); }
+}
