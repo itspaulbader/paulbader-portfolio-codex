@@ -1,8 +1,10 @@
 import { defineConfig } from 'astro/config';
 
+const base = process.env.PORTFOLIO_BASE ?? '/portfolio';
+
 export default defineConfig({
   site: 'https://itspaulbader.github.io',
-  base: '/portfolio',
+  base,
   output: 'static',
   build: {
     format: 'file'

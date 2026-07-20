@@ -36,7 +36,7 @@
       min-height: calc(100vh - 41px);
       min-height: calc(100svh - 41px);
       background-color: #d9cfc6;
-      background-image: url('/portfolio/images/Apple-iPhone-14-iPhone-14-Plus-hero-220907_Full-Bleed-Image.jpg.large.jpg');
+      background-image: var(--meta-hero-bg);
       background-size: cover;
       background-position: center;
       display: flex;
@@ -233,8 +233,8 @@
       background-color: #f5f5f7; background-blend-mode: multiply;
     }
     /* AFTER (new) is the full base on the right; the clip reveals BEFORE (old) on the left. */
-    .bac-after  { width: 100%;   background-image: url('/portfolio/images/ml/node-104.png'); }
-    .bac-before { width: 100cqw; background-image: url('/portfolio/images/ml/node-100.png'); }
+    .bac-after  { width: 100%;   background-image: var(--ba-after-img); }
+    .bac-before { width: 100cqw; background-image: var(--ba-before-img); }
     .bac-clip { position: absolute; top: 0; bottom: 0; left: 0; width: 50%; overflow: hidden; }
     .bac-line { position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; background: #fff; transform: translateX(-50%); pointer-events: none; box-shadow: 0 0 6px rgba(0,0,0,0.25); }
     .bac-knob {
@@ -286,7 +286,7 @@
       margin-top: auto; height: 250px; overflow: hidden;
       background-repeat: no-repeat; background-size: 300% auto;
       background-position: var(--px, 0%) top;
-      background-image: url('/portfolio/images/ml/node-100.png');
+      background-image: var(--research-visual-img);
     }
     .r-visual--tint {
       background: radial-gradient(120% 120% at 78% 8%, #ffeef3, #f9c9da);

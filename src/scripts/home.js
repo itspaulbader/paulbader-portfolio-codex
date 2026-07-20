@@ -56,7 +56,6 @@ if (hlTrack && hlDots && hlControls && hlPlayBtn) {
   hlCards.forEach((_, i) => {
     const b = document.createElement('button');
     b.className = 'hl-dot'; b.type = 'button';
-    b.setAttribute('role', 'tab');
     b.setAttribute('aria-label', 'Show highlight ' + (i + 1));
     b.innerHTML = '<span class="hl-fill"></span>';
     b.addEventListener('click', () => hlGo(i));
@@ -72,7 +71,8 @@ if (hlTrack && hlDots && hlControls && hlPlayBtn) {
     hlDotEls.forEach((d, k) => {
       const on = k === hlIdx;
       d.classList.toggle('active', on);
-      d.setAttribute('aria-selected', on ? 'true' : 'false');
+      if (on) d.setAttribute('aria-current', 'true');
+      else d.removeAttribute('aria-current');
       const fill = d.querySelector('.hl-fill');
       fill.style.animation = 'none'; fill.style.width = '';
       if (on && hlPlaying && hlVisible && !hlReduced) {

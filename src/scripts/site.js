@@ -40,7 +40,7 @@ if (wordmark) {
 }
 
 const footerWord = document.querySelector('.footer-word');
-if (footerWord) {
+if (footerWord && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
   const words = ['design', 'build', 'create', 'craft'];
   let wi = 0;
   const ease = 'cubic-bezier(0.22,1,0.36,1)';

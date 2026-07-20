@@ -1,5 +1,6 @@
 ---
 import { problem } from '../../data/metaLearn';
+import { assetPath, cssUrl } from '../../utils/assetPath';
 ---
 <section class="problem" id="problem">
   <div class="sec-narrow">
@@ -8,28 +9,28 @@ import { problem } from '../../data/metaLearn';
       <h2 class="heading-xl">{problem.heading}</h2>
       <p class="body-lg">{problem.body}</p>
     </div>
-    <div class="ba-wrap reveal" id="baWrap">
-      <img src="images/ml/node-104.png" alt="After — redesigned" class="ba-before" id="baBefore" draggable="false" />
+    <div class="ba-wrap reveal" id="baWrap" role="group" aria-label="Before and after comparison">
+      <img src={assetPath('images/ml/node-104.png')} alt="After — redesigned" class="ba-before" id="baBefore" draggable="false" />
       <div class="ba-after-clip" id="baClip">
-        <img src="images/ml/node-100.png" alt="Before — original" class="ba-after" id="baAfter" draggable="false" />
+        <img src={assetPath('images/ml/node-100.png')} alt="Before — original" class="ba-after" id="baAfter" draggable="false" />
       </div>
       <span class="ba-label ba-label-b">Before</span>
       <span class="ba-label ba-label-a">After</span>
       <div class="ba-line" id="baLine"></div>
-      <div class="ba-knob" id="baKnob">
+      <div class="ba-knob" id="baKnob" role="slider" tabindex="0" aria-label="Desktop before and after comparison" aria-valuemin="5" aria-valuemax="95" aria-valuenow="50" aria-valuetext="50% after view">
         <svg viewBox="0 0 16 10" fill="none"><path d="M5 5H1M5 5L2.5 2M5 5L2.5 8" stroke="#1d1d1f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M11 5h4M11 5l2.5-3M11 5l2.5 3" stroke="#1d1d1f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
       </div>
     </div>
     <div class="bac reveal">
       <div class="bac-track" id="bacTrack">
-        {['0%', '50%', '100%'].map(px => (
-          <div class="bac-card" style={`--px:${px}`}>
+        {['0%', '50%', '100%'].map((px, index) => (
+          <div class="bac-card" style={`--px:${px}; --ba-after-img:${cssUrl('images/ml/node-104.png')}; --ba-before-img:${cssUrl('images/ml/node-100.png')};`}>
             <div class="bac-after"></div>
             <div class="bac-clip"><div class="bac-before"></div></div>
             <span class="bac-lbl bac-lbl-b">Before</span>
             <span class="bac-lbl bac-lbl-a">After</span>
             <div class="bac-line"></div>
-            <div class="bac-knob"><svg viewBox="0 0 16 10" fill="none"><path d="M5 5H1M5 5L2.5 2M5 5L2.5 8" stroke="#1d1d1f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M11 5h4M11 5l2.5-3M11 5l2.5 3" stroke="#1d1d1f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+            <div class="bac-knob" role="slider" tabindex="0" aria-label={`Mobile before and after comparison ${index + 1}`} aria-valuemin="6" aria-valuemax="94" aria-valuenow="50" aria-valuetext="50% after view"><svg viewBox="0 0 16 10" fill="none"><path d="M5 5H1M5 5L2.5 2M5 5L2.5 8" stroke="#1d1d1f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M11 5h4M11 5l2.5-3M11 5l2.5 3" stroke="#1d1d1f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
           </div>
         ))}
       </div>

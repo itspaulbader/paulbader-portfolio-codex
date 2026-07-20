@@ -1,0 +1,119 @@
+{
+  "routes": {
+    "/portfolio/": 200,
+    "/portfolio/index.html": 200,
+    "/portfolio/meta-learn.html": 200,
+    "/portfolio/meta-learn-next.html": 200,
+    "/portfolio/404.html": 200
+  },
+  "console": [],
+  "network": [],
+  "tests": {
+    "highlights": {
+      "dotCount": 6,
+      "tabRoles": 0,
+      "activeCurrent": "true",
+      "playLabel": "Pause highlights gallery",
+      "afterPauseLabel": "Play highlights gallery"
+    },
+    "modalOpen": {
+      "hidden": "false",
+      "activeId": "rmX",
+      "bodyOverflow": "hidden",
+      "inertCount": 19,
+      "triggerLabel": "Read more about Users could not find the next step."
+    },
+    "modalKeyboard": {
+      "tabFocus": {
+        "id": "rmX",
+        "inModal": true
+      },
+      "shiftTabFocus": {
+        "id": "rmX",
+        "inModal": true
+      },
+      "afterEscape": {
+        "hidden": "true",
+        "activeClass": "r-plus",
+        "bodyOverflow": "",
+        "inertCount": 0
+      }
+    },
+    "modalBackdrop": {
+      "hidden": "true",
+      "restoredLabel": "Read more about Progress had no visible anchor."
+    },
+    "desktopSlider": {
+      "initialDesktopSlider": "50",
+      "afterArrowDesktop": "55",
+      "afterHomeDesktop": "5",
+      "afterEndDesktop": "95",
+      "afterPointerDesktop": "65"
+    },
+    "mobileSlider": {
+      "initialMobileSlider": "50",
+      "afterArrowMobile": "55",
+      "afterHomeMobile": "6",
+      "afterEndMobile": "94",
+      "afterTouchMobile": "82"
+    },
+    "moreWork": {
+      "cards": [
+        {
+          "tag": "DIV",
+          "placeholder": "true",
+          "href": null,
+          "label": "Bershka case study coming soon",
+          "id": "bershka"
+        },
+        {
+          "tag": "DIV",
+          "placeholder": "true",
+          "href": null,
+          "label": "Sheer case study coming soon",
+          "id": "sheer"
+        },
+        {
+          "tag": "DIV",
+          "placeholder": "true",
+          "href": null,
+          "label": "Grundfos case study coming soon",
+          "id": "grundfos"
+        }
+      ],
+      "nestedInteractiveCount": 0,
+      "prevDisabled": true,
+      "nextDisabled": false,
+      "afterNext": {
+        "scrollLeft": 794,
+        "prevDisabled": false
+      }
+    },
+    "sectionProgress": {
+      "count": 11,
+      "labels": [
+        "Jump to MLMeta Learn",
+        "Jump to Get the highlights.",
+        "Jump to Great content. Poor delivery.",
+        "Jump to Research confirmed what users already felt.",
+        "Jump to Defining the redesign goals.",
+        "Jump to Wireframing every core flow.",
+        "Jump to The structure worked before the polish.",
+        "Jump to Even more thoughtful. Even more calming.",
+        "Jump to Built to scale.",
+        "Jump to The numbers don't lie.",
+        "Jump to What I learned."
+      ],
+      "activeCount": 1
+    },
+    "horizontalOverflow": {
+      "docWidth": 1440,
+      "innerWidth": 1440
+    },
+    "reducedMotion": {
+      "footerWordBefore": "design",
+      "footerWordAfter": "design",
+      "highlightsPaused": true
+    }
+  }
+}

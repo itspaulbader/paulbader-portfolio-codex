@@ -1,5 +1,6 @@
 ---
 import { research } from '../../data/metaLearn';
+import { cssUrl } from '../../utils/assetPath';
 
 const plusPath = 'm24 16.5h-4.5v-4.5c0-.8286-.6719-1.5-1.5-1.5s-1.5.6714-1.5 1.5v4.5h-4.5c-.8281 0-1.5.6714-1.5 1.5s.6719 1.5 1.5 1.5h4.5v4.5c0 .8286.6719 1.5 1.5 1.5s1.5-.6714 1.5-1.5v-4.5h4.5c.8281 0 1.5-.6714 1.5-1.5s-.6719-1.5-1.5-1.5z';
 const modalData = research.cards.map(card => ({
@@ -8,7 +9,7 @@ const modalData = research.cards.map(card => ({
   body: card.modalBodyHtml
 }));
 ---
-<section class="research" id="research">
+<section class="research" id="research" style={`--research-visual-img:${cssUrl('images/ml/node-100.png')}`}>
   <div class="research-hd reveal">
     <p class="label">{research.eyebrow}</p>
     <h2 class="heading-lg">{research.heading}</h2>
@@ -26,7 +27,7 @@ const modalData = research.cards.map(card => ({
             <span class="r-big" style={card.visualText === '18' ? 'color:rgba(40,50,120,0.18)' : card.visualText === '52' ? 'color:rgba(140,90,10,0.20)' : card.visualText === '40+' ? 'color:rgba(30,90,50,0.20)' : undefined}>{card.visualText}</span>
           )}
         </div>
-        <button class="r-plus" aria-label="Read more"><svg viewBox="0 0 36 36"><path d={plusPath}></path></svg></button>
+        <button class="r-plus" aria-label={`Read more about ${card.title}`}><svg viewBox="0 0 36 36"><path d={plusPath}></path></svg></button>
       </div>
     ))}
   </div>
@@ -42,7 +43,7 @@ const modalData = research.cards.map(card => ({
 
 <div class="r-modal" id="rModal" aria-hidden="true">
   <div class="r-modal-backdrop" data-close></div>
-  <div class="r-modal-card" role="dialog" aria-modal="true" aria-labelledby="rmTitle">
+  <div class="r-modal-card" role="dialog" aria-modal="true" aria-labelledby="rmTitle" tabindex="-1">
     <button class="r-modal-x" id="rmX" data-close aria-label="Close">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg>
     </button>

@@ -113,13 +113,13 @@
     .card-img-below { position: absolute; right: 0; top: 0; bottom: 0; width: 50%; z-index: 2; overflow: hidden; }
     .card-img-below img, .card-img-below picture { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
     /* Bershka: full-bleed bg on desktop with scrim, card-img-below hidden */
-    .bershka-bg { background-image: url('/portfolio/images/bershka-desk.png'); background-size: cover; background-position: center; background-color: var(--bg); }
+    .bershka-bg { background-image: var(--card-bg-desktop); background-size: cover; background-position: center; background-color: var(--bg); }
     .card-violet.card-featured .card-scrim { display: none; }
     .card-violet.card-featured .btn-soon { background: var(--blue); color: white; cursor: pointer; }
     .card-featured .card-img-below { display: none; }
     /* Mobile/tablet: solid bg, image below text */
     @media (max-width: 1024px) {
-      .bershka-bg { background-image: url('/portfolio/images/bershka-desk-mobile2.png'); background-size: cover !important; background-position: center center !important; background-color: var(--bg) !important; }
+      .bershka-bg { background-image: var(--card-bg-mobile); background-size: cover !important; background-position: center center !important; background-color: var(--bg) !important; }
       .card-violet.card-featured .card-scrim { display: none; }
       .card-featured .card-img-below { display: block; }
       .card-violet.card-featured .card-img-below,
@@ -127,7 +127,7 @@
       .card-violet.card-featured { min-height: 100svh; }
       .card-violet.card-featured .card-body { padding-bottom: 36px !important; }
       /* Grundfos: same full-bleed bg treatment as Bershka on mobile/tablet */
-      .grundfos-bg { background-image: url('/portfolio/images/grundfos-mobile.png'); background-size: cover !important; background-position: center center !important; }
+      .grundfos-bg { background-image: var(--card-bg-mobile); background-size: cover !important; background-position: center center !important; }
       .card-ink.card-featured .card-img-below,
       .card-ink.card-featured .card-visual { display: none; }
       .card-ink.card-featured { min-height: 100svh; }

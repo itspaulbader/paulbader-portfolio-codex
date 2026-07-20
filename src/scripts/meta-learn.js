@@ -125,7 +125,6 @@ if (hlTrack && hlCards.length && hlDots && hlControls && hlPlayBtn) {
   hlCards.forEach((_, i) => {
     const b = document.createElement('button');
     b.className = 'hl-dot'; b.type = 'button';
-    b.setAttribute('role', 'tab');
     b.setAttribute('aria-label', 'Show highlight ' + (i + 1));
     b.innerHTML = '<span class="hl-fill"></span>';
     b.addEventListener('click', () => hlGo(i));
@@ -138,7 +137,8 @@ if (hlTrack && hlCards.length && hlDots && hlControls && hlPlayBtn) {
     hlDotEls.forEach((d, k) => {
       const on = k === hlIdx;
       d.classList.toggle('active', on);
-      d.setAttribute('aria-selected', on ? 'true' : 'false');
+      if (on) d.setAttribute('aria-current', 'true');
+      else d.removeAttribute('aria-current');
       const fill = d.querySelector('.hl-fill');
       fill.style.animation = 'none';
       fill.style.width = '';
@@ -258,6 +258,24 @@ if (rTrack && rCards.length && rPrev && rNext) {
   const rmBody = document.getElementById('rmBody');
   const rmX = document.getElementById('rmX');
   let rmLastFocus = null;
+  let rmInertTargets = [];
+
+  function rFocusable() {
+    if (!rModal) return [];
+    return [...rModal.querySelectorAll('a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])')]
+      .filter(el => !el.hasAttribute('disabled') && el.getAttribute('aria-hidden') !== 'true');
+  }
+
+  function rSetBackgroundInert(inert) {
+    if (!rModal) return;
+    if (inert) {
+      rmInertTargets = [...document.body.children].filter(el => el !== rModal);
+      rmInertTargets.forEach(el => { el.inert = true; });
+    } else {
+      rmInertTargets.forEach(el => { el.inert = false; });
+      rmInertTargets = [];
+    }
+  }
 
   function rOpen(i) {
     const d = rData[i];
@@ -268,6 +286,7 @@ if (rTrack && rCards.length && rPrev && rNext) {
     rmLastFocus = document.activeElement;
     rModal.classList.add('open');
     rModal.setAttribute('aria-hidden', 'false');
+    rSetBackgroundInert(true);
     document.body.style.overflow = 'hidden';
     rmX.focus();
   }
@@ -275,6 +294,7 @@ if (rTrack && rCards.length && rPrev && rNext) {
     if (!rModal) return;
     rModal.classList.remove('open');
     rModal.setAttribute('aria-hidden', 'true');
+    rSetBackgroundInert(false);
     document.body.style.overflow = '';
     if (rmLastFocus) { try { rmLastFocus.focus(); } catch (_) {} }
   }
@@ -287,7 +307,28 @@ if (rTrack && rCards.length && rPrev && rNext) {
     card.addEventListener('click', () => { if (!rDragged) rOpen(i); });
   });
   rModal?.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', rClose));
-  document.addEventListener('keydown', e => { if (e.key === 'Escape' && rModal?.classList.contains('open')) rClose(); });
+  document.addEventListener('keydown', e => {
+    if (!rModal?.classList.contains('open')) return;
+    if (e.key === 'Escape') {
+      rClose();
+      return;
+    }
+    if (e.key !== 'Tab') return;
+    const focusable = rFocusable();
+    if (!focusable.length) {
+      e.preventDefault();
+      return;
+    }
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  });
 }
 
 const baWrap = document.getElementById('baWrap');
@@ -301,6 +342,9 @@ if (baWrap && baClip && baLine && baKnob) {
     baClip.style.width = pct + '%';
     baLine.style.left = pct + '%';
     baKnob.style.left = pct + '%';
+    const value = Math.round(pct);
+    baKnob.setAttribute('aria-valuenow', String(value));
+    baKnob.setAttribute('aria-valuetext', `${value}% after view`);
   }
   function fromEvent(e) {
     const rect = baWrap.getBoundingClientRect();
@@ -310,6 +354,17 @@ if (baWrap && baClip && baLine && baKnob) {
   setPct(50);
   baWrap.addEventListener('mousedown', e => { dragging = true; setPct(fromEvent(e)); });
   baWrap.addEventListener('touchstart', e => { dragging = true; setPct(fromEvent(e)); }, { passive: true });
+  baKnob.addEventListener('keydown', e => {
+    const current = Number(baKnob.getAttribute('aria-valuenow') || 50);
+    let next = current;
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') next = current - 5;
+    else if (e.key === 'ArrowRight' || e.key === 'ArrowUp') next = current + 5;
+    else if (e.key === 'Home') next = 5;
+    else if (e.key === 'End') next = 95;
+    else return;
+    e.preventDefault();
+    setPct(next);
+  });
   window.addEventListener('mousemove', e => { if (dragging) setPct(fromEvent(e)); });
   window.addEventListener('touchmove', e => { if (dragging) setPct(fromEvent(e)); }, { passive: true });
   window.addEventListener('mouseup', () => { dragging = false; });
@@ -327,10 +382,18 @@ document.querySelectorAll('.bac-card').forEach(card => {
     clip.style.width = pct + '%';
     line.style.left = pct + '%';
     knob.style.left = pct + '%';
+    const value = Math.round(pct);
+    knob.setAttribute('aria-valuenow', String(value));
+    knob.setAttribute('aria-valuetext', `${value}% after view`);
   };
   const pctFrom = e => {
     const r = card.getBoundingClientRect();
     return ((e.clientX - r.left) / r.width) * 100;
+  };
+  const touchPctFrom = e => {
+    const r = card.getBoundingClientRect();
+    const touch = e.touches[0] || e.changedTouches[0];
+    return ((touch.clientX - r.left) / r.width) * 100;
   };
   knob.addEventListener('pointerdown', e => {
     drag = true; pid = e.pointerId;
@@ -338,8 +401,23 @@ document.querySelectorAll('.bac-card').forEach(card => {
     e.preventDefault();
   });
   knob.addEventListener('pointermove', e => { if (drag) set(pctFrom(e)); });
+  knob.addEventListener('touchstart', e => { drag = true; set(touchPctFrom(e)); }, { passive: true });
+  knob.addEventListener('touchmove', e => { if (drag) set(touchPctFrom(e)); }, { passive: true });
+  knob.addEventListener('keydown', e => {
+    const current = Number(knob.getAttribute('aria-valuenow') || 50);
+    let next = current;
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') next = current - 5;
+    else if (e.key === 'ArrowRight' || e.key === 'ArrowUp') next = current + 5;
+    else if (e.key === 'Home') next = 6;
+    else if (e.key === 'End') next = 94;
+    else return;
+    e.preventDefault();
+    set(next);
+  });
   const end = () => { drag = false; if (pid != null) { try { knob.releasePointerCapture(pid); } catch (_) {} pid = null; } };
   knob.addEventListener('pointerup', end);
   knob.addEventListener('pointercancel', end);
+  knob.addEventListener('touchend', end);
+  knob.addEventListener('touchcancel', end);
   set(50);
 });

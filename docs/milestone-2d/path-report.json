@@ -1,0 +1,31 @@
+{
+  "defaultBase": {
+    "env": "PORTFOLIO_BASE unset",
+    "base": "/portfolio",
+    "build": "passed",
+    "routes": {
+      "/portfolio/": 200,
+      "/portfolio/index.html": 200,
+      "/portfolio/meta-learn.html": 200,
+      "/portfolio/meta-learn-next.html": 200,
+      "/portfolio/404.html": 200
+    }
+  },
+  "rootBase": {
+    "env": "PORTFOLIO_BASE=/",
+    "base": "/",
+    "build": "passed",
+    "routes": {
+      "/": 200,
+      "/index.html": 200,
+      "/meta-learn.html": 200,
+      "/meta-learn-next.html": 200,
+      "/404.html": 200
+    },
+    "forbiddenDistMatches": []
+  },
+  "sourceSearch": {
+    "command": "rg -n \"/portfolio/\" src",
+    "matches": []
+  }
+}

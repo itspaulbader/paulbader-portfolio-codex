@@ -1,5 +1,6 @@
 ---
 import { projects } from '../../data/projects';
+import { cssUrl } from '../../utils/assetPath';
 
 interface Props {
   currentProjectId: string;
@@ -10,9 +11,8 @@ interface Props {
 const { currentProjectId, eyebrow, heading } = Astro.props;
 const moreProjects = projects.filter(project => project.id !== currentProjectId);
 
-const withBase = (src: string) => src.startsWith('http') || src.startsWith('/') ? src : `/portfolio/${src}`;
 const imageStyle = (desktop: string, mobile: string) =>
-  `--nc-img-desktop:url('${withBase(desktop)}'); --nc-img-mobile:url('${withBase(mobile || desktop)}')`;
+  `--nc-img-desktop:${cssUrl(desktop)}; --nc-img-mobile:${cssUrl(mobile || desktop)}`;
 ---
 <section class="cs-foot" data-progress-skip>
   <div class="cs-foot-hd reveal">
@@ -22,21 +22,49 @@ const imageStyle = (desktop: string, mobile: string) =>
 
   <div class="cs-foot-rail" id="ncRail">
     {moreProjects.map(project => (
-      <a class="nc" href={project.href} data-project-id={project.id} data-placeholder={project.href === '#' ? 'true' : undefined}>
-        <div class="nc-img" style={imageStyle(project.desktopImage.src, project.mobileImage.src)}></div>
-        <div class="nc-copy">
-          <div class="nc-meta">
-            <span class="nc-icon" style={project.icon.type === 'text' ? project.icon.style : undefined}>
-              {project.icon.type === 'image'
-                ? <img src={project.icon.src} alt={project.icon.alt} />
-                : project.icon.label}
-            </span>
-            <span class="nc-co">{project.company}</span>
+      project.href === '#' ? (
+        <div
+          class="nc"
+          role="group"
+          aria-label={`${project.company} case study coming soon`}
+          data-project-id={project.id}
+          data-placeholder="true"
+        >
+          <div class="nc-img" style={imageStyle(project.desktopImage.src, project.mobileImage.src)}></div>
+          <div class="nc-copy">
+            <div class="nc-meta">
+              <span class="nc-icon" style={project.icon.type === 'text' ? project.icon.style : undefined}>
+                {project.icon.type === 'image'
+                  ? <img src={project.icon.src} alt={project.icon.alt} />
+                  : project.icon.label}
+              </span>
+              <span class="nc-co">{project.company}</span>
+            </div>
+            <p class="nc-title" set:html={project.titleHtml}></p>
+            <p class="nc-desc">{project.description}</p>
           </div>
-          <p class="nc-title" set:html={project.titleHtml}></p>
-          <p class="nc-desc">{project.description}</p>
         </div>
-      </a>
+      ) : (
+        <a
+          class="nc"
+          href={project.href}
+          data-project-id={project.id}
+        >
+          <div class="nc-img" style={imageStyle(project.desktopImage.src, project.mobileImage.src)}></div>
+          <div class="nc-copy">
+            <div class="nc-meta">
+              <span class="nc-icon" style={project.icon.type === 'text' ? project.icon.style : undefined}>
+                {project.icon.type === 'image'
+                  ? <img src={project.icon.src} alt={project.icon.alt} />
+                  : project.icon.label}
+              </span>
+              <span class="nc-co">{project.company}</span>
+            </div>
+            <p class="nc-title" set:html={project.titleHtml}></p>
+            <p class="nc-desc">{project.description}</p>
+          </div>
+        </a>
+      )
     ))}
   </div>
 
