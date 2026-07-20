@@ -1,6 +1,6 @@
 ---
 import type { ProjectCard } from '../../data/projects';
-import { cssUrl } from '../../utils/assetPath';
+import { assetPath } from '../../utils/assetPath';
 
 interface Props {
   project: ProjectCard;
@@ -8,14 +8,29 @@ interface Props {
 
 const { project } = Astro.props;
 const classes = ['card', project.themeClass, 'card-featured', project.extraClass].filter(Boolean).join(' ');
-const bgVars = [
-  project.backgroundStyle,
-  `--card-bg-desktop:${cssUrl(project.desktopImage.src)}`,
-  `--card-bg-mobile:${cssUrl(project.mobileImage.src)}`
-].filter(Boolean).join(';');
+const mediaVars = [
+  `--card-background:${project.backgroundColor}`,
+  `--card-position-desktop:${project.desktopImage.position}`,
+  `--card-position-mobile:${project.mobileImage.position}`,
+  `--card-fit-desktop:${project.desktopImage.fit || 'cover'}`,
+  `--card-fit-mobile:${project.mobileImage.fit || 'cover'}`
+].join(';');
+const desktopTextPlacement = project.textPlacement?.desktop || 'left';
+const mobileTextPlacement = project.textPlacement?.mobile || 'center';
+const unavailable = project.comingSoon || project.href === '#';
 ---
-<div class={classes} data-case={project.id}>
-  <div class={`card-bg ${project.backgroundClass}`} style={bgVars}></div>
+<article
+  class={classes}
+  data-case={project.id}
+  data-text-desktop={desktopTextPlacement}
+  data-text-mobile={mobileTextPlacement}
+  data-mobile-presentation={project.mobilePresentation || 'full-bleed'}
+  style={mediaVars}
+>
+  <picture class="card-media">
+    <source media="(max-width: 1024px)" srcset={assetPath(project.mobileImage.src)} />
+    <img src={assetPath(project.desktopImage.src)} alt={project.desktopImage.alt} />
+  </picture>
   <div class="card-scrim"></div>
   <div class="card-body">
     <div>
@@ -36,17 +51,11 @@ const bgVars = [
       </div>
     </div>
     <div class="card-cta">
-      {project.comingSoon ? (
+      {unavailable ? (
         <span class="btn-soon">Coming Soon</span>
       ) : (
         <a href={project.href} class="btn-view">View Case</a>
       )}
     </div>
   </div>
-  <div class="card-visual">
-    <img src={project.desktopImage.src} alt={project.desktopImage.alt} style={project.desktopImage.style || undefined} />
-  </div>
-  <div class="card-img-below">
-    <img src={project.mobileImage.src} alt={project.mobileImage.alt} style={project.mobileImage.style || undefined} />
-  </div>
-</div>
+</article>

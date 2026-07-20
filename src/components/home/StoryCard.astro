@@ -1,0 +1,72 @@
+---
+import { experience } from '../../data/experience';
+import type { StoryCardData } from '../../data/story';
+import { assetPath } from '../../utils/assetPath';
+
+interface Props {
+  item: StoryCardData;
+}
+
+const { item } = Astro.props;
+const classes = ['story-card', item.variantClass, item.wide && 'wide'].filter(Boolean).join(' ');
+const visualStyle = [
+  `--story-background:${item.backgroundColor}`,
+  item.media && `--story-position-desktop:${item.media.desktopPosition}`,
+  item.media && `--story-position-mobile:${item.media.mobilePosition}`,
+  item.media && `--story-media-fit:${item.media.fit}`
+].filter(Boolean).join(';');
+---
+<article
+  class={classes}
+  data-story-id={item.id}
+  data-story-kind={item.kind}
+  data-text-placement={item.textPlacement}
+>
+  <div class="sc-visual" style={visualStyle}>
+    {item.kind === 'image' && item.media?.desktopImage && (
+      <picture class="sc-media">
+        <source media="(max-width: 599px)" srcset={assetPath(item.media.mobileImage || item.media.desktopImage)} />
+        <img src={assetPath(item.media.desktopImage)} alt={item.media.alt} />
+      </picture>
+    )}
+
+    {item.kind === 'experience' && (
+      <>
+        <h2 class="exp-title">7+ years<br />of experience</h2>
+        <div class="exp-list">
+          {experience.map(experienceItem => (
+            <div class="exp-item">
+              <div class="exp-logo">
+                {experienceItem.logo
+                  ? <img src={assetPath(experienceItem.logo.src)} alt={experienceItem.logo.alt} />
+                  : experienceItem.initials}
+              </div>
+              <div>
+                <div class="exp-company">{experienceItem.company}</div>
+                <div class="exp-role">{experienceItem.role}</div>
+              </div>
+              <div class="exp-period">{experienceItem.period}</div>
+            </div>
+          ))}
+        </div>
+      </>
+    )}
+
+    {item.kind === 'video' && item.media?.videoSrc && (
+      <video
+        src={item.media.videoSrc}
+        aria-label={item.media.alt}
+        autoplay
+        muted
+        loop
+        playsinline
+      ></video>
+    )}
+
+    {item.kind === 'text' && item.text && <div class="sc-text">{item.text}</div>}
+  </div>
+
+  <p class="sc-caption">
+    <strong>{item.caption.label}</strong> {item.caption.description}
+  </p>
+</article>
