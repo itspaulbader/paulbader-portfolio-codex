@@ -1,0 +1,50 @@
+---
+import '../styles/meta-learn.css';
+import CaseStudyLayout from '../layouts/CaseStudyLayout.astro';
+import MetaHero from '../components/meta-learn/MetaHero.astro';
+import HighlightsSection from '../components/meta-learn/HighlightsSection.astro';
+import ProblemSection from '../components/meta-learn/ProblemSection.astro';
+import ResearchSection from '../components/meta-learn/ResearchSection.astro';
+---
+<CaseStudyLayout title="Meta Learn Next — Paul Bader" caseId="meta-learn">
+  <Fragment slot="head">
+    <meta name="robots" content="noindex, nofollow" />
+  </Fragment>
+
+  <MetaHero />
+  <HighlightsSection />
+  <ProblemSection />
+  <ResearchSection />
+
+  <div class="migration-stop" data-progress-skip>
+    <strong>Internal development stop</strong>
+    <span>Milestone 2A ends here. Later Meta Learn sections remain on the legacy page until migrated.</span>
+  </div>
+
+  <script>
+    import '../scripts/meta-learn.js';
+  </script>
+</CaseStudyLayout>
+
+<style>
+  .migration-stop {
+    margin: 0;
+    padding: 18px var(--gutter);
+    background: repeating-linear-gradient(135deg, #ffeec2 0 12px, #ffd86f 12px 24px);
+    color: #1d1d1f;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 13px;
+    letter-spacing: 0;
+    border-top: 2px solid #1d1d1f;
+    border-bottom: 2px solid #1d1d1f;
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    align-items: center;
+  }
+  .migration-stop span { opacity: 0.78; }
+  @media (max-width: 599px) {
+    .migration-stop { display: block; line-height: 1.45; }
+    .migration-stop span { display: block; margin-top: 4px; }
+  }
+</style>

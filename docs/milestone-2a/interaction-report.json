@@ -1,0 +1,61 @@
+{
+  "routes": [
+    {
+      "path": "/portfolio/",
+      "status": 200,
+      "title": "Paul Bader — Product & Brand Designer"
+    },
+    {
+      "path": "/portfolio/index.html",
+      "status": 200,
+      "title": "Paul Bader — Product & Brand Designer"
+    },
+    {
+      "path": "/portfolio/meta-learn.html",
+      "status": 200,
+      "title": "Meta Learn — Paul Bader"
+    },
+    {
+      "path": "/portfolio/meta-learn-next.html",
+      "status": 200,
+      "title": "Meta Learn Next — Paul Bader"
+    },
+    {
+      "path": "/portfolio/404.html",
+      "status": 200,
+      "title": "404 — Page Not Found · Paul Bader"
+    }
+  ],
+  "result": {
+    "width": 1440,
+    "viewport": 1440,
+    "noindex": true,
+    "sectionProgressTicks": 4,
+    "highlightDots": 6,
+    "highlightActiveBefore": 1,
+    "highlightPaused": true,
+    "highlightPlayingAgain": true,
+    "highlightThirdActive": true,
+    "highlightInnerTransform": "matrix(1, 0, 0, 1, -705.6, 0)",
+    "researchCards": 7,
+    "researchScrolled": true,
+    "rPrevEnabledAfterNext": true,
+    "modalOpen": true,
+    "modalAria": "false",
+    "modalTitle": "Users could not find the next step.",
+    "modalFocusedClose": true,
+    "bodyLocked": true,
+    "modalClosedByButton": true,
+    "focusRestoredAfterButton": true,
+    "modalClosedByEscape": true,
+    "modalClosedByBackdrop": true,
+    "bodyUnlocked": true
+  },
+  "reduced": {
+    "controlsPaused": true,
+    "fillAnimation": "none"
+  },
+  "consoleMessages": [],
+  "failed": [],
+  "badResponses": []
+}

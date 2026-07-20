@@ -1,0 +1,17 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  caseId: string;
+}
+
+const { title, caseId } = Astro.props;
+---
+<BaseLayout title={title} bodyCase={caseId}>
+  <slot name="head" slot="head" />
+  <slot />
+  <script>
+    import '../scripts/case-study.js';
+  </script>
+</BaseLayout>

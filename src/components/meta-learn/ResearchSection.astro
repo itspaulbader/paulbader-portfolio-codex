@@ -1,0 +1,54 @@
+---
+import { research } from '../../data/metaLearn';
+
+const plusPath = 'm24 16.5h-4.5v-4.5c0-.8286-.6719-1.5-1.5-1.5s-1.5.6714-1.5 1.5v4.5h-4.5c-.8281 0-1.5.6714-1.5 1.5s.6719 1.5 1.5 1.5h4.5v4.5c0 .8286.6719 1.5 1.5 1.5s1.5-.6714 1.5-1.5v-4.5h4.5c.8281 0 1.5-.6714 1.5-1.5s-.6719-1.5-1.5-1.5z';
+const modalData = research.cards.map(card => ({
+  label: card.label,
+  title: card.title,
+  body: card.modalBodyHtml
+}));
+---
+<section class="research" id="research">
+  <div class="research-hd reveal">
+    <p class="label">{research.eyebrow}</p>
+    <h2 class="heading-lg">{research.heading}</h2>
+  </div>
+  <div class="r-track reveal" id="rTrack">
+    {research.cards.map(card => (
+      <div class="r-card">
+        <div class="r-copy">
+          <p class="r-tag">{card.label}</p>
+          <p class="r-title">{card.title}</p>
+          <p class="r-body">{card.body}</p>
+        </div>
+        <div class:list={['r-visual', card.visualClass]} style={card.visualStyle}>
+          {card.visualText && (
+            <span class="r-big" style={card.visualText === '18' ? 'color:rgba(40,50,120,0.18)' : card.visualText === '52' ? 'color:rgba(140,90,10,0.20)' : card.visualText === '40+' ? 'color:rgba(30,90,50,0.20)' : undefined}>{card.visualText}</span>
+          )}
+        </div>
+        <button class="r-plus" aria-label="Read more"><svg viewBox="0 0 36 36"><path d={plusPath}></path></svg></button>
+      </div>
+    ))}
+  </div>
+  <div class="r-foot">
+    <button class="r-btn" id="rPrev" aria-label="Previous" disabled>
+      <svg viewBox="0 0 8 14" fill="none" stroke="rgb(29,29,31)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="7,1 1,7 7,13"></polyline></svg>
+    </button>
+    <button class="r-btn" id="rNext" aria-label="Next">
+      <svg viewBox="0 0 8 14" fill="none" stroke="rgb(29,29,31)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="1,1 7,7 1,13"></polyline></svg>
+    </button>
+  </div>
+</section>
+
+<div class="r-modal" id="rModal" aria-hidden="true">
+  <div class="r-modal-backdrop" data-close></div>
+  <div class="r-modal-card" role="dialog" aria-modal="true" aria-labelledby="rmTitle">
+    <button class="r-modal-x" id="rmX" data-close aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+    </button>
+    <p class="r-modal-label" id="rmLabel"></p>
+    <h3 class="r-modal-title" id="rmTitle"></h3>
+    <div class="r-modal-body" id="rmBody"></div>
+  </div>
+</div>
+<script type="application/json" id="researchModalData" set:html={JSON.stringify(modalData)}></script>

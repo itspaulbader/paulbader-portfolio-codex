@@ -1,0 +1,24 @@
+---
+import { highlights } from '../../data/metaLearn';
+---
+<section class="highlights" id="highlights">
+  <div class="hl-hd reveal">
+    <h2 class="hl-title">Get the highlights.</h2>
+  </div>
+  <div class="hl-stage" id="hlTrack">
+    {highlights.map(item => (
+      <div class:list={['hl-card', item.dark && 'is-dark']} style={item.style}>
+        <p class={`hl-card-text ht-${item.align}`}><span class="hl-card-inner">{item.text}</span></p>
+      </div>
+    ))}
+  </div>
+  <div class="hl-controls" id="hlControls">
+    <div class="hl-dot-shell">
+      <div class="hl-dots" id="hlDots" role="tablist" aria-label="Highlights"></div>
+    </div>
+    <button class="hl-play" id="hlPlay" aria-label="Pause highlights gallery">
+      <svg class="hl-ic-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="6" width="3.4" height="12" rx="1.1"></rect><rect x="13.6" y="6" width="3.4" height="12" rx="1.1"></rect></svg>
+      <svg class="hl-ic-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"></path></svg>
+    </button>
+  </div>
+</section>

@@ -1,0 +1,104 @@
+[
+  {
+    "variant": "legacy",
+    "viewport": "desktop-1440",
+    "status": 200,
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": [],
+    "metrics": {
+      "bodyWidth": 1440,
+      "viewportWidth": 1440,
+      "fullHeight": 15385,
+      "title": "Meta Learn — Paul Bader",
+      "noindex": false,
+      "sectionProgressTicks": 11,
+      "hasMigrationStop": false
+    }
+  },
+  {
+    "variant": "next",
+    "viewport": "desktop-1440",
+    "status": 200,
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": [],
+    "metrics": {
+      "bodyWidth": 1440,
+      "viewportWidth": 1440,
+      "fullHeight": 4979,
+      "title": "Meta Learn Next — Paul Bader",
+      "noindex": true,
+      "sectionProgressTicks": 4,
+      "hasMigrationStop": true
+    }
+  },
+  {
+    "variant": "legacy",
+    "viewport": "tablet-1024",
+    "status": 200,
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": [],
+    "metrics": {
+      "bodyWidth": 1024,
+      "viewportWidth": 1024,
+      "fullHeight": 14626,
+      "title": "Meta Learn — Paul Bader",
+      "noindex": false,
+      "sectionProgressTicks": 11,
+      "hasMigrationStop": false
+    }
+  },
+  {
+    "variant": "next",
+    "viewport": "tablet-1024",
+    "status": 200,
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": [],
+    "metrics": {
+      "bodyWidth": 1024,
+      "viewportWidth": 1024,
+      "fullHeight": 4709,
+      "title": "Meta Learn Next — Paul Bader",
+      "noindex": true,
+      "sectionProgressTicks": 4,
+      "hasMigrationStop": true
+    }
+  },
+  {
+    "variant": "legacy",
+    "viewport": "mobile-390",
+    "status": 200,
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": [],
+    "metrics": {
+      "bodyWidth": 390,
+      "viewportWidth": 390,
+      "fullHeight": 13523,
+      "title": "Meta Learn — Paul Bader",
+      "noindex": false,
+      "sectionProgressTicks": 11,
+      "hasMigrationStop": false
+    }
+  },
+  {
+    "variant": "next",
+    "viewport": "mobile-390",
+    "status": 200,
+    "consoleMessages": [],
+    "failed": [],
+    "badResponses": [],
+    "metrics": {
+      "bodyWidth": 390,
+      "viewportWidth": 390,
+      "fullHeight": 3960,
+      "title": "Meta Learn Next — Paul Bader",
+      "noindex": true,
+      "sectionProgressTicks": 4,
+      "hasMigrationStop": true
+    }
+  }
+]
