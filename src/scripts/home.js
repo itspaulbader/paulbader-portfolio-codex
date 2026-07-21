@@ -143,44 +143,55 @@ if (hlTrack && hlDots && hlControls && hlPlayBtn) {
 }
 
 (function () {
+  const nav = document.getElementById('case-nav');
   const workSection = document.querySelector('.work-section');
-  const cards = [...document.querySelectorAll('.work-section .card')];
-  if (!workSection || !cards.length) return;
+  const footer = document.getElementById('contact');
+  const dots = nav ? [...nav.querySelectorAll('[data-project-target]')] : [];
+  const cards = dots.map(dot => document.getElementById(dot.dataset.projectTarget));
+  if (!nav || !workSection || !footer || !cards.length || cards.some(card => !card)) return;
 
-  const nav = document.createElement('div');
-  nav.id = 'case-nav';
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  const navAvailable = matchMedia('(min-width: 900px)');
 
-  const dots = cards.map((card, i) => {
-    const btn = document.createElement('button');
-    btn.className = 'case-dot';
-    btn.setAttribute('aria-label', 'Jump to case ' + (i + 1));
-    btn.addEventListener('click', () => card.scrollIntoView({ behavior: 'smooth' }));
-    nav.appendChild(btn);
-    return btn;
+  dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+      cards[index].scrollIntoView({
+        behavior: reducedMotion.matches ? 'auto' : 'smooth',
+        block: 'center'
+      });
+    });
   });
-
-  document.body.appendChild(nav);
 
   function updateCaseNav() {
     const vh = window.innerHeight;
     const sectionRect = workSection.getBoundingClientRect();
-    const show = sectionRect.top < vh && sectionRect.bottom > 0;
+    const footerRect = footer.getBoundingClientRect();
+    const show = navAvailable.matches && sectionRect.top < vh && sectionRect.bottom > 0 && footerRect.top >= vh;
     nav.classList.toggle('visible', show);
+    nav.toggleAttribute('inert', !show);
+    nav.setAttribute('aria-hidden', String(!show));
 
     if (!show) return;
-    const marker = vh * 0.5;
     let activeIndex = 0;
+    let greatestVisibleHeight = -1;
     let closestDistance = Infinity;
     cards.forEach((card, index) => {
       const rect = card.getBoundingClientRect();
+      const visibleHeight = Math.max(0, Math.min(rect.bottom, vh) - Math.max(rect.top, 0));
       const center = rect.top + rect.height / 2;
-      const distance = Math.abs(center - marker);
-      if (distance < closestDistance) {
+      const distance = Math.abs(center - vh / 2);
+      if (visibleHeight > greatestVisibleHeight || (visibleHeight === greatestVisibleHeight && distance < closestDistance)) {
+        greatestVisibleHeight = visibleHeight;
         closestDistance = distance;
         activeIndex = index;
       }
     });
-    dots.forEach((dot, index) => dot.classList.toggle('active', index === activeIndex));
+    dots.forEach((dot, index) => {
+      const active = index === activeIndex;
+      dot.classList.toggle('active', active);
+      if (active) dot.setAttribute('aria-current', 'true');
+      else dot.removeAttribute('aria-current');
+    });
   }
   let caseNavFrame = null;
   const queueCaseNav = () => {
@@ -192,5 +203,12 @@ if (hlTrack && hlDots && hlControls && hlPlayBtn) {
   };
   window.addEventListener('scroll', queueCaseNav, { passive: true });
   window.addEventListener('resize', queueCaseNav, { passive: true });
+  navAvailable.addEventListener('change', queueCaseNav);
+
+  const caseObserver = new IntersectionObserver(queueCaseNav, {
+    threshold: Array.from({ length: 21 }, (_, index) => index / 20)
+  });
+  [workSection, footer, ...cards].forEach(element => caseObserver.observe(element));
+
   updateCaseNav();
 })();

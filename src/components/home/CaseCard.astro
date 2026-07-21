@@ -1,5 +1,6 @@
 ---
 import type { ProjectCard } from '../../data/projects';
+import { projectAnchorId } from '../../data/projects';
 import { assetPath } from '../../utils/assetPath';
 
 interface Props {
@@ -20,6 +21,7 @@ const mobileTextPlacement = project.textPlacement?.mobile || 'center';
 const unavailable = project.comingSoon || project.href === '#';
 ---
 <article
+  id={projectAnchorId(project.id)}
   class={classes}
   data-case={project.id}
   data-text-desktop={desktopTextPlacement}

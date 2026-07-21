@@ -32,6 +32,8 @@ export type ProjectCard = {
   };
 };
 
+export const projectAnchorId = (projectId: string) => `project-${projectId}`;
+
 export const projects: ProjectCard[] = [
   {
     id: 'bershka',
