@@ -36,7 +36,7 @@ const unavailable = project.comingSoon || project.href === '#';
     <div>
       <div class="card-meta">
         {project.icon.type === 'image' ? (
-          <div class="card-icon"><img src={project.icon.src} alt={project.icon.alt} /></div>
+          <div class="card-icon"><img src={assetPath(project.icon.src)} alt={project.icon.alt} /></div>
         ) : (
           <div class="card-icon" style={project.icon.style}>{project.icon.label}</div>
         )}

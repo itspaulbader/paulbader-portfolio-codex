@@ -15,6 +15,7 @@ export type StoryCardData = {
   wide?: boolean;
   backgroundColor: string;
   textPlacement?: 'center' | 'bottom';
+  captionPlacement?: 'outside' | 'inside';
   media?: StoryMedia;
   text?: string;
   caption: {
@@ -29,6 +30,7 @@ export const storyItems: StoryCardData[] = [
     kind: 'image',
     variantClass: 'sc-profile',
     backgroundColor: '#dedad5',
+    captionPlacement: 'outside',
     media: {
       desktopImage: 'images/profile.jpg',
       mobileImage: 'images/profile.jpg',
@@ -48,6 +50,7 @@ export const storyItems: StoryCardData[] = [
     variantClass: 'sc-exp',
     backgroundColor: '#f1f1f4',
     textPlacement: 'center',
+    captionPlacement: 'outside',
     caption: {
       label: 'Work history.',
       description: '7+ years across product, brand, UX/UI, SaaS, and internal tools.'
@@ -59,6 +62,7 @@ export const storyItems: StoryCardData[] = [
     variantClass: 'sc-psych',
     wide: true,
     backgroundColor: '#f5ede0',
+    captionPlacement: 'outside',
     media: {
       videoSrc: 'https://framerusercontent.com/assets/LcVsL2hd7HhXtTa5HIf2kVmD7jk.m4v',
       alt: 'Abstract motion study for brand-system work',
@@ -77,6 +81,7 @@ export const storyItems: StoryCardData[] = [
     variantClass: 'sc-brand',
     backgroundColor: '#e5dff5',
     textPlacement: 'bottom',
+    captionPlacement: 'outside',
     text: 'Fascinated by why people do what they do.',
     caption: {
       label: 'User psychology.',

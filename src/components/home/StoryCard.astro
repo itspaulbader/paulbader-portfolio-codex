@@ -9,6 +9,7 @@ interface Props {
 
 const { item } = Astro.props;
 const classes = ['story-card', item.variantClass, item.wide && 'wide'].filter(Boolean).join(' ');
+const captionPlacement = item.captionPlacement ?? 'outside';
 const visualStyle = [
   `--story-background:${item.backgroundColor}`,
   item.media && `--story-position-desktop:${item.media.desktopPosition}`,
@@ -21,6 +22,7 @@ const visualStyle = [
   data-story-id={item.id}
   data-story-kind={item.kind}
   data-text-placement={item.textPlacement}
+  data-caption-placement={captionPlacement}
 >
   <div class="sc-visual" style={visualStyle}>
     {item.kind === 'image' && item.media?.desktopImage && (

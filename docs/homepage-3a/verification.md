@@ -43,3 +43,20 @@ Representative screenshots:
 - Homepage local image failures: none.
 - Homepage external video error: none.
 - Meta Learn local and live mobile hero views matched; its source files were untouched.
+
+## Milestone 3A.1 Foundation Correction
+
+- Reduced `src/styles/home.css` from 1,044 to 880 lines while preserving the rendered 3A result.
+- Removed the retired hero/work-history stack, legacy project image wrappers/background helpers, unused story arrows/track, legacy highlight-card content, and retired fifth story-card selector groups.
+- Consolidated shared tablet/mobile project-card rules and retained only selectors used by current markup, generated carousel/progress states, footer reveal states, or the documented future inside-caption state.
+- Added typed `captionPlacement` support; all four current stories remain `outside`.
+- Routed project image icons through `assetPath()`.
+
+Exact commit-to-commit computed-style and geometry comparisons against `962ea7f8a275548b0abe9e7059e86500d3ad8d15` found zero differences at 1440 x 900, 1024 x 768, and 390 x 844. Page heights remained 4,973px, 4,347px, and 4,627px respectively. Existing screenshots remain valid; the only capture variance was the external autoplaying video frame.
+
+- Default `/portfolio` build: passed; icon paths resolve under `/portfolio/images/`.
+- `PORTFOLIO_BASE=/` build: passed; icon paths resolve under `/images/`.
+- Carousel autoplay, pause, dot navigation, and scroll snapping passed.
+- Reduced motion starts paused, shows the play control, and leaves the external video paused.
+- All four projects render, only Meta Learn is linked, no image/video failures or horizontal overflow were found, and the browser console remained clean.
+- Meta Learn source files were unchanged.
