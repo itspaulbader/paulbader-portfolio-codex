@@ -30,7 +30,7 @@ const unavailable = project.comingSoon || project.href === '#';
   style={mediaVars}
 >
   <picture class="card-media">
-    <source media="(max-width: 1024px)" srcset={assetPath(project.mobileImage.src)} />
+    <source media="(max-width: 767px)" srcset={assetPath(project.mobileImage.src)} />
     <img src={assetPath(project.desktopImage.src)} alt={project.desktopImage.alt} />
   </picture>
   <div class="card-scrim"></div>
