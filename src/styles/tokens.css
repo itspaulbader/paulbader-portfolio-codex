@@ -13,6 +13,22 @@
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
   --gutter: max(22px, calc((100vw - 1260px) / 2));
   --content-left: var(--gutter);
+  --page-max: 1260px;
+  --space-1: 8px;
+  --space-2: 12px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+  --space-6: 48px;
+  --space-7: 64px;
+  --space-8: 80px;
+  --space-9: 96px;
+  --radius-small: 12px;
+  --radius-medium: 18px;
+  --radius-large: 24px;
+  --surface-page: #f5f5f7;
+  --surface-card: #ffffff;
+  --card-transition: 480ms var(--ease);
 }
 
 @media (max-width: 734px) {

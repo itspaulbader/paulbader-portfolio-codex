@@ -53,6 +53,11 @@ if (hlTrack && hlDots && hlControls && hlPlayBtn) {
   const hlReduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   let hlIdx = 0, hlPlaying = !hlReduced, hlTimer = null, hlVisible = true;
 
+  if (hlReduced) {
+    hlTrack.querySelectorAll('video').forEach(video => video.pause());
+    hlPlayBtn.setAttribute('aria-label', 'Play highlights gallery');
+  }
+
   hlCards.forEach((_, i) => {
     const b = document.createElement('button');
     b.className = 'hl-dot'; b.type = 'button';
