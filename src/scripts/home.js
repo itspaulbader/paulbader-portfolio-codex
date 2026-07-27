@@ -1,48 +1,3 @@
-const workStack = document.getElementById('workStack');
-const toggleBtn = document.getElementById('toggleBtn');
-const toggleLabel = document.getElementById('toggleLabel');
-if (workStack && toggleBtn && toggleLabel) {
-  const workCards = Array.from(workStack.querySelectorAll('.work-card'));
-  let isOpen = false;
-  const STAGGER = 72, GAP = 12;
-
-  function expandStack() {
-    const cardH = workCards[0].offsetHeight;
-    const total = workCards.length * cardH + (workCards.length - 1) * GAP;
-    workStack.style.height = total + 'px';
-    workStack.classList.add('expanded');
-    workCards.forEach((card, i) => {
-      const ri = workCards.length - 1 - i;
-      card.style.transitionDelay = `${i * STAGGER}ms`;
-      card.style.transform = `translateY(${ri * (cardH + GAP)}px)`;
-      card.style.left = '0';
-      card.style.right = '0';
-      card.style.opacity = '1';
-    });
-  }
-
-  function collapseStack() {
-    workStack.classList.remove('expanded');
-    workCards.forEach((card, i) => {
-      card.style.transitionDelay = `${i * STAGGER}ms`;
-    });
-    workCards[0].style.transform = 'translateY(12px)'; workCards[0].style.left = '5%';   workCards[0].style.right = '5%';   workCards[0].style.opacity = '0';
-    workCards[1].style.transform = 'translateY(12px)'; workCards[1].style.left = '5%';   workCards[1].style.right = '5%';   workCards[1].style.opacity = '0.72';
-    workCards[2].style.transform = 'translateY(6px)';  workCards[2].style.left = '2.5%'; workCards[2].style.right = '2.5%'; workCards[2].style.opacity = '0.88';
-    workCards[3].style.transform = 'translateY(0px)';  workCards[3].style.left = '0';    workCards[3].style.right = '0';    workCards[3].style.opacity = '1';
-    setTimeout(() => { workStack.style.height = ''; }, 220);
-  }
-
-  function toggleHistory() {
-    isOpen = !isOpen;
-    toggleBtn.classList.toggle('open', isOpen);
-    toggleLabel.textContent = isOpen ? 'Show less' : 'Show all';
-    if (isOpen) expandStack(); else collapseStack();
-  }
-  toggleBtn.addEventListener('click', toggleHistory);
-  workStack.addEventListener('click', () => { if (!isOpen) toggleHistory(); });
-}
-
 const hlTrack = document.getElementById('hlTrack');
 const hlDots = document.getElementById('hlDots');
 const hlControls = document.getElementById('hlControls');
@@ -58,10 +13,11 @@ if (hlTrack && hlDots && hlControls && hlPlayBtn) {
     hlPlayBtn.setAttribute('aria-label', 'Play highlights gallery');
   }
 
-  hlCards.forEach((_, i) => {
+  hlCards.forEach((card, i) => {
     const b = document.createElement('button');
     b.className = 'hl-dot'; b.type = 'button';
-    b.setAttribute('aria-label', 'Show highlight ' + (i + 1));
+    const label = card.querySelector('.sc-caption strong')?.textContent?.trim();
+    b.setAttribute('aria-label', label ? `Show ${label.replace(/\.$/, '')} highlight` : `Show highlight ${i + 1}`);
     b.innerHTML = '<span class="hl-fill"></span>';
     b.addEventListener('click', () => hlGo(i));
     hlDots.appendChild(b);
@@ -93,7 +49,7 @@ if (hlTrack && hlDots && hlControls && hlPlayBtn) {
   }
   function hlGo(i) {
     hlIdx = i >= hlCards.length ? 0 : Math.max(0, i);
-    hlTrack.scrollTo({ left: hlCardLeft(hlIdx), behavior: 'smooth' });
+    hlTrack.scrollTo({ left: hlCardLeft(hlIdx), behavior: hlReduced ? 'auto' : 'smooth' });
     hlPaint(); hlSchedule();
   }
   function hlSetPlaying(p) {
@@ -143,44 +99,55 @@ if (hlTrack && hlDots && hlControls && hlPlayBtn) {
 }
 
 (function () {
+  const nav = document.getElementById('case-nav');
   const workSection = document.querySelector('.work-section');
-  const cards = [...document.querySelectorAll('.work-section .card')];
-  if (!workSection || !cards.length) return;
+  const footer = document.getElementById('contact');
+  const dots = nav ? [...nav.querySelectorAll('[data-project-target]')] : [];
+  const cards = dots.map(dot => document.getElementById(dot.dataset.projectTarget));
+  if (!nav || !workSection || !footer || !cards.length || cards.some(card => !card)) return;
 
-  const nav = document.createElement('div');
-  nav.id = 'case-nav';
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  const navAvailable = matchMedia('(min-width: 900px)');
 
-  const dots = cards.map((card, i) => {
-    const btn = document.createElement('button');
-    btn.className = 'case-dot';
-    btn.setAttribute('aria-label', 'Jump to case ' + (i + 1));
-    btn.addEventListener('click', () => card.scrollIntoView({ behavior: 'smooth' }));
-    nav.appendChild(btn);
-    return btn;
+  dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+      cards[index].scrollIntoView({
+        behavior: reducedMotion.matches ? 'auto' : 'smooth',
+        block: 'center'
+      });
+    });
   });
-
-  document.body.appendChild(nav);
 
   function updateCaseNav() {
     const vh = window.innerHeight;
     const sectionRect = workSection.getBoundingClientRect();
-    const show = sectionRect.top < vh && sectionRect.bottom > 0;
+    const footerRect = footer.getBoundingClientRect();
+    const show = navAvailable.matches && sectionRect.top < vh && sectionRect.bottom > 0 && footerRect.top >= vh;
     nav.classList.toggle('visible', show);
+    nav.toggleAttribute('inert', !show);
+    nav.setAttribute('aria-hidden', String(!show));
 
     if (!show) return;
-    const marker = vh * 0.5;
     let activeIndex = 0;
+    let greatestVisibleHeight = -1;
     let closestDistance = Infinity;
     cards.forEach((card, index) => {
       const rect = card.getBoundingClientRect();
+      const visibleHeight = Math.max(0, Math.min(rect.bottom, vh) - Math.max(rect.top, 0));
       const center = rect.top + rect.height / 2;
-      const distance = Math.abs(center - marker);
-      if (distance < closestDistance) {
+      const distance = Math.abs(center - vh / 2);
+      if (visibleHeight > greatestVisibleHeight || (visibleHeight === greatestVisibleHeight && distance < closestDistance)) {
+        greatestVisibleHeight = visibleHeight;
         closestDistance = distance;
         activeIndex = index;
       }
     });
-    dots.forEach((dot, index) => dot.classList.toggle('active', index === activeIndex));
+    dots.forEach((dot, index) => {
+      const active = index === activeIndex;
+      dot.classList.toggle('active', active);
+      if (active) dot.setAttribute('aria-current', 'true');
+      else dot.removeAttribute('aria-current');
+    });
   }
   let caseNavFrame = null;
   const queueCaseNav = () => {
@@ -192,5 +159,12 @@ if (hlTrack && hlDots && hlControls && hlPlayBtn) {
   };
   window.addEventListener('scroll', queueCaseNav, { passive: true });
   window.addEventListener('resize', queueCaseNav, { passive: true });
+  navAvailable.addEventListener('change', queueCaseNav);
+
+  const caseObserver = new IntersectionObserver(queueCaseNav, {
+    threshold: Array.from({ length: 21 }, (_, index) => index / 20)
+  });
+  [workSection, footer, ...cards].forEach(element => caseObserver.observe(element));
+
   updateCaseNav();
 })();

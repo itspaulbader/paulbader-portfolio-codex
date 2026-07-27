@@ -1,0 +1,18 @@
+---
+import { projectAnchorId, projects } from '../../data/projects';
+
+const shortcuts = projects.map(project => ({
+  targetId: projectAnchorId(project.id),
+  label: `Jump to ${project.company}: ${project.titleHtml.replace(/<br\s*\/?>/gi, ' ')}`
+}));
+---
+<nav id="case-nav" aria-label="Project shortcuts" aria-hidden="true" inert>
+  {shortcuts.map(shortcut => (
+    <button
+      class="case-dot"
+      type="button"
+      data-project-target={shortcut.targetId}
+      aria-label={shortcut.label}
+    ></button>
+  ))}
+</nav>

@@ -32,6 +32,8 @@ export type ProjectCard = {
   };
 };
 
+export const projectAnchorId = (projectId: string) => `project-${projectId}`;
+
 export const projects: ProjectCard[] = [
   {
     id: 'bershka',
@@ -70,7 +72,7 @@ export const projects: ProjectCard[] = [
   {
     id: 'meta-learn',
     themeClass: 'card-light',
-    backgroundColor: '#ffffff',
+    backgroundColor: '#f5f5f7',
     textPlacement: { desktop: 'left', mobile: 'center' },
     mobilePresentation: 'contained-bottom',
     icon: { type: 'text', label: 'ML', style: 'background:#dbeafe;color:#1d4ed8;' },

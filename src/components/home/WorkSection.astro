@@ -3,6 +3,10 @@ import CaseCard from './CaseCard.astro';
 import { projects } from '../../data/projects';
 ---
 <section class="work-section" id="work">
+  <header class="work-header">
+    <h2 class="work-title">Selected work.</h2>
+    <p class="work-intro">Product and brand work across retail, SaaS, mental fitness and internal tools.</p>
+  </header>
   <div class="cards">
     {projects.map(project => <CaseCard project={project} />)}
   </div>
