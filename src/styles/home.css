@@ -41,7 +41,8 @@ body[data-case='home'] .hl-stage {
   overflow-y: hidden;
   overscroll-behavior-x: contain;
   scroll-snap-type: x mandatory;
-  padding-inline: var(--home-gutter);
+  margin-top: -4px;
+  padding: 4px var(--home-gutter) 0;
   scroll-padding-inline: var(--home-gutter);
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
@@ -317,6 +318,14 @@ body[data-case='home'] .hl-play {
 
 body[data-case='home'] .hl-play:hover { background: rgba(218,218,224,0.82); }
 
+body[data-case='home'] .hl-dot:focus-visible,
+body[data-case='home'] .hl-play:focus-visible,
+body[data-case='home'] .case-dot:focus-visible,
+body[data-case='home'] .btn-view:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+}
+
 body[data-case='home'] .hl-play svg {
   width: 19px;
   height: 19px;
@@ -369,8 +378,38 @@ body[data-case='home'] .hl-fill {
 
 /* Project cards */
 body[data-case='home'] .work-section {
-  padding: var(--space-4) var(--home-gutter) var(--space-9);
+  padding: 0 var(--home-gutter) var(--space-9);
   background: var(--surface-card);
+}
+
+body[data-case='home'] .work-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
+  align-items: end;
+  width: 100%;
+  max-width: var(--page-max);
+  gap: var(--space-5);
+  margin-inline: auto;
+  padding: clamp(56px, 6vw, 80px) 0 clamp(40px, 4vw, 56px);
+}
+
+body[data-case='home'] .work-title {
+  max-width: 760px;
+  color: var(--black);
+  font-size: clamp(40px, 4.15vw, 60px);
+  font-weight: 600;
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+}
+
+body[data-case='home'] .work-intro {
+  max-width: 38ch;
+  justify-self: end;
+  color: #6e6e73;
+  font-size: clamp(16px, 1.4vw, 19px);
+  font-weight: 500;
+  line-height: 1.48;
+  letter-spacing: 0;
 }
 
 body[data-case='home'] .cards {
@@ -446,7 +485,7 @@ body[data-case='home'] .card-featured .card-body {
   min-height: inherit;
   gap: clamp(18px, 2vw, 26px);
   margin: 0;
-  padding: clamp(64px, 7.5vw, 96px) clamp(44px, 6vw, 88px);
+  padding: clamp(80px, 7.5vw, 96px) clamp(44px, 6vw, 88px);
 }
 
 body[data-case='home'] .card-body > div:first-child {
@@ -661,6 +700,18 @@ body[data-case='home'] .reveal-d1.in { transition-delay: 0.1s; }
 }
 
 @media (max-width: 767px) {
+  body[data-case='home'] .work-header {
+    grid-template-columns: 1fr;
+    align-items: start;
+    gap: var(--space-3);
+    padding: var(--space-6) 0 var(--space-5);
+  }
+
+  body[data-case='home'] .work-intro {
+    max-width: 34ch;
+    justify-self: start;
+  }
+
   body[data-case='home'] .card-featured .card-body {
     justify-content: flex-start;
     width: 100%;
@@ -685,7 +736,7 @@ body[data-case='home'] .reveal-d1.in { transition-delay: 0.1s; }
   body[data-case='home'] .card-violet.card-featured .card-body { padding-bottom: 36px !important; }
 
   body[data-case='home'] .card {
-    min-height: calc(100svh - 48px);
+    min-height: min(820px, calc(100svh - 48px));
   }
 
   body[data-case='home'] .card-light.card-featured .card-scrim {
@@ -727,7 +778,6 @@ body[data-case='home'] .reveal-d1.in { transition-delay: 0.1s; }
   body[data-case='home'] .hl-controls { padding-bottom: var(--space-7); }
 
   body[data-case='home'] .work-section {
-    padding-top: 20px;
     padding-bottom: var(--space-8);
   }
 
@@ -877,11 +927,13 @@ body[data-case='home'] .reveal-d1.in { transition-delay: 0.1s; }
   body[data-case='home'] .hl-dot.active { width: 46px; }
 
   body[data-case='home'] .work-section {
-    padding: var(--space-2) var(--home-gutter) var(--space-7);
+    padding-right: var(--home-gutter);
+    padding-bottom: var(--space-7);
+    padding-left: var(--home-gutter);
   }
 
   body[data-case='home'] .card {
-    min-height: calc(100svh - 40px);
+    min-height: min(820px, calc(100svh - 40px));
     border-radius: 20px;
   }
 
@@ -915,6 +967,8 @@ body[data-case='home'] .reveal-d1.in { transition-delay: 0.1s; }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html:has(body[data-case='home']) { scroll-behavior: auto; }
+
   body[data-case='home'] .sc-visual,
   body[data-case='home'] .card-media img,
   body[data-case='home'] .btn-view {
